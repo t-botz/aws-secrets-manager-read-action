@@ -62,6 +62,8 @@ function run() {
             });
             core.debug('Getting secret');
             const response = yield client.send(command);
+            if (response.SecretString)
+                core.setSecret(response.SecretString);
             core.setOutput('secret', response.SecretString);
         }
         catch (error) {

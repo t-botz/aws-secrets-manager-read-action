@@ -11,6 +11,9 @@ inputs:
   version-stage:
     required: false
     description: 'Version stage of the secret'
+outputs:
+  secret: 
+    description: 'Secret String return by AWS'
 runs:
   using: 'node16'
   main: 'dist/index.js'

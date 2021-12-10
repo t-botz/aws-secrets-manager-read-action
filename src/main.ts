@@ -31,7 +31,7 @@ async function run(): Promise<void> {
 
     core.debug('Getting secret')
     const response = await client.send(command)
-
+    if (response.SecretString) core.setSecret(response.SecretString)
     core.setOutput('secret', response.SecretString)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
