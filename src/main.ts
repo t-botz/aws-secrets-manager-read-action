@@ -13,17 +13,18 @@ function getOptionalInput(input: string): string | undefined {
 }
 
 function mask(secret: string, isJson: boolean): void {
-  core.setSecret(secret)
   if (isJson) {
     try {
       JSON.parse(secret, (_, value) => {
         core.setSecret(value)
       })
+      return
     } catch (error) {
       core.warning('Secret wasnt json')
       if (error instanceof Error) core.warning(error.message)
     }
   }
+  core.setSecret(secret)
 }
 
 async function run(): Promise<void> {
