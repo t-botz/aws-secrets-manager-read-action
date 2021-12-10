@@ -47,18 +47,18 @@ function getOptionalInput(input) {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const secret_id = core.getInput('secret_id', {
+            const secretId = core.getInput('secret-id', {
                 required: true,
                 trimWhitespace: true
             });
-            const version_id = getOptionalInput('version_id');
-            const version_stage = getOptionalInput('version_stage');
+            const versionId = getOptionalInput('version-id');
+            const versionStage = getOptionalInput('version-stage');
             core.debug('Initialising SecretsManagerClient');
             const client = new client_secrets_manager_1.SecretsManagerClient({});
             const command = new client_secrets_manager_1.GetSecretValueCommand({
-                SecretId: secret_id,
-                VersionId: version_id,
-                VersionStage: version_stage
+                SecretId: secretId,
+                VersionId: versionId,
+                VersionStage: versionStage
             });
             core.debug('Getting secret');
             const response = yield client.send(command);

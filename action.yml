@@ -2,13 +2,13 @@ name: 'AWS Secrets Manager Reader'
 description: Github Action to read a secret value from AWS Secret Manager'
 author: 'Tibo Delor'
 inputs:
-  secret_id:
+  secret-id:
     required: true
     description: 'Either ARN or friendly name of the secret'
-  version_id:
+  version-id:
     required: false
     description: 'Version id of the secret'
-  version_stage:
+  version-stage:
     required: false
     description: 'Version stage of the secret'
 runs:

@@ -22,9 +22,9 @@ This action assume that:
 
 | Name               | Type    | Description                       |
 |--------------------|---------|-----------------------------------|
-| `secret_id`        | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
-| `version_id`       | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
-| `version_stage`    | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `secret-id`        | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `version-id`       | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `version-stage`    | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
 
 ## Outputs
 

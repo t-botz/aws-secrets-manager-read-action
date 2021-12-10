@@ -14,19 +14,19 @@ function getOptionalInput(input: string): string | undefined {
 
 async function run(): Promise<void> {
   try {
-    const secret_id: string = core.getInput('secret_id', {
+    const secretId: string = core.getInput('secret-id', {
       required: true,
       trimWhitespace: true
     })
-    const version_id = getOptionalInput('version_id')
-    const version_stage = getOptionalInput('version_stage')
+    const versionId = getOptionalInput('version-id')
+    const versionStage = getOptionalInput('version-stage')
 
     core.debug('Initialising SecretsManagerClient')
     const client = new SecretsManagerClient({})
     const command = new GetSecretValueCommand({
-      SecretId: secret_id,
-      VersionId: version_id,
-      VersionStage: version_stage
+      SecretId: secretId,
+      VersionId: versionId,
+      VersionStage: versionStage
     })
 
     core.debug('Getting secret')
