@@ -11,6 +11,10 @@ inputs:
   version-stage:
     required: false
     description: 'Version stage of the secret'
+  is-json:
+    required: false
+    description: 'Whether the credentials is a key/value json. Used for masking the values instead of the whole string'
+    default: false
 outputs:
   secret: 
     description: 'Secret String return by AWS'

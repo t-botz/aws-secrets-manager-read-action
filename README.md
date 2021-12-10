@@ -14,17 +14,36 @@ This action assume that:
 
 ## Usage
 
+Assuming we have define in AWS Secret Manager a secret `foo/bar` with the following content:
+```json
+{
+  "MY_SECRET": "123456"
+}
+```
+
 ```yaml
-# TODO
+- uses: aws-actions/configure-aws-credentials@v1
+  with:
+    aws-region: us-east-1
+- name: Retrieve Secrets
+  id: secrets
+  uses: thibaultdelor/aws-secrets-manager-read-action@v0.0.1
+  with:
+    secret-id: foo/bar
+    is-json: true
+- name: Use Secret
+  # Will actually display '***' as secret will be masked in output
+  run: echo "${{ fromJSON(steps.secrets.outputs.secret).MY_SECRET }}"
 ```
 
 ## Inputs
 
-| Name               | Type    | Description                       |
-|--------------------|---------|-----------------------------------|
-| `secret-id`        | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
-| `version-id`       | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
-| `version-stage`    | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| Name               | Type     | Description                       |
+|--------------------|----------|-----------------------------------|
+| `secret-id`        | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `version-id`       | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `version-stage`    | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `is-json`          | Boolean  | Whether the credentials is a key/value json. Used for masking the values instead of the whole string/ |
 
 ## Outputs
 

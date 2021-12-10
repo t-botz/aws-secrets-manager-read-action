@@ -44,6 +44,21 @@ function getOptionalInput(input) {
     }
     return result;
 }
+function mask(secret, isJson) {
+    core.setSecret(secret);
+    if (isJson) {
+        try {
+            JSON.parse(secret, (_, value) => {
+                core.setSecret(value);
+            });
+        }
+        catch (error) {
+            core.warning("Secret wasnt json");
+            if (error instanceof Error)
+                core.warning(error.message);
+        }
+    }
+}
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -53,6 +68,7 @@ function run() {
             });
             const versionId = getOptionalInput('version-id');
             const versionStage = getOptionalInput('version-stage');
+            const isJson = core.getBooleanInput('is-json');
             core.debug('Initialising SecretsManagerClient');
             const client = new client_secrets_manager_1.SecretsManagerClient({});
             const command = new client_secrets_manager_1.GetSecretValueCommand({
@@ -62,8 +78,12 @@ function run() {
             });
             core.debug('Getting secret');
             const response = yield client.send(command);
-            if (response.SecretString)
-                core.setSecret(response.SecretString);
+            if (response.SecretString) {
+                mask(response.SecretString, isJson);
+            }
+            else {
+                core.debug("SecretString is undefined");
+            }
             core.setOutput('secret', response.SecretString);
         }
         catch (error) {

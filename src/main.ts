@@ -12,6 +12,20 @@ function getOptionalInput(input: string): string | undefined {
   return result
 }
 
+function mask(secret: string, isJson: boolean): void {
+  core.setSecret(secret)
+  if (isJson) {
+    try {
+      JSON.parse(secret, (_, value) => {
+        core.setSecret(value)
+      })
+    } catch (error) {
+      core.warning('Secret wasnt json')
+      if (error instanceof Error) core.warning(error.message)
+    }
+  }
+}
+
 async function run(): Promise<void> {
   try {
     const secretId: string = core.getInput('secret-id', {
@@ -20,6 +34,7 @@ async function run(): Promise<void> {
     })
     const versionId = getOptionalInput('version-id')
     const versionStage = getOptionalInput('version-stage')
+    const isJson = core.getBooleanInput('is-json')
 
     core.debug('Initialising SecretsManagerClient')
     const client = new SecretsManagerClient({})
@@ -31,7 +46,12 @@ async function run(): Promise<void> {
 
     core.debug('Getting secret')
     const response = await client.send(command)
-    if (response.SecretString) core.setSecret(response.SecretString)
+
+    if (response.SecretString) {
+      mask(response.SecretString, isJson)
+    } else {
+      core.debug('SecretString is undefined')
+    }
     core.setOutput('secret', response.SecretString)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
