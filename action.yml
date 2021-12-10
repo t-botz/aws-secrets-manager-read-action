@@ -1,11 +1,16 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'AWS Secrets Manager Reader'
+description: Github Action to read a secret value from AWS Secret Manager'
+author: 'Tibo Delor'
 inputs:
-  milliseconds: # change this
+  secret_id:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'Either ARN or friendly name of the secret'
+  version_id:
+    required: false
+    description: 'Version id of the secret'
+  version_stage:
+    required: false
+    description: 'Version stage of the secret'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'

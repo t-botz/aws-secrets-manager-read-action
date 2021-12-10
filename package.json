@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "aws-secrets-manager-read-action",
+  "version": "0.0.1",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "Github Action to read a secret value from AWS Secret Manager",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -20,12 +20,14 @@
   "keywords": [
     "actions",
     "node",
-    "setup"
+    "aws",
+    "secrets"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.6.0"
+    "@actions/core": "^1.6.0",
+    "@aws-sdk/client-secrets-manager": "^3.43.0"
   },
   "devDependencies": {
     "@types/node": "^16.10.5",
