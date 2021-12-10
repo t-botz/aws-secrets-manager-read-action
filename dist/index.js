@@ -45,19 +45,20 @@ function getOptionalInput(input) {
     return result;
 }
 function mask(secret, isJson) {
-    core.setSecret(secret);
     if (isJson) {
         try {
             JSON.parse(secret, (_, value) => {
                 core.setSecret(value);
             });
+            return;
         }
         catch (error) {
-            core.warning("Secret wasnt json");
+            core.warning('Secret wasnt json');
             if (error instanceof Error)
                 core.warning(error.message);
         }
     }
+    core.setSecret(secret);
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -82,7 +83,7 @@ function run() {
                 mask(response.SecretString, isJson);
             }
             else {
-                core.debug("SecretString is undefined");
+                core.debug('SecretString is undefined');
             }
             core.setOutput('secret', response.SecretString);
         }
