@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/thibaultdelor/aws-secrets-manager-read-action/actions"><img alt="typescript-action status" src="https://github.com/thibaultdelor/aws-secrets-manager-read-action/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/t-botz/aws-secrets-manager-read-action/actions"><img alt="typescript-action status" src="https://github.com/t-botz/aws-secrets-manager-read-action/workflows/build-test/badge.svg"></a>
 </p>
 
 # AWS Secrets Manager Reader
@@ -27,7 +27,7 @@ Assuming we have define in AWS Secret Manager a secret `foo/bar` with the follow
     aws-region: us-east-1
 - name: Retrieve Secrets
   id: secrets
-  uses: thibaultdelor/aws-secrets-manager-read-action@v0.0.1
+  uses: t-botz/aws-secrets-manager-read-action@v1
   with:
     secret-id: foo/bar
     is-json: true
@@ -43,7 +43,7 @@ Assuming we have define in AWS Secret Manager a secret `foo/bar` with the follow
 | `secret-id`        | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
 | `version-id`       | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
 | `version-stage`    | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
-| `is-json`          | Boolean  | Whether the credentials is a key/value json. Used for masking the values instead of the whole string/ |
+| `is-json`          | Boolean  | Whether the credentials is a key/value json. Used for masking the values instead of masking the whole string. |
 
 ## Outputs
 
