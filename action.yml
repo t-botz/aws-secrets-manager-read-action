@@ -18,6 +18,9 @@ inputs:
 outputs:
   secret: 
     description: 'Secret String return by AWS'
+branding:
+  icon: 'lock'  
+  color: 'green'
 runs:
   using: 'node16'
   main: 'dist/index.js'
