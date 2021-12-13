@@ -44,21 +44,45 @@ function getOptionalInput(input) {
     }
     return result;
 }
-function mask(secret, isJson) {
-    if (isJson) {
-        try {
-            JSON.parse(secret, (_, value) => {
+function processJson(secret, maskJsonValues, keysAsEnvVars, keysAsOutputs) {
+    if (!maskJsonValues && !keysAsEnvVars && !keysAsOutputs) {
+        core.debug('No JSON processing needed');
+        return;
+    }
+    core.debug('Parsing JSON');
+    try {
+        const secretObj = JSON.parse(secret, (_, value) => {
+            if (maskJsonValues)
                 core.setSecret(value);
-            });
-            return;
+            return value;
+        });
+        if (typeof secretObj !== 'object') {
+            throw new Error('Secret was JSON but not an object 🤔');
         }
-        catch (error) {
-            core.warning('Secret wasnt json');
-            if (error instanceof Error)
-                core.warning(error.message);
+        exportKeys(secretObj, keysAsEnvVars, keysAsOutputs);
+    }
+    catch (error) {
+        core.warning('Secret wasnt json');
+        if (error instanceof Error)
+            core.warning(error.message);
+    }
+}
+function exportKeys(secretObj, keysAsEnvVars, keysAsOutputs) {
+    if (!keysAsEnvVars && !keysAsOutputs) {
+        core.debug('No JSON keys export needed');
+        return;
+    }
+    for (const [key, value] of Object.entries(secretObj)) {
+        const valueAsString = typeof value === 'string' ? value : JSON.stringify(value);
+        if (keysAsEnvVars) {
+            core.debug(`Exporting Env variable ${key}`);
+            core.exportVariable(key, valueAsString);
+        }
+        if (keysAsOutputs) {
+            core.debug(`Setting output ${key}`);
+            core.setOutput(key, valueAsString);
         }
     }
-    core.setSecret(secret);
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -69,7 +93,10 @@ function run() {
             });
             const versionId = getOptionalInput('version-id');
             const versionStage = getOptionalInput('version-stage');
-            const isJson = core.getBooleanInput('is-json');
+            const maskValue = core.getBooleanInput('mask-value');
+            const maskJsonValues = core.getBooleanInput('mask-json-values');
+            const keysAsEnvVars = core.getBooleanInput('keys-as-env-vars');
+            const keysAsOutputs = core.getBooleanInput('keys-as-outputs');
             core.debug('Initialising SecretsManagerClient');
             const client = new client_secrets_manager_1.SecretsManagerClient({});
             const command = new client_secrets_manager_1.GetSecretValueCommand({
@@ -80,7 +107,9 @@ function run() {
             core.debug('Getting secret');
             const response = yield client.send(command);
             if (response.SecretString) {
-                mask(response.SecretString, isJson);
+                if (maskValue)
+                    core.setSecret(response.SecretString);
+                processJson(response.SecretString, maskJsonValues, keysAsEnvVars, keysAsOutputs);
             }
             else {
                 core.debug('SecretString is undefined');

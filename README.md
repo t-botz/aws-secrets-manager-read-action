@@ -30,10 +30,17 @@ Assuming we have define in AWS Secret Manager a secret `foo/bar` with the follow
   uses: t-botz/aws-secrets-manager-read-action@v1
   with:
     secret-id: foo/bar
-    is-json: true
+    mask-json-values: true
+    keys-as-env-vars: true
+    keys-as-outputs: true
 - name: Use Secret
-  # Will actually display '***' as secret will be masked in output
-  run: echo "${{ fromJSON(steps.secrets.outputs.secret).MY_SECRET }}"
+  run: |
+    # Will actually display '***' as secret will be masked in output
+    echo "${{ fromJSON(steps.secrets.outputs.secret).MY_SECRET }}"
+    # Same result thanks to `keys-as-outputs: true`
+    echo "${{ steps.secrets.outputs.MY_SECRET }}"
+    # Same result thanks to `keys-as-env-vars: true`
+    echo "$MY_SECRET"
 ```
 
 ## Inputs
@@ -43,10 +50,13 @@ Assuming we have define in AWS Secret Manager a secret `foo/bar` with the follow
 | `secret-id`        | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
 | `version-id`       | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
 | `version-stage`    | String   | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
-| `is-json`          | Boolean  | Whether the credentials is a key/value json. Used for masking the values instead of masking the whole string. |
+| `mask-value`       | Boolean  | (Default `true`) Mask the whole secret value return by AWS. |
+| `mask-json-values` | Boolean  | (Default `false`) Assume the secret is JSON and mask all JSON object values, even the nested ones |
+| `keys-as-env-vars` | Boolean  | (Default `false`) Assume the secret is a JSON object and export the keys as env variables. Can then be accessed with `${{ env.MY_SECRET }}`. |
+| `keys-as-outputs`  | Boolean  | (Default `false`) Assume the secret is a JSON object and export the keys as env variables. Can then be accessed with `${{ steps.<id_of_steps>.outputs.MY_SECRET }}`. |
 
 ## Outputs
 
 | Name               | Type    | Description                       |
 |--------------------|---------|-----------------------------------|
-| `secret`           | String  | SecretString as return by [AWS API](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `secret`           | String  | SecretString as returned by [AWS API](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |

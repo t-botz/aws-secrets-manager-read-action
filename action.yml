@@ -11,9 +11,22 @@ inputs:
   version-stage:
     required: false
     description: 'Version stage of the secret'
-  is-json:
+    
+  mask-value:
     required: false
-    description: 'Whether the credentials is a key/value json. Used for masking the values instead of the whole string'
+    description: 'Assume the secret is JSON and mask all JSON object values, even the nested ones'
+    default: true
+  mask-json-values:
+    required: false
+    description: 'Assume the secret is JSON and mask all JSON object values, even the nested ones'
+    default: false
+  keys-as-env-vars:
+    required: false
+    description: 'Assume the secret is a JSON object and export the keys as env variables.'
+    default: false
+  keys-as-outputs:
+    required: false
+    description: 'Assume the secret is a JSON object and export the keys as env variables.'
     default: false
 outputs:
   secret: 
