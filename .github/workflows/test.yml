@@ -1,0 +1,53 @@
+name: 'build-test'
+on: push
+jobs:
+  build: # make sure build/ci work properly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          npm install
+      - run: |
+          npm run all
+  test:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_SECRETS_MANAGER_ENDPOINT_URL: http://localhost:4566
+    services:
+      localstack:
+        image: localstack/localstack
+        env:
+          SERVICES: secretsmanager
+        ports:
+          - 4566:4566
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup some sample credentials
+        run: |
+          aws --endpoint-url="$AWS_SECRETS_MANAGER_ENDPOINT_URL" secretsmanager create-secret \
+              --name mysecret --secret-string '{"foo1":"bar1","foo2":"bar2"}'
+      - name: Retrieve Secrets
+        id: secrets
+        uses: ./
+        with:
+          secret-id: mysecret
+          keys-as-outputs: true
+          keys-as-env-vars: true
+      - name: Check
+        run: |
+          set -e
+          if [ "${{ steps.secrets.outputs.secret }}" != '{foo1:bar1,foo2:bar2}' ]; then
+            echo "Secret not exported? [${{ steps.secrets.outputs.secret }}]"; exit 1;
+          fi
+          # Same result thanks to `keys-as-outputs: true`
+          if [ "${{ steps.secrets.outputs.foo1 }}" != "bar1" ]; then
+            echo "Key not exported? [${{ steps.secrets.outputs.foo1 }}]"; exit 1;
+          fi
+          # Same result thanks to `keys-as-env-vars: true`
+          if [ "$foo1" != "bar1" ]; then
+            echo "Not exported as env var"; exit 1;
+          fi
