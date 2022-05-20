@@ -78,8 +78,14 @@ async function run(): Promise<void> {
     const keysAsEnvVars = core.getBooleanInput('keys-as-env-vars')
     const keysAsOutputs = core.getBooleanInput('keys-as-outputs')
 
+    // Used mainly for unit test to use localstack
+    const awsEndpoint = process.env['AWS_SECRETS_MANAGER_ENDPOINT_URL']
+
     core.debug('Initialising SecretsManagerClient')
-    const client = new SecretsManagerClient({})
+    core.debug(`AWS endpoint override: ${awsEndpoint}`)
+    const client = new SecretsManagerClient({
+      endpoint: awsEndpoint
+    })
     const command = new GetSecretValueCommand({
       SecretId: secretId,
       VersionId: versionId,
