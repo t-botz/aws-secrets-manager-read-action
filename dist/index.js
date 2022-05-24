@@ -41,6 +41,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const client_secrets_manager_1 = __nccwpck_require__(9600);
+const fs_1 = __nccwpck_require__(7147);
 function getOptionalInput(input) {
     const result = core.getInput(input, { required: false, trimWhitespace: true });
     if (!result) {
@@ -48,13 +49,13 @@ function getOptionalInput(input) {
     }
     return result;
 }
-function processJson(secret, maskJsonValues, keysAsEnvVars, keysAsOutputs) {
-    if (!maskJsonValues && !keysAsEnvVars && !keysAsOutputs) {
-        core.debug('No JSON processing needed');
-        return;
-    }
-    core.debug('Parsing JSON');
-    try {
+function processJson(secret, maskJsonValues, keysAsEnvVars, keysAsOutputs, envFilePath) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!maskJsonValues && !keysAsEnvVars && !keysAsOutputs) {
+            core.debug('No JSON processing needed');
+            return;
+        }
+        core.debug('Parsing JSON');
         const secretObj = JSON.parse(secret, (_, value) => {
             if (maskJsonValues)
                 core.setSecret(value);
@@ -64,12 +65,23 @@ function processJson(secret, maskJsonValues, keysAsEnvVars, keysAsOutputs) {
             throw new Error('Secret was JSON but not an object 🤔');
         }
         exportKeys(secretObj, keysAsEnvVars, keysAsOutputs);
-    }
-    catch (error) {
-        core.warning('Secret wasnt json');
-        if (error instanceof Error)
-            core.warning(error.message);
-    }
+        writeEnvFile(secretObj, envFilePath);
+    });
+}
+function writeEnvFile(secretObj, envFilePath) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!envFilePath) {
+            core.debug('No need to export env file');
+            return;
+        }
+        yield fs_1.promises.appendFile(envFilePath, `
+
+#### Loaded via t-botz/aws-secrets-manager-read-action
+${Object.entries(secretObj)
+            .map(e => `${e[0]}=${e[1]}`)
+            .join('\n')}
+`);
+    });
 }
 function exportKeys(secretObj, keysAsEnvVars, keysAsOutputs) {
     if (!keysAsEnvVars && !keysAsOutputs) {
@@ -101,6 +113,7 @@ function run() {
             const maskJsonValues = core.getBooleanInput('mask-json-values');
             const keysAsEnvVars = core.getBooleanInput('keys-as-env-vars');
             const keysAsOutputs = core.getBooleanInput('keys-as-outputs');
+            const envFilePath = getOptionalInput('append-to-env-file');
             // Used mainly for unit test to use localstack
             const awsEndpoint = process.env['AWS_SECRETS_MANAGER_ENDPOINT_URL'];
             core.debug('Initialising SecretsManagerClient');
@@ -118,7 +131,7 @@ function run() {
             if (response.SecretString) {
                 if (maskValue)
                     core.setSecret(response.SecretString);
-                processJson(response.SecretString, maskJsonValues, keysAsEnvVars, keysAsOutputs);
+                yield processJson(response.SecretString, maskJsonValues, keysAsEnvVars, keysAsOutputs, envFilePath);
             }
             else {
                 core.debug('SecretString is undefined');
@@ -127,9 +140,9 @@ function run() {
         }
         catch (error) {
             if (error instanceof Error)
-                core.setFailed(error.message);
+                core.setFailed(error);
             else
-                core.setFailed('Unknow Error ?!');
+                core.setFailed(`Unexpected error: ${error}`);
         }
     });
 }
