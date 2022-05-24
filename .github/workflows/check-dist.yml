@@ -18,6 +18,7 @@ on:
 
 jobs:
   check-dist:
+    if: github.actor != 'dependabot[bot]' # Dependabot commits are always followed by a dist folder commit
     runs-on: ubuntu-latest
 
     steps:
@@ -41,11 +42,3 @@ jobs:
             git diff -a --ignore-space-at-eol
             exit 1
           fi
-        id: diff
-
-      # If index.js was different than expected, upload the expected version as an artifact
-      - uses: actions/upload-artifact@v3
-        if: ${{ failure() && steps.diff.conclusion == 'failure' }}
-        with:
-          name: dist
-          path: dist/
