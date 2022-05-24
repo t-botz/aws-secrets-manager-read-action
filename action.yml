@@ -28,6 +28,10 @@ inputs:
     required: false
     description: 'Assume the secret is a JSON object and export the keys as env variables.'
     default: false
+  append-to-env-file:
+    required: false
+    description: 'Assume the secret is a JSON object and append the key values in an env file. The value is the path to the file.'
+
 outputs:
   secret: 
     description: 'Secret String return by AWS'

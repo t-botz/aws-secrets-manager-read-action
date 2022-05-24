@@ -37,17 +37,37 @@ jobs:
           secret-id: mysecret
           keys-as-outputs: true
           keys-as-env-vars: true
-      - name: Check
+          append-to-env-file: ./my.env
+
+      - name: Check Secret GH Output
         run: |
-          set -e
           if [ "${{ steps.secrets.outputs.secret }}" != '{foo1:bar1,foo2:bar2}' ]; then
             echo "Secret not exported? [${{ steps.secrets.outputs.secret }}]"; exit 1;
           fi
-          # Same result thanks to `keys-as-outputs: true`
+          # `keys-as-outputs: true` should enable the following
           if [ "${{ steps.secrets.outputs.foo1 }}" != "bar1" ]; then
             echo "Key not exported? [${{ steps.secrets.outputs.foo1 }}]"; exit 1;
           fi
-          # Same result thanks to `keys-as-env-vars: true`
+
+      - name: Check Secret environment variables
+        run: |
+          # `keys-as-env-vars: true` should enable the following
           if [ "$foo1" != "bar1" ]; then
             echo "Not exported as env var"; exit 1;
+          fi
+
+      - name: Check Secret environment file
+        run: |
+          # `append-to-env-file: ./my.env` should enable the following
+          expected="
+
+          #### Loaded via t-botz/aws-secrets-manager-read-action
+          foo1=bar1
+          foo2=bar2
+          "
+          IFS= read -rd '' actual <./my.env || true
+          if [ "$expected" != "$actual" ]; then
+            echo -e "Env file is not what was expected"
+            diff -u <(echo "$expected") <(echo "$actual")
+            exit 1
           fi
