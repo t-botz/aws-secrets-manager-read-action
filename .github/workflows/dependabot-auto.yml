@@ -10,10 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - name: Update dist folder
+        run: npm run dist
+      - name: Commit dist folder
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "[dependabot skip] Update dist"
+          commit_options: --no-verify --allow-empty
+          file_pattern: dist
+          skip_dirty_check: true
+
       - name: Approve and Auto-merge dependabot PR
         run: |
           gh pr review --approve "$PR_URL"
-          gh pr merge --auto --rebase -d "$PR_URL"
+          gh pr merge --auto --squash --delete-branch "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
