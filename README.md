@@ -38,10 +38,13 @@ Assuming we have define in AWS Secret Manager a secret `foo/bar` with the follow
   run: |
     # Will actually display '***' as secret will be masked in output
     echo "${{ fromJSON(steps.secrets.outputs.secret).MY_SECRET }}"
+
     # Same result thanks to `keys-as-outputs: true`
     echo "${{ steps.secrets.outputs.MY_SECRET }}"
+
     # Same result thanks to `keys-as-env-vars: true`
     echo "$MY_SECRET"
+    
     # Show secret from env file
     cat ./my.env
 ```
@@ -54,9 +57,8 @@ Assuming we have define in AWS Secret Manager a secret `foo/bar` with the follow
 | `version-id`         | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html)                                                   |
 | `version-stage`      | String  | Refer to [AWS Documention](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html)                                                   |
 | `mask-value`         | Boolean | (Default `true`) Mask the whole secret value return by AWS.                                                                                                          |
-| `mask-json-values`   | Boolean | (Default `false`) Assume the secret is JSON and mask all JSON object values, even the nested ones                                                                    |
+| `mask-json-values`   | Boolean | (Default `false`) Assume the secret is a JSON object and mask all JSON object values, even the nested ones                                                           |
 | `keys-as-env-vars`   | Boolean | (Default `false`) Assume the secret is a JSON object and export the keys as env variables. Can then be accessed with `${{ env.MY_SECRET }}`.                         |
-| `keys-as-outputs`    | Boolean | (Default `false`) Assume the secret is a JSON object and export the keys as env variables. Can then be accessed with `${{ steps.<id_of_steps>.outputs.MY_SECRET }}`. |
 | `keys-as-outputs`    | Boolean | (Default `false`) Assume the secret is a JSON object and export the keys as env variables. Can then be accessed with `${{ steps.<id_of_steps>.outputs.MY_SECRET }}`. |
 | `append-to-env-file` | Boolean | (Default `''`) 'Assume the secret is a JSON object and append the key values in an env file. The value is the path to the file.                                      |
 
@@ -65,3 +67,4 @@ Assuming we have define in AWS Secret Manager a secret `foo/bar` with the follow
 | Name     | Type   | Description                                                                                                                   |
 | -------- | ------ | ----------------------------------------------------------------------------------------------------------------------------- |
 | `secret` | String | SecretString as returned by [AWS API](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) |
+| `<key>`  | String | If `keys-as-outputs`, each json key of the secret will become an output                                                       |
