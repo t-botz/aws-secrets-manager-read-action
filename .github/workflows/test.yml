@@ -6,10 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          npm install
-      - run: |
-          npm run all
+      - run: npm install
+      - run: npm run all
   test:
     if: github.actor != 'dependabot[bot]' # Dependabot commits are always followed by a dist folder commit
     runs-on: ubuntu-latest
