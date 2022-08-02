@@ -2173,6 +2173,7 @@ const config_resolver_1 = __nccwpck_require__(6153);
 const middleware_content_length_1 = __nccwpck_require__(2245);
 const middleware_host_header_1 = __nccwpck_require__(2545);
 const middleware_logger_1 = __nccwpck_require__(14);
+const middleware_recursion_detection_1 = __nccwpck_require__(5525);
 const middleware_retry_1 = __nccwpck_require__(6064);
 const middleware_signing_1 = __nccwpck_require__(4935);
 const middleware_user_agent_1 = __nccwpck_require__(4688);
@@ -2193,6 +2194,7 @@ class SecretsManagerClient extends smithy_client_1.Client {
         this.middlewareStack.use((0, middleware_content_length_1.getContentLengthPlugin)(this.config));
         this.middlewareStack.use((0, middleware_host_header_1.getHostHeaderPlugin)(this.config));
         this.middlewareStack.use((0, middleware_logger_1.getLoggerPlugin)(this.config));
+        this.middlewareStack.use((0, middleware_recursion_detection_1.getRecursionDetectionPlugin)(this.config));
         this.middlewareStack.use((0, middleware_signing_1.getAwsAuthPlugin)(this.config));
         this.middlewareStack.use((0, middleware_user_agent_1.getUserAgentPlugin)(this.config));
     }
@@ -2231,8 +2233,8 @@ class CancelRotateSecretCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.CancelRotateSecretRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.CancelRotateSecretResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.CancelRotateSecretRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.CancelRotateSecretResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2275,8 +2277,8 @@ class CreateSecretCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.CreateSecretRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.CreateSecretResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.CreateSecretRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.CreateSecretResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2319,8 +2321,8 @@ class DeleteResourcePolicyCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.DeleteResourcePolicyRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.DeleteResourcePolicyResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.DeleteResourcePolicyRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.DeleteResourcePolicyResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2363,8 +2365,8 @@ class DeleteSecretCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.DeleteSecretRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.DeleteSecretResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.DeleteSecretRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.DeleteSecretResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2407,8 +2409,8 @@ class DescribeSecretCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.DescribeSecretRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.DescribeSecretResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.DescribeSecretRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.DescribeSecretResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2451,8 +2453,8 @@ class GetRandomPasswordCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetRandomPasswordRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetRandomPasswordResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetRandomPasswordRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetRandomPasswordResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2495,8 +2497,8 @@ class GetResourcePolicyCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetResourcePolicyRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetResourcePolicyResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetResourcePolicyRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetResourcePolicyResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2539,8 +2541,8 @@ class GetSecretValueCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetSecretValueRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetSecretValueResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetSecretValueRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetSecretValueResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2583,8 +2585,8 @@ class ListSecretVersionIdsCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.ListSecretVersionIdsRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.ListSecretVersionIdsResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.ListSecretVersionIdsRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.ListSecretVersionIdsResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2627,8 +2629,8 @@ class ListSecretsCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.ListSecretsRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.ListSecretsResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.ListSecretsRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.ListSecretsResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2671,8 +2673,8 @@ class PutResourcePolicyCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.PutResourcePolicyRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.PutResourcePolicyResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.PutResourcePolicyRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.PutResourcePolicyResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2715,8 +2717,8 @@ class PutSecretValueCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.PutSecretValueRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.PutSecretValueResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.PutSecretValueRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.PutSecretValueResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2759,8 +2761,8 @@ class RemoveRegionsFromReplicationCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.RemoveRegionsFromReplicationRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.RemoveRegionsFromReplicationResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.RemoveRegionsFromReplicationRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.RemoveRegionsFromReplicationResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2803,8 +2805,8 @@ class ReplicateSecretToRegionsCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.ReplicateSecretToRegionsRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.ReplicateSecretToRegionsResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.ReplicateSecretToRegionsRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.ReplicateSecretToRegionsResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2847,8 +2849,8 @@ class RestoreSecretCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.RestoreSecretRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.RestoreSecretResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.RestoreSecretRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.RestoreSecretResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2891,8 +2893,8 @@ class RotateSecretCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.RotateSecretRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.RotateSecretResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.RotateSecretRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.RotateSecretResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2935,8 +2937,8 @@ class StopReplicationToReplicaCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.StopReplicationToReplicaRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.StopReplicationToReplicaResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.StopReplicationToReplicaRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.StopReplicationToReplicaResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -2979,7 +2981,7 @@ class TagResourceCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.TagResourceRequest.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.TagResourceRequestFilterSensitiveLog,
             outputFilterSensitiveLog: (output) => output,
         };
         const { requestHandler } = configuration;
@@ -3023,7 +3025,7 @@ class UntagResourceCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.UntagResourceRequest.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.UntagResourceRequestFilterSensitiveLog,
             outputFilterSensitiveLog: (output) => output,
         };
         const { requestHandler } = configuration;
@@ -3067,8 +3069,8 @@ class UpdateSecretCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.UpdateSecretRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.UpdateSecretResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.UpdateSecretRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.UpdateSecretResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -3111,8 +3113,8 @@ class UpdateSecretVersionStageCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.UpdateSecretVersionStageRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.UpdateSecretVersionStageResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.UpdateSecretVersionStageRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.UpdateSecretVersionStageResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -3155,8 +3157,8 @@ class ValidateResourcePolicyCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.ValidateResourcePolicyRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.ValidateResourcePolicyResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.ValidateResourcePolicyRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.ValidateResourcePolicyResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -3463,28 +3465,10 @@ tslib_1.__exportStar(__nccwpck_require__(5498), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RestoreSecretRequest = exports.ReplicateSecretToRegionsResponse = exports.ReplicateSecretToRegionsRequest = exports.RemoveRegionsFromReplicationResponse = exports.RemoveRegionsFromReplicationRequest = exports.PutSecretValueResponse = exports.PutSecretValueRequest = exports.PutResourcePolicyResponse = exports.PutResourcePolicyRequest = exports.PublicPolicyException = exports.ListSecretVersionIdsResponse = exports.SecretVersionsListEntry = exports.ListSecretVersionIdsRequest = exports.ListSecretsResponse = exports.SecretListEntry = exports.ListSecretsRequest = exports.SortOrderType = exports.InvalidNextTokenException = exports.GetSecretValueResponse = exports.GetSecretValueRequest = exports.GetResourcePolicyResponse = exports.GetResourcePolicyRequest = exports.GetRandomPasswordResponse = exports.GetRandomPasswordRequest = exports.Filter = exports.DescribeSecretResponse = exports.RotationRulesType = exports.DescribeSecretRequest = exports.DeleteSecretResponse = exports.DeleteSecretRequest = exports.DeleteResourcePolicyResponse = exports.DeleteResourcePolicyRequest = exports.ResourceExistsException = exports.PreconditionNotMetException = exports.MalformedPolicyDocumentException = exports.LimitExceededException = exports.EncryptionFailure = exports.DecryptionFailure = exports.CreateSecretResponse = exports.ReplicationStatusType = exports.StatusType = exports.CreateSecretRequest = exports.Tag = exports.ResourceNotFoundException = exports.InvalidRequestException = exports.InvalidParameterException = exports.InternalServiceError = exports.CancelRotateSecretResponse = exports.CancelRotateSecretRequest = exports.ReplicaRegionType = void 0;
-exports.ValidateResourcePolicyResponse = exports.ValidationErrorsEntry = exports.ValidateResourcePolicyRequest = exports.UpdateSecretVersionStageResponse = exports.UpdateSecretVersionStageRequest = exports.UpdateSecretResponse = exports.UpdateSecretRequest = exports.UntagResourceRequest = exports.TagResourceRequest = exports.StopReplicationToReplicaResponse = exports.StopReplicationToReplicaRequest = exports.RotateSecretResponse = exports.RotateSecretRequest = exports.RestoreSecretResponse = void 0;
+exports.RestoreSecretRequestFilterSensitiveLog = exports.ReplicateSecretToRegionsResponseFilterSensitiveLog = exports.ReplicateSecretToRegionsRequestFilterSensitiveLog = exports.RemoveRegionsFromReplicationResponseFilterSensitiveLog = exports.RemoveRegionsFromReplicationRequestFilterSensitiveLog = exports.PutSecretValueResponseFilterSensitiveLog = exports.PutSecretValueRequestFilterSensitiveLog = exports.PutResourcePolicyResponseFilterSensitiveLog = exports.PutResourcePolicyRequestFilterSensitiveLog = exports.ListSecretVersionIdsResponseFilterSensitiveLog = exports.SecretVersionsListEntryFilterSensitiveLog = exports.ListSecretVersionIdsRequestFilterSensitiveLog = exports.ListSecretsResponseFilterSensitiveLog = exports.SecretListEntryFilterSensitiveLog = exports.ListSecretsRequestFilterSensitiveLog = exports.GetSecretValueResponseFilterSensitiveLog = exports.GetSecretValueRequestFilterSensitiveLog = exports.GetResourcePolicyResponseFilterSensitiveLog = exports.GetResourcePolicyRequestFilterSensitiveLog = exports.GetRandomPasswordResponseFilterSensitiveLog = exports.GetRandomPasswordRequestFilterSensitiveLog = exports.FilterFilterSensitiveLog = exports.DescribeSecretResponseFilterSensitiveLog = exports.RotationRulesTypeFilterSensitiveLog = exports.DescribeSecretRequestFilterSensitiveLog = exports.DeleteSecretResponseFilterSensitiveLog = exports.DeleteSecretRequestFilterSensitiveLog = exports.DeleteResourcePolicyResponseFilterSensitiveLog = exports.DeleteResourcePolicyRequestFilterSensitiveLog = exports.CreateSecretResponseFilterSensitiveLog = exports.ReplicationStatusTypeFilterSensitiveLog = exports.CreateSecretRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.CancelRotateSecretResponseFilterSensitiveLog = exports.CancelRotateSecretRequestFilterSensitiveLog = exports.ReplicaRegionTypeFilterSensitiveLog = exports.PublicPolicyException = exports.SortOrderType = exports.InvalidNextTokenException = exports.ResourceExistsException = exports.PreconditionNotMetException = exports.MalformedPolicyDocumentException = exports.LimitExceededException = exports.EncryptionFailure = exports.DecryptionFailure = exports.StatusType = exports.ResourceNotFoundException = exports.InvalidRequestException = exports.InvalidParameterException = exports.InternalServiceError = void 0;
+exports.ValidateResourcePolicyResponseFilterSensitiveLog = exports.ValidationErrorsEntryFilterSensitiveLog = exports.ValidateResourcePolicyRequestFilterSensitiveLog = exports.UpdateSecretVersionStageResponseFilterSensitiveLog = exports.UpdateSecretVersionStageRequestFilterSensitiveLog = exports.UpdateSecretResponseFilterSensitiveLog = exports.UpdateSecretRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.StopReplicationToReplicaResponseFilterSensitiveLog = exports.StopReplicationToReplicaRequestFilterSensitiveLog = exports.RotateSecretResponseFilterSensitiveLog = exports.RotateSecretRequestFilterSensitiveLog = exports.RestoreSecretResponseFilterSensitiveLog = void 0;
 const smithy_client_1 = __nccwpck_require__(4963);
 const SecretsManagerServiceException_1 = __nccwpck_require__(7281);
-var ReplicaRegionType;
-(function (ReplicaRegionType) {
-    ReplicaRegionType.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ReplicaRegionType = exports.ReplicaRegionType || (exports.ReplicaRegionType = {}));
-var CancelRotateSecretRequest;
-(function (CancelRotateSecretRequest) {
-    CancelRotateSecretRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(CancelRotateSecretRequest = exports.CancelRotateSecretRequest || (exports.CancelRotateSecretRequest = {}));
-var CancelRotateSecretResponse;
-(function (CancelRotateSecretResponse) {
-    CancelRotateSecretResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(CancelRotateSecretResponse = exports.CancelRotateSecretResponse || (exports.CancelRotateSecretResponse = {}));
 class InternalServiceError extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     constructor(opts) {
         super({
@@ -3541,38 +3525,12 @@ class ResourceNotFoundException extends SecretsManagerServiceException_1.Secrets
     }
 }
 exports.ResourceNotFoundException = ResourceNotFoundException;
-var Tag;
-(function (Tag) {
-    Tag.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(Tag = exports.Tag || (exports.Tag = {}));
-var CreateSecretRequest;
-(function (CreateSecretRequest) {
-    CreateSecretRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
-        ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(CreateSecretRequest = exports.CreateSecretRequest || (exports.CreateSecretRequest = {}));
 var StatusType;
 (function (StatusType) {
     StatusType["Failed"] = "Failed";
     StatusType["InProgress"] = "InProgress";
     StatusType["InSync"] = "InSync";
 })(StatusType = exports.StatusType || (exports.StatusType = {}));
-var ReplicationStatusType;
-(function (ReplicationStatusType) {
-    ReplicationStatusType.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ReplicationStatusType = exports.ReplicationStatusType || (exports.ReplicationStatusType = {}));
-var CreateSecretResponse;
-(function (CreateSecretResponse) {
-    CreateSecretResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(CreateSecretResponse = exports.CreateSecretResponse || (exports.CreateSecretResponse = {}));
 class DecryptionFailure extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     constructor(opts) {
         super({
@@ -3657,93 +3615,6 @@ class ResourceExistsException extends SecretsManagerServiceException_1.SecretsMa
     }
 }
 exports.ResourceExistsException = ResourceExistsException;
-var DeleteResourcePolicyRequest;
-(function (DeleteResourcePolicyRequest) {
-    DeleteResourcePolicyRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DeleteResourcePolicyRequest = exports.DeleteResourcePolicyRequest || (exports.DeleteResourcePolicyRequest = {}));
-var DeleteResourcePolicyResponse;
-(function (DeleteResourcePolicyResponse) {
-    DeleteResourcePolicyResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DeleteResourcePolicyResponse = exports.DeleteResourcePolicyResponse || (exports.DeleteResourcePolicyResponse = {}));
-var DeleteSecretRequest;
-(function (DeleteSecretRequest) {
-    DeleteSecretRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DeleteSecretRequest = exports.DeleteSecretRequest || (exports.DeleteSecretRequest = {}));
-var DeleteSecretResponse;
-(function (DeleteSecretResponse) {
-    DeleteSecretResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DeleteSecretResponse = exports.DeleteSecretResponse || (exports.DeleteSecretResponse = {}));
-var DescribeSecretRequest;
-(function (DescribeSecretRequest) {
-    DescribeSecretRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DescribeSecretRequest = exports.DescribeSecretRequest || (exports.DescribeSecretRequest = {}));
-var RotationRulesType;
-(function (RotationRulesType) {
-    RotationRulesType.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RotationRulesType = exports.RotationRulesType || (exports.RotationRulesType = {}));
-var DescribeSecretResponse;
-(function (DescribeSecretResponse) {
-    DescribeSecretResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DescribeSecretResponse = exports.DescribeSecretResponse || (exports.DescribeSecretResponse = {}));
-var Filter;
-(function (Filter) {
-    Filter.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(Filter = exports.Filter || (exports.Filter = {}));
-var GetRandomPasswordRequest;
-(function (GetRandomPasswordRequest) {
-    GetRandomPasswordRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetRandomPasswordRequest = exports.GetRandomPasswordRequest || (exports.GetRandomPasswordRequest = {}));
-var GetRandomPasswordResponse;
-(function (GetRandomPasswordResponse) {
-    GetRandomPasswordResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.RandomPassword && { RandomPassword: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(GetRandomPasswordResponse = exports.GetRandomPasswordResponse || (exports.GetRandomPasswordResponse = {}));
-var GetResourcePolicyRequest;
-(function (GetResourcePolicyRequest) {
-    GetResourcePolicyRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetResourcePolicyRequest = exports.GetResourcePolicyRequest || (exports.GetResourcePolicyRequest = {}));
-var GetResourcePolicyResponse;
-(function (GetResourcePolicyResponse) {
-    GetResourcePolicyResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetResourcePolicyResponse = exports.GetResourcePolicyResponse || (exports.GetResourcePolicyResponse = {}));
-var GetSecretValueRequest;
-(function (GetSecretValueRequest) {
-    GetSecretValueRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetSecretValueRequest = exports.GetSecretValueRequest || (exports.GetSecretValueRequest = {}));
-var GetSecretValueResponse;
-(function (GetSecretValueResponse) {
-    GetSecretValueResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
-        ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(GetSecretValueResponse = exports.GetSecretValueResponse || (exports.GetSecretValueResponse = {}));
 class InvalidNextTokenException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     constructor(opts) {
         super({
@@ -3763,42 +3634,6 @@ var SortOrderType;
     SortOrderType["asc"] = "asc";
     SortOrderType["desc"] = "desc";
 })(SortOrderType = exports.SortOrderType || (exports.SortOrderType = {}));
-var ListSecretsRequest;
-(function (ListSecretsRequest) {
-    ListSecretsRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ListSecretsRequest = exports.ListSecretsRequest || (exports.ListSecretsRequest = {}));
-var SecretListEntry;
-(function (SecretListEntry) {
-    SecretListEntry.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(SecretListEntry = exports.SecretListEntry || (exports.SecretListEntry = {}));
-var ListSecretsResponse;
-(function (ListSecretsResponse) {
-    ListSecretsResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ListSecretsResponse = exports.ListSecretsResponse || (exports.ListSecretsResponse = {}));
-var ListSecretVersionIdsRequest;
-(function (ListSecretVersionIdsRequest) {
-    ListSecretVersionIdsRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ListSecretVersionIdsRequest = exports.ListSecretVersionIdsRequest || (exports.ListSecretVersionIdsRequest = {}));
-var SecretVersionsListEntry;
-(function (SecretVersionsListEntry) {
-    SecretVersionsListEntry.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(SecretVersionsListEntry = exports.SecretVersionsListEntry || (exports.SecretVersionsListEntry = {}));
-var ListSecretVersionIdsResponse;
-(function (ListSecretVersionIdsResponse) {
-    ListSecretVersionIdsResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ListSecretVersionIdsResponse = exports.ListSecretVersionIdsResponse || (exports.ListSecretVersionIdsResponse = {}));
 class PublicPolicyException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     constructor(opts) {
         super({
@@ -3813,148 +3648,215 @@ class PublicPolicyException extends SecretsManagerServiceException_1.SecretsMana
     }
 }
 exports.PublicPolicyException = PublicPolicyException;
-var PutResourcePolicyRequest;
-(function (PutResourcePolicyRequest) {
-    PutResourcePolicyRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(PutResourcePolicyRequest = exports.PutResourcePolicyRequest || (exports.PutResourcePolicyRequest = {}));
-var PutResourcePolicyResponse;
-(function (PutResourcePolicyResponse) {
-    PutResourcePolicyResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(PutResourcePolicyResponse = exports.PutResourcePolicyResponse || (exports.PutResourcePolicyResponse = {}));
-var PutSecretValueRequest;
-(function (PutSecretValueRequest) {
-    PutSecretValueRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
-        ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(PutSecretValueRequest = exports.PutSecretValueRequest || (exports.PutSecretValueRequest = {}));
-var PutSecretValueResponse;
-(function (PutSecretValueResponse) {
-    PutSecretValueResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(PutSecretValueResponse = exports.PutSecretValueResponse || (exports.PutSecretValueResponse = {}));
-var RemoveRegionsFromReplicationRequest;
-(function (RemoveRegionsFromReplicationRequest) {
-    RemoveRegionsFromReplicationRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RemoveRegionsFromReplicationRequest = exports.RemoveRegionsFromReplicationRequest || (exports.RemoveRegionsFromReplicationRequest = {}));
-var RemoveRegionsFromReplicationResponse;
-(function (RemoveRegionsFromReplicationResponse) {
-    RemoveRegionsFromReplicationResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RemoveRegionsFromReplicationResponse = exports.RemoveRegionsFromReplicationResponse || (exports.RemoveRegionsFromReplicationResponse = {}));
-var ReplicateSecretToRegionsRequest;
-(function (ReplicateSecretToRegionsRequest) {
-    ReplicateSecretToRegionsRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ReplicateSecretToRegionsRequest = exports.ReplicateSecretToRegionsRequest || (exports.ReplicateSecretToRegionsRequest = {}));
-var ReplicateSecretToRegionsResponse;
-(function (ReplicateSecretToRegionsResponse) {
-    ReplicateSecretToRegionsResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ReplicateSecretToRegionsResponse = exports.ReplicateSecretToRegionsResponse || (exports.ReplicateSecretToRegionsResponse = {}));
-var RestoreSecretRequest;
-(function (RestoreSecretRequest) {
-    RestoreSecretRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RestoreSecretRequest = exports.RestoreSecretRequest || (exports.RestoreSecretRequest = {}));
-var RestoreSecretResponse;
-(function (RestoreSecretResponse) {
-    RestoreSecretResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RestoreSecretResponse = exports.RestoreSecretResponse || (exports.RestoreSecretResponse = {}));
-var RotateSecretRequest;
-(function (RotateSecretRequest) {
-    RotateSecretRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RotateSecretRequest = exports.RotateSecretRequest || (exports.RotateSecretRequest = {}));
-var RotateSecretResponse;
-(function (RotateSecretResponse) {
-    RotateSecretResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RotateSecretResponse = exports.RotateSecretResponse || (exports.RotateSecretResponse = {}));
-var StopReplicationToReplicaRequest;
-(function (StopReplicationToReplicaRequest) {
-    StopReplicationToReplicaRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(StopReplicationToReplicaRequest = exports.StopReplicationToReplicaRequest || (exports.StopReplicationToReplicaRequest = {}));
-var StopReplicationToReplicaResponse;
-(function (StopReplicationToReplicaResponse) {
-    StopReplicationToReplicaResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(StopReplicationToReplicaResponse = exports.StopReplicationToReplicaResponse || (exports.StopReplicationToReplicaResponse = {}));
-var TagResourceRequest;
-(function (TagResourceRequest) {
-    TagResourceRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(TagResourceRequest = exports.TagResourceRequest || (exports.TagResourceRequest = {}));
-var UntagResourceRequest;
-(function (UntagResourceRequest) {
-    UntagResourceRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(UntagResourceRequest = exports.UntagResourceRequest || (exports.UntagResourceRequest = {}));
-var UpdateSecretRequest;
-(function (UpdateSecretRequest) {
-    UpdateSecretRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
-        ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(UpdateSecretRequest = exports.UpdateSecretRequest || (exports.UpdateSecretRequest = {}));
-var UpdateSecretResponse;
-(function (UpdateSecretResponse) {
-    UpdateSecretResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(UpdateSecretResponse = exports.UpdateSecretResponse || (exports.UpdateSecretResponse = {}));
-var UpdateSecretVersionStageRequest;
-(function (UpdateSecretVersionStageRequest) {
-    UpdateSecretVersionStageRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(UpdateSecretVersionStageRequest = exports.UpdateSecretVersionStageRequest || (exports.UpdateSecretVersionStageRequest = {}));
-var UpdateSecretVersionStageResponse;
-(function (UpdateSecretVersionStageResponse) {
-    UpdateSecretVersionStageResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(UpdateSecretVersionStageResponse = exports.UpdateSecretVersionStageResponse || (exports.UpdateSecretVersionStageResponse = {}));
-var ValidateResourcePolicyRequest;
-(function (ValidateResourcePolicyRequest) {
-    ValidateResourcePolicyRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ValidateResourcePolicyRequest = exports.ValidateResourcePolicyRequest || (exports.ValidateResourcePolicyRequest = {}));
-var ValidationErrorsEntry;
-(function (ValidationErrorsEntry) {
-    ValidationErrorsEntry.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ValidationErrorsEntry = exports.ValidationErrorsEntry || (exports.ValidationErrorsEntry = {}));
-var ValidateResourcePolicyResponse;
-(function (ValidateResourcePolicyResponse) {
-    ValidateResourcePolicyResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ValidateResourcePolicyResponse = exports.ValidateResourcePolicyResponse || (exports.ValidateResourcePolicyResponse = {}));
+const ReplicaRegionTypeFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ReplicaRegionTypeFilterSensitiveLog = ReplicaRegionTypeFilterSensitiveLog;
+const CancelRotateSecretRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.CancelRotateSecretRequestFilterSensitiveLog = CancelRotateSecretRequestFilterSensitiveLog;
+const CancelRotateSecretResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.CancelRotateSecretResponseFilterSensitiveLog = CancelRotateSecretResponseFilterSensitiveLog;
+const TagFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
+const CreateSecretRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
+    ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.CreateSecretRequestFilterSensitiveLog = CreateSecretRequestFilterSensitiveLog;
+const ReplicationStatusTypeFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ReplicationStatusTypeFilterSensitiveLog = ReplicationStatusTypeFilterSensitiveLog;
+const CreateSecretResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.CreateSecretResponseFilterSensitiveLog = CreateSecretResponseFilterSensitiveLog;
+const DeleteResourcePolicyRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DeleteResourcePolicyRequestFilterSensitiveLog = DeleteResourcePolicyRequestFilterSensitiveLog;
+const DeleteResourcePolicyResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DeleteResourcePolicyResponseFilterSensitiveLog = DeleteResourcePolicyResponseFilterSensitiveLog;
+const DeleteSecretRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DeleteSecretRequestFilterSensitiveLog = DeleteSecretRequestFilterSensitiveLog;
+const DeleteSecretResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DeleteSecretResponseFilterSensitiveLog = DeleteSecretResponseFilterSensitiveLog;
+const DescribeSecretRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DescribeSecretRequestFilterSensitiveLog = DescribeSecretRequestFilterSensitiveLog;
+const RotationRulesTypeFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RotationRulesTypeFilterSensitiveLog = RotationRulesTypeFilterSensitiveLog;
+const DescribeSecretResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DescribeSecretResponseFilterSensitiveLog = DescribeSecretResponseFilterSensitiveLog;
+const FilterFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.FilterFilterSensitiveLog = FilterFilterSensitiveLog;
+const GetRandomPasswordRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetRandomPasswordRequestFilterSensitiveLog = GetRandomPasswordRequestFilterSensitiveLog;
+const GetRandomPasswordResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.RandomPassword && { RandomPassword: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.GetRandomPasswordResponseFilterSensitiveLog = GetRandomPasswordResponseFilterSensitiveLog;
+const GetResourcePolicyRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetResourcePolicyRequestFilterSensitiveLog = GetResourcePolicyRequestFilterSensitiveLog;
+const GetResourcePolicyResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetResourcePolicyResponseFilterSensitiveLog = GetResourcePolicyResponseFilterSensitiveLog;
+const GetSecretValueRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetSecretValueRequestFilterSensitiveLog = GetSecretValueRequestFilterSensitiveLog;
+const GetSecretValueResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
+    ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.GetSecretValueResponseFilterSensitiveLog = GetSecretValueResponseFilterSensitiveLog;
+const ListSecretsRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ListSecretsRequestFilterSensitiveLog = ListSecretsRequestFilterSensitiveLog;
+const SecretListEntryFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.SecretListEntryFilterSensitiveLog = SecretListEntryFilterSensitiveLog;
+const ListSecretsResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ListSecretsResponseFilterSensitiveLog = ListSecretsResponseFilterSensitiveLog;
+const ListSecretVersionIdsRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ListSecretVersionIdsRequestFilterSensitiveLog = ListSecretVersionIdsRequestFilterSensitiveLog;
+const SecretVersionsListEntryFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.SecretVersionsListEntryFilterSensitiveLog = SecretVersionsListEntryFilterSensitiveLog;
+const ListSecretVersionIdsResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ListSecretVersionIdsResponseFilterSensitiveLog = ListSecretVersionIdsResponseFilterSensitiveLog;
+const PutResourcePolicyRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.PutResourcePolicyRequestFilterSensitiveLog = PutResourcePolicyRequestFilterSensitiveLog;
+const PutResourcePolicyResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.PutResourcePolicyResponseFilterSensitiveLog = PutResourcePolicyResponseFilterSensitiveLog;
+const PutSecretValueRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
+    ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.PutSecretValueRequestFilterSensitiveLog = PutSecretValueRequestFilterSensitiveLog;
+const PutSecretValueResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.PutSecretValueResponseFilterSensitiveLog = PutSecretValueResponseFilterSensitiveLog;
+const RemoveRegionsFromReplicationRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RemoveRegionsFromReplicationRequestFilterSensitiveLog = RemoveRegionsFromReplicationRequestFilterSensitiveLog;
+const RemoveRegionsFromReplicationResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RemoveRegionsFromReplicationResponseFilterSensitiveLog = RemoveRegionsFromReplicationResponseFilterSensitiveLog;
+const ReplicateSecretToRegionsRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ReplicateSecretToRegionsRequestFilterSensitiveLog = ReplicateSecretToRegionsRequestFilterSensitiveLog;
+const ReplicateSecretToRegionsResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ReplicateSecretToRegionsResponseFilterSensitiveLog = ReplicateSecretToRegionsResponseFilterSensitiveLog;
+const RestoreSecretRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RestoreSecretRequestFilterSensitiveLog = RestoreSecretRequestFilterSensitiveLog;
+const RestoreSecretResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RestoreSecretResponseFilterSensitiveLog = RestoreSecretResponseFilterSensitiveLog;
+const RotateSecretRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RotateSecretRequestFilterSensitiveLog = RotateSecretRequestFilterSensitiveLog;
+const RotateSecretResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RotateSecretResponseFilterSensitiveLog = RotateSecretResponseFilterSensitiveLog;
+const StopReplicationToReplicaRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.StopReplicationToReplicaRequestFilterSensitiveLog = StopReplicationToReplicaRequestFilterSensitiveLog;
+const StopReplicationToReplicaResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.StopReplicationToReplicaResponseFilterSensitiveLog = StopReplicationToReplicaResponseFilterSensitiveLog;
+const TagResourceRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.TagResourceRequestFilterSensitiveLog = TagResourceRequestFilterSensitiveLog;
+const UntagResourceRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.UntagResourceRequestFilterSensitiveLog = UntagResourceRequestFilterSensitiveLog;
+const UpdateSecretRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.SecretBinary && { SecretBinary: smithy_client_1.SENSITIVE_STRING }),
+    ...(obj.SecretString && { SecretString: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.UpdateSecretRequestFilterSensitiveLog = UpdateSecretRequestFilterSensitiveLog;
+const UpdateSecretResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.UpdateSecretResponseFilterSensitiveLog = UpdateSecretResponseFilterSensitiveLog;
+const UpdateSecretVersionStageRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.UpdateSecretVersionStageRequestFilterSensitiveLog = UpdateSecretVersionStageRequestFilterSensitiveLog;
+const UpdateSecretVersionStageResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.UpdateSecretVersionStageResponseFilterSensitiveLog = UpdateSecretVersionStageResponseFilterSensitiveLog;
+const ValidateResourcePolicyRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ValidateResourcePolicyRequestFilterSensitiveLog = ValidateResourcePolicyRequestFilterSensitiveLog;
+const ValidationErrorsEntryFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ValidationErrorsEntryFilterSensitiveLog = ValidationErrorsEntryFilterSensitiveLog;
+const ValidateResourcePolicyResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ValidateResourcePolicyResponseFilterSensitiveLog = ValidateResourcePolicyResponseFilterSensitiveLog;
 
 
 /***/ }),
@@ -4323,8 +4225,7 @@ const deserializeAws_json1_1CancelRotateSecretCommandError = async (output, cont
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4340,10 +4241,12 @@ const deserializeAws_json1_1CancelRotateSecretCommandError = async (output, cont
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4368,8 +4271,7 @@ const deserializeAws_json1_1CreateSecretCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
@@ -4403,10 +4305,12 @@ const deserializeAws_json1_1CreateSecretCommandError = async (output, context) =
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4431,8 +4335,7 @@ const deserializeAws_json1_1DeleteResourcePolicyCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4448,10 +4351,12 @@ const deserializeAws_json1_1DeleteResourcePolicyCommandError = async (output, co
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4476,8 +4381,7 @@ const deserializeAws_json1_1DeleteSecretCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4493,10 +4397,12 @@ const deserializeAws_json1_1DeleteSecretCommandError = async (output, context) =
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4521,8 +4427,7 @@ const deserializeAws_json1_1DescribeSecretCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4535,10 +4440,12 @@ const deserializeAws_json1_1DescribeSecretCommandError = async (output, context)
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4563,8 +4470,7 @@ const deserializeAws_json1_1GetRandomPasswordCommandError = async (output, conte
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4577,10 +4483,12 @@ const deserializeAws_json1_1GetRandomPasswordCommandError = async (output, conte
             throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4605,8 +4513,7 @@ const deserializeAws_json1_1GetResourcePolicyCommandError = async (output, conte
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4622,10 +4529,12 @@ const deserializeAws_json1_1GetResourcePolicyCommandError = async (output, conte
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4650,8 +4559,7 @@ const deserializeAws_json1_1GetSecretValueCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
@@ -4670,10 +4578,12 @@ const deserializeAws_json1_1GetSecretValueCommandError = async (output, context)
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4698,8 +4608,7 @@ const deserializeAws_json1_1ListSecretsCommandError = async (output, context) =>
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4712,10 +4621,12 @@ const deserializeAws_json1_1ListSecretsCommandError = async (output, context) =>
             throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4740,8 +4651,7 @@ const deserializeAws_json1_1ListSecretVersionIdsCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4757,10 +4667,12 @@ const deserializeAws_json1_1ListSecretVersionIdsCommandError = async (output, co
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4785,8 +4697,7 @@ const deserializeAws_json1_1PutResourcePolicyCommandError = async (output, conte
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4808,10 +4719,12 @@ const deserializeAws_json1_1PutResourcePolicyCommandError = async (output, conte
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4836,8 +4749,7 @@ const deserializeAws_json1_1PutSecretValueCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
@@ -4865,10 +4777,12 @@ const deserializeAws_json1_1PutSecretValueCommandError = async (output, context)
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4893,8 +4807,7 @@ const deserializeAws_json1_1RemoveRegionsFromReplicationCommandError = async (ou
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4910,10 +4823,12 @@ const deserializeAws_json1_1RemoveRegionsFromReplicationCommandError = async (ou
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4938,8 +4853,7 @@ const deserializeAws_json1_1ReplicateSecretToRegionsCommandError = async (output
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -4955,10 +4869,12 @@ const deserializeAws_json1_1ReplicateSecretToRegionsCommandError = async (output
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -4983,8 +4899,7 @@ const deserializeAws_json1_1RestoreSecretCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -5000,10 +4915,12 @@ const deserializeAws_json1_1RestoreSecretCommandError = async (output, context) 
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5028,8 +4945,7 @@ const deserializeAws_json1_1RotateSecretCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -5045,10 +4961,12 @@ const deserializeAws_json1_1RotateSecretCommandError = async (output, context) =
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5073,8 +4991,7 @@ const deserializeAws_json1_1StopReplicationToReplicaCommandError = async (output
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -5090,10 +5007,12 @@ const deserializeAws_json1_1StopReplicationToReplicaCommandError = async (output
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5115,8 +5034,7 @@ const deserializeAws_json1_1TagResourceCommandError = async (output, context) =>
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -5132,10 +5050,12 @@ const deserializeAws_json1_1TagResourceCommandError = async (output, context) =>
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5157,8 +5077,7 @@ const deserializeAws_json1_1UntagResourceCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -5174,10 +5093,12 @@ const deserializeAws_json1_1UntagResourceCommandError = async (output, context) 
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5202,8 +5123,7 @@ const deserializeAws_json1_1UpdateSecretCommandError = async (output, context) =
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
@@ -5237,10 +5157,12 @@ const deserializeAws_json1_1UpdateSecretCommandError = async (output, context) =
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5265,8 +5187,7 @@ const deserializeAws_json1_1UpdateSecretVersionStageCommandError = async (output
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -5285,10 +5206,12 @@ const deserializeAws_json1_1UpdateSecretVersionStageCommandError = async (output
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5313,8 +5236,7 @@ const deserializeAws_json1_1ValidateResourcePolicyCommandError = async (output, 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
@@ -5333,10 +5255,12 @@ const deserializeAws_json1_1ValidateResourcePolicyCommandError = async (output, 
             throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SecretsManagerServiceException_1.SecretsManagerServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -5461,53 +5385,48 @@ const serializeAws_json1_1AddReplicaRegionListType = (input, context) => {
 };
 const serializeAws_json1_1CancelRotateSecretRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1CreateSecretRequest = (input, context) => {
     var _a;
     return {
-        ...(input.AddReplicaRegions !== undefined &&
-            input.AddReplicaRegions !== null && {
+        ...(input.AddReplicaRegions != null && {
             AddReplicaRegions: serializeAws_json1_1AddReplicaRegionListType(input.AddReplicaRegions, context),
         }),
         ClientRequestToken: (_a = input.ClientRequestToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.Description !== undefined && input.Description !== null && { Description: input.Description }),
-        ...(input.ForceOverwriteReplicaSecret !== undefined &&
-            input.ForceOverwriteReplicaSecret !== null && { ForceOverwriteReplicaSecret: input.ForceOverwriteReplicaSecret }),
-        ...(input.KmsKeyId !== undefined && input.KmsKeyId !== null && { KmsKeyId: input.KmsKeyId }),
-        ...(input.Name !== undefined && input.Name !== null && { Name: input.Name }),
-        ...(input.SecretBinary !== undefined &&
-            input.SecretBinary !== null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
-        ...(input.SecretString !== undefined && input.SecretString !== null && { SecretString: input.SecretString }),
-        ...(input.Tags !== undefined &&
-            input.Tags !== null && { Tags: serializeAws_json1_1TagListType(input.Tags, context) }),
+        ...(input.Description != null && { Description: input.Description }),
+        ...(input.ForceOverwriteReplicaSecret != null && {
+            ForceOverwriteReplicaSecret: input.ForceOverwriteReplicaSecret,
+        }),
+        ...(input.KmsKeyId != null && { KmsKeyId: input.KmsKeyId }),
+        ...(input.Name != null && { Name: input.Name }),
+        ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
+        ...(input.SecretString != null && { SecretString: input.SecretString }),
+        ...(input.Tags != null && { Tags: serializeAws_json1_1TagListType(input.Tags, context) }),
     };
 };
 const serializeAws_json1_1DeleteResourcePolicyRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1DeleteSecretRequest = (input, context) => {
     return {
-        ...(input.ForceDeleteWithoutRecovery !== undefined &&
-            input.ForceDeleteWithoutRecovery !== null && { ForceDeleteWithoutRecovery: input.ForceDeleteWithoutRecovery }),
-        ...(input.RecoveryWindowInDays !== undefined &&
-            input.RecoveryWindowInDays !== null && { RecoveryWindowInDays: input.RecoveryWindowInDays }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.ForceDeleteWithoutRecovery != null && { ForceDeleteWithoutRecovery: input.ForceDeleteWithoutRecovery }),
+        ...(input.RecoveryWindowInDays != null && { RecoveryWindowInDays: input.RecoveryWindowInDays }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1DescribeSecretRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1Filter = (input, context) => {
     return {
-        ...(input.Key !== undefined && input.Key !== null && { Key: input.Key }),
-        ...(input.Values !== undefined &&
-            input.Values !== null && { Values: serializeAws_json1_1FilterValuesStringList(input.Values, context) }),
+        ...(input.Key != null && { Key: input.Key }),
+        ...(input.Values != null && { Values: serializeAws_json1_1FilterValuesStringList(input.Values, context) }),
     };
 };
 const serializeAws_json1_1FiltersListType = (input, context) => {
@@ -5532,83 +5451,69 @@ const serializeAws_json1_1FilterValuesStringList = (input, context) => {
 };
 const serializeAws_json1_1GetRandomPasswordRequest = (input, context) => {
     return {
-        ...(input.ExcludeCharacters !== undefined &&
-            input.ExcludeCharacters !== null && { ExcludeCharacters: input.ExcludeCharacters }),
-        ...(input.ExcludeLowercase !== undefined &&
-            input.ExcludeLowercase !== null && { ExcludeLowercase: input.ExcludeLowercase }),
-        ...(input.ExcludeNumbers !== undefined &&
-            input.ExcludeNumbers !== null && { ExcludeNumbers: input.ExcludeNumbers }),
-        ...(input.ExcludePunctuation !== undefined &&
-            input.ExcludePunctuation !== null && { ExcludePunctuation: input.ExcludePunctuation }),
-        ...(input.ExcludeUppercase !== undefined &&
-            input.ExcludeUppercase !== null && { ExcludeUppercase: input.ExcludeUppercase }),
-        ...(input.IncludeSpace !== undefined && input.IncludeSpace !== null && { IncludeSpace: input.IncludeSpace }),
-        ...(input.PasswordLength !== undefined &&
-            input.PasswordLength !== null && { PasswordLength: input.PasswordLength }),
-        ...(input.RequireEachIncludedType !== undefined &&
-            input.RequireEachIncludedType !== null && { RequireEachIncludedType: input.RequireEachIncludedType }),
+        ...(input.ExcludeCharacters != null && { ExcludeCharacters: input.ExcludeCharacters }),
+        ...(input.ExcludeLowercase != null && { ExcludeLowercase: input.ExcludeLowercase }),
+        ...(input.ExcludeNumbers != null && { ExcludeNumbers: input.ExcludeNumbers }),
+        ...(input.ExcludePunctuation != null && { ExcludePunctuation: input.ExcludePunctuation }),
+        ...(input.ExcludeUppercase != null && { ExcludeUppercase: input.ExcludeUppercase }),
+        ...(input.IncludeSpace != null && { IncludeSpace: input.IncludeSpace }),
+        ...(input.PasswordLength != null && { PasswordLength: input.PasswordLength }),
+        ...(input.RequireEachIncludedType != null && { RequireEachIncludedType: input.RequireEachIncludedType }),
     };
 };
 const serializeAws_json1_1GetResourcePolicyRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1GetSecretValueRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
-        ...(input.VersionId !== undefined && input.VersionId !== null && { VersionId: input.VersionId }),
-        ...(input.VersionStage !== undefined && input.VersionStage !== null && { VersionStage: input.VersionStage }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
+        ...(input.VersionId != null && { VersionId: input.VersionId }),
+        ...(input.VersionStage != null && { VersionStage: input.VersionStage }),
     };
 };
 const serializeAws_json1_1ListSecretsRequest = (input, context) => {
     return {
-        ...(input.Filters !== undefined &&
-            input.Filters !== null && { Filters: serializeAws_json1_1FiltersListType(input.Filters, context) }),
-        ...(input.MaxResults !== undefined && input.MaxResults !== null && { MaxResults: input.MaxResults }),
-        ...(input.NextToken !== undefined && input.NextToken !== null && { NextToken: input.NextToken }),
-        ...(input.SortOrder !== undefined && input.SortOrder !== null && { SortOrder: input.SortOrder }),
+        ...(input.Filters != null && { Filters: serializeAws_json1_1FiltersListType(input.Filters, context) }),
+        ...(input.MaxResults != null && { MaxResults: input.MaxResults }),
+        ...(input.NextToken != null && { NextToken: input.NextToken }),
+        ...(input.SortOrder != null && { SortOrder: input.SortOrder }),
     };
 };
 const serializeAws_json1_1ListSecretVersionIdsRequest = (input, context) => {
     return {
-        ...(input.IncludeDeprecated !== undefined &&
-            input.IncludeDeprecated !== null && { IncludeDeprecated: input.IncludeDeprecated }),
-        ...(input.MaxResults !== undefined && input.MaxResults !== null && { MaxResults: input.MaxResults }),
-        ...(input.NextToken !== undefined && input.NextToken !== null && { NextToken: input.NextToken }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.IncludeDeprecated != null && { IncludeDeprecated: input.IncludeDeprecated }),
+        ...(input.MaxResults != null && { MaxResults: input.MaxResults }),
+        ...(input.NextToken != null && { NextToken: input.NextToken }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1PutResourcePolicyRequest = (input, context) => {
     return {
-        ...(input.BlockPublicPolicy !== undefined &&
-            input.BlockPublicPolicy !== null && { BlockPublicPolicy: input.BlockPublicPolicy }),
-        ...(input.ResourcePolicy !== undefined &&
-            input.ResourcePolicy !== null && { ResourcePolicy: input.ResourcePolicy }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.BlockPublicPolicy != null && { BlockPublicPolicy: input.BlockPublicPolicy }),
+        ...(input.ResourcePolicy != null && { ResourcePolicy: input.ResourcePolicy }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1PutSecretValueRequest = (input, context) => {
     var _a;
     return {
         ClientRequestToken: (_a = input.ClientRequestToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.SecretBinary !== undefined &&
-            input.SecretBinary !== null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
-        ...(input.SecretString !== undefined && input.SecretString !== null && { SecretString: input.SecretString }),
-        ...(input.VersionStages !== undefined &&
-            input.VersionStages !== null && {
+        ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
+        ...(input.SecretString != null && { SecretString: input.SecretString }),
+        ...(input.VersionStages != null && {
             VersionStages: serializeAws_json1_1SecretVersionStagesType(input.VersionStages, context),
         }),
     };
 };
 const serializeAws_json1_1RemoveRegionsFromReplicationRequest = (input, context) => {
     return {
-        ...(input.RemoveReplicaRegions !== undefined &&
-            input.RemoveReplicaRegions !== null && {
+        ...(input.RemoveReplicaRegions != null && {
             RemoveReplicaRegions: serializeAws_json1_1RemoveReplicaRegionListType(input.RemoveReplicaRegions, context),
         }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1RemoveReplicaRegionListType = (input, context) => {
@@ -5623,48 +5528,43 @@ const serializeAws_json1_1RemoveReplicaRegionListType = (input, context) => {
 };
 const serializeAws_json1_1ReplicaRegionType = (input, context) => {
     return {
-        ...(input.KmsKeyId !== undefined && input.KmsKeyId !== null && { KmsKeyId: input.KmsKeyId }),
-        ...(input.Region !== undefined && input.Region !== null && { Region: input.Region }),
+        ...(input.KmsKeyId != null && { KmsKeyId: input.KmsKeyId }),
+        ...(input.Region != null && { Region: input.Region }),
     };
 };
 const serializeAws_json1_1ReplicateSecretToRegionsRequest = (input, context) => {
     return {
-        ...(input.AddReplicaRegions !== undefined &&
-            input.AddReplicaRegions !== null && {
+        ...(input.AddReplicaRegions != null && {
             AddReplicaRegions: serializeAws_json1_1AddReplicaRegionListType(input.AddReplicaRegions, context),
         }),
-        ...(input.ForceOverwriteReplicaSecret !== undefined &&
-            input.ForceOverwriteReplicaSecret !== null && { ForceOverwriteReplicaSecret: input.ForceOverwriteReplicaSecret }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.ForceOverwriteReplicaSecret != null && {
+            ForceOverwriteReplicaSecret: input.ForceOverwriteReplicaSecret,
+        }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1RestoreSecretRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1RotateSecretRequest = (input, context) => {
     var _a;
     return {
         ClientRequestToken: (_a = input.ClientRequestToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.RotateImmediately !== undefined &&
-            input.RotateImmediately !== null && { RotateImmediately: input.RotateImmediately }),
-        ...(input.RotationLambdaARN !== undefined &&
-            input.RotationLambdaARN !== null && { RotationLambdaARN: input.RotationLambdaARN }),
-        ...(input.RotationRules !== undefined &&
-            input.RotationRules !== null && {
+        ...(input.RotateImmediately != null && { RotateImmediately: input.RotateImmediately }),
+        ...(input.RotationLambdaARN != null && { RotationLambdaARN: input.RotationLambdaARN }),
+        ...(input.RotationRules != null && {
             RotationRules: serializeAws_json1_1RotationRulesType(input.RotationRules, context),
         }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1RotationRulesType = (input, context) => {
     return {
-        ...(input.AutomaticallyAfterDays !== undefined &&
-            input.AutomaticallyAfterDays !== null && { AutomaticallyAfterDays: input.AutomaticallyAfterDays }),
-        ...(input.Duration !== undefined && input.Duration !== null && { Duration: input.Duration }),
-        ...(input.ScheduleExpression !== undefined &&
-            input.ScheduleExpression !== null && { ScheduleExpression: input.ScheduleExpression }),
+        ...(input.AutomaticallyAfterDays != null && { AutomaticallyAfterDays: input.AutomaticallyAfterDays }),
+        ...(input.Duration != null && { Duration: input.Duration }),
+        ...(input.ScheduleExpression != null && { ScheduleExpression: input.ScheduleExpression }),
     };
 };
 const serializeAws_json1_1SecretVersionStagesType = (input, context) => {
@@ -5679,13 +5579,13 @@ const serializeAws_json1_1SecretVersionStagesType = (input, context) => {
 };
 const serializeAws_json1_1StopReplicationToReplicaRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const serializeAws_json1_1Tag = (input, context) => {
     return {
-        ...(input.Key !== undefined && input.Key !== null && { Key: input.Key }),
-        ...(input.Value !== undefined && input.Value !== null && { Value: input.Value }),
+        ...(input.Key != null && { Key: input.Key }),
+        ...(input.Value != null && { Value: input.Value }),
     };
 };
 const serializeAws_json1_1TagKeyListType = (input, context) => {
@@ -5710,45 +5610,39 @@ const serializeAws_json1_1TagListType = (input, context) => {
 };
 const serializeAws_json1_1TagResourceRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
-        ...(input.Tags !== undefined &&
-            input.Tags !== null && { Tags: serializeAws_json1_1TagListType(input.Tags, context) }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
+        ...(input.Tags != null && { Tags: serializeAws_json1_1TagListType(input.Tags, context) }),
     };
 };
 const serializeAws_json1_1UntagResourceRequest = (input, context) => {
     return {
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
-        ...(input.TagKeys !== undefined &&
-            input.TagKeys !== null && { TagKeys: serializeAws_json1_1TagKeyListType(input.TagKeys, context) }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
+        ...(input.TagKeys != null && { TagKeys: serializeAws_json1_1TagKeyListType(input.TagKeys, context) }),
     };
 };
 const serializeAws_json1_1UpdateSecretRequest = (input, context) => {
     var _a;
     return {
         ClientRequestToken: (_a = input.ClientRequestToken) !== null && _a !== void 0 ? _a : (0, uuid_1.v4)(),
-        ...(input.Description !== undefined && input.Description !== null && { Description: input.Description }),
-        ...(input.KmsKeyId !== undefined && input.KmsKeyId !== null && { KmsKeyId: input.KmsKeyId }),
-        ...(input.SecretBinary !== undefined &&
-            input.SecretBinary !== null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
-        ...(input.SecretString !== undefined && input.SecretString !== null && { SecretString: input.SecretString }),
+        ...(input.Description != null && { Description: input.Description }),
+        ...(input.KmsKeyId != null && { KmsKeyId: input.KmsKeyId }),
+        ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
+        ...(input.SecretString != null && { SecretString: input.SecretString }),
     };
 };
 const serializeAws_json1_1UpdateSecretVersionStageRequest = (input, context) => {
     return {
-        ...(input.MoveToVersionId !== undefined &&
-            input.MoveToVersionId !== null && { MoveToVersionId: input.MoveToVersionId }),
-        ...(input.RemoveFromVersionId !== undefined &&
-            input.RemoveFromVersionId !== null && { RemoveFromVersionId: input.RemoveFromVersionId }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
-        ...(input.VersionStage !== undefined && input.VersionStage !== null && { VersionStage: input.VersionStage }),
+        ...(input.MoveToVersionId != null && { MoveToVersionId: input.MoveToVersionId }),
+        ...(input.RemoveFromVersionId != null && { RemoveFromVersionId: input.RemoveFromVersionId }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
+        ...(input.VersionStage != null && { VersionStage: input.VersionStage }),
     };
 };
 const serializeAws_json1_1ValidateResourcePolicyRequest = (input, context) => {
     return {
-        ...(input.ResourcePolicy !== undefined &&
-            input.ResourcePolicy !== null && { ResourcePolicy: input.ResourcePolicy }),
-        ...(input.SecretId !== undefined && input.SecretId !== null && { SecretId: input.SecretId }),
+        ...(input.ResourcePolicy != null && { ResourcePolicy: input.ResourcePolicy }),
+        ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
 const deserializeAws_json1_1CancelRotateSecretResponse = (output, context) => {
@@ -5762,7 +5656,7 @@ const deserializeAws_json1_1CreateSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
-        ReplicationStatus: output.ReplicationStatus !== undefined && output.ReplicationStatus !== null
+        ReplicationStatus: output.ReplicationStatus != null
             ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
             : undefined,
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
@@ -5782,7 +5676,7 @@ const deserializeAws_json1_1DeleteResourcePolicyResponse = (output, context) => 
 const deserializeAws_json1_1DeleteSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        DeletionDate: output.DeletionDate !== undefined && output.DeletionDate !== null
+        DeletionDate: output.DeletionDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.DeletionDate)))
             : undefined,
         Name: (0, smithy_client_1.expectString)(output.Name),
@@ -5791,38 +5685,34 @@ const deserializeAws_json1_1DeleteSecretResponse = (output, context) => {
 const deserializeAws_json1_1DescribeSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        CreatedDate: output.CreatedDate !== undefined && output.CreatedDate !== null
+        CreatedDate: output.CreatedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
             : undefined,
-        DeletedDate: output.DeletedDate !== undefined && output.DeletedDate !== null
+        DeletedDate: output.DeletedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.DeletedDate)))
             : undefined,
         Description: (0, smithy_client_1.expectString)(output.Description),
         KmsKeyId: (0, smithy_client_1.expectString)(output.KmsKeyId),
-        LastAccessedDate: output.LastAccessedDate !== undefined && output.LastAccessedDate !== null
+        LastAccessedDate: output.LastAccessedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
             : undefined,
-        LastChangedDate: output.LastChangedDate !== undefined && output.LastChangedDate !== null
+        LastChangedDate: output.LastChangedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastChangedDate)))
             : undefined,
-        LastRotatedDate: output.LastRotatedDate !== undefined && output.LastRotatedDate !== null
+        LastRotatedDate: output.LastRotatedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastRotatedDate)))
             : undefined,
         Name: (0, smithy_client_1.expectString)(output.Name),
         OwningService: (0, smithy_client_1.expectString)(output.OwningService),
         PrimaryRegion: (0, smithy_client_1.expectString)(output.PrimaryRegion),
-        ReplicationStatus: output.ReplicationStatus !== undefined && output.ReplicationStatus !== null
+        ReplicationStatus: output.ReplicationStatus != null
             ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
             : undefined,
         RotationEnabled: (0, smithy_client_1.expectBoolean)(output.RotationEnabled),
         RotationLambdaARN: (0, smithy_client_1.expectString)(output.RotationLambdaARN),
-        RotationRules: output.RotationRules !== undefined && output.RotationRules !== null
-            ? deserializeAws_json1_1RotationRulesType(output.RotationRules, context)
-            : undefined,
-        Tags: output.Tags !== undefined && output.Tags !== null
-            ? deserializeAws_json1_1TagListType(output.Tags, context)
-            : undefined,
-        VersionIdsToStages: output.VersionIdsToStages !== undefined && output.VersionIdsToStages !== null
+        RotationRules: output.RotationRules != null ? deserializeAws_json1_1RotationRulesType(output.RotationRules, context) : undefined,
+        Tags: output.Tags != null ? deserializeAws_json1_1TagListType(output.Tags, context) : undefined,
+        VersionIdsToStages: output.VersionIdsToStages != null
             ? deserializeAws_json1_1SecretVersionsToStagesMapType(output.VersionIdsToStages, context)
             : undefined,
     };
@@ -5847,16 +5737,14 @@ const deserializeAws_json1_1GetResourcePolicyResponse = (output, context) => {
 const deserializeAws_json1_1GetSecretValueResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        CreatedDate: output.CreatedDate !== undefined && output.CreatedDate !== null
+        CreatedDate: output.CreatedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
             : undefined,
         Name: (0, smithy_client_1.expectString)(output.Name),
-        SecretBinary: output.SecretBinary !== undefined && output.SecretBinary !== null
-            ? context.base64Decoder(output.SecretBinary)
-            : undefined,
+        SecretBinary: output.SecretBinary != null ? context.base64Decoder(output.SecretBinary) : undefined,
         SecretString: (0, smithy_client_1.expectString)(output.SecretString),
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages !== undefined && output.VersionStages !== null
+        VersionStages: output.VersionStages != null
             ? deserializeAws_json1_1SecretVersionStagesType(output.VersionStages, context)
             : undefined,
     };
@@ -5900,9 +5788,7 @@ const deserializeAws_json1_1LimitExceededException = (output, context) => {
 const deserializeAws_json1_1ListSecretsResponse = (output, context) => {
     return {
         NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        SecretList: output.SecretList !== undefined && output.SecretList !== null
-            ? deserializeAws_json1_1SecretListType(output.SecretList, context)
-            : undefined,
+        SecretList: output.SecretList != null ? deserializeAws_json1_1SecretListType(output.SecretList, context) : undefined,
     };
 };
 const deserializeAws_json1_1ListSecretVersionIdsResponse = (output, context) => {
@@ -5910,9 +5796,7 @@ const deserializeAws_json1_1ListSecretVersionIdsResponse = (output, context) => 
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Versions: output.Versions !== undefined && output.Versions !== null
-            ? deserializeAws_json1_1SecretVersionsListType(output.Versions, context)
-            : undefined,
+        Versions: output.Versions != null ? deserializeAws_json1_1SecretVersionsListType(output.Versions, context) : undefined,
     };
 };
 const deserializeAws_json1_1MalformedPolicyDocumentException = (output, context) => {
@@ -5941,7 +5825,7 @@ const deserializeAws_json1_1PutSecretValueResponse = (output, context) => {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages !== undefined && output.VersionStages !== null
+        VersionStages: output.VersionStages != null
             ? deserializeAws_json1_1SecretVersionStagesType(output.VersionStages, context)
             : undefined,
     };
@@ -5949,7 +5833,7 @@ const deserializeAws_json1_1PutSecretValueResponse = (output, context) => {
 const deserializeAws_json1_1RemoveRegionsFromReplicationResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        ReplicationStatus: output.ReplicationStatus !== undefined && output.ReplicationStatus !== null
+        ReplicationStatus: output.ReplicationStatus != null
             ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
             : undefined,
     };
@@ -5957,7 +5841,7 @@ const deserializeAws_json1_1RemoveRegionsFromReplicationResponse = (output, cont
 const deserializeAws_json1_1ReplicateSecretToRegionsResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        ReplicationStatus: output.ReplicationStatus !== undefined && output.ReplicationStatus !== null
+        ReplicationStatus: output.ReplicationStatus != null
             ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
             : undefined,
     };
@@ -5976,7 +5860,7 @@ const deserializeAws_json1_1ReplicationStatusListType = (output, context) => {
 const deserializeAws_json1_1ReplicationStatusType = (output, context) => {
     return {
         KmsKeyId: (0, smithy_client_1.expectString)(output.KmsKeyId),
-        LastAccessedDate: output.LastAccessedDate !== undefined && output.LastAccessedDate !== null
+        LastAccessedDate: output.LastAccessedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
             : undefined,
         Region: (0, smithy_client_1.expectString)(output.Region),
@@ -6017,21 +5901,21 @@ const deserializeAws_json1_1RotationRulesType = (output, context) => {
 const deserializeAws_json1_1SecretListEntry = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        CreatedDate: output.CreatedDate !== undefined && output.CreatedDate !== null
+        CreatedDate: output.CreatedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
             : undefined,
-        DeletedDate: output.DeletedDate !== undefined && output.DeletedDate !== null
+        DeletedDate: output.DeletedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.DeletedDate)))
             : undefined,
         Description: (0, smithy_client_1.expectString)(output.Description),
         KmsKeyId: (0, smithy_client_1.expectString)(output.KmsKeyId),
-        LastAccessedDate: output.LastAccessedDate !== undefined && output.LastAccessedDate !== null
+        LastAccessedDate: output.LastAccessedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
             : undefined,
-        LastChangedDate: output.LastChangedDate !== undefined && output.LastChangedDate !== null
+        LastChangedDate: output.LastChangedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastChangedDate)))
             : undefined,
-        LastRotatedDate: output.LastRotatedDate !== undefined && output.LastRotatedDate !== null
+        LastRotatedDate: output.LastRotatedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastRotatedDate)))
             : undefined,
         Name: (0, smithy_client_1.expectString)(output.Name),
@@ -6039,15 +5923,11 @@ const deserializeAws_json1_1SecretListEntry = (output, context) => {
         PrimaryRegion: (0, smithy_client_1.expectString)(output.PrimaryRegion),
         RotationEnabled: (0, smithy_client_1.expectBoolean)(output.RotationEnabled),
         RotationLambdaARN: (0, smithy_client_1.expectString)(output.RotationLambdaARN),
-        RotationRules: output.RotationRules !== undefined && output.RotationRules !== null
-            ? deserializeAws_json1_1RotationRulesType(output.RotationRules, context)
-            : undefined,
-        SecretVersionsToStages: output.SecretVersionsToStages !== undefined && output.SecretVersionsToStages !== null
+        RotationRules: output.RotationRules != null ? deserializeAws_json1_1RotationRulesType(output.RotationRules, context) : undefined,
+        SecretVersionsToStages: output.SecretVersionsToStages != null
             ? deserializeAws_json1_1SecretVersionsToStagesMapType(output.SecretVersionsToStages, context)
             : undefined,
-        Tags: output.Tags !== undefined && output.Tags !== null
-            ? deserializeAws_json1_1TagListType(output.Tags, context)
-            : undefined,
+        Tags: output.Tags != null ? deserializeAws_json1_1TagListType(output.Tags, context) : undefined,
     };
 };
 const deserializeAws_json1_1SecretListType = (output, context) => {
@@ -6063,17 +5943,15 @@ const deserializeAws_json1_1SecretListType = (output, context) => {
 };
 const deserializeAws_json1_1SecretVersionsListEntry = (output, context) => {
     return {
-        CreatedDate: output.CreatedDate !== undefined && output.CreatedDate !== null
+        CreatedDate: output.CreatedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
             : undefined,
-        KmsKeyIds: output.KmsKeyIds !== undefined && output.KmsKeyIds !== null
-            ? deserializeAws_json1_1KmsKeyIdListType(output.KmsKeyIds, context)
-            : undefined,
-        LastAccessedDate: output.LastAccessedDate !== undefined && output.LastAccessedDate !== null
+        KmsKeyIds: output.KmsKeyIds != null ? deserializeAws_json1_1KmsKeyIdListType(output.KmsKeyIds, context) : undefined,
+        LastAccessedDate: output.LastAccessedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
             : undefined,
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages !== undefined && output.VersionStages !== null
+        VersionStages: output.VersionStages != null
             ? deserializeAws_json1_1SecretVersionStagesType(output.VersionStages, context)
             : undefined,
     };
@@ -6149,7 +6027,7 @@ const deserializeAws_json1_1UpdateSecretVersionStageResponse = (output, context)
 const deserializeAws_json1_1ValidateResourcePolicyResponse = (output, context) => {
     return {
         PolicyValidationPassed: (0, smithy_client_1.expectBoolean)(output.PolicyValidationPassed),
-        ValidationErrors: output.ValidationErrors !== undefined && output.ValidationErrors !== null
+        ValidationErrors: output.ValidationErrors != null
             ? deserializeAws_json1_1ValidationErrorsType(output.ValidationErrors, context)
             : undefined,
     };
@@ -6215,6 +6093,9 @@ const loadRestJsonErrorCode = (output, data) => {
     const findKey = (object, key) => Object.keys(object).find((k) => k.toLowerCase() === key.toLowerCase());
     const sanitizeErrorCode = (rawValue) => {
         let cleanValue = rawValue;
+        if (typeof cleanValue === "number") {
+            cleanValue = cleanValue.toString();
+        }
         if (cleanValue.indexOf(":") >= 0) {
             cleanValue = cleanValue.split(":")[0];
         }
@@ -6233,7 +6114,6 @@ const loadRestJsonErrorCode = (output, data) => {
     if (data["__type"] !== undefined) {
         return sanitizeErrorCode(data["__type"]);
     }
-    return "";
 };
 
 
@@ -6262,8 +6142,10 @@ const util_utf8_node_1 = __nccwpck_require__(6278);
 const runtimeConfig_shared_1 = __nccwpck_require__(8670);
 const smithy_client_1 = __nccwpck_require__(4963);
 const util_defaults_mode_node_1 = __nccwpck_require__(4243);
+const smithy_client_2 = __nccwpck_require__(4963);
 const getRuntimeConfig = (config) => {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
+    (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
     const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
     const defaultConfigProvider = () => defaultsMode().then(smithy_client_1.loadConfigsForDefaultMode);
     const clientSharedValues = (0, runtimeConfig_shared_1.getRuntimeConfig)(config);
@@ -6721,6 +6603,7 @@ const config_resolver_1 = __nccwpck_require__(6153);
 const middleware_content_length_1 = __nccwpck_require__(2245);
 const middleware_host_header_1 = __nccwpck_require__(2545);
 const middleware_logger_1 = __nccwpck_require__(14);
+const middleware_recursion_detection_1 = __nccwpck_require__(5525);
 const middleware_retry_1 = __nccwpck_require__(6064);
 const middleware_user_agent_1 = __nccwpck_require__(4688);
 const smithy_client_1 = __nccwpck_require__(4963);
@@ -6739,6 +6622,7 @@ class SSOClient extends smithy_client_1.Client {
         this.middlewareStack.use((0, middleware_content_length_1.getContentLengthPlugin)(this.config));
         this.middlewareStack.use((0, middleware_host_header_1.getHostHeaderPlugin)(this.config));
         this.middlewareStack.use((0, middleware_logger_1.getLoggerPlugin)(this.config));
+        this.middlewareStack.use((0, middleware_recursion_detection_1.getRecursionDetectionPlugin)(this.config));
         this.middlewareStack.use((0, middleware_user_agent_1.getUserAgentPlugin)(this.config));
     }
     destroy() {
@@ -6776,8 +6660,8 @@ class GetRoleCredentialsCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetRoleCredentialsRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetRoleCredentialsResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetRoleCredentialsRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetRoleCredentialsResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6820,8 +6704,8 @@ class ListAccountRolesCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.ListAccountRolesRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.ListAccountRolesResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.ListAccountRolesRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.ListAccountRolesResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6864,8 +6748,8 @@ class ListAccountsCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.ListAccountsRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.ListAccountsResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.ListAccountsRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.ListAccountsResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -6908,7 +6792,7 @@ class LogoutCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.LogoutRequest.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.LogoutRequestFilterSensitiveLog,
             outputFilterSensitiveLog: (output) => output,
         };
         const { requestHandler } = configuration;
@@ -6950,6 +6834,15 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.defaultRegionInfoProvider = void 0;
 const config_resolver_1 = __nccwpck_require__(6153);
 const regionHash = {
+    "ap-east-1": {
+        variants: [
+            {
+                hostname: "portal.sso.ap-east-1.amazonaws.com",
+                tags: [],
+            },
+        ],
+        signingRegion: "ap-east-1",
+    },
     "ap-northeast-1": {
         variants: [
             {
@@ -6967,6 +6860,15 @@ const regionHash = {
             },
         ],
         signingRegion: "ap-northeast-2",
+    },
+    "ap-northeast-3": {
+        variants: [
+            {
+                hostname: "portal.sso.ap-northeast-3.amazonaws.com",
+                tags: [],
+            },
+        ],
+        signingRegion: "ap-northeast-3",
     },
     "ap-south-1": {
         variants: [
@@ -7022,6 +6924,15 @@ const regionHash = {
         ],
         signingRegion: "eu-north-1",
     },
+    "eu-south-1": {
+        variants: [
+            {
+                hostname: "portal.sso.eu-south-1.amazonaws.com",
+                tags: [],
+            },
+        ],
+        signingRegion: "eu-south-1",
+    },
     "eu-west-1": {
         variants: [
             {
@@ -7048,6 +6959,15 @@ const regionHash = {
             },
         ],
         signingRegion: "eu-west-3",
+    },
+    "me-south-1": {
+        variants: [
+            {
+                hostname: "portal.sso.me-south-1.amazonaws.com",
+                tags: [],
+            },
+        ],
+        signingRegion: "me-south-1",
     },
     "sa-east-1": {
         variants: [
@@ -7290,37 +7210,9 @@ tslib_1.__exportStar(__nccwpck_require__(6390), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.LogoutRequest = exports.ListAccountsResponse = exports.ListAccountsRequest = exports.ListAccountRolesResponse = exports.RoleInfo = exports.ListAccountRolesRequest = exports.UnauthorizedException = exports.TooManyRequestsException = exports.ResourceNotFoundException = exports.InvalidRequestException = exports.GetRoleCredentialsResponse = exports.RoleCredentials = exports.GetRoleCredentialsRequest = exports.AccountInfo = void 0;
+exports.LogoutRequestFilterSensitiveLog = exports.ListAccountsResponseFilterSensitiveLog = exports.ListAccountsRequestFilterSensitiveLog = exports.ListAccountRolesResponseFilterSensitiveLog = exports.RoleInfoFilterSensitiveLog = exports.ListAccountRolesRequestFilterSensitiveLog = exports.GetRoleCredentialsResponseFilterSensitiveLog = exports.RoleCredentialsFilterSensitiveLog = exports.GetRoleCredentialsRequestFilterSensitiveLog = exports.AccountInfoFilterSensitiveLog = exports.UnauthorizedException = exports.TooManyRequestsException = exports.ResourceNotFoundException = exports.InvalidRequestException = void 0;
 const smithy_client_1 = __nccwpck_require__(4963);
 const SSOServiceException_1 = __nccwpck_require__(1517);
-var AccountInfo;
-(function (AccountInfo) {
-    AccountInfo.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AccountInfo = exports.AccountInfo || (exports.AccountInfo = {}));
-var GetRoleCredentialsRequest;
-(function (GetRoleCredentialsRequest) {
-    GetRoleCredentialsRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(GetRoleCredentialsRequest = exports.GetRoleCredentialsRequest || (exports.GetRoleCredentialsRequest = {}));
-var RoleCredentials;
-(function (RoleCredentials) {
-    RoleCredentials.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.secretAccessKey && { secretAccessKey: smithy_client_1.SENSITIVE_STRING }),
-        ...(obj.sessionToken && { sessionToken: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(RoleCredentials = exports.RoleCredentials || (exports.RoleCredentials = {}));
-var GetRoleCredentialsResponse;
-(function (GetRoleCredentialsResponse) {
-    GetRoleCredentialsResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.roleCredentials && { roleCredentials: RoleCredentials.filterSensitiveLog(obj.roleCredentials) }),
-    });
-})(GetRoleCredentialsResponse = exports.GetRoleCredentialsResponse || (exports.GetRoleCredentialsResponse = {}));
 class InvalidRequestException extends SSOServiceException_1.SSOServiceException {
     constructor(opts) {
         super({
@@ -7373,45 +7265,53 @@ class UnauthorizedException extends SSOServiceException_1.SSOServiceException {
     }
 }
 exports.UnauthorizedException = UnauthorizedException;
-var ListAccountRolesRequest;
-(function (ListAccountRolesRequest) {
-    ListAccountRolesRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(ListAccountRolesRequest = exports.ListAccountRolesRequest || (exports.ListAccountRolesRequest = {}));
-var RoleInfo;
-(function (RoleInfo) {
-    RoleInfo.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(RoleInfo = exports.RoleInfo || (exports.RoleInfo = {}));
-var ListAccountRolesResponse;
-(function (ListAccountRolesResponse) {
-    ListAccountRolesResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ListAccountRolesResponse = exports.ListAccountRolesResponse || (exports.ListAccountRolesResponse = {}));
-var ListAccountsRequest;
-(function (ListAccountsRequest) {
-    ListAccountsRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(ListAccountsRequest = exports.ListAccountsRequest || (exports.ListAccountsRequest = {}));
-var ListAccountsResponse;
-(function (ListAccountsResponse) {
-    ListAccountsResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(ListAccountsResponse = exports.ListAccountsResponse || (exports.ListAccountsResponse = {}));
-var LogoutRequest;
-(function (LogoutRequest) {
-    LogoutRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-        ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
-    });
-})(LogoutRequest = exports.LogoutRequest || (exports.LogoutRequest = {}));
+const AccountInfoFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AccountInfoFilterSensitiveLog = AccountInfoFilterSensitiveLog;
+const GetRoleCredentialsRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.GetRoleCredentialsRequestFilterSensitiveLog = GetRoleCredentialsRequestFilterSensitiveLog;
+const RoleCredentialsFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.secretAccessKey && { secretAccessKey: smithy_client_1.SENSITIVE_STRING }),
+    ...(obj.sessionToken && { sessionToken: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.RoleCredentialsFilterSensitiveLog = RoleCredentialsFilterSensitiveLog;
+const GetRoleCredentialsResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.roleCredentials && { roleCredentials: (0, exports.RoleCredentialsFilterSensitiveLog)(obj.roleCredentials) }),
+});
+exports.GetRoleCredentialsResponseFilterSensitiveLog = GetRoleCredentialsResponseFilterSensitiveLog;
+const ListAccountRolesRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.ListAccountRolesRequestFilterSensitiveLog = ListAccountRolesRequestFilterSensitiveLog;
+const RoleInfoFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.RoleInfoFilterSensitiveLog = RoleInfoFilterSensitiveLog;
+const ListAccountRolesResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ListAccountRolesResponseFilterSensitiveLog = ListAccountRolesResponseFilterSensitiveLog;
+const ListAccountsRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.ListAccountsRequestFilterSensitiveLog = ListAccountsRequestFilterSensitiveLog;
+const ListAccountsResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.ListAccountsResponseFilterSensitiveLog = ListAccountsResponseFilterSensitiveLog;
+const LogoutRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+    ...(obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }),
+});
+exports.LogoutRequestFilterSensitiveLog = LogoutRequestFilterSensitiveLog;
 
 
 /***/ }),
@@ -7648,8 +7548,7 @@ const deserializeAws_restJson1GetRoleCredentialsCommandError = async (output, co
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -7665,10 +7564,12 @@ const deserializeAws_restJson1GetRoleCredentialsCommandError = async (output, co
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -7698,8 +7599,7 @@ const deserializeAws_restJson1ListAccountRolesCommandError = async (output, cont
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -7715,10 +7615,12 @@ const deserializeAws_restJson1ListAccountRolesCommandError = async (output, cont
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -7748,8 +7650,7 @@ const deserializeAws_restJson1ListAccountsCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -7765,10 +7666,12 @@ const deserializeAws_restJson1ListAccountsCommandError = async (output, context)
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -7790,8 +7693,7 @@ const deserializeAws_restJson1LogoutCommandError = async (output, context) => {
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+    const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
@@ -7804,10 +7706,12 @@ const deserializeAws_restJson1LogoutCommandError = async (output, context) => {
             throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new SSOServiceException_1.SSOServiceException({
-                name: parsedBody.code || parsedBody.Code || errorCode,
+                name: parsedBody.code || parsedBody.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody);
     }
@@ -7934,6 +7838,9 @@ const loadRestJsonErrorCode = (output, data) => {
     const findKey = (object, key) => Object.keys(object).find((k) => k.toLowerCase() === key.toLowerCase());
     const sanitizeErrorCode = (rawValue) => {
         let cleanValue = rawValue;
+        if (typeof cleanValue === "number") {
+            cleanValue = cleanValue.toString();
+        }
         if (cleanValue.indexOf(":") >= 0) {
             cleanValue = cleanValue.split(":")[0];
         }
@@ -7952,7 +7859,6 @@ const loadRestJsonErrorCode = (output, data) => {
     if (data["__type"] !== undefined) {
         return sanitizeErrorCode(data["__type"]);
     }
-    return "";
 };
 
 
@@ -7979,8 +7885,10 @@ const util_utf8_node_1 = __nccwpck_require__(6278);
 const runtimeConfig_shared_1 = __nccwpck_require__(4355);
 const smithy_client_1 = __nccwpck_require__(4963);
 const util_defaults_mode_node_1 = __nccwpck_require__(4243);
+const smithy_client_2 = __nccwpck_require__(4963);
 const getRuntimeConfig = (config) => {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
+    (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
     const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
     const defaultConfigProvider = () => defaultsMode().then(smithy_client_1.loadConfigsForDefaultMode);
     const clientSharedValues = (0, runtimeConfig_shared_1.getRuntimeConfig)(config);
@@ -8508,6 +8416,7 @@ const config_resolver_1 = __nccwpck_require__(6153);
 const middleware_content_length_1 = __nccwpck_require__(2245);
 const middleware_host_header_1 = __nccwpck_require__(2545);
 const middleware_logger_1 = __nccwpck_require__(14);
+const middleware_recursion_detection_1 = __nccwpck_require__(5525);
 const middleware_retry_1 = __nccwpck_require__(6064);
 const middleware_sdk_sts_1 = __nccwpck_require__(5959);
 const middleware_user_agent_1 = __nccwpck_require__(4688);
@@ -8528,6 +8437,7 @@ class STSClient extends smithy_client_1.Client {
         this.middlewareStack.use((0, middleware_content_length_1.getContentLengthPlugin)(this.config));
         this.middlewareStack.use((0, middleware_host_header_1.getHostHeaderPlugin)(this.config));
         this.middlewareStack.use((0, middleware_logger_1.getLoggerPlugin)(this.config));
+        this.middlewareStack.use((0, middleware_recursion_detection_1.getRecursionDetectionPlugin)(this.config));
         this.middlewareStack.use((0, middleware_user_agent_1.getUserAgentPlugin)(this.config));
     }
     destroy() {
@@ -8567,8 +8477,8 @@ class AssumeRoleCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.AssumeRoleRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.AssumeRoleResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.AssumeRoleRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.AssumeRoleResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -8611,8 +8521,8 @@ class AssumeRoleWithSAMLCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -8655,8 +8565,8 @@ class AssumeRoleWithWebIdentityCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -8701,8 +8611,8 @@ class DecodeAuthorizationMessageCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.DecodeAuthorizationMessageRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.DecodeAuthorizationMessageResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.DecodeAuthorizationMessageRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.DecodeAuthorizationMessageResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -8747,8 +8657,8 @@ class GetAccessKeyInfoCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetAccessKeyInfoRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetAccessKeyInfoResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetAccessKeyInfoRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetAccessKeyInfoResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -8793,8 +8703,8 @@ class GetCallerIdentityCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetCallerIdentityRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetCallerIdentityResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetCallerIdentityRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetCallerIdentityResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -8839,8 +8749,8 @@ class GetFederationTokenCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetFederationTokenRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetFederationTokenResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetFederationTokenRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetFederationTokenResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -8885,8 +8795,8 @@ class GetSessionTokenCommand extends smithy_client_1.Command {
             logger,
             clientName,
             commandName,
-            inputFilterSensitiveLog: models_0_1.GetSessionTokenRequest.filterSensitiveLog,
-            outputFilterSensitiveLog: models_0_1.GetSessionTokenResponse.filterSensitiveLog,
+            inputFilterSensitiveLog: models_0_1.GetSessionTokenRequestFilterSensitiveLog,
+            outputFilterSensitiveLog: models_0_1.GetSessionTokenResponseFilterSensitiveLog,
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9287,44 +9197,8 @@ tslib_1.__exportStar(__nccwpck_require__(1780), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.GetSessionTokenResponse = exports.GetSessionTokenRequest = exports.GetFederationTokenResponse = exports.FederatedUser = exports.GetFederationTokenRequest = exports.GetCallerIdentityResponse = exports.GetCallerIdentityRequest = exports.GetAccessKeyInfoResponse = exports.GetAccessKeyInfoRequest = exports.InvalidAuthorizationMessageException = exports.DecodeAuthorizationMessageResponse = exports.DecodeAuthorizationMessageRequest = exports.IDPCommunicationErrorException = exports.AssumeRoleWithWebIdentityResponse = exports.AssumeRoleWithWebIdentityRequest = exports.InvalidIdentityTokenException = exports.IDPRejectedClaimException = exports.AssumeRoleWithSAMLResponse = exports.AssumeRoleWithSAMLRequest = exports.RegionDisabledException = exports.PackedPolicyTooLargeException = exports.MalformedPolicyDocumentException = exports.ExpiredTokenException = exports.AssumeRoleResponse = exports.Credentials = exports.AssumeRoleRequest = exports.Tag = exports.PolicyDescriptorType = exports.AssumedRoleUser = void 0;
+exports.GetSessionTokenResponseFilterSensitiveLog = exports.GetSessionTokenRequestFilterSensitiveLog = exports.GetFederationTokenResponseFilterSensitiveLog = exports.FederatedUserFilterSensitiveLog = exports.GetFederationTokenRequestFilterSensitiveLog = exports.GetCallerIdentityResponseFilterSensitiveLog = exports.GetCallerIdentityRequestFilterSensitiveLog = exports.GetAccessKeyInfoResponseFilterSensitiveLog = exports.GetAccessKeyInfoRequestFilterSensitiveLog = exports.DecodeAuthorizationMessageResponseFilterSensitiveLog = exports.DecodeAuthorizationMessageRequestFilterSensitiveLog = exports.AssumeRoleWithWebIdentityResponseFilterSensitiveLog = exports.AssumeRoleWithWebIdentityRequestFilterSensitiveLog = exports.AssumeRoleWithSAMLResponseFilterSensitiveLog = exports.AssumeRoleWithSAMLRequestFilterSensitiveLog = exports.AssumeRoleResponseFilterSensitiveLog = exports.CredentialsFilterSensitiveLog = exports.AssumeRoleRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.PolicyDescriptorTypeFilterSensitiveLog = exports.AssumedRoleUserFilterSensitiveLog = exports.InvalidAuthorizationMessageException = exports.IDPCommunicationErrorException = exports.InvalidIdentityTokenException = exports.IDPRejectedClaimException = exports.RegionDisabledException = exports.PackedPolicyTooLargeException = exports.MalformedPolicyDocumentException = exports.ExpiredTokenException = void 0;
 const STSServiceException_1 = __nccwpck_require__(6450);
-var AssumedRoleUser;
-(function (AssumedRoleUser) {
-    AssumedRoleUser.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AssumedRoleUser = exports.AssumedRoleUser || (exports.AssumedRoleUser = {}));
-var PolicyDescriptorType;
-(function (PolicyDescriptorType) {
-    PolicyDescriptorType.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(PolicyDescriptorType = exports.PolicyDescriptorType || (exports.PolicyDescriptorType = {}));
-var Tag;
-(function (Tag) {
-    Tag.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(Tag = exports.Tag || (exports.Tag = {}));
-var AssumeRoleRequest;
-(function (AssumeRoleRequest) {
-    AssumeRoleRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AssumeRoleRequest = exports.AssumeRoleRequest || (exports.AssumeRoleRequest = {}));
-var Credentials;
-(function (Credentials) {
-    Credentials.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(Credentials = exports.Credentials || (exports.Credentials = {}));
-var AssumeRoleResponse;
-(function (AssumeRoleResponse) {
-    AssumeRoleResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AssumeRoleResponse = exports.AssumeRoleResponse || (exports.AssumeRoleResponse = {}));
 class ExpiredTokenException extends STSServiceException_1.STSServiceException {
     constructor(opts) {
         super({
@@ -9377,18 +9251,6 @@ class RegionDisabledException extends STSServiceException_1.STSServiceException 
     }
 }
 exports.RegionDisabledException = RegionDisabledException;
-var AssumeRoleWithSAMLRequest;
-(function (AssumeRoleWithSAMLRequest) {
-    AssumeRoleWithSAMLRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AssumeRoleWithSAMLRequest = exports.AssumeRoleWithSAMLRequest || (exports.AssumeRoleWithSAMLRequest = {}));
-var AssumeRoleWithSAMLResponse;
-(function (AssumeRoleWithSAMLResponse) {
-    AssumeRoleWithSAMLResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AssumeRoleWithSAMLResponse = exports.AssumeRoleWithSAMLResponse || (exports.AssumeRoleWithSAMLResponse = {}));
 class IDPRejectedClaimException extends STSServiceException_1.STSServiceException {
     constructor(opts) {
         super({
@@ -9415,18 +9277,6 @@ class InvalidIdentityTokenException extends STSServiceException_1.STSServiceExce
     }
 }
 exports.InvalidIdentityTokenException = InvalidIdentityTokenException;
-var AssumeRoleWithWebIdentityRequest;
-(function (AssumeRoleWithWebIdentityRequest) {
-    AssumeRoleWithWebIdentityRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AssumeRoleWithWebIdentityRequest = exports.AssumeRoleWithWebIdentityRequest || (exports.AssumeRoleWithWebIdentityRequest = {}));
-var AssumeRoleWithWebIdentityResponse;
-(function (AssumeRoleWithWebIdentityResponse) {
-    AssumeRoleWithWebIdentityResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(AssumeRoleWithWebIdentityResponse = exports.AssumeRoleWithWebIdentityResponse || (exports.AssumeRoleWithWebIdentityResponse = {}));
 class IDPCommunicationErrorException extends STSServiceException_1.STSServiceException {
     constructor(opts) {
         super({
@@ -9440,18 +9290,6 @@ class IDPCommunicationErrorException extends STSServiceException_1.STSServiceExc
     }
 }
 exports.IDPCommunicationErrorException = IDPCommunicationErrorException;
-var DecodeAuthorizationMessageRequest;
-(function (DecodeAuthorizationMessageRequest) {
-    DecodeAuthorizationMessageRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DecodeAuthorizationMessageRequest = exports.DecodeAuthorizationMessageRequest || (exports.DecodeAuthorizationMessageRequest = {}));
-var DecodeAuthorizationMessageResponse;
-(function (DecodeAuthorizationMessageResponse) {
-    DecodeAuthorizationMessageResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(DecodeAuthorizationMessageResponse = exports.DecodeAuthorizationMessageResponse || (exports.DecodeAuthorizationMessageResponse = {}));
 class InvalidAuthorizationMessageException extends STSServiceException_1.STSServiceException {
     constructor(opts) {
         super({
@@ -9465,60 +9303,90 @@ class InvalidAuthorizationMessageException extends STSServiceException_1.STSServ
     }
 }
 exports.InvalidAuthorizationMessageException = InvalidAuthorizationMessageException;
-var GetAccessKeyInfoRequest;
-(function (GetAccessKeyInfoRequest) {
-    GetAccessKeyInfoRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetAccessKeyInfoRequest = exports.GetAccessKeyInfoRequest || (exports.GetAccessKeyInfoRequest = {}));
-var GetAccessKeyInfoResponse;
-(function (GetAccessKeyInfoResponse) {
-    GetAccessKeyInfoResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetAccessKeyInfoResponse = exports.GetAccessKeyInfoResponse || (exports.GetAccessKeyInfoResponse = {}));
-var GetCallerIdentityRequest;
-(function (GetCallerIdentityRequest) {
-    GetCallerIdentityRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetCallerIdentityRequest = exports.GetCallerIdentityRequest || (exports.GetCallerIdentityRequest = {}));
-var GetCallerIdentityResponse;
-(function (GetCallerIdentityResponse) {
-    GetCallerIdentityResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetCallerIdentityResponse = exports.GetCallerIdentityResponse || (exports.GetCallerIdentityResponse = {}));
-var GetFederationTokenRequest;
-(function (GetFederationTokenRequest) {
-    GetFederationTokenRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetFederationTokenRequest = exports.GetFederationTokenRequest || (exports.GetFederationTokenRequest = {}));
-var FederatedUser;
-(function (FederatedUser) {
-    FederatedUser.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(FederatedUser = exports.FederatedUser || (exports.FederatedUser = {}));
-var GetFederationTokenResponse;
-(function (GetFederationTokenResponse) {
-    GetFederationTokenResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetFederationTokenResponse = exports.GetFederationTokenResponse || (exports.GetFederationTokenResponse = {}));
-var GetSessionTokenRequest;
-(function (GetSessionTokenRequest) {
-    GetSessionTokenRequest.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetSessionTokenRequest = exports.GetSessionTokenRequest || (exports.GetSessionTokenRequest = {}));
-var GetSessionTokenResponse;
-(function (GetSessionTokenResponse) {
-    GetSessionTokenResponse.filterSensitiveLog = (obj) => ({
-        ...obj,
-    });
-})(GetSessionTokenResponse = exports.GetSessionTokenResponse || (exports.GetSessionTokenResponse = {}));
+const AssumedRoleUserFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AssumedRoleUserFilterSensitiveLog = AssumedRoleUserFilterSensitiveLog;
+const PolicyDescriptorTypeFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.PolicyDescriptorTypeFilterSensitiveLog = PolicyDescriptorTypeFilterSensitiveLog;
+const TagFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
+const AssumeRoleRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AssumeRoleRequestFilterSensitiveLog = AssumeRoleRequestFilterSensitiveLog;
+const CredentialsFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.CredentialsFilterSensitiveLog = CredentialsFilterSensitiveLog;
+const AssumeRoleResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AssumeRoleResponseFilterSensitiveLog = AssumeRoleResponseFilterSensitiveLog;
+const AssumeRoleWithSAMLRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AssumeRoleWithSAMLRequestFilterSensitiveLog = AssumeRoleWithSAMLRequestFilterSensitiveLog;
+const AssumeRoleWithSAMLResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AssumeRoleWithSAMLResponseFilterSensitiveLog = AssumeRoleWithSAMLResponseFilterSensitiveLog;
+const AssumeRoleWithWebIdentityRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AssumeRoleWithWebIdentityRequestFilterSensitiveLog = AssumeRoleWithWebIdentityRequestFilterSensitiveLog;
+const AssumeRoleWithWebIdentityResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.AssumeRoleWithWebIdentityResponseFilterSensitiveLog = AssumeRoleWithWebIdentityResponseFilterSensitiveLog;
+const DecodeAuthorizationMessageRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DecodeAuthorizationMessageRequestFilterSensitiveLog = DecodeAuthorizationMessageRequestFilterSensitiveLog;
+const DecodeAuthorizationMessageResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.DecodeAuthorizationMessageResponseFilterSensitiveLog = DecodeAuthorizationMessageResponseFilterSensitiveLog;
+const GetAccessKeyInfoRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetAccessKeyInfoRequestFilterSensitiveLog = GetAccessKeyInfoRequestFilterSensitiveLog;
+const GetAccessKeyInfoResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetAccessKeyInfoResponseFilterSensitiveLog = GetAccessKeyInfoResponseFilterSensitiveLog;
+const GetCallerIdentityRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetCallerIdentityRequestFilterSensitiveLog = GetCallerIdentityRequestFilterSensitiveLog;
+const GetCallerIdentityResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetCallerIdentityResponseFilterSensitiveLog = GetCallerIdentityResponseFilterSensitiveLog;
+const GetFederationTokenRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetFederationTokenRequestFilterSensitiveLog = GetFederationTokenRequestFilterSensitiveLog;
+const FederatedUserFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.FederatedUserFilterSensitiveLog = FederatedUserFilterSensitiveLog;
+const GetFederationTokenResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetFederationTokenResponseFilterSensitiveLog = GetFederationTokenResponseFilterSensitiveLog;
+const GetSessionTokenRequestFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetSessionTokenRequestFilterSensitiveLog = GetSessionTokenRequestFilterSensitiveLog;
+const GetSessionTokenResponseFilterSensitiveLog = (obj) => ({
+    ...obj,
+});
+exports.GetSessionTokenResponseFilterSensitiveLog = GetSessionTokenResponseFilterSensitiveLog;
 
 
 /***/ }),
@@ -9660,8 +9528,7 @@ const deserializeAws_queryAssumeRoleCommandError = async (output, context) => {
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
@@ -9677,10 +9544,12 @@ const deserializeAws_queryAssumeRoleCommandError = async (output, context) => {
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -9705,8 +9574,7 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (output, contex
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
@@ -9728,10 +9596,12 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (output, contex
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -9756,8 +9626,7 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (output,
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
@@ -9782,10 +9651,12 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (output,
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -9810,18 +9681,19 @@ const deserializeAws_queryDecodeAuthorizationMessageCommandError = async (output
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "InvalidAuthorizationMessageException":
         case "com.amazonaws.sts#InvalidAuthorizationMessageException":
             throw await deserializeAws_queryInvalidAuthorizationMessageExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -9846,15 +9718,16 @@ const deserializeAws_queryGetAccessKeyInfoCommandError = async (output, context)
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -9879,15 +9752,16 @@ const deserializeAws_queryGetCallerIdentityCommandError = async (output, context
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -9912,8 +9786,7 @@ const deserializeAws_queryGetFederationTokenCommandError = async (output, contex
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "MalformedPolicyDocumentException":
         case "com.amazonaws.sts#MalformedPolicyDocumentException":
@@ -9926,10 +9799,12 @@ const deserializeAws_queryGetFederationTokenCommandError = async (output, contex
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -9954,18 +9829,19 @@ const deserializeAws_queryGetSessionTokenCommandError = async (output, context) 
         body: await parseBody(output.body, context),
     };
     let response;
-    let errorCode = "UnknownError";
-    errorCode = loadQueryErrorCode(output, parsedOutput.body);
+    const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     switch (errorCode) {
         case "RegionDisabledException":
         case "com.amazonaws.sts#RegionDisabledException":
             throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
+            const $metadata = deserializeMetadata(output);
+            const statusCode = $metadata.httpStatusCode ? $metadata.httpStatusCode + "" : undefined;
             response = new STSServiceException_1.STSServiceException({
-                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode,
+                name: parsedBody.Error.code || parsedBody.Error.Code || errorCode || statusCode || "UnknowError",
                 $fault: "client",
-                $metadata: deserializeMetadata(output),
+                $metadata,
             });
             throw (0, smithy_client_1.decorateServiceException)(response, parsedBody.Error);
     }
@@ -10602,7 +10478,6 @@ const loadQueryErrorCode = (output, data) => {
     if (output.statusCode == 404) {
         return "NotFound";
     }
-    return "";
 };
 
 
@@ -10631,8 +10506,10 @@ const util_utf8_node_1 = __nccwpck_require__(6278);
 const runtimeConfig_shared_1 = __nccwpck_require__(2642);
 const smithy_client_1 = __nccwpck_require__(4963);
 const util_defaults_mode_node_1 = __nccwpck_require__(4243);
+const smithy_client_2 = __nccwpck_require__(4963);
 const getRuntimeConfig = (config) => {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q;
+    (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
     const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
     const defaultConfigProvider = () => defaultsMode().then(smithy_client_1.loadConfigsForDefaultMode);
     const clientSharedValues = (0, runtimeConfig_shared_1.getRuntimeConfig)(config);
@@ -15685,6 +15562,53 @@ var __createBinding;
     exporter("__classPrivateFieldSet", __classPrivateFieldSet);
     exporter("__classPrivateFieldIn", __classPrivateFieldIn);
 });
+
+
+/***/ }),
+
+/***/ 5525:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getRecursionDetectionPlugin = exports.addRecursionDetectionMiddlewareOptions = exports.recursionDetectionMiddleware = void 0;
+const protocol_http_1 = __nccwpck_require__(223);
+const TRACE_ID_HEADER_NAME = "X-Amzn-Trace-Id";
+const ENV_LAMBDA_FUNCTION_NAME = "AWS_LAMBDA_FUNCTION_NAME";
+const ENV_TRACE_ID = "_X_AMZN_TRACE_ID";
+const recursionDetectionMiddleware = (options) => (next) => async (args) => {
+    const { request } = args;
+    if (!protocol_http_1.HttpRequest.isInstance(request) ||
+        options.runtime !== "node" ||
+        request.headers.hasOwnProperty(TRACE_ID_HEADER_NAME)) {
+        return next(args);
+    }
+    const functionName = process.env[ENV_LAMBDA_FUNCTION_NAME];
+    const traceId = process.env[ENV_TRACE_ID];
+    const nonEmptyString = (str) => typeof str === "string" && str.length > 0;
+    if (nonEmptyString(functionName) && nonEmptyString(traceId)) {
+        request.headers[TRACE_ID_HEADER_NAME] = traceId;
+    }
+    return next({
+        ...args,
+        request,
+    });
+};
+exports.recursionDetectionMiddleware = recursionDetectionMiddleware;
+exports.addRecursionDetectionMiddlewareOptions = {
+    step: "build",
+    tags: ["RECURSION_DETECTION"],
+    name: "recursionDetectionMiddleware",
+    override: true,
+    priority: "low",
+};
+const getRecursionDetectionPlugin = (options) => ({
+    applyToStack: (clientStack) => {
+        clientStack.add((0, exports.recursionDetectionMiddleware)(options), exports.addRecursionDetectionMiddlewareOptions);
+    },
+});
+exports.getRecursionDetectionPlugin = getRecursionDetectionPlugin;
 
 
 /***/ }),
@@ -20942,19 +20866,26 @@ const parseIni = (iniData) => {
     const map = {};
     let currentSection;
     for (let line of iniData.split(/\r?\n/)) {
-        line = line.split(/(^|\s)[;#]/)[0];
-        const section = line.match(/^\s*\[([^\[\]]+)]\s*$/);
-        if (section) {
-            currentSection = section[1];
+        line = line.split(/(^|\s)[;#]/)[0].trim();
+        const isSection = line[0] === "[" && line[line.length - 1] === "]";
+        if (isSection) {
+            currentSection = line.substring(1, line.length - 1);
             if (profileNameBlockList.includes(currentSection)) {
                 throw new Error(`Found invalid profile name "${currentSection}"`);
             }
         }
         else if (currentSection) {
-            const item = line.match(/^\s*(.+?)\s*=\s*(.+?)\s*$/);
-            if (item) {
+            const indexOfEqualsSign = line.indexOf("=");
+            const start = 0;
+            const end = line.length - 1;
+            const isAssignment = indexOfEqualsSign !== -1 && indexOfEqualsSign !== start && indexOfEqualsSign !== end;
+            if (isAssignment) {
+                const [name, value] = [
+                    line.substring(0, indexOfEqualsSign).trim(),
+                    line.substring(indexOfEqualsSign + 1).trim(),
+                ];
                 map[currentSection] = map[currentSection] || {};
-                map[currentSection][item[1]] = item[2];
+                map[currentSection][name] = value;
             }
         }
     }
@@ -21648,6 +21579,9 @@ const constants_1 = __nccwpck_require__(342);
 const getCanonicalHeaders = ({ headers }, unsignableHeaders, signableHeaders) => {
     const canonical = {};
     for (const headerName of Object.keys(headers).sort()) {
+        if (headers[headerName] == undefined) {
+            continue;
+        }
         const canonicalHeaderName = headerName.toLowerCase();
         if (canonicalHeaderName in constants_1.ALWAYS_UNSIGNABLE_HEADERS ||
             (unsignableHeaders === null || unsignableHeaders === void 0 ? void 0 : unsignableHeaders.has(canonicalHeaderName)) ||
@@ -22314,9 +22248,9 @@ const parseRfc3339DateTime = (value) => {
     return buildDate(year, month, day, { hours, minutes, seconds, fractionalMilliseconds });
 };
 exports.parseRfc3339DateTime = parseRfc3339DateTime;
-const IMF_FIXDATE = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun), (\d{2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{4}) (\d{2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
-const RFC_850_DATE = new RegExp(/^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (\d{2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d{2}) (\d{2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
-const ASC_TIME = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ( [1-9]|\d{2}) (\d{2}):(\d{2}):(\d{2})(?:\.(\d+))? (\d{4})$/);
+const IMF_FIXDATE = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun), (\d{2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{4}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
+const RFC_850_DATE = new RegExp(/^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (\d{2})-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? GMT$/);
+const ASC_TIME = new RegExp(/^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ( [1-9]|\d{2}) (\d{1,2}):(\d{2}):(\d{2})(?:\.(\d+))? (\d{4})$/);
 const parseRfc7231DateTime = (value) => {
     if (value === null || value === undefined) {
         return undefined;
@@ -22481,13 +22415,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.emitWarningIfUnsupportedVersion = void 0;
 let warningEmitted = false;
 const emitWarningIfUnsupportedVersion = (version) => {
-    if (version && !warningEmitted && parseInt(version.substring(1, version.indexOf("."))) < 12) {
+    if (version && !warningEmitted && parseInt(version.substring(1, version.indexOf("."))) < 14) {
         warningEmitted = true;
         process.emitWarning(`The AWS SDK for JavaScript (v3) will\n` +
-            `no longer support Node.js ${version} as of January 1, 2022.\n` +
+            `no longer support Node.js ${version} on November 1, 2022.\n\n` +
             `To continue receiving updates to AWS services, bug fixes, and security\n` +
-            `updates please upgrade to Node.js 12.x or later.\n\n` +
-            `More information can be found at: https://a.co/1l6FLnu`, `NodeDeprecationWarning`);
+            `updates please upgrade to Node.js 14.x or later.\n\n` +
+            `For details, please refer our blog post: https://a.co/48dbdYz`, `NodeDeprecationWarning`);
     }
 };
 exports.emitWarningIfUnsupportedVersion = emitWarningIfUnsupportedVersion;
@@ -28272,7 +28206,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.95.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/client-sts":"3.95.0","@aws-sdk/config-resolver":"3.80.0","@aws-sdk/credential-provider-node":"3.95.0","@aws-sdk/fetch-http-handler":"3.78.0","@aws-sdk/hash-node":"3.78.0","@aws-sdk/invalid-dependency":"3.78.0","@aws-sdk/middleware-content-length":"3.78.0","@aws-sdk/middleware-host-header":"3.78.0","@aws-sdk/middleware-logger":"3.78.0","@aws-sdk/middleware-retry":"3.80.0","@aws-sdk/middleware-serde":"3.78.0","@aws-sdk/middleware-signing":"3.78.0","@aws-sdk/middleware-stack":"3.78.0","@aws-sdk/middleware-user-agent":"3.78.0","@aws-sdk/node-config-provider":"3.80.0","@aws-sdk/node-http-handler":"3.94.0","@aws-sdk/protocol-http":"3.78.0","@aws-sdk/smithy-client":"3.85.0","@aws-sdk/types":"3.78.0","@aws-sdk/url-parser":"3.78.0","@aws-sdk/util-base64-browser":"3.58.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.85.0","@aws-sdk/util-defaults-mode-node":"3.85.0","@aws-sdk/util-user-agent-browser":"3.78.0","@aws-sdk/util-user-agent-node":"3.80.0","@aws-sdk/util-utf8-browser":"3.55.0","@aws-sdk/util-utf8-node":"3.55.0","tslib":"^2.3.1","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.141.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/client-sts":"3.141.0","@aws-sdk/config-resolver":"3.130.0","@aws-sdk/credential-provider-node":"3.141.0","@aws-sdk/fetch-http-handler":"3.131.0","@aws-sdk/hash-node":"3.127.0","@aws-sdk/invalid-dependency":"3.127.0","@aws-sdk/middleware-content-length":"3.127.0","@aws-sdk/middleware-host-header":"3.127.0","@aws-sdk/middleware-logger":"3.127.0","@aws-sdk/middleware-recursion-detection":"3.127.0","@aws-sdk/middleware-retry":"3.127.0","@aws-sdk/middleware-serde":"3.127.0","@aws-sdk/middleware-signing":"3.130.0","@aws-sdk/middleware-stack":"3.127.0","@aws-sdk/middleware-user-agent":"3.127.0","@aws-sdk/node-config-provider":"3.127.0","@aws-sdk/node-http-handler":"3.127.0","@aws-sdk/protocol-http":"3.127.0","@aws-sdk/smithy-client":"3.137.0","@aws-sdk/types":"3.127.0","@aws-sdk/url-parser":"3.127.0","@aws-sdk/util-base64-browser":"3.109.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.137.0","@aws-sdk/util-defaults-mode-node":"3.137.0","@aws-sdk/util-user-agent-browser":"3.127.0","@aws-sdk/util-user-agent-node":"3.127.0","@aws-sdk/util-utf8-browser":"3.109.0","@aws-sdk/util-utf8-node":"3.109.0","tslib":"^2.3.1","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ }),
 
@@ -28280,7 +28214,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","descript
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.95.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.80.0","@aws-sdk/fetch-http-handler":"3.78.0","@aws-sdk/hash-node":"3.78.0","@aws-sdk/invalid-dependency":"3.78.0","@aws-sdk/middleware-content-length":"3.78.0","@aws-sdk/middleware-host-header":"3.78.0","@aws-sdk/middleware-logger":"3.78.0","@aws-sdk/middleware-retry":"3.80.0","@aws-sdk/middleware-serde":"3.78.0","@aws-sdk/middleware-stack":"3.78.0","@aws-sdk/middleware-user-agent":"3.78.0","@aws-sdk/node-config-provider":"3.80.0","@aws-sdk/node-http-handler":"3.94.0","@aws-sdk/protocol-http":"3.78.0","@aws-sdk/smithy-client":"3.85.0","@aws-sdk/types":"3.78.0","@aws-sdk/url-parser":"3.78.0","@aws-sdk/util-base64-browser":"3.58.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.85.0","@aws-sdk/util-defaults-mode-node":"3.85.0","@aws-sdk/util-user-agent-browser":"3.78.0","@aws-sdk/util-user-agent-node":"3.80.0","@aws-sdk/util-utf8-browser":"3.55.0","@aws-sdk/util-utf8-node":"3.55.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.141.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.130.0","@aws-sdk/fetch-http-handler":"3.131.0","@aws-sdk/hash-node":"3.127.0","@aws-sdk/invalid-dependency":"3.127.0","@aws-sdk/middleware-content-length":"3.127.0","@aws-sdk/middleware-host-header":"3.127.0","@aws-sdk/middleware-logger":"3.127.0","@aws-sdk/middleware-recursion-detection":"3.127.0","@aws-sdk/middleware-retry":"3.127.0","@aws-sdk/middleware-serde":"3.127.0","@aws-sdk/middleware-stack":"3.127.0","@aws-sdk/middleware-user-agent":"3.127.0","@aws-sdk/node-config-provider":"3.127.0","@aws-sdk/node-http-handler":"3.127.0","@aws-sdk/protocol-http":"3.127.0","@aws-sdk/smithy-client":"3.137.0","@aws-sdk/types":"3.127.0","@aws-sdk/url-parser":"3.127.0","@aws-sdk/util-base64-browser":"3.109.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.137.0","@aws-sdk/util-defaults-mode-node":"3.137.0","@aws-sdk/util-user-agent-browser":"3.127.0","@aws-sdk/util-user-agent-node":"3.127.0","@aws-sdk/util-utf8-browser":"3.109.0","@aws-sdk/util-utf8-node":"3.109.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -28288,7 +28222,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.95.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.80.0","@aws-sdk/credential-provider-node":"3.95.0","@aws-sdk/fetch-http-handler":"3.78.0","@aws-sdk/hash-node":"3.78.0","@aws-sdk/invalid-dependency":"3.78.0","@aws-sdk/middleware-content-length":"3.78.0","@aws-sdk/middleware-host-header":"3.78.0","@aws-sdk/middleware-logger":"3.78.0","@aws-sdk/middleware-retry":"3.80.0","@aws-sdk/middleware-sdk-sts":"3.78.0","@aws-sdk/middleware-serde":"3.78.0","@aws-sdk/middleware-signing":"3.78.0","@aws-sdk/middleware-stack":"3.78.0","@aws-sdk/middleware-user-agent":"3.78.0","@aws-sdk/node-config-provider":"3.80.0","@aws-sdk/node-http-handler":"3.94.0","@aws-sdk/protocol-http":"3.78.0","@aws-sdk/smithy-client":"3.85.0","@aws-sdk/types":"3.78.0","@aws-sdk/url-parser":"3.78.0","@aws-sdk/util-base64-browser":"3.58.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.85.0","@aws-sdk/util-defaults-mode-node":"3.85.0","@aws-sdk/util-user-agent-browser":"3.78.0","@aws-sdk/util-user-agent-node":"3.80.0","@aws-sdk/util-utf8-browser":"3.55.0","@aws-sdk/util-utf8-node":"3.55.0","entities":"2.2.0","fast-xml-parser":"3.19.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.141.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"2.0.0","@aws-crypto/sha256-js":"2.0.0","@aws-sdk/config-resolver":"3.130.0","@aws-sdk/credential-provider-node":"3.141.0","@aws-sdk/fetch-http-handler":"3.131.0","@aws-sdk/hash-node":"3.127.0","@aws-sdk/invalid-dependency":"3.127.0","@aws-sdk/middleware-content-length":"3.127.0","@aws-sdk/middleware-host-header":"3.127.0","@aws-sdk/middleware-logger":"3.127.0","@aws-sdk/middleware-recursion-detection":"3.127.0","@aws-sdk/middleware-retry":"3.127.0","@aws-sdk/middleware-sdk-sts":"3.130.0","@aws-sdk/middleware-serde":"3.127.0","@aws-sdk/middleware-signing":"3.130.0","@aws-sdk/middleware-stack":"3.127.0","@aws-sdk/middleware-user-agent":"3.127.0","@aws-sdk/node-config-provider":"3.127.0","@aws-sdk/node-http-handler":"3.127.0","@aws-sdk/protocol-http":"3.127.0","@aws-sdk/smithy-client":"3.137.0","@aws-sdk/types":"3.127.0","@aws-sdk/url-parser":"3.127.0","@aws-sdk/util-base64-browser":"3.109.0","@aws-sdk/util-base64-node":"3.55.0","@aws-sdk/util-body-length-browser":"3.55.0","@aws-sdk/util-body-length-node":"3.55.0","@aws-sdk/util-defaults-mode-browser":"3.137.0","@aws-sdk/util-defaults-mode-node":"3.137.0","@aws-sdk/util-user-agent-browser":"3.127.0","@aws-sdk/util-user-agent-node":"3.127.0","@aws-sdk/util-utf8-browser":"3.109.0","@aws-sdk/util-utf8-node":"3.109.0","entities":"2.2.0","fast-xml-parser":"3.19.0","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.58.0","@tsconfig/recommended":"1.0.1","@types/node":"^12.7.5","concurrently":"7.0.0","downlevel-dts":"0.7.0","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"engines":{"node":">=12.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
