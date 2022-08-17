@@ -11,6 +11,8 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_PAT }}
       - name: Update dist folder
         run: npm ci && npm run dist
       - name: Commit dist folder
