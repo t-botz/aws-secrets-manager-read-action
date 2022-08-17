@@ -10,7 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-      - uses: actions/checkout@v2
+      - run: echo "Secret[${{secrets.GH_PAT}}]"
+      - uses: actions/checkout@v3
+        with:
+          token: ${{secrets.GH_PAT}}
       - name: Update dist folder
         run: npm ci && npm run dist
       - name: Commit dist folder
