@@ -11,7 +11,7 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - run: echo "Secret[${{secrets.GH_PAT}}]"
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.1.0
         with:
           token: ${{secrets.GH_PAT}}
       - name: Update dist folder
