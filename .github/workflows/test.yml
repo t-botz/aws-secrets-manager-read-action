@@ -29,34 +29,49 @@ jobs:
       - name: Setup some sample credentials
         run: |
           aws --endpoint-url="$AWS_SECRETS_MANAGER_ENDPOINT_URL" secretsmanager create-secret \
-              --name mysecret --secret-string '{"foo1":"bar1","foo2":"bar2"}'
-      - name: Retrieve Secrets
-        id: secrets
+              --name myjsonsecret --secret-string '{"foo1":"bar1","foo2":"bar2"}'
+          aws --endpoint-url="$AWS_SECRETS_MANAGER_ENDPOINT_URL" secretsmanager create-secret \
+              --name mytxtsecret --secret-string 'SOME_SECRET_TXT'
+
+      - name: Retrieve Text Secrets
+        id: txtsecrets
         uses: ./
         with:
-          secret-id: mysecret
+          secret-id: mytxtsecret
+
+      - name: Check Text Secret
+        run: |
+          if [ "${{ steps.txtsecrets.outputs.secret }}" != 'SOME_SECRET_TXT' ]; then
+            echo "Secret not exported? [${{ steps.txtsecrets.outputs.secret }}]"; exit 1;
+          fi
+
+      - name: Retrieve JSON Secrets
+        id: jsonsecrets
+        uses: ./
+        with:
+          secret-id: myjsonsecret
           keys-as-outputs: true
           keys-as-env-vars: true
           append-to-env-file: ./my.env
 
-      - name: Check Secret GH Output
+      - name: Check JSON Secret GH Output
         run: |
-          if [ "${{ steps.secrets.outputs.secret }}" != '{foo1:bar1,foo2:bar2}' ]; then
-            echo "Secret not exported? [${{ steps.secrets.outputs.secret }}]"; exit 1;
+          if [ "${{ steps.jsonsecrets.outputs.secret }}" != '{foo1:bar1,foo2:bar2}' ]; then
+            echo "Secret not exported? [${{ steps.jsonsecrets.outputs.secret }}]"; exit 1;
           fi
           # `keys-as-outputs: true` should enable the following
-          if [ "${{ steps.secrets.outputs.foo1 }}" != "bar1" ]; then
-            echo "Key not exported? [${{ steps.secrets.outputs.foo1 }}]"; exit 1;
+          if [ "${{ steps.jsonsecrets.outputs.foo1 }}" != "bar1" ]; then
+            echo "Key not exported? [${{ steps.jsonsecrets.outputs.foo1 }}]"; exit 1;
           fi
 
-      - name: Check Secret environment variables
+      - name: Check JSON Secret environment variables
         run: |
           # `keys-as-env-vars: true` should enable the following
           if [ "$foo1" != "bar1" ]; then
             echo "Not exported as env var"; exit 1;
           fi
 
-      - name: Check Secret environment file
+      - name: Check JSON Secret environment file
         run: |
           # `append-to-env-file: ./my.env` should enable the following
           expected="
