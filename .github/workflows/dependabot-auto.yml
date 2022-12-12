@@ -18,11 +18,23 @@ jobs:
         run: npm ci && npm run dist
       - name: Commit dist folder
         uses: stefanzweifel/git-auto-commit-action@v4
+        id: commit
         with:
           commit_message: "[dependabot skip] Update dist"
-          commit_options: --no-verify --allow-empty
+          commit_options: --no-verify
           file_pattern: dist
-          skip_dirty_check: true
+      - name: Wait PR Ready
+        if: steps.commit.outputs.changes_detected  == 'true'
+        run: |
+          for I in 1 2 3 4 5
+          do
+            gh pr list --search "${{steps.commit.outputs.commit_hash}}" --state open --json id \
+             | jq -e '. | length == 0' || break
+            echo "Commit not yet landed in PR, waiting 2s"
+            sleep 2
+          done
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Approve and Auto-merge dependabot PR
         run: |
