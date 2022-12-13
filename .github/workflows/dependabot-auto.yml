@@ -21,7 +21,8 @@ jobs:
         id: commit
         with:
           commit_message: "[dependabot skip] Update dist"
-          commit_options: --no-verify
+          commit_options: --no-verify --allow-empty
+          skip_dirty_check: true
           file_pattern: dist
       - name: Wait PR Ready
         if: steps.commit.outputs.changes_detected  == 'true'
