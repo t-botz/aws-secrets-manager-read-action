@@ -30,7 +30,7 @@
     "@aws-sdk/client-secrets-manager": "^3.238.0"
   },
   "devDependencies": {
-    "@types/node": "16.18.10",
+    "@types/node": "16.18.11",
     "@typescript-eslint/parser": "^5.47.0",
     "@vercel/ncc": "^0.36.0",
     "eslint": "^8.30.0",
