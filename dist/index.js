@@ -34271,7 +34271,8 @@ const defaultOptions = {
   ],
   processEntities: true,
   stopNodes: [],
-  transformTagName: false,
+  // transformTagName: false,
+  // transformAttributeName: false,
 };
 
 function Builder(options) {
@@ -34298,20 +34299,6 @@ function Builder(options) {
     this.tagEndChar = '>';
     this.newLine = '';
   }
-
-  if (this.options.suppressEmptyNode) {
-    this.buildTextNode = buildEmptyTextNode;
-    this.buildObjNode = buildEmptyObjNode;
-  } else {
-    this.buildTextNode = buildTextValNode;
-    this.buildObjNode = buildObjectNode;
-  }
-
-  this.buildTextValNode = buildTextValNode;
-  this.buildObjectNode = buildObjectNode;
-
-  this.replaceEntitiesValue = replaceEntitiesValue;
-  this.buildAttrPairStr = buildAttrPairStr;
 }
 
 Builder.prototype.build = function(jObj) {
@@ -34338,7 +34325,7 @@ Builder.prototype.j2x = function(jObj, level) {
       else val += this.indentate(level) + '<' + key + '/' + this.tagEndChar;
       // val += this.indentate(level) + '<' + key + '/' + this.tagEndChar;
     } else if (jObj[key] instanceof Date) {
-      val += this.buildTextNode(jObj[key], key, '', level);
+      val += this.buildTextValNode(jObj[key], key, '', level);
     } else if (typeof jObj[key] !== 'object') {
       //premitive type
       const attr = this.isAttribute(key);
@@ -34350,7 +34337,7 @@ Builder.prototype.j2x = function(jObj, level) {
           let newval = this.options.tagValueProcessor(key, '' + jObj[key]);
           val += this.replaceEntitiesValue(newval);
         } else {
-          val += this.buildTextNode(jObj[key], key, '', level);
+          val += this.buildTextValNode(jObj[key], key, '', level);
         }
       }
     } else if (Array.isArray(jObj[key])) {
@@ -34367,7 +34354,7 @@ Builder.prototype.j2x = function(jObj, level) {
         } else if (typeof item === 'object') {
           val += this.processTextOrObjNode(item, key, level)
         } else {
-          val += this.buildTextNode(item, key, '', level);
+          val += this.buildTextValNode(item, key, '', level);
         }
       }
     } else {
@@ -34386,7 +34373,7 @@ Builder.prototype.j2x = function(jObj, level) {
   return {attrStr: attrStr, val: val};
 };
 
-function buildAttrPairStr(attrName, val){
+Builder.prototype.buildAttrPairStr = function(attrName, val){
   val = this.options.attributeValueProcessor(attrName, '' + val);
   val = this.replaceEntitiesValue(val);
   if (this.options.suppressBooleanAttributes && val === "true") {
@@ -34397,31 +34384,51 @@ function buildAttrPairStr(attrName, val){
 function processTextOrObjNode (object, key, level) {
   const result = this.j2x(object, level + 1);
   if (object[this.options.textNodeName] !== undefined && Object.keys(object).length === 1) {
-    return this.buildTextNode(object[this.options.textNodeName], key, result.attrStr, level);
+    return this.buildTextValNode(object[this.options.textNodeName], key, result.attrStr, level);
   } else {
-    return this.buildObjNode(result.val, key, result.attrStr, level);
+    return this.buildObjectNode(result.val, key, result.attrStr, level);
   }
 }
 
-function buildObjectNode(val, key, attrStr, level) {
-  let tagEndExp = '</' + key + this.tagEndChar;
-  let piClosingChar = "";
-  
-  if(key[0] === "?") {
-    piClosingChar = "?";
-    tagEndExp = "";
-  }
+Builder.prototype.buildObjectNode = function(val, key, attrStr, level) {
+  if(val === ""){
+    if(key[0] === "?") return  this.indentate(level) + '<' + key + attrStr+ '?' + this.tagEndChar;
+    else {
+      return this.indentate(level) + '<' + key + attrStr + this.closeTag(key) + this.tagEndChar;
+    }
+  }else{
 
-  if (attrStr && val.indexOf('<') === -1) {
-    return ( this.indentate(level) + '<' +  key + attrStr + piClosingChar + '>' + val + tagEndExp );
-  } else if (this.options.commentPropName !== false && key === this.options.commentPropName && piClosingChar.length === 0) {
-    return this.indentate(level) + `<!--${val}-->` + this.newLine;
-  }else {
-    return (
-      this.indentate(level) + '<' + key + attrStr + piClosingChar + this.tagEndChar +
-      val +
-      this.indentate(level) + tagEndExp    );
+    let tagEndExp = '</' + key + this.tagEndChar;
+    let piClosingChar = "";
+    
+    if(key[0] === "?") {
+      piClosingChar = "?";
+      tagEndExp = "";
+    }
+  
+    if (attrStr && val.indexOf('<') === -1) {
+      return ( this.indentate(level) + '<' +  key + attrStr + piClosingChar + '>' + val + tagEndExp );
+    } else if (this.options.commentPropName !== false && key === this.options.commentPropName && piClosingChar.length === 0) {
+      return this.indentate(level) + `<!--${val}-->` + this.newLine;
+    }else {
+      return (
+        this.indentate(level) + '<' + key + attrStr + piClosingChar + this.tagEndChar +
+        val +
+        this.indentate(level) + tagEndExp    );
+    }
   }
+}
+
+Builder.prototype.closeTag = function(key){
+  let closeTag = "";
+  if(this.options.unpairedTags.indexOf(key) !== -1){ //unpaired
+    if(!this.options.suppressUnpairedNode) closeTag = "/"
+  }else if(this.options.suppressEmptyNode){ //empty
+    closeTag = "/";
+  }else{
+    closeTag = `></${key}`
+  }
+  return closeTag;
 }
 
 function buildEmptyObjNode(val, key, attrStr, level) {
@@ -34429,36 +34436,35 @@ function buildEmptyObjNode(val, key, attrStr, level) {
     return this.buildObjectNode(val, key, attrStr, level);
   } else {
     if(key[0] === "?") return  this.indentate(level) + '<' + key + attrStr+ '?' + this.tagEndChar;
-    else return  this.indentate(level) + '<' + key + attrStr + '/' + this.tagEndChar;
+    else {
+      return  this.indentate(level) + '<' + key + attrStr + '/' + this.tagEndChar;
+      // return this.buildTagStr(level,key, attrStr);
+    }
   }
 }
 
-function buildTextValNode(val, key, attrStr, level) {
+Builder.prototype.buildTextValNode = function(val, key, attrStr, level) {
   if (this.options.cdataPropName !== false && key === this.options.cdataPropName) {
     return this.indentate(level) + `<![CDATA[${val}]]>` +  this.newLine;
   }else if (this.options.commentPropName !== false && key === this.options.commentPropName) {
     return this.indentate(level) + `<!--${val}-->` +  this.newLine;
+  }else if(key[0] === "?") {//PI tag
+    return  this.indentate(level) + '<' + key + attrStr+ '?' + this.tagEndChar; 
   }else{
     let textValue = this.options.tagValueProcessor(key, val);
     textValue = this.replaceEntitiesValue(textValue);
   
-    if( textValue === '' && this.options.unpairedTags.indexOf(key) !== -1){ //unpaired
-      if(this.options.suppressUnpairedNode){
-        return this.indentate(level) + '<' + key + this.tagEndChar;
-      }else{
-        return this.indentate(level) + '<' + key + "/" + this.tagEndChar;
-      }
-    } else{
-      return (
-        this.indentate(level) + '<' + key + attrStr + '>' +
+    if( textValue === ''){
+      return this.indentate(level) + '<' + key + attrStr + this.closeTag(key) + this.tagEndChar;
+    }else{
+      return this.indentate(level) + '<' + key + attrStr + '>' +
          textValue +
-        '</' + key + this.tagEndChar  );
+        '</' + key + this.tagEndChar;
     }
-
   }
 }
 
-function replaceEntitiesValue(textValue){
+Builder.prototype.replaceEntitiesValue = function(textValue){
   if(textValue && textValue.length > 0 && this.options.processEntities){
     for (let i=0; i<this.options.entities.length; i++) {
       const entity = this.options.entities[i];
@@ -34466,21 +34472,6 @@ function replaceEntitiesValue(textValue){
     }
   }
   return textValue;
-}
-
-function buildEmptyTextNode(val, key, attrStr, level) {
-  if( val === '' && this.options.unpairedTags.indexOf(key) !== -1){ //unpaired
-    if(this.options.suppressUnpairedNode){
-      return this.indentate(level) + '<' + key + this.tagEndChar;
-    }else{
-      return this.indentate(level) + '<' + key + "/" + this.tagEndChar;
-    }
-  }else if (val !== '') { //empty
-    return this.buildTextValNode(val, key, attrStr, level);
-  } else {
-    if(key[0] === "?") return  this.indentate(level) + '<' + key + attrStr+ '?' + this.tagEndChar; //PI tag
-    else return  this.indentate(level) + '<' + key + attrStr + '/' + this.tagEndChar; //normal
-  }
 }
 
 function indentate(level) {
@@ -34511,107 +34502,130 @@ const EOL = "\n";
  * @param {any} options 
  * @returns 
  */
-function toXml(jArray, options){
-    return arrToStr( jArray, options, "", 0);
+function toXml(jArray, options) {
+    let indentation = "";
+    if (options.format && options.indentBy.length > 0) {
+        indentation = EOL;
+    }
+    return arrToStr(jArray, options, "", indentation);
 }
 
-function arrToStr(arr, options, jPath, level){
+function arrToStr(arr, options, jPath, indentation) {
     let xmlStr = "";
-
-    let indentation = "";
-    if(options.format && options.indentBy.length > 0){//TODO: this logic can be avoided for each call
-        indentation = EOL + "" + options.indentBy.repeat(level);
-    }
+    let isPreviousElementTag = false;
 
     for (let i = 0; i < arr.length; i++) {
         const tagObj = arr[i];
         const tagName = propName(tagObj);
         let newJPath = "";
-        if(jPath.length === 0) newJPath = tagName
+        if (jPath.length === 0) newJPath = tagName
         else newJPath = `${jPath}.${tagName}`;
 
-        if(tagName === options.textNodeName){
+        if (tagName === options.textNodeName) {
             let tagText = tagObj[tagName];
-            if(!isStopNode(newJPath, options)){
-                tagText = options.tagValueProcessor( tagName, tagText);
+            if (!isStopNode(newJPath, options)) {
+                tagText = options.tagValueProcessor(tagName, tagText);
                 tagText = replaceEntitiesValue(tagText, options);
             }
-            xmlStr += indentation + tagText;
+            if (isPreviousElementTag) {
+                xmlStr += indentation;
+            }
+            xmlStr += tagText;
+            isPreviousElementTag = false;
             continue;
-        }else if( tagName === options.cdataPropName){
-            xmlStr += indentation + `<![CDATA[${tagObj[tagName][0][options.textNodeName]}]]>`;
+        } else if (tagName === options.cdataPropName) {
+            if (isPreviousElementTag) {
+                xmlStr += indentation;
+            }
+            xmlStr += `<![CDATA[${tagObj[tagName][0][options.textNodeName]}]]>`;
+            isPreviousElementTag = false;
             continue;
-        }else if( tagName === options.commentPropName){
+        } else if (tagName === options.commentPropName) {
             xmlStr += indentation + `<!--${tagObj[tagName][0][options.textNodeName]}-->`;
+            isPreviousElementTag = true;
             continue;
-        }else if( tagName[0] === "?"){
+        } else if (tagName[0] === "?") {
             const attStr = attr_to_str(tagObj[":@"], options);
             const tempInd = tagName === "?xml" ? "" : indentation;
             let piTextNodeName = tagObj[tagName][0][options.textNodeName];
             piTextNodeName = piTextNodeName.length !== 0 ? " " + piTextNodeName : ""; //remove extra spacing
             xmlStr += tempInd + `<${tagName}${piTextNodeName}${attStr}?>`;
+            isPreviousElementTag = true;
             continue;
         }
-        const attStr = attr_to_str(tagObj[":@"], options);
-        let tagStart =  indentation + `<${tagName}${attStr}`;
-        let tagValue = arrToStr(tagObj[tagName], options, newJPath, level + 1);
-        if(options.unpairedTags.indexOf(tagName) !== -1){
-            if(options.suppressUnpairedNode)  xmlStr += tagStart + ">"; 
-            else xmlStr += tagStart + "/>"; 
-        }else if( (!tagValue || tagValue.length === 0) && options.suppressEmptyNode){ 
-            xmlStr += tagStart + "/>"; 
-        }else{ 
-            //TODO: node with only text value should not parse the text value in next line
-            xmlStr += tagStart + `>${tagValue}${indentation}</${tagName}>` ;
+        let newIdentation = indentation;
+        if (newIdentation !== "") {
+            newIdentation += options.indentBy;
         }
+        const attStr = attr_to_str(tagObj[":@"], options);
+        const tagStart = indentation + `<${tagName}${attStr}`;
+        const tagValue = arrToStr(tagObj[tagName], options, newJPath, newIdentation);
+        if (options.unpairedTags.indexOf(tagName) !== -1) {
+            if (options.suppressUnpairedNode) xmlStr += tagStart + ">";
+            else xmlStr += tagStart + "/>";
+        } else if ((!tagValue || tagValue.length === 0) && options.suppressEmptyNode) {
+            xmlStr += tagStart + "/>";
+        } else if (tagValue && tagValue.endsWith(">")) {
+            xmlStr += tagStart + `>${tagValue}${indentation}</${tagName}>`;
+        } else {
+            xmlStr += tagStart + ">";
+            if (tagValue && indentation !== "" && (tagValue.includes("/>") || tagValue.includes("</"))) {
+                xmlStr += indentation + options.indentBy + tagValue + indentation;
+            } else {
+                xmlStr += tagValue;
+            }
+            xmlStr += `</${tagName}>`;
+        }
+        isPreviousElementTag = true;
     }
-    
+
     return xmlStr;
 }
 
-function propName(obj){
+function propName(obj) {
     const keys = Object.keys(obj);
     for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      if(key !== ":@") return key;
+        const key = keys[i];
+        if (key !== ":@") return key;
     }
-  }
+}
 
-function attr_to_str(attrMap, options){
+function attr_to_str(attrMap, options) {
     let attrStr = "";
-    if(attrMap && !options.ignoreAttributes){
-        for (let attr in attrMap){
+    if (attrMap && !options.ignoreAttributes) {
+        for (let attr in attrMap) {
             let attrVal = options.attributeValueProcessor(attr, attrMap[attr]);
             attrVal = replaceEntitiesValue(attrVal, options);
-            if(attrVal === true && options.suppressBooleanAttributes){
-                attrStr+= ` ${attr.substr(options.attributeNamePrefix.length)}`;
-            }else{
-                attrStr+= ` ${attr.substr(options.attributeNamePrefix.length)}="${attrVal}"`;
+            if (attrVal === true && options.suppressBooleanAttributes) {
+                attrStr += ` ${attr.substr(options.attributeNamePrefix.length)}`;
+            } else {
+                attrStr += ` ${attr.substr(options.attributeNamePrefix.length)}="${attrVal}"`;
             }
         }
     }
     return attrStr;
 }
 
-function isStopNode(jPath, options){
-    jPath = jPath.substr(0,jPath.length - options.textNodeName.length - 1);
+function isStopNode(jPath, options) {
+    jPath = jPath.substr(0, jPath.length - options.textNodeName.length - 1);
     let tagName = jPath.substr(jPath.lastIndexOf(".") + 1);
-    for(let index in options.stopNodes){
-        if(options.stopNodes[index] === jPath || options.stopNodes[index] === "*."+tagName) return true;
+    for (let index in options.stopNodes) {
+        if (options.stopNodes[index] === jPath || options.stopNodes[index] === "*." + tagName) return true;
     }
     return false;
 }
 
-function replaceEntitiesValue(textValue, options){
-    if(textValue && textValue.length > 0 && options.processEntities){
-      for (let i=0; i< options.entities.length; i++) {
-        const entity = options.entities[i];
-        textValue = textValue.replace(entity.regex, entity.val);
-      }
+function replaceEntitiesValue(textValue, options) {
+    if (textValue && textValue.length > 0 && options.processEntities) {
+        for (let i = 0; i < options.entities.length; i++) {
+            const entity = options.entities[i];
+            textValue = textValue.replace(entity.regex, entity.val);
+        }
     }
     return textValue;
-  }
+}
 module.exports = toXml;
+
 
 /***/ }),
 
@@ -34634,7 +34648,7 @@ function readDocType(xmlData, i){
         let hasBody = false, entity = false, comment = false;
         let exp = "";
         for(;i<xmlData.length;i++){
-            if (xmlData[i] === '<') {
+            if (xmlData[i] === '<' && !comment) {
                 if( hasBody && 
                      xmlData[i+1] === '!' &&
                      xmlData[i+2] === 'E' &&
@@ -34698,14 +34712,15 @@ function readDocType(xmlData, i){
                 if(comment){
                     if( xmlData[i - 1] === "-" && xmlData[i - 2] === "-"){
                         comment = false;
-                    }else{
-                        throw new Error(`Invalid XML comment in DOCTYPE`);
+                        angleBracketsCount--;
                     }
-                }else if(entity){
-                    parseEntityExp(exp, entities);
-                    entity = false;
+                }else{
+                    if(entity) {
+                        parseEntityExp(exp, entities);
+                        entity = false;
+                    }
+                    angleBracketsCount--;
                 }
-                angleBracketsCount--;
                 if (angleBracketsCount === 0) {
                   break;
                 }
@@ -34757,7 +34772,8 @@ const defaultOptions = {
     cdataPropName: false,
     numberParseOptions: {
       hex: true,
-      leadingZeros: true
+      leadingZeros: true,
+      eNotation: true
     },
     tagValueProcessor: function(tagName, val) {
       return val;
@@ -34775,6 +34791,7 @@ const defaultOptions = {
     ignoreDeclaration: false,
     ignorePiTags: false,
     transformTagName: false,
+    transformAttributeName: false,
 };
    
 const buildOptions = function(options) {
@@ -34924,8 +34941,12 @@ function buildAttributesMap(attrStr, jPath) {
     for (let i = 0; i < len; i++) {
       const attrName = this.resolveNameSpace(matches[i][1]);
       let oldVal = matches[i][4];
-      const aName = this.options.attributeNamePrefix + attrName;
+      let aName = this.options.attributeNamePrefix + attrName;
       if (attrName.length) {
+        if (this.options.transformAttributeName) {
+          aName = this.options.transformAttributeName(aName);
+        }
+        if(aName === "__proto__") aName  = "#__proto__";
         if (oldVal !== undefined) {
           if (this.options.trimValues) {
             oldVal = oldVal.trim();
@@ -35053,7 +35074,7 @@ const parseXml = function(xmlData) {
         
         i = closeIndex + 2;
       }else {//Opening tag
-        let result = readTagExp(xmlData,i, this. options.removeNSPrefix);
+        let result = readTagExp(xmlData,i, this.options.removeNSPrefix);
         let tagName= result.tagName;
         let tagExp = result.tagExp;
         let attrExpPresent = result.attrExpPresent;
@@ -35542,9 +35563,11 @@ class XmlNode{
   }
   add(key,val){
     // this.child.push( {name : key, val: val, isCdata: isCdata });
+    if(key === "__proto__") key = "#__proto__";
     this.child.push( {[key]: val });
   }
   addChild(node) {
+    if(node.tagname === "__proto__") node.tagname = "#__proto__";
     if(node[":@"] && Object.keys(node[":@"]).length > 0){
       this.child.push( { [node.tagname]: node.child, [":@"]: node[":@"] });
     }else{
@@ -36763,7 +36786,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.272.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.272.0","@aws-sdk/config-resolver":"3.272.0","@aws-sdk/credential-provider-node":"3.272.0","@aws-sdk/fetch-http-handler":"3.272.0","@aws-sdk/hash-node":"3.272.0","@aws-sdk/invalid-dependency":"3.272.0","@aws-sdk/middleware-content-length":"3.272.0","@aws-sdk/middleware-endpoint":"3.272.0","@aws-sdk/middleware-host-header":"3.272.0","@aws-sdk/middleware-logger":"3.272.0","@aws-sdk/middleware-recursion-detection":"3.272.0","@aws-sdk/middleware-retry":"3.272.0","@aws-sdk/middleware-serde":"3.272.0","@aws-sdk/middleware-signing":"3.272.0","@aws-sdk/middleware-stack":"3.272.0","@aws-sdk/middleware-user-agent":"3.272.0","@aws-sdk/node-config-provider":"3.272.0","@aws-sdk/node-http-handler":"3.272.0","@aws-sdk/protocol-http":"3.272.0","@aws-sdk/smithy-client":"3.272.0","@aws-sdk/types":"3.272.0","@aws-sdk/url-parser":"3.272.0","@aws-sdk/util-base64":"3.208.0","@aws-sdk/util-body-length-browser":"3.188.0","@aws-sdk/util-body-length-node":"3.208.0","@aws-sdk/util-defaults-mode-browser":"3.272.0","@aws-sdk/util-defaults-mode-node":"3.272.0","@aws-sdk/util-endpoints":"3.272.0","@aws-sdk/util-retry":"3.272.0","@aws-sdk/util-user-agent-browser":"3.272.0","@aws-sdk/util-user-agent-node":"3.272.0","@aws-sdk/util-utf8":"3.254.0","tslib":"^2.3.1","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.208.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"overrides":{"typedoc":{"typescript":"~4.6.2"}},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.276.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.276.0","@aws-sdk/config-resolver":"3.272.0","@aws-sdk/credential-provider-node":"3.272.0","@aws-sdk/fetch-http-handler":"3.272.0","@aws-sdk/hash-node":"3.272.0","@aws-sdk/invalid-dependency":"3.272.0","@aws-sdk/middleware-content-length":"3.272.0","@aws-sdk/middleware-endpoint":"3.272.0","@aws-sdk/middleware-host-header":"3.272.0","@aws-sdk/middleware-logger":"3.272.0","@aws-sdk/middleware-recursion-detection":"3.272.0","@aws-sdk/middleware-retry":"3.272.0","@aws-sdk/middleware-serde":"3.272.0","@aws-sdk/middleware-signing":"3.272.0","@aws-sdk/middleware-stack":"3.272.0","@aws-sdk/middleware-user-agent":"3.272.0","@aws-sdk/node-config-provider":"3.272.0","@aws-sdk/node-http-handler":"3.272.0","@aws-sdk/protocol-http":"3.272.0","@aws-sdk/smithy-client":"3.272.0","@aws-sdk/types":"3.272.0","@aws-sdk/url-parser":"3.272.0","@aws-sdk/util-base64":"3.208.0","@aws-sdk/util-body-length-browser":"3.188.0","@aws-sdk/util-body-length-node":"3.208.0","@aws-sdk/util-defaults-mode-browser":"3.272.0","@aws-sdk/util-defaults-mode-node":"3.272.0","@aws-sdk/util-endpoints":"3.272.0","@aws-sdk/util-retry":"3.272.0","@aws-sdk/util-user-agent-browser":"3.272.0","@aws-sdk/util-user-agent-node":"3.272.0","@aws-sdk/util-utf8":"3.254.0","tslib":"^2.3.1","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.208.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"overrides":{"typedoc":{"typescript":"~4.6.2"}},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ }),
 
@@ -36787,7 +36810,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.272.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.272.0","@aws-sdk/credential-provider-node":"3.272.0","@aws-sdk/fetch-http-handler":"3.272.0","@aws-sdk/hash-node":"3.272.0","@aws-sdk/invalid-dependency":"3.272.0","@aws-sdk/middleware-content-length":"3.272.0","@aws-sdk/middleware-endpoint":"3.272.0","@aws-sdk/middleware-host-header":"3.272.0","@aws-sdk/middleware-logger":"3.272.0","@aws-sdk/middleware-recursion-detection":"3.272.0","@aws-sdk/middleware-retry":"3.272.0","@aws-sdk/middleware-sdk-sts":"3.272.0","@aws-sdk/middleware-serde":"3.272.0","@aws-sdk/middleware-signing":"3.272.0","@aws-sdk/middleware-stack":"3.272.0","@aws-sdk/middleware-user-agent":"3.272.0","@aws-sdk/node-config-provider":"3.272.0","@aws-sdk/node-http-handler":"3.272.0","@aws-sdk/protocol-http":"3.272.0","@aws-sdk/smithy-client":"3.272.0","@aws-sdk/types":"3.272.0","@aws-sdk/url-parser":"3.272.0","@aws-sdk/util-base64":"3.208.0","@aws-sdk/util-body-length-browser":"3.188.0","@aws-sdk/util-body-length-node":"3.208.0","@aws-sdk/util-defaults-mode-browser":"3.272.0","@aws-sdk/util-defaults-mode-node":"3.272.0","@aws-sdk/util-endpoints":"3.272.0","@aws-sdk/util-retry":"3.272.0","@aws-sdk/util-user-agent-browser":"3.272.0","@aws-sdk/util-user-agent-node":"3.272.0","@aws-sdk/util-utf8":"3.254.0","fast-xml-parser":"4.0.11","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.208.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"overrides":{"typedoc":{"typescript":"~4.6.2"}},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.276.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.272.0","@aws-sdk/credential-provider-node":"3.272.0","@aws-sdk/fetch-http-handler":"3.272.0","@aws-sdk/hash-node":"3.272.0","@aws-sdk/invalid-dependency":"3.272.0","@aws-sdk/middleware-content-length":"3.272.0","@aws-sdk/middleware-endpoint":"3.272.0","@aws-sdk/middleware-host-header":"3.272.0","@aws-sdk/middleware-logger":"3.272.0","@aws-sdk/middleware-recursion-detection":"3.272.0","@aws-sdk/middleware-retry":"3.272.0","@aws-sdk/middleware-sdk-sts":"3.272.0","@aws-sdk/middleware-serde":"3.272.0","@aws-sdk/middleware-signing":"3.272.0","@aws-sdk/middleware-stack":"3.272.0","@aws-sdk/middleware-user-agent":"3.272.0","@aws-sdk/node-config-provider":"3.272.0","@aws-sdk/node-http-handler":"3.272.0","@aws-sdk/protocol-http":"3.272.0","@aws-sdk/smithy-client":"3.272.0","@aws-sdk/types":"3.272.0","@aws-sdk/url-parser":"3.272.0","@aws-sdk/util-base64":"3.208.0","@aws-sdk/util-body-length-browser":"3.188.0","@aws-sdk/util-body-length-node":"3.208.0","@aws-sdk/util-defaults-mode-browser":"3.272.0","@aws-sdk/util-defaults-mode-node":"3.272.0","@aws-sdk/util-endpoints":"3.272.0","@aws-sdk/util-retry":"3.272.0","@aws-sdk/util-user-agent-browser":"3.272.0","@aws-sdk/util-user-agent-node":"3.272.0","@aws-sdk/util-utf8":"3.254.0","fast-xml-parser":"4.1.2","tslib":"^2.3.1"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.208.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.19.2","typescript":"~4.6.2"},"overrides":{"typedoc":{"typescript":"~4.6.2"}},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
