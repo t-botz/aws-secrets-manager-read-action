@@ -2347,10 +2347,10 @@ class CancelRotateSecretCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1CancelRotateSecretCommand)(input, context);
+        return (0, Aws_json1_1_1.se_CancelRotateSecretCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1CancelRotateSecretCommand)(output, context);
+        return (0, Aws_json1_1_1.de_CancelRotateSecretCommand)(output, context);
     }
 }
 exports.CancelRotateSecretCommand = CancelRotateSecretCommand;
@@ -2401,10 +2401,10 @@ class CreateSecretCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1CreateSecretCommand)(input, context);
+        return (0, Aws_json1_1_1.se_CreateSecretCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1CreateSecretCommand)(output, context);
+        return (0, Aws_json1_1_1.de_CreateSecretCommand)(output, context);
     }
 }
 exports.CreateSecretCommand = CreateSecretCommand;
@@ -2454,10 +2454,10 @@ class DeleteResourcePolicyCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1DeleteResourcePolicyCommand)(input, context);
+        return (0, Aws_json1_1_1.se_DeleteResourcePolicyCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1DeleteResourcePolicyCommand)(output, context);
+        return (0, Aws_json1_1_1.de_DeleteResourcePolicyCommand)(output, context);
     }
 }
 exports.DeleteResourcePolicyCommand = DeleteResourcePolicyCommand;
@@ -2507,10 +2507,10 @@ class DeleteSecretCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1DeleteSecretCommand)(input, context);
+        return (0, Aws_json1_1_1.se_DeleteSecretCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1DeleteSecretCommand)(output, context);
+        return (0, Aws_json1_1_1.de_DeleteSecretCommand)(output, context);
     }
 }
 exports.DeleteSecretCommand = DeleteSecretCommand;
@@ -2560,10 +2560,10 @@ class DescribeSecretCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1DescribeSecretCommand)(input, context);
+        return (0, Aws_json1_1_1.se_DescribeSecretCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1DescribeSecretCommand)(output, context);
+        return (0, Aws_json1_1_1.de_DescribeSecretCommand)(output, context);
     }
 }
 exports.DescribeSecretCommand = DescribeSecretCommand;
@@ -2614,10 +2614,10 @@ class GetRandomPasswordCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1GetRandomPasswordCommand)(input, context);
+        return (0, Aws_json1_1_1.se_GetRandomPasswordCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1GetRandomPasswordCommand)(output, context);
+        return (0, Aws_json1_1_1.de_GetRandomPasswordCommand)(output, context);
     }
 }
 exports.GetRandomPasswordCommand = GetRandomPasswordCommand;
@@ -2667,10 +2667,10 @@ class GetResourcePolicyCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1GetResourcePolicyCommand)(input, context);
+        return (0, Aws_json1_1_1.se_GetResourcePolicyCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1GetResourcePolicyCommand)(output, context);
+        return (0, Aws_json1_1_1.de_GetResourcePolicyCommand)(output, context);
     }
 }
 exports.GetResourcePolicyCommand = GetResourcePolicyCommand;
@@ -2721,10 +2721,10 @@ class GetSecretValueCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1GetSecretValueCommand)(input, context);
+        return (0, Aws_json1_1_1.se_GetSecretValueCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1GetSecretValueCommand)(output, context);
+        return (0, Aws_json1_1_1.de_GetSecretValueCommand)(output, context);
     }
 }
 exports.GetSecretValueCommand = GetSecretValueCommand;
@@ -2774,10 +2774,10 @@ class ListSecretVersionIdsCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1ListSecretVersionIdsCommand)(input, context);
+        return (0, Aws_json1_1_1.se_ListSecretVersionIdsCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1ListSecretVersionIdsCommand)(output, context);
+        return (0, Aws_json1_1_1.de_ListSecretVersionIdsCommand)(output, context);
     }
 }
 exports.ListSecretVersionIdsCommand = ListSecretVersionIdsCommand;
@@ -2827,10 +2827,10 @@ class ListSecretsCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1ListSecretsCommand)(input, context);
+        return (0, Aws_json1_1_1.se_ListSecretsCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1ListSecretsCommand)(output, context);
+        return (0, Aws_json1_1_1.de_ListSecretsCommand)(output, context);
     }
 }
 exports.ListSecretsCommand = ListSecretsCommand;
@@ -2880,10 +2880,10 @@ class PutResourcePolicyCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1PutResourcePolicyCommand)(input, context);
+        return (0, Aws_json1_1_1.se_PutResourcePolicyCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1PutResourcePolicyCommand)(output, context);
+        return (0, Aws_json1_1_1.de_PutResourcePolicyCommand)(output, context);
     }
 }
 exports.PutResourcePolicyCommand = PutResourcePolicyCommand;
@@ -2934,10 +2934,10 @@ class PutSecretValueCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1PutSecretValueCommand)(input, context);
+        return (0, Aws_json1_1_1.se_PutSecretValueCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1PutSecretValueCommand)(output, context);
+        return (0, Aws_json1_1_1.de_PutSecretValueCommand)(output, context);
     }
 }
 exports.PutSecretValueCommand = PutSecretValueCommand;
@@ -2987,10 +2987,10 @@ class RemoveRegionsFromReplicationCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1RemoveRegionsFromReplicationCommand)(input, context);
+        return (0, Aws_json1_1_1.se_RemoveRegionsFromReplicationCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1RemoveRegionsFromReplicationCommand)(output, context);
+        return (0, Aws_json1_1_1.de_RemoveRegionsFromReplicationCommand)(output, context);
     }
 }
 exports.RemoveRegionsFromReplicationCommand = RemoveRegionsFromReplicationCommand;
@@ -3040,10 +3040,10 @@ class ReplicateSecretToRegionsCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1ReplicateSecretToRegionsCommand)(input, context);
+        return (0, Aws_json1_1_1.se_ReplicateSecretToRegionsCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1ReplicateSecretToRegionsCommand)(output, context);
+        return (0, Aws_json1_1_1.de_ReplicateSecretToRegionsCommand)(output, context);
     }
 }
 exports.ReplicateSecretToRegionsCommand = ReplicateSecretToRegionsCommand;
@@ -3093,10 +3093,10 @@ class RestoreSecretCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1RestoreSecretCommand)(input, context);
+        return (0, Aws_json1_1_1.se_RestoreSecretCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1RestoreSecretCommand)(output, context);
+        return (0, Aws_json1_1_1.de_RestoreSecretCommand)(output, context);
     }
 }
 exports.RestoreSecretCommand = RestoreSecretCommand;
@@ -3146,10 +3146,10 @@ class RotateSecretCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1RotateSecretCommand)(input, context);
+        return (0, Aws_json1_1_1.se_RotateSecretCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1RotateSecretCommand)(output, context);
+        return (0, Aws_json1_1_1.de_RotateSecretCommand)(output, context);
     }
 }
 exports.RotateSecretCommand = RotateSecretCommand;
@@ -3199,10 +3199,10 @@ class StopReplicationToReplicaCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1StopReplicationToReplicaCommand)(input, context);
+        return (0, Aws_json1_1_1.se_StopReplicationToReplicaCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1StopReplicationToReplicaCommand)(output, context);
+        return (0, Aws_json1_1_1.de_StopReplicationToReplicaCommand)(output, context);
     }
 }
 exports.StopReplicationToReplicaCommand = StopReplicationToReplicaCommand;
@@ -3252,10 +3252,10 @@ class TagResourceCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1TagResourceCommand)(input, context);
+        return (0, Aws_json1_1_1.se_TagResourceCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1TagResourceCommand)(output, context);
+        return (0, Aws_json1_1_1.de_TagResourceCommand)(output, context);
     }
 }
 exports.TagResourceCommand = TagResourceCommand;
@@ -3305,10 +3305,10 @@ class UntagResourceCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1UntagResourceCommand)(input, context);
+        return (0, Aws_json1_1_1.se_UntagResourceCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1UntagResourceCommand)(output, context);
+        return (0, Aws_json1_1_1.de_UntagResourceCommand)(output, context);
     }
 }
 exports.UntagResourceCommand = UntagResourceCommand;
@@ -3359,10 +3359,10 @@ class UpdateSecretCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1UpdateSecretCommand)(input, context);
+        return (0, Aws_json1_1_1.se_UpdateSecretCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1UpdateSecretCommand)(output, context);
+        return (0, Aws_json1_1_1.de_UpdateSecretCommand)(output, context);
     }
 }
 exports.UpdateSecretCommand = UpdateSecretCommand;
@@ -3412,10 +3412,10 @@ class UpdateSecretVersionStageCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1UpdateSecretVersionStageCommand)(input, context);
+        return (0, Aws_json1_1_1.se_UpdateSecretVersionStageCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1UpdateSecretVersionStageCommand)(output, context);
+        return (0, Aws_json1_1_1.de_UpdateSecretVersionStageCommand)(output, context);
     }
 }
 exports.UpdateSecretVersionStageCommand = UpdateSecretVersionStageCommand;
@@ -3465,10 +3465,10 @@ class ValidateResourcePolicyCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_json1_1_1.serializeAws_json1_1ValidateResourcePolicyCommand)(input, context);
+        return (0, Aws_json1_1_1.se_ValidateResourcePolicyCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_json1_1_1.deserializeAws_json1_1ValidateResourcePolicyCommand)(output, context);
+        return (0, Aws_json1_1_1.de_ValidateResourcePolicyCommand)(output, context);
     }
 }
 exports.ValidateResourcePolicyCommand = ValidateResourcePolicyCommand;
@@ -3946,247 +3946,247 @@ tslib_1.__exportStar(__nccwpck_require__(40637), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.deserializeAws_json1_1ValidateResourcePolicyCommand = exports.deserializeAws_json1_1UpdateSecretVersionStageCommand = exports.deserializeAws_json1_1UpdateSecretCommand = exports.deserializeAws_json1_1UntagResourceCommand = exports.deserializeAws_json1_1TagResourceCommand = exports.deserializeAws_json1_1StopReplicationToReplicaCommand = exports.deserializeAws_json1_1RotateSecretCommand = exports.deserializeAws_json1_1RestoreSecretCommand = exports.deserializeAws_json1_1ReplicateSecretToRegionsCommand = exports.deserializeAws_json1_1RemoveRegionsFromReplicationCommand = exports.deserializeAws_json1_1PutSecretValueCommand = exports.deserializeAws_json1_1PutResourcePolicyCommand = exports.deserializeAws_json1_1ListSecretVersionIdsCommand = exports.deserializeAws_json1_1ListSecretsCommand = exports.deserializeAws_json1_1GetSecretValueCommand = exports.deserializeAws_json1_1GetResourcePolicyCommand = exports.deserializeAws_json1_1GetRandomPasswordCommand = exports.deserializeAws_json1_1DescribeSecretCommand = exports.deserializeAws_json1_1DeleteSecretCommand = exports.deserializeAws_json1_1DeleteResourcePolicyCommand = exports.deserializeAws_json1_1CreateSecretCommand = exports.deserializeAws_json1_1CancelRotateSecretCommand = exports.serializeAws_json1_1ValidateResourcePolicyCommand = exports.serializeAws_json1_1UpdateSecretVersionStageCommand = exports.serializeAws_json1_1UpdateSecretCommand = exports.serializeAws_json1_1UntagResourceCommand = exports.serializeAws_json1_1TagResourceCommand = exports.serializeAws_json1_1StopReplicationToReplicaCommand = exports.serializeAws_json1_1RotateSecretCommand = exports.serializeAws_json1_1RestoreSecretCommand = exports.serializeAws_json1_1ReplicateSecretToRegionsCommand = exports.serializeAws_json1_1RemoveRegionsFromReplicationCommand = exports.serializeAws_json1_1PutSecretValueCommand = exports.serializeAws_json1_1PutResourcePolicyCommand = exports.serializeAws_json1_1ListSecretVersionIdsCommand = exports.serializeAws_json1_1ListSecretsCommand = exports.serializeAws_json1_1GetSecretValueCommand = exports.serializeAws_json1_1GetResourcePolicyCommand = exports.serializeAws_json1_1GetRandomPasswordCommand = exports.serializeAws_json1_1DescribeSecretCommand = exports.serializeAws_json1_1DeleteSecretCommand = exports.serializeAws_json1_1DeleteResourcePolicyCommand = exports.serializeAws_json1_1CreateSecretCommand = exports.serializeAws_json1_1CancelRotateSecretCommand = void 0;
+exports.de_ValidateResourcePolicyCommand = exports.de_UpdateSecretVersionStageCommand = exports.de_UpdateSecretCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_StopReplicationToReplicaCommand = exports.de_RotateSecretCommand = exports.de_RestoreSecretCommand = exports.de_ReplicateSecretToRegionsCommand = exports.de_RemoveRegionsFromReplicationCommand = exports.de_PutSecretValueCommand = exports.de_PutResourcePolicyCommand = exports.de_ListSecretVersionIdsCommand = exports.de_ListSecretsCommand = exports.de_GetSecretValueCommand = exports.de_GetResourcePolicyCommand = exports.de_GetRandomPasswordCommand = exports.de_DescribeSecretCommand = exports.de_DeleteSecretCommand = exports.de_DeleteResourcePolicyCommand = exports.de_CreateSecretCommand = exports.de_CancelRotateSecretCommand = exports.se_ValidateResourcePolicyCommand = exports.se_UpdateSecretVersionStageCommand = exports.se_UpdateSecretCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_StopReplicationToReplicaCommand = exports.se_RotateSecretCommand = exports.se_RestoreSecretCommand = exports.se_ReplicateSecretToRegionsCommand = exports.se_RemoveRegionsFromReplicationCommand = exports.se_PutSecretValueCommand = exports.se_PutResourcePolicyCommand = exports.se_ListSecretVersionIdsCommand = exports.se_ListSecretsCommand = exports.se_GetSecretValueCommand = exports.se_GetResourcePolicyCommand = exports.se_GetRandomPasswordCommand = exports.se_DescribeSecretCommand = exports.se_DeleteSecretCommand = exports.se_DeleteResourcePolicyCommand = exports.se_CreateSecretCommand = exports.se_CancelRotateSecretCommand = void 0;
 const protocol_http_1 = __nccwpck_require__(70223);
 const smithy_client_1 = __nccwpck_require__(4963);
 const uuid_1 = __nccwpck_require__(75840);
 const models_0_1 = __nccwpck_require__(35498);
 const SecretsManagerServiceException_1 = __nccwpck_require__(67281);
-const serializeAws_json1_1CancelRotateSecretCommand = async (input, context) => {
+const se_CancelRotateSecretCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.CancelRotateSecret",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1CancelRotateSecretRequest(input, context));
+    body = JSON.stringify(se_CancelRotateSecretRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1CancelRotateSecretCommand = serializeAws_json1_1CancelRotateSecretCommand;
-const serializeAws_json1_1CreateSecretCommand = async (input, context) => {
+exports.se_CancelRotateSecretCommand = se_CancelRotateSecretCommand;
+const se_CreateSecretCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.CreateSecret",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1CreateSecretRequest(input, context));
+    body = JSON.stringify(se_CreateSecretRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1CreateSecretCommand = serializeAws_json1_1CreateSecretCommand;
-const serializeAws_json1_1DeleteResourcePolicyCommand = async (input, context) => {
+exports.se_CreateSecretCommand = se_CreateSecretCommand;
+const se_DeleteResourcePolicyCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.DeleteResourcePolicy",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1DeleteResourcePolicyRequest(input, context));
+    body = JSON.stringify(se_DeleteResourcePolicyRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1DeleteResourcePolicyCommand = serializeAws_json1_1DeleteResourcePolicyCommand;
-const serializeAws_json1_1DeleteSecretCommand = async (input, context) => {
+exports.se_DeleteResourcePolicyCommand = se_DeleteResourcePolicyCommand;
+const se_DeleteSecretCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.DeleteSecret",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1DeleteSecretRequest(input, context));
+    body = JSON.stringify(se_DeleteSecretRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1DeleteSecretCommand = serializeAws_json1_1DeleteSecretCommand;
-const serializeAws_json1_1DescribeSecretCommand = async (input, context) => {
+exports.se_DeleteSecretCommand = se_DeleteSecretCommand;
+const se_DescribeSecretCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.DescribeSecret",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1DescribeSecretRequest(input, context));
+    body = JSON.stringify(se_DescribeSecretRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1DescribeSecretCommand = serializeAws_json1_1DescribeSecretCommand;
-const serializeAws_json1_1GetRandomPasswordCommand = async (input, context) => {
+exports.se_DescribeSecretCommand = se_DescribeSecretCommand;
+const se_GetRandomPasswordCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.GetRandomPassword",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1GetRandomPasswordRequest(input, context));
+    body = JSON.stringify(se_GetRandomPasswordRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1GetRandomPasswordCommand = serializeAws_json1_1GetRandomPasswordCommand;
-const serializeAws_json1_1GetResourcePolicyCommand = async (input, context) => {
+exports.se_GetRandomPasswordCommand = se_GetRandomPasswordCommand;
+const se_GetResourcePolicyCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.GetResourcePolicy",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1GetResourcePolicyRequest(input, context));
+    body = JSON.stringify(se_GetResourcePolicyRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1GetResourcePolicyCommand = serializeAws_json1_1GetResourcePolicyCommand;
-const serializeAws_json1_1GetSecretValueCommand = async (input, context) => {
+exports.se_GetResourcePolicyCommand = se_GetResourcePolicyCommand;
+const se_GetSecretValueCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.GetSecretValue",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1GetSecretValueRequest(input, context));
+    body = JSON.stringify(se_GetSecretValueRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1GetSecretValueCommand = serializeAws_json1_1GetSecretValueCommand;
-const serializeAws_json1_1ListSecretsCommand = async (input, context) => {
+exports.se_GetSecretValueCommand = se_GetSecretValueCommand;
+const se_ListSecretsCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.ListSecrets",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1ListSecretsRequest(input, context));
+    body = JSON.stringify(se_ListSecretsRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1ListSecretsCommand = serializeAws_json1_1ListSecretsCommand;
-const serializeAws_json1_1ListSecretVersionIdsCommand = async (input, context) => {
+exports.se_ListSecretsCommand = se_ListSecretsCommand;
+const se_ListSecretVersionIdsCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.ListSecretVersionIds",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1ListSecretVersionIdsRequest(input, context));
+    body = JSON.stringify(se_ListSecretVersionIdsRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1ListSecretVersionIdsCommand = serializeAws_json1_1ListSecretVersionIdsCommand;
-const serializeAws_json1_1PutResourcePolicyCommand = async (input, context) => {
+exports.se_ListSecretVersionIdsCommand = se_ListSecretVersionIdsCommand;
+const se_PutResourcePolicyCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.PutResourcePolicy",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1PutResourcePolicyRequest(input, context));
+    body = JSON.stringify(se_PutResourcePolicyRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1PutResourcePolicyCommand = serializeAws_json1_1PutResourcePolicyCommand;
-const serializeAws_json1_1PutSecretValueCommand = async (input, context) => {
+exports.se_PutResourcePolicyCommand = se_PutResourcePolicyCommand;
+const se_PutSecretValueCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.PutSecretValue",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1PutSecretValueRequest(input, context));
+    body = JSON.stringify(se_PutSecretValueRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1PutSecretValueCommand = serializeAws_json1_1PutSecretValueCommand;
-const serializeAws_json1_1RemoveRegionsFromReplicationCommand = async (input, context) => {
+exports.se_PutSecretValueCommand = se_PutSecretValueCommand;
+const se_RemoveRegionsFromReplicationCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.RemoveRegionsFromReplication",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1RemoveRegionsFromReplicationRequest(input, context));
+    body = JSON.stringify(se_RemoveRegionsFromReplicationRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1RemoveRegionsFromReplicationCommand = serializeAws_json1_1RemoveRegionsFromReplicationCommand;
-const serializeAws_json1_1ReplicateSecretToRegionsCommand = async (input, context) => {
+exports.se_RemoveRegionsFromReplicationCommand = se_RemoveRegionsFromReplicationCommand;
+const se_ReplicateSecretToRegionsCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.ReplicateSecretToRegions",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1ReplicateSecretToRegionsRequest(input, context));
+    body = JSON.stringify(se_ReplicateSecretToRegionsRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1ReplicateSecretToRegionsCommand = serializeAws_json1_1ReplicateSecretToRegionsCommand;
-const serializeAws_json1_1RestoreSecretCommand = async (input, context) => {
+exports.se_ReplicateSecretToRegionsCommand = se_ReplicateSecretToRegionsCommand;
+const se_RestoreSecretCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.RestoreSecret",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1RestoreSecretRequest(input, context));
+    body = JSON.stringify(se_RestoreSecretRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1RestoreSecretCommand = serializeAws_json1_1RestoreSecretCommand;
-const serializeAws_json1_1RotateSecretCommand = async (input, context) => {
+exports.se_RestoreSecretCommand = se_RestoreSecretCommand;
+const se_RotateSecretCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.RotateSecret",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1RotateSecretRequest(input, context));
+    body = JSON.stringify(se_RotateSecretRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1RotateSecretCommand = serializeAws_json1_1RotateSecretCommand;
-const serializeAws_json1_1StopReplicationToReplicaCommand = async (input, context) => {
+exports.se_RotateSecretCommand = se_RotateSecretCommand;
+const se_StopReplicationToReplicaCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.StopReplicationToReplica",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1StopReplicationToReplicaRequest(input, context));
+    body = JSON.stringify(se_StopReplicationToReplicaRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1StopReplicationToReplicaCommand = serializeAws_json1_1StopReplicationToReplicaCommand;
-const serializeAws_json1_1TagResourceCommand = async (input, context) => {
+exports.se_StopReplicationToReplicaCommand = se_StopReplicationToReplicaCommand;
+const se_TagResourceCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.TagResource",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1TagResourceRequest(input, context));
+    body = JSON.stringify(se_TagResourceRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1TagResourceCommand = serializeAws_json1_1TagResourceCommand;
-const serializeAws_json1_1UntagResourceCommand = async (input, context) => {
+exports.se_TagResourceCommand = se_TagResourceCommand;
+const se_UntagResourceCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.UntagResource",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1UntagResourceRequest(input, context));
+    body = JSON.stringify(se_UntagResourceRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1UntagResourceCommand = serializeAws_json1_1UntagResourceCommand;
-const serializeAws_json1_1UpdateSecretCommand = async (input, context) => {
+exports.se_UntagResourceCommand = se_UntagResourceCommand;
+const se_UpdateSecretCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.UpdateSecret",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1UpdateSecretRequest(input, context));
+    body = JSON.stringify(se_UpdateSecretRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1UpdateSecretCommand = serializeAws_json1_1UpdateSecretCommand;
-const serializeAws_json1_1UpdateSecretVersionStageCommand = async (input, context) => {
+exports.se_UpdateSecretCommand = se_UpdateSecretCommand;
+const se_UpdateSecretVersionStageCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.UpdateSecretVersionStage",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1UpdateSecretVersionStageRequest(input, context));
+    body = JSON.stringify(se_UpdateSecretVersionStageRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1UpdateSecretVersionStageCommand = serializeAws_json1_1UpdateSecretVersionStageCommand;
-const serializeAws_json1_1ValidateResourcePolicyCommand = async (input, context) => {
+exports.se_UpdateSecretVersionStageCommand = se_UpdateSecretVersionStageCommand;
+const se_ValidateResourcePolicyCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-amz-json-1.1",
         "x-amz-target": "secretsmanager.ValidateResourcePolicy",
     };
     let body;
-    body = JSON.stringify(serializeAws_json1_1ValidateResourcePolicyRequest(input, context));
+    body = JSON.stringify(se_ValidateResourcePolicyRequest(input, context));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_json1_1ValidateResourcePolicyCommand = serializeAws_json1_1ValidateResourcePolicyCommand;
-const deserializeAws_json1_1CancelRotateSecretCommand = async (output, context) => {
+exports.se_ValidateResourcePolicyCommand = se_ValidateResourcePolicyCommand;
+const de_CancelRotateSecretCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1CancelRotateSecretCommandError(output, context);
+        return de_CancelRotateSecretCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1CancelRotateSecretResponse(data, context);
+    contents = de_CancelRotateSecretResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1CancelRotateSecretCommand = deserializeAws_json1_1CancelRotateSecretCommand;
-const deserializeAws_json1_1CancelRotateSecretCommandError = async (output, context) => {
+exports.de_CancelRotateSecretCommand = de_CancelRotateSecretCommand;
+const de_CancelRotateSecretCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4195,16 +4195,16 @@ const deserializeAws_json1_1CancelRotateSecretCommandError = async (output, cont
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4215,21 +4215,21 @@ const deserializeAws_json1_1CancelRotateSecretCommandError = async (output, cont
             });
     }
 };
-const deserializeAws_json1_1CreateSecretCommand = async (output, context) => {
+const de_CreateSecretCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1CreateSecretCommandError(output, context);
+        return de_CreateSecretCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1CreateSecretResponse(data, context);
+    contents = de_CreateSecretResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1CreateSecretCommand = deserializeAws_json1_1CreateSecretCommand;
-const deserializeAws_json1_1CreateSecretCommandError = async (output, context) => {
+exports.de_CreateSecretCommand = de_CreateSecretCommand;
+const de_CreateSecretCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4238,34 +4238,34 @@ const deserializeAws_json1_1CreateSecretCommandError = async (output, context) =
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
-            throw await deserializeAws_json1_1DecryptionFailureResponse(parsedOutput, context);
+            throw await de_DecryptionFailureRes(parsedOutput, context);
         case "EncryptionFailure":
         case "com.amazonaws.secretsmanager#EncryptionFailure":
-            throw await deserializeAws_json1_1EncryptionFailureResponse(parsedOutput, context);
+            throw await de_EncryptionFailureRes(parsedOutput, context);
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "LimitExceededException":
         case "com.amazonaws.secretsmanager#LimitExceededException":
-            throw await deserializeAws_json1_1LimitExceededExceptionResponse(parsedOutput, context);
+            throw await de_LimitExceededExceptionRes(parsedOutput, context);
         case "MalformedPolicyDocumentException":
         case "com.amazonaws.secretsmanager#MalformedPolicyDocumentException":
-            throw await deserializeAws_json1_1MalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "PreconditionNotMetException":
         case "com.amazonaws.secretsmanager#PreconditionNotMetException":
-            throw await deserializeAws_json1_1PreconditionNotMetExceptionResponse(parsedOutput, context);
+            throw await de_PreconditionNotMetExceptionRes(parsedOutput, context);
         case "ResourceExistsException":
         case "com.amazonaws.secretsmanager#ResourceExistsException":
-            throw await deserializeAws_json1_1ResourceExistsExceptionResponse(parsedOutput, context);
+            throw await de_ResourceExistsExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4276,21 +4276,21 @@ const deserializeAws_json1_1CreateSecretCommandError = async (output, context) =
             });
     }
 };
-const deserializeAws_json1_1DeleteResourcePolicyCommand = async (output, context) => {
+const de_DeleteResourcePolicyCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1DeleteResourcePolicyCommandError(output, context);
+        return de_DeleteResourcePolicyCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1DeleteResourcePolicyResponse(data, context);
+    contents = de_DeleteResourcePolicyResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1DeleteResourcePolicyCommand = deserializeAws_json1_1DeleteResourcePolicyCommand;
-const deserializeAws_json1_1DeleteResourcePolicyCommandError = async (output, context) => {
+exports.de_DeleteResourcePolicyCommand = de_DeleteResourcePolicyCommand;
+const de_DeleteResourcePolicyCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4299,16 +4299,16 @@ const deserializeAws_json1_1DeleteResourcePolicyCommandError = async (output, co
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4319,21 +4319,21 @@ const deserializeAws_json1_1DeleteResourcePolicyCommandError = async (output, co
             });
     }
 };
-const deserializeAws_json1_1DeleteSecretCommand = async (output, context) => {
+const de_DeleteSecretCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1DeleteSecretCommandError(output, context);
+        return de_DeleteSecretCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1DeleteSecretResponse(data, context);
+    contents = de_DeleteSecretResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1DeleteSecretCommand = deserializeAws_json1_1DeleteSecretCommand;
-const deserializeAws_json1_1DeleteSecretCommandError = async (output, context) => {
+exports.de_DeleteSecretCommand = de_DeleteSecretCommand;
+const de_DeleteSecretCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4342,16 +4342,16 @@ const deserializeAws_json1_1DeleteSecretCommandError = async (output, context) =
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4362,21 +4362,21 @@ const deserializeAws_json1_1DeleteSecretCommandError = async (output, context) =
             });
     }
 };
-const deserializeAws_json1_1DescribeSecretCommand = async (output, context) => {
+const de_DescribeSecretCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1DescribeSecretCommandError(output, context);
+        return de_DescribeSecretCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1DescribeSecretResponse(data, context);
+    contents = de_DescribeSecretResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1DescribeSecretCommand = deserializeAws_json1_1DescribeSecretCommand;
-const deserializeAws_json1_1DescribeSecretCommandError = async (output, context) => {
+exports.de_DescribeSecretCommand = de_DescribeSecretCommand;
+const de_DescribeSecretCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4385,13 +4385,13 @@ const deserializeAws_json1_1DescribeSecretCommandError = async (output, context)
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4402,21 +4402,21 @@ const deserializeAws_json1_1DescribeSecretCommandError = async (output, context)
             });
     }
 };
-const deserializeAws_json1_1GetRandomPasswordCommand = async (output, context) => {
+const de_GetRandomPasswordCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1GetRandomPasswordCommandError(output, context);
+        return de_GetRandomPasswordCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1GetRandomPasswordResponse(data, context);
+    contents = de_GetRandomPasswordResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1GetRandomPasswordCommand = deserializeAws_json1_1GetRandomPasswordCommand;
-const deserializeAws_json1_1GetRandomPasswordCommandError = async (output, context) => {
+exports.de_GetRandomPasswordCommand = de_GetRandomPasswordCommand;
+const de_GetRandomPasswordCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4425,13 +4425,13 @@ const deserializeAws_json1_1GetRandomPasswordCommandError = async (output, conte
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4442,21 +4442,21 @@ const deserializeAws_json1_1GetRandomPasswordCommandError = async (output, conte
             });
     }
 };
-const deserializeAws_json1_1GetResourcePolicyCommand = async (output, context) => {
+const de_GetResourcePolicyCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1GetResourcePolicyCommandError(output, context);
+        return de_GetResourcePolicyCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1GetResourcePolicyResponse(data, context);
+    contents = de_GetResourcePolicyResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1GetResourcePolicyCommand = deserializeAws_json1_1GetResourcePolicyCommand;
-const deserializeAws_json1_1GetResourcePolicyCommandError = async (output, context) => {
+exports.de_GetResourcePolicyCommand = de_GetResourcePolicyCommand;
+const de_GetResourcePolicyCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4465,16 +4465,16 @@ const deserializeAws_json1_1GetResourcePolicyCommandError = async (output, conte
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4485,21 +4485,21 @@ const deserializeAws_json1_1GetResourcePolicyCommandError = async (output, conte
             });
     }
 };
-const deserializeAws_json1_1GetSecretValueCommand = async (output, context) => {
+const de_GetSecretValueCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1GetSecretValueCommandError(output, context);
+        return de_GetSecretValueCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1GetSecretValueResponse(data, context);
+    contents = de_GetSecretValueResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1GetSecretValueCommand = deserializeAws_json1_1GetSecretValueCommand;
-const deserializeAws_json1_1GetSecretValueCommandError = async (output, context) => {
+exports.de_GetSecretValueCommand = de_GetSecretValueCommand;
+const de_GetSecretValueCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4508,19 +4508,19 @@ const deserializeAws_json1_1GetSecretValueCommandError = async (output, context)
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
-            throw await deserializeAws_json1_1DecryptionFailureResponse(parsedOutput, context);
+            throw await de_DecryptionFailureRes(parsedOutput, context);
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4531,21 +4531,21 @@ const deserializeAws_json1_1GetSecretValueCommandError = async (output, context)
             });
     }
 };
-const deserializeAws_json1_1ListSecretsCommand = async (output, context) => {
+const de_ListSecretsCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1ListSecretsCommandError(output, context);
+        return de_ListSecretsCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1ListSecretsResponse(data, context);
+    contents = de_ListSecretsResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1ListSecretsCommand = deserializeAws_json1_1ListSecretsCommand;
-const deserializeAws_json1_1ListSecretsCommandError = async (output, context) => {
+exports.de_ListSecretsCommand = de_ListSecretsCommand;
+const de_ListSecretsCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4554,13 +4554,13 @@ const deserializeAws_json1_1ListSecretsCommandError = async (output, context) =>
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidNextTokenException":
         case "com.amazonaws.secretsmanager#InvalidNextTokenException":
-            throw await deserializeAws_json1_1InvalidNextTokenExceptionResponse(parsedOutput, context);
+            throw await de_InvalidNextTokenExceptionRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4571,21 +4571,21 @@ const deserializeAws_json1_1ListSecretsCommandError = async (output, context) =>
             });
     }
 };
-const deserializeAws_json1_1ListSecretVersionIdsCommand = async (output, context) => {
+const de_ListSecretVersionIdsCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1ListSecretVersionIdsCommandError(output, context);
+        return de_ListSecretVersionIdsCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1ListSecretVersionIdsResponse(data, context);
+    contents = de_ListSecretVersionIdsResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1ListSecretVersionIdsCommand = deserializeAws_json1_1ListSecretVersionIdsCommand;
-const deserializeAws_json1_1ListSecretVersionIdsCommandError = async (output, context) => {
+exports.de_ListSecretVersionIdsCommand = de_ListSecretVersionIdsCommand;
+const de_ListSecretVersionIdsCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4594,16 +4594,16 @@ const deserializeAws_json1_1ListSecretVersionIdsCommandError = async (output, co
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidNextTokenException":
         case "com.amazonaws.secretsmanager#InvalidNextTokenException":
-            throw await deserializeAws_json1_1InvalidNextTokenExceptionResponse(parsedOutput, context);
+            throw await de_InvalidNextTokenExceptionRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4614,21 +4614,21 @@ const deserializeAws_json1_1ListSecretVersionIdsCommandError = async (output, co
             });
     }
 };
-const deserializeAws_json1_1PutResourcePolicyCommand = async (output, context) => {
+const de_PutResourcePolicyCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1PutResourcePolicyCommandError(output, context);
+        return de_PutResourcePolicyCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1PutResourcePolicyResponse(data, context);
+    contents = de_PutResourcePolicyResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1PutResourcePolicyCommand = deserializeAws_json1_1PutResourcePolicyCommand;
-const deserializeAws_json1_1PutResourcePolicyCommandError = async (output, context) => {
+exports.de_PutResourcePolicyCommand = de_PutResourcePolicyCommand;
+const de_PutResourcePolicyCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4637,22 +4637,22 @@ const deserializeAws_json1_1PutResourcePolicyCommandError = async (output, conte
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "MalformedPolicyDocumentException":
         case "com.amazonaws.secretsmanager#MalformedPolicyDocumentException":
-            throw await deserializeAws_json1_1MalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "PublicPolicyException":
         case "com.amazonaws.secretsmanager#PublicPolicyException":
-            throw await deserializeAws_json1_1PublicPolicyExceptionResponse(parsedOutput, context);
+            throw await de_PublicPolicyExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4663,21 +4663,21 @@ const deserializeAws_json1_1PutResourcePolicyCommandError = async (output, conte
             });
     }
 };
-const deserializeAws_json1_1PutSecretValueCommand = async (output, context) => {
+const de_PutSecretValueCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1PutSecretValueCommandError(output, context);
+        return de_PutSecretValueCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1PutSecretValueResponse(data, context);
+    contents = de_PutSecretValueResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1PutSecretValueCommand = deserializeAws_json1_1PutSecretValueCommand;
-const deserializeAws_json1_1PutSecretValueCommandError = async (output, context) => {
+exports.de_PutSecretValueCommand = de_PutSecretValueCommand;
+const de_PutSecretValueCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4686,28 +4686,28 @@ const deserializeAws_json1_1PutSecretValueCommandError = async (output, context)
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
-            throw await deserializeAws_json1_1DecryptionFailureResponse(parsedOutput, context);
+            throw await de_DecryptionFailureRes(parsedOutput, context);
         case "EncryptionFailure":
         case "com.amazonaws.secretsmanager#EncryptionFailure":
-            throw await deserializeAws_json1_1EncryptionFailureResponse(parsedOutput, context);
+            throw await de_EncryptionFailureRes(parsedOutput, context);
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "LimitExceededException":
         case "com.amazonaws.secretsmanager#LimitExceededException":
-            throw await deserializeAws_json1_1LimitExceededExceptionResponse(parsedOutput, context);
+            throw await de_LimitExceededExceptionRes(parsedOutput, context);
         case "ResourceExistsException":
         case "com.amazonaws.secretsmanager#ResourceExistsException":
-            throw await deserializeAws_json1_1ResourceExistsExceptionResponse(parsedOutput, context);
+            throw await de_ResourceExistsExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4718,21 +4718,21 @@ const deserializeAws_json1_1PutSecretValueCommandError = async (output, context)
             });
     }
 };
-const deserializeAws_json1_1RemoveRegionsFromReplicationCommand = async (output, context) => {
+const de_RemoveRegionsFromReplicationCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1RemoveRegionsFromReplicationCommandError(output, context);
+        return de_RemoveRegionsFromReplicationCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1RemoveRegionsFromReplicationResponse(data, context);
+    contents = de_RemoveRegionsFromReplicationResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1RemoveRegionsFromReplicationCommand = deserializeAws_json1_1RemoveRegionsFromReplicationCommand;
-const deserializeAws_json1_1RemoveRegionsFromReplicationCommandError = async (output, context) => {
+exports.de_RemoveRegionsFromReplicationCommand = de_RemoveRegionsFromReplicationCommand;
+const de_RemoveRegionsFromReplicationCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4741,16 +4741,16 @@ const deserializeAws_json1_1RemoveRegionsFromReplicationCommandError = async (ou
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4761,21 +4761,21 @@ const deserializeAws_json1_1RemoveRegionsFromReplicationCommandError = async (ou
             });
     }
 };
-const deserializeAws_json1_1ReplicateSecretToRegionsCommand = async (output, context) => {
+const de_ReplicateSecretToRegionsCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1ReplicateSecretToRegionsCommandError(output, context);
+        return de_ReplicateSecretToRegionsCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1ReplicateSecretToRegionsResponse(data, context);
+    contents = de_ReplicateSecretToRegionsResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1ReplicateSecretToRegionsCommand = deserializeAws_json1_1ReplicateSecretToRegionsCommand;
-const deserializeAws_json1_1ReplicateSecretToRegionsCommandError = async (output, context) => {
+exports.de_ReplicateSecretToRegionsCommand = de_ReplicateSecretToRegionsCommand;
+const de_ReplicateSecretToRegionsCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4784,16 +4784,16 @@ const deserializeAws_json1_1ReplicateSecretToRegionsCommandError = async (output
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4804,21 +4804,21 @@ const deserializeAws_json1_1ReplicateSecretToRegionsCommandError = async (output
             });
     }
 };
-const deserializeAws_json1_1RestoreSecretCommand = async (output, context) => {
+const de_RestoreSecretCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1RestoreSecretCommandError(output, context);
+        return de_RestoreSecretCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1RestoreSecretResponse(data, context);
+    contents = de_RestoreSecretResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1RestoreSecretCommand = deserializeAws_json1_1RestoreSecretCommand;
-const deserializeAws_json1_1RestoreSecretCommandError = async (output, context) => {
+exports.de_RestoreSecretCommand = de_RestoreSecretCommand;
+const de_RestoreSecretCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4827,16 +4827,16 @@ const deserializeAws_json1_1RestoreSecretCommandError = async (output, context) 
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4847,21 +4847,21 @@ const deserializeAws_json1_1RestoreSecretCommandError = async (output, context) 
             });
     }
 };
-const deserializeAws_json1_1RotateSecretCommand = async (output, context) => {
+const de_RotateSecretCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1RotateSecretCommandError(output, context);
+        return de_RotateSecretCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1RotateSecretResponse(data, context);
+    contents = de_RotateSecretResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1RotateSecretCommand = deserializeAws_json1_1RotateSecretCommand;
-const deserializeAws_json1_1RotateSecretCommandError = async (output, context) => {
+exports.de_RotateSecretCommand = de_RotateSecretCommand;
+const de_RotateSecretCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4870,16 +4870,16 @@ const deserializeAws_json1_1RotateSecretCommandError = async (output, context) =
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4890,21 +4890,21 @@ const deserializeAws_json1_1RotateSecretCommandError = async (output, context) =
             });
     }
 };
-const deserializeAws_json1_1StopReplicationToReplicaCommand = async (output, context) => {
+const de_StopReplicationToReplicaCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1StopReplicationToReplicaCommandError(output, context);
+        return de_StopReplicationToReplicaCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1StopReplicationToReplicaResponse(data, context);
+    contents = de_StopReplicationToReplicaResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1StopReplicationToReplicaCommand = deserializeAws_json1_1StopReplicationToReplicaCommand;
-const deserializeAws_json1_1StopReplicationToReplicaCommandError = async (output, context) => {
+exports.de_StopReplicationToReplicaCommand = de_StopReplicationToReplicaCommand;
+const de_StopReplicationToReplicaCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4913,16 +4913,16 @@ const deserializeAws_json1_1StopReplicationToReplicaCommandError = async (output
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4933,9 +4933,9 @@ const deserializeAws_json1_1StopReplicationToReplicaCommandError = async (output
             });
     }
 };
-const deserializeAws_json1_1TagResourceCommand = async (output, context) => {
+const de_TagResourceCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1TagResourceCommandError(output, context);
+        return de_TagResourceCommandError(output, context);
     }
     await collectBody(output.body, context);
     const response = {
@@ -4943,8 +4943,8 @@ const deserializeAws_json1_1TagResourceCommand = async (output, context) => {
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1TagResourceCommand = deserializeAws_json1_1TagResourceCommand;
-const deserializeAws_json1_1TagResourceCommandError = async (output, context) => {
+exports.de_TagResourceCommand = de_TagResourceCommand;
+const de_TagResourceCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4953,16 +4953,16 @@ const deserializeAws_json1_1TagResourceCommandError = async (output, context) =>
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -4973,9 +4973,9 @@ const deserializeAws_json1_1TagResourceCommandError = async (output, context) =>
             });
     }
 };
-const deserializeAws_json1_1UntagResourceCommand = async (output, context) => {
+const de_UntagResourceCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1UntagResourceCommandError(output, context);
+        return de_UntagResourceCommandError(output, context);
     }
     await collectBody(output.body, context);
     const response = {
@@ -4983,8 +4983,8 @@ const deserializeAws_json1_1UntagResourceCommand = async (output, context) => {
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1UntagResourceCommand = deserializeAws_json1_1UntagResourceCommand;
-const deserializeAws_json1_1UntagResourceCommandError = async (output, context) => {
+exports.de_UntagResourceCommand = de_UntagResourceCommand;
+const de_UntagResourceCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -4993,16 +4993,16 @@ const deserializeAws_json1_1UntagResourceCommandError = async (output, context) 
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -5013,21 +5013,21 @@ const deserializeAws_json1_1UntagResourceCommandError = async (output, context) 
             });
     }
 };
-const deserializeAws_json1_1UpdateSecretCommand = async (output, context) => {
+const de_UpdateSecretCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1UpdateSecretCommandError(output, context);
+        return de_UpdateSecretCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1UpdateSecretResponse(data, context);
+    contents = de_UpdateSecretResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1UpdateSecretCommand = deserializeAws_json1_1UpdateSecretCommand;
-const deserializeAws_json1_1UpdateSecretCommandError = async (output, context) => {
+exports.de_UpdateSecretCommand = de_UpdateSecretCommand;
+const de_UpdateSecretCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -5036,34 +5036,34 @@ const deserializeAws_json1_1UpdateSecretCommandError = async (output, context) =
     switch (errorCode) {
         case "DecryptionFailure":
         case "com.amazonaws.secretsmanager#DecryptionFailure":
-            throw await deserializeAws_json1_1DecryptionFailureResponse(parsedOutput, context);
+            throw await de_DecryptionFailureRes(parsedOutput, context);
         case "EncryptionFailure":
         case "com.amazonaws.secretsmanager#EncryptionFailure":
-            throw await deserializeAws_json1_1EncryptionFailureResponse(parsedOutput, context);
+            throw await de_EncryptionFailureRes(parsedOutput, context);
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "LimitExceededException":
         case "com.amazonaws.secretsmanager#LimitExceededException":
-            throw await deserializeAws_json1_1LimitExceededExceptionResponse(parsedOutput, context);
+            throw await de_LimitExceededExceptionRes(parsedOutput, context);
         case "MalformedPolicyDocumentException":
         case "com.amazonaws.secretsmanager#MalformedPolicyDocumentException":
-            throw await deserializeAws_json1_1MalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "PreconditionNotMetException":
         case "com.amazonaws.secretsmanager#PreconditionNotMetException":
-            throw await deserializeAws_json1_1PreconditionNotMetExceptionResponse(parsedOutput, context);
+            throw await de_PreconditionNotMetExceptionRes(parsedOutput, context);
         case "ResourceExistsException":
         case "com.amazonaws.secretsmanager#ResourceExistsException":
-            throw await deserializeAws_json1_1ResourceExistsExceptionResponse(parsedOutput, context);
+            throw await de_ResourceExistsExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -5074,21 +5074,21 @@ const deserializeAws_json1_1UpdateSecretCommandError = async (output, context) =
             });
     }
 };
-const deserializeAws_json1_1UpdateSecretVersionStageCommand = async (output, context) => {
+const de_UpdateSecretVersionStageCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1UpdateSecretVersionStageCommandError(output, context);
+        return de_UpdateSecretVersionStageCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1UpdateSecretVersionStageResponse(data, context);
+    contents = de_UpdateSecretVersionStageResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1UpdateSecretVersionStageCommand = deserializeAws_json1_1UpdateSecretVersionStageCommand;
-const deserializeAws_json1_1UpdateSecretVersionStageCommandError = async (output, context) => {
+exports.de_UpdateSecretVersionStageCommand = de_UpdateSecretVersionStageCommand;
+const de_UpdateSecretVersionStageCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -5097,19 +5097,19 @@ const deserializeAws_json1_1UpdateSecretVersionStageCommandError = async (output
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "LimitExceededException":
         case "com.amazonaws.secretsmanager#LimitExceededException":
-            throw await deserializeAws_json1_1LimitExceededExceptionResponse(parsedOutput, context);
+            throw await de_LimitExceededExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -5120,21 +5120,21 @@ const deserializeAws_json1_1UpdateSecretVersionStageCommandError = async (output
             });
     }
 };
-const deserializeAws_json1_1ValidateResourcePolicyCommand = async (output, context) => {
+const de_ValidateResourcePolicyCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_json1_1ValidateResourcePolicyCommandError(output, context);
+        return de_ValidateResourcePolicyCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_json1_1ValidateResourcePolicyResponse(data, context);
+    contents = de_ValidateResourcePolicyResponse(data, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_json1_1ValidateResourcePolicyCommand = deserializeAws_json1_1ValidateResourcePolicyCommand;
-const deserializeAws_json1_1ValidateResourcePolicyCommandError = async (output, context) => {
+exports.de_ValidateResourcePolicyCommand = de_ValidateResourcePolicyCommand;
+const de_ValidateResourcePolicyCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -5143,19 +5143,19 @@ const deserializeAws_json1_1ValidateResourcePolicyCommandError = async (output, 
     switch (errorCode) {
         case "InternalServiceError":
         case "com.amazonaws.secretsmanager#InternalServiceError":
-            throw await deserializeAws_json1_1InternalServiceErrorResponse(parsedOutput, context);
+            throw await de_InternalServiceErrorRes(parsedOutput, context);
         case "InvalidParameterException":
         case "com.amazonaws.secretsmanager#InvalidParameterException":
-            throw await deserializeAws_json1_1InvalidParameterExceptionResponse(parsedOutput, context);
+            throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.secretsmanager#InvalidRequestException":
-            throw await deserializeAws_json1_1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "MalformedPolicyDocumentException":
         case "com.amazonaws.secretsmanager#MalformedPolicyDocumentException":
-            throw await deserializeAws_json1_1MalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.secretsmanager#ResourceNotFoundException":
-            throw await deserializeAws_json1_1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -5166,130 +5166,130 @@ const deserializeAws_json1_1ValidateResourcePolicyCommandError = async (output, 
             });
     }
 };
-const deserializeAws_json1_1DecryptionFailureResponse = async (parsedOutput, context) => {
+const de_DecryptionFailureRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1DecryptionFailure(body, context);
+    const deserialized = de_DecryptionFailure(body, context);
     const exception = new models_0_1.DecryptionFailure({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1EncryptionFailureResponse = async (parsedOutput, context) => {
+const de_EncryptionFailureRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1EncryptionFailure(body, context);
+    const deserialized = de_EncryptionFailure(body, context);
     const exception = new models_0_1.EncryptionFailure({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1InternalServiceErrorResponse = async (parsedOutput, context) => {
+const de_InternalServiceErrorRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1InternalServiceError(body, context);
+    const deserialized = de_InternalServiceError(body, context);
     const exception = new models_0_1.InternalServiceError({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1InvalidNextTokenExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidNextTokenExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1InvalidNextTokenException(body, context);
+    const deserialized = de_InvalidNextTokenException(body, context);
     const exception = new models_0_1.InvalidNextTokenException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1InvalidParameterExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidParameterExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1InvalidParameterException(body, context);
+    const deserialized = de_InvalidParameterException(body, context);
     const exception = new models_0_1.InvalidParameterException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1InvalidRequestExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1InvalidRequestException(body, context);
+    const deserialized = de_InvalidRequestException(body, context);
     const exception = new models_0_1.InvalidRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1LimitExceededExceptionResponse = async (parsedOutput, context) => {
+const de_LimitExceededExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1LimitExceededException(body, context);
+    const deserialized = de_LimitExceededException(body, context);
     const exception = new models_0_1.LimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1MalformedPolicyDocumentExceptionResponse = async (parsedOutput, context) => {
+const de_MalformedPolicyDocumentExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1MalformedPolicyDocumentException(body, context);
+    const deserialized = de_MalformedPolicyDocumentException(body, context);
     const exception = new models_0_1.MalformedPolicyDocumentException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1PreconditionNotMetExceptionResponse = async (parsedOutput, context) => {
+const de_PreconditionNotMetExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1PreconditionNotMetException(body, context);
+    const deserialized = de_PreconditionNotMetException(body, context);
     const exception = new models_0_1.PreconditionNotMetException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1PublicPolicyExceptionResponse = async (parsedOutput, context) => {
+const de_PublicPolicyExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1PublicPolicyException(body, context);
+    const deserialized = de_PublicPolicyException(body, context);
     const exception = new models_0_1.PublicPolicyException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1ResourceExistsExceptionResponse = async (parsedOutput, context) => {
+const de_ResourceExistsExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1ResourceExistsException(body, context);
+    const deserialized = de_ResourceExistsException(body, context);
     const exception = new models_0_1.ResourceExistsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_json1_1ResourceNotFoundExceptionResponse = async (parsedOutput, context) => {
+const de_ResourceNotFoundExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_json1_1ResourceNotFoundException(body, context);
+    const deserialized = de_ResourceNotFoundException(body, context);
     const exception = new models_0_1.ResourceNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const serializeAws_json1_1AddReplicaRegionListType = (input, context) => {
+const se_AddReplicaRegionListType = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
-        return serializeAws_json1_1ReplicaRegionType(entry, context);
+        return se_ReplicaRegionType(entry, context);
     });
 };
-const serializeAws_json1_1CancelRotateSecretRequest = (input, context) => {
+const se_CancelRotateSecretRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1CreateSecretRequest = (input, context) => {
+const se_CreateSecretRequest = (input, context) => {
     return {
         ...(input.AddReplicaRegions != null && {
-            AddReplicaRegions: serializeAws_json1_1AddReplicaRegionListType(input.AddReplicaRegions, context),
+            AddReplicaRegions: se_AddReplicaRegionListType(input.AddReplicaRegions, context),
         }),
         ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
         ...(input.Description != null && { Description: input.Description }),
@@ -5300,47 +5300,47 @@ const serializeAws_json1_1CreateSecretRequest = (input, context) => {
         ...(input.Name != null && { Name: input.Name }),
         ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
         ...(input.SecretString != null && { SecretString: input.SecretString }),
-        ...(input.Tags != null && { Tags: serializeAws_json1_1TagListType(input.Tags, context) }),
+        ...(input.Tags != null && { Tags: se_TagListType(input.Tags, context) }),
     };
 };
-const serializeAws_json1_1DeleteResourcePolicyRequest = (input, context) => {
+const se_DeleteResourcePolicyRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1DeleteSecretRequest = (input, context) => {
+const se_DeleteSecretRequest = (input, context) => {
     return {
         ...(input.ForceDeleteWithoutRecovery != null && { ForceDeleteWithoutRecovery: input.ForceDeleteWithoutRecovery }),
         ...(input.RecoveryWindowInDays != null && { RecoveryWindowInDays: input.RecoveryWindowInDays }),
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1DescribeSecretRequest = (input, context) => {
+const se_DescribeSecretRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1Filter = (input, context) => {
+const se_Filter = (input, context) => {
     return {
         ...(input.Key != null && { Key: input.Key }),
-        ...(input.Values != null && { Values: serializeAws_json1_1FilterValuesStringList(input.Values, context) }),
+        ...(input.Values != null && { Values: se_FilterValuesStringList(input.Values, context) }),
     };
 };
-const serializeAws_json1_1FiltersListType = (input, context) => {
+const se_FiltersListType = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
-        return serializeAws_json1_1Filter(entry, context);
+        return se_Filter(entry, context);
     });
 };
-const serializeAws_json1_1FilterValuesStringList = (input, context) => {
+const se_FilterValuesStringList = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
         return entry;
     });
 };
-const serializeAws_json1_1GetRandomPasswordRequest = (input, context) => {
+const se_GetRandomPasswordRequest = (input, context) => {
     return {
         ...(input.ExcludeCharacters != null && { ExcludeCharacters: input.ExcludeCharacters }),
         ...(input.ExcludeLowercase != null && { ExcludeLowercase: input.ExcludeLowercase }),
@@ -5352,28 +5352,28 @@ const serializeAws_json1_1GetRandomPasswordRequest = (input, context) => {
         ...(input.RequireEachIncludedType != null && { RequireEachIncludedType: input.RequireEachIncludedType }),
     };
 };
-const serializeAws_json1_1GetResourcePolicyRequest = (input, context) => {
+const se_GetResourcePolicyRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1GetSecretValueRequest = (input, context) => {
+const se_GetSecretValueRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
         ...(input.VersionId != null && { VersionId: input.VersionId }),
         ...(input.VersionStage != null && { VersionStage: input.VersionStage }),
     };
 };
-const serializeAws_json1_1ListSecretsRequest = (input, context) => {
+const se_ListSecretsRequest = (input, context) => {
     return {
-        ...(input.Filters != null && { Filters: serializeAws_json1_1FiltersListType(input.Filters, context) }),
+        ...(input.Filters != null && { Filters: se_FiltersListType(input.Filters, context) }),
         ...(input.IncludePlannedDeletion != null && { IncludePlannedDeletion: input.IncludePlannedDeletion }),
         ...(input.MaxResults != null && { MaxResults: input.MaxResults }),
         ...(input.NextToken != null && { NextToken: input.NextToken }),
         ...(input.SortOrder != null && { SortOrder: input.SortOrder }),
     };
 };
-const serializeAws_json1_1ListSecretVersionIdsRequest = (input, context) => {
+const se_ListSecretVersionIdsRequest = (input, context) => {
     return {
         ...(input.IncludeDeprecated != null && { IncludeDeprecated: input.IncludeDeprecated }),
         ...(input.MaxResults != null && { MaxResults: input.MaxResults }),
@@ -5381,49 +5381,47 @@ const serializeAws_json1_1ListSecretVersionIdsRequest = (input, context) => {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1PutResourcePolicyRequest = (input, context) => {
+const se_PutResourcePolicyRequest = (input, context) => {
     return {
         ...(input.BlockPublicPolicy != null && { BlockPublicPolicy: input.BlockPublicPolicy }),
         ...(input.ResourcePolicy != null && { ResourcePolicy: input.ResourcePolicy }),
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1PutSecretValueRequest = (input, context) => {
+const se_PutSecretValueRequest = (input, context) => {
     return {
         ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
         ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
         ...(input.SecretId != null && { SecretId: input.SecretId }),
         ...(input.SecretString != null && { SecretString: input.SecretString }),
-        ...(input.VersionStages != null && {
-            VersionStages: serializeAws_json1_1SecretVersionStagesType(input.VersionStages, context),
-        }),
+        ...(input.VersionStages != null && { VersionStages: se_SecretVersionStagesType(input.VersionStages, context) }),
     };
 };
-const serializeAws_json1_1RemoveRegionsFromReplicationRequest = (input, context) => {
+const se_RemoveRegionsFromReplicationRequest = (input, context) => {
     return {
         ...(input.RemoveReplicaRegions != null && {
-            RemoveReplicaRegions: serializeAws_json1_1RemoveReplicaRegionListType(input.RemoveReplicaRegions, context),
+            RemoveReplicaRegions: se_RemoveReplicaRegionListType(input.RemoveReplicaRegions, context),
         }),
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1RemoveReplicaRegionListType = (input, context) => {
+const se_RemoveReplicaRegionListType = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
         return entry;
     });
 };
-const serializeAws_json1_1ReplicaRegionType = (input, context) => {
+const se_ReplicaRegionType = (input, context) => {
     return {
         ...(input.KmsKeyId != null && { KmsKeyId: input.KmsKeyId }),
         ...(input.Region != null && { Region: input.Region }),
     };
 };
-const serializeAws_json1_1ReplicateSecretToRegionsRequest = (input, context) => {
+const se_ReplicateSecretToRegionsRequest = (input, context) => {
     return {
         ...(input.AddReplicaRegions != null && {
-            AddReplicaRegions: serializeAws_json1_1AddReplicaRegionListType(input.AddReplicaRegions, context),
+            AddReplicaRegions: se_AddReplicaRegionListType(input.AddReplicaRegions, context),
         }),
         ...(input.ForceOverwriteReplicaSecret != null && {
             ForceOverwriteReplicaSecret: input.ForceOverwriteReplicaSecret,
@@ -5431,74 +5429,72 @@ const serializeAws_json1_1ReplicateSecretToRegionsRequest = (input, context) => 
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1RestoreSecretRequest = (input, context) => {
+const se_RestoreSecretRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1RotateSecretRequest = (input, context) => {
+const se_RotateSecretRequest = (input, context) => {
     return {
         ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
         ...(input.RotateImmediately != null && { RotateImmediately: input.RotateImmediately }),
         ...(input.RotationLambdaARN != null && { RotationLambdaARN: input.RotationLambdaARN }),
-        ...(input.RotationRules != null && {
-            RotationRules: serializeAws_json1_1RotationRulesType(input.RotationRules, context),
-        }),
+        ...(input.RotationRules != null && { RotationRules: se_RotationRulesType(input.RotationRules, context) }),
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1RotationRulesType = (input, context) => {
+const se_RotationRulesType = (input, context) => {
     return {
         ...(input.AutomaticallyAfterDays != null && { AutomaticallyAfterDays: input.AutomaticallyAfterDays }),
         ...(input.Duration != null && { Duration: input.Duration }),
         ...(input.ScheduleExpression != null && { ScheduleExpression: input.ScheduleExpression }),
     };
 };
-const serializeAws_json1_1SecretVersionStagesType = (input, context) => {
+const se_SecretVersionStagesType = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
         return entry;
     });
 };
-const serializeAws_json1_1StopReplicationToReplicaRequest = (input, context) => {
+const se_StopReplicationToReplicaRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const serializeAws_json1_1Tag = (input, context) => {
+const se_Tag = (input, context) => {
     return {
         ...(input.Key != null && { Key: input.Key }),
         ...(input.Value != null && { Value: input.Value }),
     };
 };
-const serializeAws_json1_1TagKeyListType = (input, context) => {
+const se_TagKeyListType = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
         return entry;
     });
 };
-const serializeAws_json1_1TagListType = (input, context) => {
+const se_TagListType = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
-        return serializeAws_json1_1Tag(entry, context);
+        return se_Tag(entry, context);
     });
 };
-const serializeAws_json1_1TagResourceRequest = (input, context) => {
+const se_TagResourceRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.Tags != null && { Tags: serializeAws_json1_1TagListType(input.Tags, context) }),
+        ...(input.Tags != null && { Tags: se_TagListType(input.Tags, context) }),
     };
 };
-const serializeAws_json1_1UntagResourceRequest = (input, context) => {
+const se_UntagResourceRequest = (input, context) => {
     return {
         ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.TagKeys != null && { TagKeys: serializeAws_json1_1TagKeyListType(input.TagKeys, context) }),
+        ...(input.TagKeys != null && { TagKeys: se_TagKeyListType(input.TagKeys, context) }),
     };
 };
-const serializeAws_json1_1UpdateSecretRequest = (input, context) => {
+const se_UpdateSecretRequest = (input, context) => {
     return {
         ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
         ...(input.Description != null && { Description: input.Description }),
@@ -5508,7 +5504,7 @@ const serializeAws_json1_1UpdateSecretRequest = (input, context) => {
         ...(input.SecretString != null && { SecretString: input.SecretString }),
     };
 };
-const serializeAws_json1_1UpdateSecretVersionStageRequest = (input, context) => {
+const se_UpdateSecretVersionStageRequest = (input, context) => {
     return {
         ...(input.MoveToVersionId != null && { MoveToVersionId: input.MoveToVersionId }),
         ...(input.RemoveFromVersionId != null && { RemoveFromVersionId: input.RemoveFromVersionId }),
@@ -5516,41 +5512,39 @@ const serializeAws_json1_1UpdateSecretVersionStageRequest = (input, context) => 
         ...(input.VersionStage != null && { VersionStage: input.VersionStage }),
     };
 };
-const serializeAws_json1_1ValidateResourcePolicyRequest = (input, context) => {
+const se_ValidateResourcePolicyRequest = (input, context) => {
     return {
         ...(input.ResourcePolicy != null && { ResourcePolicy: input.ResourcePolicy }),
         ...(input.SecretId != null && { SecretId: input.SecretId }),
     };
 };
-const deserializeAws_json1_1CancelRotateSecretResponse = (output, context) => {
+const de_CancelRotateSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
     };
 };
-const deserializeAws_json1_1CreateSecretResponse = (output, context) => {
+const de_CreateSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
-        ReplicationStatus: output.ReplicationStatus != null
-            ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
-            : undefined,
+        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
     };
 };
-const deserializeAws_json1_1DecryptionFailure = (output, context) => {
+const de_DecryptionFailure = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1DeleteResourcePolicyResponse = (output, context) => {
+const de_DeleteResourcePolicyResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
     };
 };
-const deserializeAws_json1_1DeleteSecretResponse = (output, context) => {
+const de_DeleteSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         DeletionDate: output.DeletionDate != null
@@ -5559,7 +5553,7 @@ const deserializeAws_json1_1DeleteSecretResponse = (output, context) => {
         Name: (0, smithy_client_1.expectString)(output.Name),
     };
 };
-const deserializeAws_json1_1DescribeSecretResponse = (output, context) => {
+const de_DescribeSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         CreatedDate: output.CreatedDate != null
@@ -5585,36 +5579,34 @@ const deserializeAws_json1_1DescribeSecretResponse = (output, context) => {
             : undefined,
         OwningService: (0, smithy_client_1.expectString)(output.OwningService),
         PrimaryRegion: (0, smithy_client_1.expectString)(output.PrimaryRegion),
-        ReplicationStatus: output.ReplicationStatus != null
-            ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
-            : undefined,
+        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
         RotationEnabled: (0, smithy_client_1.expectBoolean)(output.RotationEnabled),
         RotationLambdaARN: (0, smithy_client_1.expectString)(output.RotationLambdaARN),
-        RotationRules: output.RotationRules != null ? deserializeAws_json1_1RotationRulesType(output.RotationRules, context) : undefined,
-        Tags: output.Tags != null ? deserializeAws_json1_1TagListType(output.Tags, context) : undefined,
+        RotationRules: output.RotationRules != null ? de_RotationRulesType(output.RotationRules, context) : undefined,
+        Tags: output.Tags != null ? de_TagListType(output.Tags, context) : undefined,
         VersionIdsToStages: output.VersionIdsToStages != null
-            ? deserializeAws_json1_1SecretVersionsToStagesMapType(output.VersionIdsToStages, context)
+            ? de_SecretVersionsToStagesMapType(output.VersionIdsToStages, context)
             : undefined,
     };
 };
-const deserializeAws_json1_1EncryptionFailure = (output, context) => {
+const de_EncryptionFailure = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1GetRandomPasswordResponse = (output, context) => {
+const de_GetRandomPasswordResponse = (output, context) => {
     return {
         RandomPassword: (0, smithy_client_1.expectString)(output.RandomPassword),
     };
 };
-const deserializeAws_json1_1GetResourcePolicyResponse = (output, context) => {
+const de_GetResourcePolicyResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         ResourcePolicy: (0, smithy_client_1.expectString)(output.ResourcePolicy),
     };
 };
-const deserializeAws_json1_1GetSecretValueResponse = (output, context) => {
+const de_GetSecretValueResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         CreatedDate: output.CreatedDate != null
@@ -5624,32 +5616,30 @@ const deserializeAws_json1_1GetSecretValueResponse = (output, context) => {
         SecretBinary: output.SecretBinary != null ? context.base64Decoder(output.SecretBinary) : undefined,
         SecretString: (0, smithy_client_1.expectString)(output.SecretString),
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages != null
-            ? deserializeAws_json1_1SecretVersionStagesType(output.VersionStages, context)
-            : undefined,
+        VersionStages: output.VersionStages != null ? de_SecretVersionStagesType(output.VersionStages, context) : undefined,
     };
 };
-const deserializeAws_json1_1InternalServiceError = (output, context) => {
+const de_InternalServiceError = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1InvalidNextTokenException = (output, context) => {
+const de_InvalidNextTokenException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1InvalidParameterException = (output, context) => {
+const de_InvalidParameterException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1InvalidRequestException = (output, context) => {
+const de_InvalidRequestException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1KmsKeyIdListType = (output, context) => {
+const de_KmsKeyIdListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
@@ -5660,84 +5650,78 @@ const deserializeAws_json1_1KmsKeyIdListType = (output, context) => {
     });
     return retVal;
 };
-const deserializeAws_json1_1LimitExceededException = (output, context) => {
+const de_LimitExceededException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1ListSecretsResponse = (output, context) => {
+const de_ListSecretsResponse = (output, context) => {
     return {
         NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        SecretList: output.SecretList != null ? deserializeAws_json1_1SecretListType(output.SecretList, context) : undefined,
+        SecretList: output.SecretList != null ? de_SecretListType(output.SecretList, context) : undefined,
     };
 };
-const deserializeAws_json1_1ListSecretVersionIdsResponse = (output, context) => {
+const de_ListSecretVersionIdsResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Versions: output.Versions != null ? deserializeAws_json1_1SecretVersionsListType(output.Versions, context) : undefined,
+        Versions: output.Versions != null ? de_SecretVersionsListType(output.Versions, context) : undefined,
     };
 };
-const deserializeAws_json1_1MalformedPolicyDocumentException = (output, context) => {
+const de_MalformedPolicyDocumentException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1PreconditionNotMetException = (output, context) => {
+const de_PreconditionNotMetException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1PublicPolicyException = (output, context) => {
+const de_PublicPolicyException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1PutResourcePolicyResponse = (output, context) => {
+const de_PutResourcePolicyResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
     };
 };
-const deserializeAws_json1_1PutSecretValueResponse = (output, context) => {
+const de_PutSecretValueResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages != null
-            ? deserializeAws_json1_1SecretVersionStagesType(output.VersionStages, context)
-            : undefined,
+        VersionStages: output.VersionStages != null ? de_SecretVersionStagesType(output.VersionStages, context) : undefined,
     };
 };
-const deserializeAws_json1_1RemoveRegionsFromReplicationResponse = (output, context) => {
+const de_RemoveRegionsFromReplicationResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        ReplicationStatus: output.ReplicationStatus != null
-            ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
-            : undefined,
+        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
     };
 };
-const deserializeAws_json1_1ReplicateSecretToRegionsResponse = (output, context) => {
+const de_ReplicateSecretToRegionsResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
-        ReplicationStatus: output.ReplicationStatus != null
-            ? deserializeAws_json1_1ReplicationStatusListType(output.ReplicationStatus, context)
-            : undefined,
+        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
     };
 };
-const deserializeAws_json1_1ReplicationStatusListType = (output, context) => {
+const de_ReplicationStatusListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
         if (entry === null) {
             return null;
         }
-        return deserializeAws_json1_1ReplicationStatusType(entry, context);
+        return de_ReplicationStatusType(entry, context);
     });
     return retVal;
 };
-const deserializeAws_json1_1ReplicationStatusType = (output, context) => {
+const de_ReplicationStatusType = (output, context) => {
     return {
         KmsKeyId: (0, smithy_client_1.expectString)(output.KmsKeyId),
         LastAccessedDate: output.LastAccessedDate != null
@@ -5748,37 +5732,37 @@ const deserializeAws_json1_1ReplicationStatusType = (output, context) => {
         StatusMessage: (0, smithy_client_1.expectString)(output.StatusMessage),
     };
 };
-const deserializeAws_json1_1ResourceExistsException = (output, context) => {
+const de_ResourceExistsException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1ResourceNotFoundException = (output, context) => {
+const de_ResourceNotFoundException = (output, context) => {
     return {
         Message: (0, smithy_client_1.expectString)(output.Message),
     };
 };
-const deserializeAws_json1_1RestoreSecretResponse = (output, context) => {
+const de_RestoreSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
     };
 };
-const deserializeAws_json1_1RotateSecretResponse = (output, context) => {
+const de_RotateSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
     };
 };
-const deserializeAws_json1_1RotationRulesType = (output, context) => {
+const de_RotationRulesType = (output, context) => {
     return {
         AutomaticallyAfterDays: (0, smithy_client_1.expectLong)(output.AutomaticallyAfterDays),
         Duration: (0, smithy_client_1.expectString)(output.Duration),
         ScheduleExpression: (0, smithy_client_1.expectString)(output.ScheduleExpression),
     };
 };
-const deserializeAws_json1_1SecretListEntry = (output, context) => {
+const de_SecretListEntry = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         CreatedDate: output.CreatedDate != null
@@ -5806,51 +5790,49 @@ const deserializeAws_json1_1SecretListEntry = (output, context) => {
         PrimaryRegion: (0, smithy_client_1.expectString)(output.PrimaryRegion),
         RotationEnabled: (0, smithy_client_1.expectBoolean)(output.RotationEnabled),
         RotationLambdaARN: (0, smithy_client_1.expectString)(output.RotationLambdaARN),
-        RotationRules: output.RotationRules != null ? deserializeAws_json1_1RotationRulesType(output.RotationRules, context) : undefined,
+        RotationRules: output.RotationRules != null ? de_RotationRulesType(output.RotationRules, context) : undefined,
         SecretVersionsToStages: output.SecretVersionsToStages != null
-            ? deserializeAws_json1_1SecretVersionsToStagesMapType(output.SecretVersionsToStages, context)
+            ? de_SecretVersionsToStagesMapType(output.SecretVersionsToStages, context)
             : undefined,
-        Tags: output.Tags != null ? deserializeAws_json1_1TagListType(output.Tags, context) : undefined,
+        Tags: output.Tags != null ? de_TagListType(output.Tags, context) : undefined,
     };
 };
-const deserializeAws_json1_1SecretListType = (output, context) => {
+const de_SecretListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
         if (entry === null) {
             return null;
         }
-        return deserializeAws_json1_1SecretListEntry(entry, context);
+        return de_SecretListEntry(entry, context);
     });
     return retVal;
 };
-const deserializeAws_json1_1SecretVersionsListEntry = (output, context) => {
+const de_SecretVersionsListEntry = (output, context) => {
     return {
         CreatedDate: output.CreatedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
             : undefined,
-        KmsKeyIds: output.KmsKeyIds != null ? deserializeAws_json1_1KmsKeyIdListType(output.KmsKeyIds, context) : undefined,
+        KmsKeyIds: output.KmsKeyIds != null ? de_KmsKeyIdListType(output.KmsKeyIds, context) : undefined,
         LastAccessedDate: output.LastAccessedDate != null
             ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
             : undefined,
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages != null
-            ? deserializeAws_json1_1SecretVersionStagesType(output.VersionStages, context)
-            : undefined,
+        VersionStages: output.VersionStages != null ? de_SecretVersionStagesType(output.VersionStages, context) : undefined,
     };
 };
-const deserializeAws_json1_1SecretVersionsListType = (output, context) => {
+const de_SecretVersionsListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
         if (entry === null) {
             return null;
         }
-        return deserializeAws_json1_1SecretVersionsListEntry(entry, context);
+        return de_SecretVersionsListEntry(entry, context);
     });
     return retVal;
 };
-const deserializeAws_json1_1SecretVersionStagesType = (output, context) => {
+const de_SecretVersionStagesType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
@@ -5861,72 +5843,70 @@ const deserializeAws_json1_1SecretVersionStagesType = (output, context) => {
     });
     return retVal;
 };
-const deserializeAws_json1_1SecretVersionsToStagesMapType = (output, context) => {
+const de_SecretVersionsToStagesMapType = (output, context) => {
     return Object.entries(output).reduce((acc, [key, value]) => {
         if (value === null) {
             return acc;
         }
-        acc[key] = deserializeAws_json1_1SecretVersionStagesType(value, context);
+        acc[key] = de_SecretVersionStagesType(value, context);
         return acc;
     }, {});
 };
-const deserializeAws_json1_1StopReplicationToReplicaResponse = (output, context) => {
+const de_StopReplicationToReplicaResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
     };
 };
-const deserializeAws_json1_1Tag = (output, context) => {
+const de_Tag = (output, context) => {
     return {
         Key: (0, smithy_client_1.expectString)(output.Key),
         Value: (0, smithy_client_1.expectString)(output.Value),
     };
 };
-const deserializeAws_json1_1TagListType = (output, context) => {
+const de_TagListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
         if (entry === null) {
             return null;
         }
-        return deserializeAws_json1_1Tag(entry, context);
+        return de_Tag(entry, context);
     });
     return retVal;
 };
-const deserializeAws_json1_1UpdateSecretResponse = (output, context) => {
+const de_UpdateSecretResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
         VersionId: (0, smithy_client_1.expectString)(output.VersionId),
     };
 };
-const deserializeAws_json1_1UpdateSecretVersionStageResponse = (output, context) => {
+const de_UpdateSecretVersionStageResponse = (output, context) => {
     return {
         ARN: (0, smithy_client_1.expectString)(output.ARN),
         Name: (0, smithy_client_1.expectString)(output.Name),
     };
 };
-const deserializeAws_json1_1ValidateResourcePolicyResponse = (output, context) => {
+const de_ValidateResourcePolicyResponse = (output, context) => {
     return {
         PolicyValidationPassed: (0, smithy_client_1.expectBoolean)(output.PolicyValidationPassed),
-        ValidationErrors: output.ValidationErrors != null
-            ? deserializeAws_json1_1ValidationErrorsType(output.ValidationErrors, context)
-            : undefined,
+        ValidationErrors: output.ValidationErrors != null ? de_ValidationErrorsType(output.ValidationErrors, context) : undefined,
     };
 };
-const deserializeAws_json1_1ValidationErrorsEntry = (output, context) => {
+const de_ValidationErrorsEntry = (output, context) => {
     return {
         CheckName: (0, smithy_client_1.expectString)(output.CheckName),
         ErrorMessage: (0, smithy_client_1.expectString)(output.ErrorMessage),
     };
 };
-const deserializeAws_json1_1ValidationErrorsType = (output, context) => {
+const de_ValidationErrorsType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
         if (entry === null) {
             return null;
         }
-        return deserializeAws_json1_1ValidationErrorsEntry(entry, context);
+        return de_ValidationErrorsEntry(entry, context);
     });
     return retVal;
 };
@@ -6614,10 +6594,10 @@ class CreateTokenCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_restJson1_1.serializeAws_restJson1CreateTokenCommand)(input, context);
+        return (0, Aws_restJson1_1.se_CreateTokenCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_restJson1_1.deserializeAws_restJson1CreateTokenCommand)(output, context);
+        return (0, Aws_restJson1_1.de_CreateTokenCommand)(output, context);
     }
 }
 exports.CreateTokenCommand = CreateTokenCommand;
@@ -6667,10 +6647,10 @@ class RegisterClientCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_restJson1_1.serializeAws_restJson1RegisterClientCommand)(input, context);
+        return (0, Aws_restJson1_1.se_RegisterClientCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_restJson1_1.deserializeAws_restJson1RegisterClientCommand)(output, context);
+        return (0, Aws_restJson1_1.de_RegisterClientCommand)(output, context);
     }
 }
 exports.RegisterClientCommand = RegisterClientCommand;
@@ -6720,10 +6700,10 @@ class StartDeviceAuthorizationCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_restJson1_1.serializeAws_restJson1StartDeviceAuthorizationCommand)(input, context);
+        return (0, Aws_restJson1_1.se_StartDeviceAuthorizationCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_restJson1_1.deserializeAws_restJson1StartDeviceAuthorizationCommand)(output, context);
+        return (0, Aws_restJson1_1.de_StartDeviceAuthorizationCommand)(output, context);
     }
 }
 exports.StartDeviceAuthorizationCommand = StartDeviceAuthorizationCommand;
@@ -7047,12 +7027,12 @@ exports.InvalidClientMetadataException = InvalidClientMetadataException;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.deserializeAws_restJson1StartDeviceAuthorizationCommand = exports.deserializeAws_restJson1RegisterClientCommand = exports.deserializeAws_restJson1CreateTokenCommand = exports.serializeAws_restJson1StartDeviceAuthorizationCommand = exports.serializeAws_restJson1RegisterClientCommand = exports.serializeAws_restJson1CreateTokenCommand = void 0;
+exports.de_StartDeviceAuthorizationCommand = exports.de_RegisterClientCommand = exports.de_CreateTokenCommand = exports.se_StartDeviceAuthorizationCommand = exports.se_RegisterClientCommand = exports.se_CreateTokenCommand = void 0;
 const protocol_http_1 = __nccwpck_require__(70223);
 const smithy_client_1 = __nccwpck_require__(4963);
 const models_0_1 = __nccwpck_require__(69374);
 const SSOOIDCServiceException_1 = __nccwpck_require__(43026);
-const serializeAws_restJson1CreateTokenCommand = async (input, context) => {
+const se_CreateTokenCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = {
         "content-type": "application/json",
@@ -7067,7 +7047,7 @@ const serializeAws_restJson1CreateTokenCommand = async (input, context) => {
         ...(input.grantType != null && { grantType: input.grantType }),
         ...(input.redirectUri != null && { redirectUri: input.redirectUri }),
         ...(input.refreshToken != null && { refreshToken: input.refreshToken }),
-        ...(input.scope != null && { scope: serializeAws_restJson1Scopes(input.scope, context) }),
+        ...(input.scope != null && { scope: se_Scopes(input.scope, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7079,8 +7059,8 @@ const serializeAws_restJson1CreateTokenCommand = async (input, context) => {
         body,
     });
 };
-exports.serializeAws_restJson1CreateTokenCommand = serializeAws_restJson1CreateTokenCommand;
-const serializeAws_restJson1RegisterClientCommand = async (input, context) => {
+exports.se_CreateTokenCommand = se_CreateTokenCommand;
+const se_RegisterClientCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = {
         "content-type": "application/json",
@@ -7090,7 +7070,7 @@ const serializeAws_restJson1RegisterClientCommand = async (input, context) => {
     body = JSON.stringify({
         ...(input.clientName != null && { clientName: input.clientName }),
         ...(input.clientType != null && { clientType: input.clientType }),
-        ...(input.scopes != null && { scopes: serializeAws_restJson1Scopes(input.scopes, context) }),
+        ...(input.scopes != null && { scopes: se_Scopes(input.scopes, context) }),
     });
     return new protocol_http_1.HttpRequest({
         protocol,
@@ -7102,8 +7082,8 @@ const serializeAws_restJson1RegisterClientCommand = async (input, context) => {
         body,
     });
 };
-exports.serializeAws_restJson1RegisterClientCommand = serializeAws_restJson1RegisterClientCommand;
-const serializeAws_restJson1StartDeviceAuthorizationCommand = async (input, context) => {
+exports.se_RegisterClientCommand = se_RegisterClientCommand;
+const se_StartDeviceAuthorizationCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = {
         "content-type": "application/json",
@@ -7125,10 +7105,10 @@ const serializeAws_restJson1StartDeviceAuthorizationCommand = async (input, cont
         body,
     });
 };
-exports.serializeAws_restJson1StartDeviceAuthorizationCommand = serializeAws_restJson1StartDeviceAuthorizationCommand;
-const deserializeAws_restJson1CreateTokenCommand = async (output, context) => {
+exports.se_StartDeviceAuthorizationCommand = se_StartDeviceAuthorizationCommand;
+const de_CreateTokenCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return deserializeAws_restJson1CreateTokenCommandError(output, context);
+        return de_CreateTokenCommandError(output, context);
     }
     const contents = map({
         $metadata: deserializeMetadata(output),
@@ -7151,8 +7131,8 @@ const deserializeAws_restJson1CreateTokenCommand = async (output, context) => {
     }
     return contents;
 };
-exports.deserializeAws_restJson1CreateTokenCommand = deserializeAws_restJson1CreateTokenCommand;
-const deserializeAws_restJson1CreateTokenCommandError = async (output, context) => {
+exports.de_CreateTokenCommand = de_CreateTokenCommand;
+const de_CreateTokenCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -7161,37 +7141,37 @@ const deserializeAws_restJson1CreateTokenCommandError = async (output, context) 
     switch (errorCode) {
         case "AccessDeniedException":
         case "com.amazonaws.ssooidc#AccessDeniedException":
-            throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+            throw await de_AccessDeniedExceptionRes(parsedOutput, context);
         case "AuthorizationPendingException":
         case "com.amazonaws.ssooidc#AuthorizationPendingException":
-            throw await deserializeAws_restJson1AuthorizationPendingExceptionResponse(parsedOutput, context);
+            throw await de_AuthorizationPendingExceptionRes(parsedOutput, context);
         case "ExpiredTokenException":
         case "com.amazonaws.ssooidc#ExpiredTokenException":
-            throw await deserializeAws_restJson1ExpiredTokenExceptionResponse(parsedOutput, context);
+            throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
         case "InternalServerException":
         case "com.amazonaws.ssooidc#InternalServerException":
-            throw await deserializeAws_restJson1InternalServerExceptionResponse(parsedOutput, context);
+            throw await de_InternalServerExceptionRes(parsedOutput, context);
         case "InvalidClientException":
         case "com.amazonaws.ssooidc#InvalidClientException":
-            throw await deserializeAws_restJson1InvalidClientExceptionResponse(parsedOutput, context);
+            throw await de_InvalidClientExceptionRes(parsedOutput, context);
         case "InvalidGrantException":
         case "com.amazonaws.ssooidc#InvalidGrantException":
-            throw await deserializeAws_restJson1InvalidGrantExceptionResponse(parsedOutput, context);
+            throw await de_InvalidGrantExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.ssooidc#InvalidRequestException":
-            throw await deserializeAws_restJson1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "InvalidScopeException":
         case "com.amazonaws.ssooidc#InvalidScopeException":
-            throw await deserializeAws_restJson1InvalidScopeExceptionResponse(parsedOutput, context);
+            throw await de_InvalidScopeExceptionRes(parsedOutput, context);
         case "SlowDownException":
         case "com.amazonaws.ssooidc#SlowDownException":
-            throw await deserializeAws_restJson1SlowDownExceptionResponse(parsedOutput, context);
+            throw await de_SlowDownExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
         case "com.amazonaws.ssooidc#UnauthorizedClientException":
-            throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+            throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         case "UnsupportedGrantTypeException":
         case "com.amazonaws.ssooidc#UnsupportedGrantTypeException":
-            throw await deserializeAws_restJson1UnsupportedGrantTypeExceptionResponse(parsedOutput, context);
+            throw await de_UnsupportedGrantTypeExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -7202,9 +7182,9 @@ const deserializeAws_restJson1CreateTokenCommandError = async (output, context) 
             });
     }
 };
-const deserializeAws_restJson1RegisterClientCommand = async (output, context) => {
+const de_RegisterClientCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return deserializeAws_restJson1RegisterClientCommandError(output, context);
+        return de_RegisterClientCommandError(output, context);
     }
     const contents = map({
         $metadata: deserializeMetadata(output),
@@ -7230,8 +7210,8 @@ const deserializeAws_restJson1RegisterClientCommand = async (output, context) =>
     }
     return contents;
 };
-exports.deserializeAws_restJson1RegisterClientCommand = deserializeAws_restJson1RegisterClientCommand;
-const deserializeAws_restJson1RegisterClientCommandError = async (output, context) => {
+exports.de_RegisterClientCommand = de_RegisterClientCommand;
+const de_RegisterClientCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -7240,16 +7220,16 @@ const deserializeAws_restJson1RegisterClientCommandError = async (output, contex
     switch (errorCode) {
         case "InternalServerException":
         case "com.amazonaws.ssooidc#InternalServerException":
-            throw await deserializeAws_restJson1InternalServerExceptionResponse(parsedOutput, context);
+            throw await de_InternalServerExceptionRes(parsedOutput, context);
         case "InvalidClientMetadataException":
         case "com.amazonaws.ssooidc#InvalidClientMetadataException":
-            throw await deserializeAws_restJson1InvalidClientMetadataExceptionResponse(parsedOutput, context);
+            throw await de_InvalidClientMetadataExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.ssooidc#InvalidRequestException":
-            throw await deserializeAws_restJson1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "InvalidScopeException":
         case "com.amazonaws.ssooidc#InvalidScopeException":
-            throw await deserializeAws_restJson1InvalidScopeExceptionResponse(parsedOutput, context);
+            throw await de_InvalidScopeExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -7260,9 +7240,9 @@ const deserializeAws_restJson1RegisterClientCommandError = async (output, contex
             });
     }
 };
-const deserializeAws_restJson1StartDeviceAuthorizationCommand = async (output, context) => {
+const de_StartDeviceAuthorizationCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return deserializeAws_restJson1StartDeviceAuthorizationCommandError(output, context);
+        return de_StartDeviceAuthorizationCommandError(output, context);
     }
     const contents = map({
         $metadata: deserializeMetadata(output),
@@ -7288,8 +7268,8 @@ const deserializeAws_restJson1StartDeviceAuthorizationCommand = async (output, c
     }
     return contents;
 };
-exports.deserializeAws_restJson1StartDeviceAuthorizationCommand = deserializeAws_restJson1StartDeviceAuthorizationCommand;
-const deserializeAws_restJson1StartDeviceAuthorizationCommandError = async (output, context) => {
+exports.de_StartDeviceAuthorizationCommand = de_StartDeviceAuthorizationCommand;
+const de_StartDeviceAuthorizationCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -7298,19 +7278,19 @@ const deserializeAws_restJson1StartDeviceAuthorizationCommandError = async (outp
     switch (errorCode) {
         case "InternalServerException":
         case "com.amazonaws.ssooidc#InternalServerException":
-            throw await deserializeAws_restJson1InternalServerExceptionResponse(parsedOutput, context);
+            throw await de_InternalServerExceptionRes(parsedOutput, context);
         case "InvalidClientException":
         case "com.amazonaws.ssooidc#InvalidClientException":
-            throw await deserializeAws_restJson1InvalidClientExceptionResponse(parsedOutput, context);
+            throw await de_InvalidClientExceptionRes(parsedOutput, context);
         case "InvalidRequestException":
         case "com.amazonaws.ssooidc#InvalidRequestException":
-            throw await deserializeAws_restJson1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "SlowDownException":
         case "com.amazonaws.ssooidc#SlowDownException":
-            throw await deserializeAws_restJson1SlowDownExceptionResponse(parsedOutput, context);
+            throw await de_SlowDownExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
         case "com.amazonaws.ssooidc#UnauthorizedClientException":
-            throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+            throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -7322,7 +7302,7 @@ const deserializeAws_restJson1StartDeviceAuthorizationCommandError = async (outp
     }
 };
 const map = smithy_client_1.map;
-const deserializeAws_restJson1AccessDeniedExceptionResponse = async (parsedOutput, context) => {
+const de_AccessDeniedExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7337,7 +7317,7 @@ const deserializeAws_restJson1AccessDeniedExceptionResponse = async (parsedOutpu
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1AuthorizationPendingExceptionResponse = async (parsedOutput, context) => {
+const de_AuthorizationPendingExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7352,7 +7332,7 @@ const deserializeAws_restJson1AuthorizationPendingExceptionResponse = async (par
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1ExpiredTokenExceptionResponse = async (parsedOutput, context) => {
+const de_ExpiredTokenExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7367,7 +7347,7 @@ const deserializeAws_restJson1ExpiredTokenExceptionResponse = async (parsedOutpu
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1InternalServerExceptionResponse = async (parsedOutput, context) => {
+const de_InternalServerExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7382,7 +7362,7 @@ const deserializeAws_restJson1InternalServerExceptionResponse = async (parsedOut
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1InvalidClientExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidClientExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7397,7 +7377,7 @@ const deserializeAws_restJson1InvalidClientExceptionResponse = async (parsedOutp
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1InvalidClientMetadataExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidClientMetadataExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7412,7 +7392,7 @@ const deserializeAws_restJson1InvalidClientMetadataExceptionResponse = async (pa
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1InvalidGrantExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidGrantExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7427,7 +7407,7 @@ const deserializeAws_restJson1InvalidGrantExceptionResponse = async (parsedOutpu
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1InvalidRequestExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7442,7 +7422,7 @@ const deserializeAws_restJson1InvalidRequestExceptionResponse = async (parsedOut
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1InvalidScopeExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidScopeExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7457,7 +7437,7 @@ const deserializeAws_restJson1InvalidScopeExceptionResponse = async (parsedOutpu
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1SlowDownExceptionResponse = async (parsedOutput, context) => {
+const de_SlowDownExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7472,7 +7452,7 @@ const deserializeAws_restJson1SlowDownExceptionResponse = async (parsedOutput, c
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1UnauthorizedClientExceptionResponse = async (parsedOutput, context) => {
+const de_UnauthorizedClientExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7487,7 +7467,7 @@ const deserializeAws_restJson1UnauthorizedClientExceptionResponse = async (parse
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1UnsupportedGrantTypeExceptionResponse = async (parsedOutput, context) => {
+const de_UnsupportedGrantTypeExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.error != null) {
@@ -7502,7 +7482,7 @@ const deserializeAws_restJson1UnsupportedGrantTypeExceptionResponse = async (par
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const serializeAws_restJson1Scopes = (input, context) => {
+const se_Scopes = (input, context) => {
     return input
         .filter((e) => e != null)
         .map((entry) => {
@@ -8193,10 +8173,10 @@ class GetRoleCredentialsCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_restJson1_1.serializeAws_restJson1GetRoleCredentialsCommand)(input, context);
+        return (0, Aws_restJson1_1.se_GetRoleCredentialsCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_restJson1_1.deserializeAws_restJson1GetRoleCredentialsCommand)(output, context);
+        return (0, Aws_restJson1_1.de_GetRoleCredentialsCommand)(output, context);
     }
 }
 exports.GetRoleCredentialsCommand = GetRoleCredentialsCommand;
@@ -8247,10 +8227,10 @@ class ListAccountRolesCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_restJson1_1.serializeAws_restJson1ListAccountRolesCommand)(input, context);
+        return (0, Aws_restJson1_1.se_ListAccountRolesCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_restJson1_1.deserializeAws_restJson1ListAccountRolesCommand)(output, context);
+        return (0, Aws_restJson1_1.de_ListAccountRolesCommand)(output, context);
     }
 }
 exports.ListAccountRolesCommand = ListAccountRolesCommand;
@@ -8301,10 +8281,10 @@ class ListAccountsCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_restJson1_1.serializeAws_restJson1ListAccountsCommand)(input, context);
+        return (0, Aws_restJson1_1.se_ListAccountsCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_restJson1_1.deserializeAws_restJson1ListAccountsCommand)(output, context);
+        return (0, Aws_restJson1_1.de_ListAccountsCommand)(output, context);
     }
 }
 exports.ListAccountsCommand = ListAccountsCommand;
@@ -8355,10 +8335,10 @@ class LogoutCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_restJson1_1.serializeAws_restJson1LogoutCommand)(input, context);
+        return (0, Aws_restJson1_1.se_LogoutCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_restJson1_1.deserializeAws_restJson1LogoutCommand)(output, context);
+        return (0, Aws_restJson1_1.de_LogoutCommand)(output, context);
     }
 }
 exports.LogoutCommand = LogoutCommand;
@@ -8686,12 +8666,12 @@ tslib_1.__exportStar(__nccwpck_require__(50938), exports);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.deserializeAws_restJson1LogoutCommand = exports.deserializeAws_restJson1ListAccountsCommand = exports.deserializeAws_restJson1ListAccountRolesCommand = exports.deserializeAws_restJson1GetRoleCredentialsCommand = exports.serializeAws_restJson1LogoutCommand = exports.serializeAws_restJson1ListAccountsCommand = exports.serializeAws_restJson1ListAccountRolesCommand = exports.serializeAws_restJson1GetRoleCredentialsCommand = void 0;
+exports.de_LogoutCommand = exports.de_ListAccountsCommand = exports.de_ListAccountRolesCommand = exports.de_GetRoleCredentialsCommand = exports.se_LogoutCommand = exports.se_ListAccountsCommand = exports.se_ListAccountRolesCommand = exports.se_GetRoleCredentialsCommand = void 0;
 const protocol_http_1 = __nccwpck_require__(70223);
 const smithy_client_1 = __nccwpck_require__(4963);
 const models_0_1 = __nccwpck_require__(66390);
 const SSOServiceException_1 = __nccwpck_require__(81517);
-const serializeAws_restJson1GetRoleCredentialsCommand = async (input, context) => {
+const se_GetRoleCredentialsCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = map({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
@@ -8713,8 +8693,8 @@ const serializeAws_restJson1GetRoleCredentialsCommand = async (input, context) =
         body,
     });
 };
-exports.serializeAws_restJson1GetRoleCredentialsCommand = serializeAws_restJson1GetRoleCredentialsCommand;
-const serializeAws_restJson1ListAccountRolesCommand = async (input, context) => {
+exports.se_GetRoleCredentialsCommand = se_GetRoleCredentialsCommand;
+const se_ListAccountRolesCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = map({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
@@ -8737,8 +8717,8 @@ const serializeAws_restJson1ListAccountRolesCommand = async (input, context) => 
         body,
     });
 };
-exports.serializeAws_restJson1ListAccountRolesCommand = serializeAws_restJson1ListAccountRolesCommand;
-const serializeAws_restJson1ListAccountsCommand = async (input, context) => {
+exports.se_ListAccountRolesCommand = se_ListAccountRolesCommand;
+const se_ListAccountsCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = map({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
@@ -8760,8 +8740,8 @@ const serializeAws_restJson1ListAccountsCommand = async (input, context) => {
         body,
     });
 };
-exports.serializeAws_restJson1ListAccountsCommand = serializeAws_restJson1ListAccountsCommand;
-const serializeAws_restJson1LogoutCommand = async (input, context) => {
+exports.se_ListAccountsCommand = se_ListAccountsCommand;
+const se_LogoutCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const headers = map({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
@@ -8778,22 +8758,22 @@ const serializeAws_restJson1LogoutCommand = async (input, context) => {
         body,
     });
 };
-exports.serializeAws_restJson1LogoutCommand = serializeAws_restJson1LogoutCommand;
-const deserializeAws_restJson1GetRoleCredentialsCommand = async (output, context) => {
+exports.se_LogoutCommand = se_LogoutCommand;
+const de_GetRoleCredentialsCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return deserializeAws_restJson1GetRoleCredentialsCommandError(output, context);
+        return de_GetRoleCredentialsCommandError(output, context);
     }
     const contents = map({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
     if (data.roleCredentials != null) {
-        contents.roleCredentials = deserializeAws_restJson1RoleCredentials(data.roleCredentials, context);
+        contents.roleCredentials = de_RoleCredentials(data.roleCredentials, context);
     }
     return contents;
 };
-exports.deserializeAws_restJson1GetRoleCredentialsCommand = deserializeAws_restJson1GetRoleCredentialsCommand;
-const deserializeAws_restJson1GetRoleCredentialsCommandError = async (output, context) => {
+exports.de_GetRoleCredentialsCommand = de_GetRoleCredentialsCommand;
+const de_GetRoleCredentialsCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -8802,16 +8782,16 @@ const deserializeAws_restJson1GetRoleCredentialsCommandError = async (output, co
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
-            throw await deserializeAws_restJson1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.sso#ResourceNotFoundException":
-            throw await deserializeAws_restJson1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         case "TooManyRequestsException":
         case "com.amazonaws.sso#TooManyRequestsException":
-            throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
+            throw await de_TooManyRequestsExceptionRes(parsedOutput, context);
         case "UnauthorizedException":
         case "com.amazonaws.sso#UnauthorizedException":
-            throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
+            throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -8822,9 +8802,9 @@ const deserializeAws_restJson1GetRoleCredentialsCommandError = async (output, co
             });
     }
 };
-const deserializeAws_restJson1ListAccountRolesCommand = async (output, context) => {
+const de_ListAccountRolesCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return deserializeAws_restJson1ListAccountRolesCommandError(output, context);
+        return de_ListAccountRolesCommandError(output, context);
     }
     const contents = map({
         $metadata: deserializeMetadata(output),
@@ -8834,12 +8814,12 @@ const deserializeAws_restJson1ListAccountRolesCommand = async (output, context) 
         contents.nextToken = (0, smithy_client_1.expectString)(data.nextToken);
     }
     if (data.roleList != null) {
-        contents.roleList = deserializeAws_restJson1RoleListType(data.roleList, context);
+        contents.roleList = de_RoleListType(data.roleList, context);
     }
     return contents;
 };
-exports.deserializeAws_restJson1ListAccountRolesCommand = deserializeAws_restJson1ListAccountRolesCommand;
-const deserializeAws_restJson1ListAccountRolesCommandError = async (output, context) => {
+exports.de_ListAccountRolesCommand = de_ListAccountRolesCommand;
+const de_ListAccountRolesCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -8848,16 +8828,16 @@ const deserializeAws_restJson1ListAccountRolesCommandError = async (output, cont
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
-            throw await deserializeAws_restJson1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.sso#ResourceNotFoundException":
-            throw await deserializeAws_restJson1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         case "TooManyRequestsException":
         case "com.amazonaws.sso#TooManyRequestsException":
-            throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
+            throw await de_TooManyRequestsExceptionRes(parsedOutput, context);
         case "UnauthorizedException":
         case "com.amazonaws.sso#UnauthorizedException":
-            throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
+            throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -8868,24 +8848,24 @@ const deserializeAws_restJson1ListAccountRolesCommandError = async (output, cont
             });
     }
 };
-const deserializeAws_restJson1ListAccountsCommand = async (output, context) => {
+const de_ListAccountsCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return deserializeAws_restJson1ListAccountsCommandError(output, context);
+        return de_ListAccountsCommandError(output, context);
     }
     const contents = map({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
     if (data.accountList != null) {
-        contents.accountList = deserializeAws_restJson1AccountListType(data.accountList, context);
+        contents.accountList = de_AccountListType(data.accountList, context);
     }
     if (data.nextToken != null) {
         contents.nextToken = (0, smithy_client_1.expectString)(data.nextToken);
     }
     return contents;
 };
-exports.deserializeAws_restJson1ListAccountsCommand = deserializeAws_restJson1ListAccountsCommand;
-const deserializeAws_restJson1ListAccountsCommandError = async (output, context) => {
+exports.de_ListAccountsCommand = de_ListAccountsCommand;
+const de_ListAccountsCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -8894,16 +8874,16 @@ const deserializeAws_restJson1ListAccountsCommandError = async (output, context)
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
-            throw await deserializeAws_restJson1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "ResourceNotFoundException":
         case "com.amazonaws.sso#ResourceNotFoundException":
-            throw await deserializeAws_restJson1ResourceNotFoundExceptionResponse(parsedOutput, context);
+            throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         case "TooManyRequestsException":
         case "com.amazonaws.sso#TooManyRequestsException":
-            throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
+            throw await de_TooManyRequestsExceptionRes(parsedOutput, context);
         case "UnauthorizedException":
         case "com.amazonaws.sso#UnauthorizedException":
-            throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
+            throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -8914,9 +8894,9 @@ const deserializeAws_restJson1ListAccountsCommandError = async (output, context)
             });
     }
 };
-const deserializeAws_restJson1LogoutCommand = async (output, context) => {
+const de_LogoutCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return deserializeAws_restJson1LogoutCommandError(output, context);
+        return de_LogoutCommandError(output, context);
     }
     const contents = map({
         $metadata: deserializeMetadata(output),
@@ -8924,8 +8904,8 @@ const deserializeAws_restJson1LogoutCommand = async (output, context) => {
     await collectBody(output.body, context);
     return contents;
 };
-exports.deserializeAws_restJson1LogoutCommand = deserializeAws_restJson1LogoutCommand;
-const deserializeAws_restJson1LogoutCommandError = async (output, context) => {
+exports.de_LogoutCommand = de_LogoutCommand;
+const de_LogoutCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -8934,13 +8914,13 @@ const deserializeAws_restJson1LogoutCommandError = async (output, context) => {
     switch (errorCode) {
         case "InvalidRequestException":
         case "com.amazonaws.sso#InvalidRequestException":
-            throw await deserializeAws_restJson1InvalidRequestExceptionResponse(parsedOutput, context);
+            throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         case "TooManyRequestsException":
         case "com.amazonaws.sso#TooManyRequestsException":
-            throw await deserializeAws_restJson1TooManyRequestsExceptionResponse(parsedOutput, context);
+            throw await de_TooManyRequestsExceptionRes(parsedOutput, context);
         case "UnauthorizedException":
         case "com.amazonaws.sso#UnauthorizedException":
-            throw await deserializeAws_restJson1UnauthorizedExceptionResponse(parsedOutput, context);
+            throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -8952,7 +8932,7 @@ const deserializeAws_restJson1LogoutCommandError = async (output, context) => {
     }
 };
 const map = smithy_client_1.map;
-const deserializeAws_restJson1InvalidRequestExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.message != null) {
@@ -8964,7 +8944,7 @@ const deserializeAws_restJson1InvalidRequestExceptionResponse = async (parsedOut
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (parsedOutput, context) => {
+const de_ResourceNotFoundExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.message != null) {
@@ -8976,7 +8956,7 @@ const deserializeAws_restJson1ResourceNotFoundExceptionResponse = async (parsedO
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1TooManyRequestsExceptionResponse = async (parsedOutput, context) => {
+const de_TooManyRequestsExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.message != null) {
@@ -8988,7 +8968,7 @@ const deserializeAws_restJson1TooManyRequestsExceptionResponse = async (parsedOu
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1UnauthorizedExceptionResponse = async (parsedOutput, context) => {
+const de_UnauthorizedExceptionRes = async (parsedOutput, context) => {
     const contents = map({});
     const data = parsedOutput.body;
     if (data.message != null) {
@@ -9000,25 +8980,25 @@ const deserializeAws_restJson1UnauthorizedExceptionResponse = async (parsedOutpu
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
-const deserializeAws_restJson1AccountInfo = (output, context) => {
+const de_AccountInfo = (output, context) => {
     return {
         accountId: (0, smithy_client_1.expectString)(output.accountId),
         accountName: (0, smithy_client_1.expectString)(output.accountName),
         emailAddress: (0, smithy_client_1.expectString)(output.emailAddress),
     };
 };
-const deserializeAws_restJson1AccountListType = (output, context) => {
+const de_AccountListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
         if (entry === null) {
             return null;
         }
-        return deserializeAws_restJson1AccountInfo(entry, context);
+        return de_AccountInfo(entry, context);
     });
     return retVal;
 };
-const deserializeAws_restJson1RoleCredentials = (output, context) => {
+const de_RoleCredentials = (output, context) => {
     return {
         accessKeyId: (0, smithy_client_1.expectString)(output.accessKeyId),
         expiration: (0, smithy_client_1.expectLong)(output.expiration),
@@ -9026,20 +9006,20 @@ const deserializeAws_restJson1RoleCredentials = (output, context) => {
         sessionToken: (0, smithy_client_1.expectString)(output.sessionToken),
     };
 };
-const deserializeAws_restJson1RoleInfo = (output, context) => {
+const de_RoleInfo = (output, context) => {
     return {
         accountId: (0, smithy_client_1.expectString)(output.accountId),
         roleName: (0, smithy_client_1.expectString)(output.roleName),
     };
 };
-const deserializeAws_restJson1RoleListType = (output, context) => {
+const de_RoleListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
         if (entry === null) {
             return null;
         }
-        return deserializeAws_restJson1RoleInfo(entry, context);
+        return de_RoleInfo(entry, context);
     });
     return retVal;
 };
@@ -9791,10 +9771,10 @@ class AssumeRoleCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryAssumeRoleCommand)(input, context);
+        return (0, Aws_query_1.se_AssumeRoleCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryAssumeRoleCommand)(output, context);
+        return (0, Aws_query_1.de_AssumeRoleCommand)(output, context);
     }
 }
 exports.AssumeRoleCommand = AssumeRoleCommand;
@@ -9845,10 +9825,10 @@ class AssumeRoleWithSAMLCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryAssumeRoleWithSAMLCommand)(input, context);
+        return (0, Aws_query_1.se_AssumeRoleWithSAMLCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryAssumeRoleWithSAMLCommand)(output, context);
+        return (0, Aws_query_1.de_AssumeRoleWithSAMLCommand)(output, context);
     }
 }
 exports.AssumeRoleWithSAMLCommand = AssumeRoleWithSAMLCommand;
@@ -9899,10 +9879,10 @@ class AssumeRoleWithWebIdentityCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryAssumeRoleWithWebIdentityCommand)(input, context);
+        return (0, Aws_query_1.se_AssumeRoleWithWebIdentityCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryAssumeRoleWithWebIdentityCommand)(output, context);
+        return (0, Aws_query_1.de_AssumeRoleWithWebIdentityCommand)(output, context);
     }
 }
 exports.AssumeRoleWithWebIdentityCommand = AssumeRoleWithWebIdentityCommand;
@@ -9955,10 +9935,10 @@ class DecodeAuthorizationMessageCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryDecodeAuthorizationMessageCommand)(input, context);
+        return (0, Aws_query_1.se_DecodeAuthorizationMessageCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryDecodeAuthorizationMessageCommand)(output, context);
+        return (0, Aws_query_1.de_DecodeAuthorizationMessageCommand)(output, context);
     }
 }
 exports.DecodeAuthorizationMessageCommand = DecodeAuthorizationMessageCommand;
@@ -10011,10 +9991,10 @@ class GetAccessKeyInfoCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryGetAccessKeyInfoCommand)(input, context);
+        return (0, Aws_query_1.se_GetAccessKeyInfoCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryGetAccessKeyInfoCommand)(output, context);
+        return (0, Aws_query_1.de_GetAccessKeyInfoCommand)(output, context);
     }
 }
 exports.GetAccessKeyInfoCommand = GetAccessKeyInfoCommand;
@@ -10067,10 +10047,10 @@ class GetCallerIdentityCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryGetCallerIdentityCommand)(input, context);
+        return (0, Aws_query_1.se_GetCallerIdentityCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryGetCallerIdentityCommand)(output, context);
+        return (0, Aws_query_1.de_GetCallerIdentityCommand)(output, context);
     }
 }
 exports.GetCallerIdentityCommand = GetCallerIdentityCommand;
@@ -10123,10 +10103,10 @@ class GetFederationTokenCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryGetFederationTokenCommand)(input, context);
+        return (0, Aws_query_1.se_GetFederationTokenCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryGetFederationTokenCommand)(output, context);
+        return (0, Aws_query_1.de_GetFederationTokenCommand)(output, context);
     }
 }
 exports.GetFederationTokenCommand = GetFederationTokenCommand;
@@ -10179,10 +10159,10 @@ class GetSessionTokenCommand extends smithy_client_1.Command {
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
     }
     serialize(input, context) {
-        return (0, Aws_query_1.serializeAws_queryGetSessionTokenCommand)(input, context);
+        return (0, Aws_query_1.se_GetSessionTokenCommand)(input, context);
     }
     deserialize(output, context) {
-        return (0, Aws_query_1.deserializeAws_queryGetSessionTokenCommand)(output, context);
+        return (0, Aws_query_1.de_GetSessionTokenCommand)(output, context);
     }
 }
 exports.GetSessionTokenCommand = GetSessionTokenCommand;
@@ -10557,131 +10537,131 @@ exports.InvalidAuthorizationMessageException = InvalidAuthorizationMessageExcept
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.deserializeAws_queryGetSessionTokenCommand = exports.deserializeAws_queryGetFederationTokenCommand = exports.deserializeAws_queryGetCallerIdentityCommand = exports.deserializeAws_queryGetAccessKeyInfoCommand = exports.deserializeAws_queryDecodeAuthorizationMessageCommand = exports.deserializeAws_queryAssumeRoleWithWebIdentityCommand = exports.deserializeAws_queryAssumeRoleWithSAMLCommand = exports.deserializeAws_queryAssumeRoleCommand = exports.serializeAws_queryGetSessionTokenCommand = exports.serializeAws_queryGetFederationTokenCommand = exports.serializeAws_queryGetCallerIdentityCommand = exports.serializeAws_queryGetAccessKeyInfoCommand = exports.serializeAws_queryDecodeAuthorizationMessageCommand = exports.serializeAws_queryAssumeRoleWithWebIdentityCommand = exports.serializeAws_queryAssumeRoleWithSAMLCommand = exports.serializeAws_queryAssumeRoleCommand = void 0;
+exports.de_GetSessionTokenCommand = exports.de_GetFederationTokenCommand = exports.de_GetCallerIdentityCommand = exports.de_GetAccessKeyInfoCommand = exports.de_DecodeAuthorizationMessageCommand = exports.de_AssumeRoleWithWebIdentityCommand = exports.de_AssumeRoleWithSAMLCommand = exports.de_AssumeRoleCommand = exports.se_GetSessionTokenCommand = exports.se_GetFederationTokenCommand = exports.se_GetCallerIdentityCommand = exports.se_GetAccessKeyInfoCommand = exports.se_DecodeAuthorizationMessageCommand = exports.se_AssumeRoleWithWebIdentityCommand = exports.se_AssumeRoleWithSAMLCommand = exports.se_AssumeRoleCommand = void 0;
 const protocol_http_1 = __nccwpck_require__(70223);
 const smithy_client_1 = __nccwpck_require__(4963);
 const fast_xml_parser_1 = __nccwpck_require__(12603);
 const models_0_1 = __nccwpck_require__(21780);
 const STSServiceException_1 = __nccwpck_require__(26450);
-const serializeAws_queryAssumeRoleCommand = async (input, context) => {
+const se_AssumeRoleCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryAssumeRoleRequest(input, context),
+        ...se_AssumeRoleRequest(input, context),
         Action: "AssumeRole",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryAssumeRoleCommand = serializeAws_queryAssumeRoleCommand;
-const serializeAws_queryAssumeRoleWithSAMLCommand = async (input, context) => {
+exports.se_AssumeRoleCommand = se_AssumeRoleCommand;
+const se_AssumeRoleWithSAMLCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryAssumeRoleWithSAMLRequest(input, context),
+        ...se_AssumeRoleWithSAMLRequest(input, context),
         Action: "AssumeRoleWithSAML",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryAssumeRoleWithSAMLCommand = serializeAws_queryAssumeRoleWithSAMLCommand;
-const serializeAws_queryAssumeRoleWithWebIdentityCommand = async (input, context) => {
+exports.se_AssumeRoleWithSAMLCommand = se_AssumeRoleWithSAMLCommand;
+const se_AssumeRoleWithWebIdentityCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryAssumeRoleWithWebIdentityRequest(input, context),
+        ...se_AssumeRoleWithWebIdentityRequest(input, context),
         Action: "AssumeRoleWithWebIdentity",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryAssumeRoleWithWebIdentityCommand = serializeAws_queryAssumeRoleWithWebIdentityCommand;
-const serializeAws_queryDecodeAuthorizationMessageCommand = async (input, context) => {
+exports.se_AssumeRoleWithWebIdentityCommand = se_AssumeRoleWithWebIdentityCommand;
+const se_DecodeAuthorizationMessageCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryDecodeAuthorizationMessageRequest(input, context),
+        ...se_DecodeAuthorizationMessageRequest(input, context),
         Action: "DecodeAuthorizationMessage",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryDecodeAuthorizationMessageCommand = serializeAws_queryDecodeAuthorizationMessageCommand;
-const serializeAws_queryGetAccessKeyInfoCommand = async (input, context) => {
+exports.se_DecodeAuthorizationMessageCommand = se_DecodeAuthorizationMessageCommand;
+const se_GetAccessKeyInfoCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryGetAccessKeyInfoRequest(input, context),
+        ...se_GetAccessKeyInfoRequest(input, context),
         Action: "GetAccessKeyInfo",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryGetAccessKeyInfoCommand = serializeAws_queryGetAccessKeyInfoCommand;
-const serializeAws_queryGetCallerIdentityCommand = async (input, context) => {
+exports.se_GetAccessKeyInfoCommand = se_GetAccessKeyInfoCommand;
+const se_GetCallerIdentityCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryGetCallerIdentityRequest(input, context),
+        ...se_GetCallerIdentityRequest(input, context),
         Action: "GetCallerIdentity",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryGetCallerIdentityCommand = serializeAws_queryGetCallerIdentityCommand;
-const serializeAws_queryGetFederationTokenCommand = async (input, context) => {
+exports.se_GetCallerIdentityCommand = se_GetCallerIdentityCommand;
+const se_GetFederationTokenCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryGetFederationTokenRequest(input, context),
+        ...se_GetFederationTokenRequest(input, context),
         Action: "GetFederationToken",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryGetFederationTokenCommand = serializeAws_queryGetFederationTokenCommand;
-const serializeAws_queryGetSessionTokenCommand = async (input, context) => {
+exports.se_GetFederationTokenCommand = se_GetFederationTokenCommand;
+const se_GetSessionTokenCommand = async (input, context) => {
     const headers = {
         "content-type": "application/x-www-form-urlencoded",
     };
     let body;
     body = buildFormUrlencodedString({
-        ...serializeAws_queryGetSessionTokenRequest(input, context),
+        ...se_GetSessionTokenRequest(input, context),
         Action: "GetSessionToken",
         Version: "2011-06-15",
     });
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
-exports.serializeAws_queryGetSessionTokenCommand = serializeAws_queryGetSessionTokenCommand;
-const deserializeAws_queryAssumeRoleCommand = async (output, context) => {
+exports.se_GetSessionTokenCommand = se_GetSessionTokenCommand;
+const de_AssumeRoleCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryAssumeRoleCommandError(output, context);
+        return de_AssumeRoleCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryAssumeRoleResponse(data.AssumeRoleResult, context);
+    contents = de_AssumeRoleResponse(data.AssumeRoleResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryAssumeRoleCommand = deserializeAws_queryAssumeRoleCommand;
-const deserializeAws_queryAssumeRoleCommandError = async (output, context) => {
+exports.de_AssumeRoleCommand = de_AssumeRoleCommand;
+const de_AssumeRoleCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10690,16 +10670,16 @@ const deserializeAws_queryAssumeRoleCommandError = async (output, context) => {
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
-            throw await deserializeAws_queryExpiredTokenExceptionResponse(parsedOutput, context);
+            throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
         case "MalformedPolicyDocument":
         case "com.amazonaws.sts#MalformedPolicyDocumentException":
-            throw await deserializeAws_queryMalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "PackedPolicyTooLarge":
         case "com.amazonaws.sts#PackedPolicyTooLargeException":
-            throw await deserializeAws_queryPackedPolicyTooLargeExceptionResponse(parsedOutput, context);
+            throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
         case "RegionDisabledException":
         case "com.amazonaws.sts#RegionDisabledException":
-            throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
+            throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -10710,21 +10690,21 @@ const deserializeAws_queryAssumeRoleCommandError = async (output, context) => {
             });
     }
 };
-const deserializeAws_queryAssumeRoleWithSAMLCommand = async (output, context) => {
+const de_AssumeRoleWithSAMLCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryAssumeRoleWithSAMLCommandError(output, context);
+        return de_AssumeRoleWithSAMLCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryAssumeRoleWithSAMLResponse(data.AssumeRoleWithSAMLResult, context);
+    contents = de_AssumeRoleWithSAMLResponse(data.AssumeRoleWithSAMLResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryAssumeRoleWithSAMLCommand = deserializeAws_queryAssumeRoleWithSAMLCommand;
-const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (output, context) => {
+exports.de_AssumeRoleWithSAMLCommand = de_AssumeRoleWithSAMLCommand;
+const de_AssumeRoleWithSAMLCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10733,22 +10713,22 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (output, contex
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
-            throw await deserializeAws_queryExpiredTokenExceptionResponse(parsedOutput, context);
+            throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
         case "IDPRejectedClaim":
         case "com.amazonaws.sts#IDPRejectedClaimException":
-            throw await deserializeAws_queryIDPRejectedClaimExceptionResponse(parsedOutput, context);
+            throw await de_IDPRejectedClaimExceptionRes(parsedOutput, context);
         case "InvalidIdentityToken":
         case "com.amazonaws.sts#InvalidIdentityTokenException":
-            throw await deserializeAws_queryInvalidIdentityTokenExceptionResponse(parsedOutput, context);
+            throw await de_InvalidIdentityTokenExceptionRes(parsedOutput, context);
         case "MalformedPolicyDocument":
         case "com.amazonaws.sts#MalformedPolicyDocumentException":
-            throw await deserializeAws_queryMalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "PackedPolicyTooLarge":
         case "com.amazonaws.sts#PackedPolicyTooLargeException":
-            throw await deserializeAws_queryPackedPolicyTooLargeExceptionResponse(parsedOutput, context);
+            throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
         case "RegionDisabledException":
         case "com.amazonaws.sts#RegionDisabledException":
-            throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
+            throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -10759,21 +10739,21 @@ const deserializeAws_queryAssumeRoleWithSAMLCommandError = async (output, contex
             });
     }
 };
-const deserializeAws_queryAssumeRoleWithWebIdentityCommand = async (output, context) => {
+const de_AssumeRoleWithWebIdentityCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryAssumeRoleWithWebIdentityCommandError(output, context);
+        return de_AssumeRoleWithWebIdentityCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryAssumeRoleWithWebIdentityResponse(data.AssumeRoleWithWebIdentityResult, context);
+    contents = de_AssumeRoleWithWebIdentityResponse(data.AssumeRoleWithWebIdentityResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryAssumeRoleWithWebIdentityCommand = deserializeAws_queryAssumeRoleWithWebIdentityCommand;
-const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (output, context) => {
+exports.de_AssumeRoleWithWebIdentityCommand = de_AssumeRoleWithWebIdentityCommand;
+const de_AssumeRoleWithWebIdentityCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10782,25 +10762,25 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (output,
     switch (errorCode) {
         case "ExpiredTokenException":
         case "com.amazonaws.sts#ExpiredTokenException":
-            throw await deserializeAws_queryExpiredTokenExceptionResponse(parsedOutput, context);
+            throw await de_ExpiredTokenExceptionRes(parsedOutput, context);
         case "IDPCommunicationError":
         case "com.amazonaws.sts#IDPCommunicationErrorException":
-            throw await deserializeAws_queryIDPCommunicationErrorExceptionResponse(parsedOutput, context);
+            throw await de_IDPCommunicationErrorExceptionRes(parsedOutput, context);
         case "IDPRejectedClaim":
         case "com.amazonaws.sts#IDPRejectedClaimException":
-            throw await deserializeAws_queryIDPRejectedClaimExceptionResponse(parsedOutput, context);
+            throw await de_IDPRejectedClaimExceptionRes(parsedOutput, context);
         case "InvalidIdentityToken":
         case "com.amazonaws.sts#InvalidIdentityTokenException":
-            throw await deserializeAws_queryInvalidIdentityTokenExceptionResponse(parsedOutput, context);
+            throw await de_InvalidIdentityTokenExceptionRes(parsedOutput, context);
         case "MalformedPolicyDocument":
         case "com.amazonaws.sts#MalformedPolicyDocumentException":
-            throw await deserializeAws_queryMalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "PackedPolicyTooLarge":
         case "com.amazonaws.sts#PackedPolicyTooLargeException":
-            throw await deserializeAws_queryPackedPolicyTooLargeExceptionResponse(parsedOutput, context);
+            throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
         case "RegionDisabledException":
         case "com.amazonaws.sts#RegionDisabledException":
-            throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
+            throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -10811,21 +10791,21 @@ const deserializeAws_queryAssumeRoleWithWebIdentityCommandError = async (output,
             });
     }
 };
-const deserializeAws_queryDecodeAuthorizationMessageCommand = async (output, context) => {
+const de_DecodeAuthorizationMessageCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryDecodeAuthorizationMessageCommandError(output, context);
+        return de_DecodeAuthorizationMessageCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryDecodeAuthorizationMessageResponse(data.DecodeAuthorizationMessageResult, context);
+    contents = de_DecodeAuthorizationMessageResponse(data.DecodeAuthorizationMessageResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryDecodeAuthorizationMessageCommand = deserializeAws_queryDecodeAuthorizationMessageCommand;
-const deserializeAws_queryDecodeAuthorizationMessageCommandError = async (output, context) => {
+exports.de_DecodeAuthorizationMessageCommand = de_DecodeAuthorizationMessageCommand;
+const de_DecodeAuthorizationMessageCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10834,7 +10814,7 @@ const deserializeAws_queryDecodeAuthorizationMessageCommandError = async (output
     switch (errorCode) {
         case "InvalidAuthorizationMessageException":
         case "com.amazonaws.sts#InvalidAuthorizationMessageException":
-            throw await deserializeAws_queryInvalidAuthorizationMessageExceptionResponse(parsedOutput, context);
+            throw await de_InvalidAuthorizationMessageExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -10845,21 +10825,21 @@ const deserializeAws_queryDecodeAuthorizationMessageCommandError = async (output
             });
     }
 };
-const deserializeAws_queryGetAccessKeyInfoCommand = async (output, context) => {
+const de_GetAccessKeyInfoCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryGetAccessKeyInfoCommandError(output, context);
+        return de_GetAccessKeyInfoCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryGetAccessKeyInfoResponse(data.GetAccessKeyInfoResult, context);
+    contents = de_GetAccessKeyInfoResponse(data.GetAccessKeyInfoResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryGetAccessKeyInfoCommand = deserializeAws_queryGetAccessKeyInfoCommand;
-const deserializeAws_queryGetAccessKeyInfoCommandError = async (output, context) => {
+exports.de_GetAccessKeyInfoCommand = de_GetAccessKeyInfoCommand;
+const de_GetAccessKeyInfoCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10873,21 +10853,21 @@ const deserializeAws_queryGetAccessKeyInfoCommandError = async (output, context)
         errorCode,
     });
 };
-const deserializeAws_queryGetCallerIdentityCommand = async (output, context) => {
+const de_GetCallerIdentityCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryGetCallerIdentityCommandError(output, context);
+        return de_GetCallerIdentityCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryGetCallerIdentityResponse(data.GetCallerIdentityResult, context);
+    contents = de_GetCallerIdentityResponse(data.GetCallerIdentityResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryGetCallerIdentityCommand = deserializeAws_queryGetCallerIdentityCommand;
-const deserializeAws_queryGetCallerIdentityCommandError = async (output, context) => {
+exports.de_GetCallerIdentityCommand = de_GetCallerIdentityCommand;
+const de_GetCallerIdentityCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10901,21 +10881,21 @@ const deserializeAws_queryGetCallerIdentityCommandError = async (output, context
         errorCode,
     });
 };
-const deserializeAws_queryGetFederationTokenCommand = async (output, context) => {
+const de_GetFederationTokenCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryGetFederationTokenCommandError(output, context);
+        return de_GetFederationTokenCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryGetFederationTokenResponse(data.GetFederationTokenResult, context);
+    contents = de_GetFederationTokenResponse(data.GetFederationTokenResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryGetFederationTokenCommand = deserializeAws_queryGetFederationTokenCommand;
-const deserializeAws_queryGetFederationTokenCommandError = async (output, context) => {
+exports.de_GetFederationTokenCommand = de_GetFederationTokenCommand;
+const de_GetFederationTokenCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10924,13 +10904,13 @@ const deserializeAws_queryGetFederationTokenCommandError = async (output, contex
     switch (errorCode) {
         case "MalformedPolicyDocument":
         case "com.amazonaws.sts#MalformedPolicyDocumentException":
-            throw await deserializeAws_queryMalformedPolicyDocumentExceptionResponse(parsedOutput, context);
+            throw await de_MalformedPolicyDocumentExceptionRes(parsedOutput, context);
         case "PackedPolicyTooLarge":
         case "com.amazonaws.sts#PackedPolicyTooLargeException":
-            throw await deserializeAws_queryPackedPolicyTooLargeExceptionResponse(parsedOutput, context);
+            throw await de_PackedPolicyTooLargeExceptionRes(parsedOutput, context);
         case "RegionDisabledException":
         case "com.amazonaws.sts#RegionDisabledException":
-            throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
+            throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -10941,21 +10921,21 @@ const deserializeAws_queryGetFederationTokenCommandError = async (output, contex
             });
     }
 };
-const deserializeAws_queryGetSessionTokenCommand = async (output, context) => {
+const de_GetSessionTokenCommand = async (output, context) => {
     if (output.statusCode >= 300) {
-        return deserializeAws_queryGetSessionTokenCommandError(output, context);
+        return de_GetSessionTokenCommandError(output, context);
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = deserializeAws_queryGetSessionTokenResponse(data.GetSessionTokenResult, context);
+    contents = de_GetSessionTokenResponse(data.GetSessionTokenResult, context);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
     return Promise.resolve(response);
 };
-exports.deserializeAws_queryGetSessionTokenCommand = deserializeAws_queryGetSessionTokenCommand;
-const deserializeAws_queryGetSessionTokenCommandError = async (output, context) => {
+exports.de_GetSessionTokenCommand = de_GetSessionTokenCommand;
+const de_GetSessionTokenCommandError = async (output, context) => {
     const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context),
@@ -10964,7 +10944,7 @@ const deserializeAws_queryGetSessionTokenCommandError = async (output, context) 
     switch (errorCode) {
         case "RegionDisabledException":
         case "com.amazonaws.sts#RegionDisabledException":
-            throw await deserializeAws_queryRegionDisabledExceptionResponse(parsedOutput, context);
+            throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
             (0, smithy_client_1.throwDefaultError)({
@@ -10975,79 +10955,79 @@ const deserializeAws_queryGetSessionTokenCommandError = async (output, context) 
             });
     }
 };
-const deserializeAws_queryExpiredTokenExceptionResponse = async (parsedOutput, context) => {
+const de_ExpiredTokenExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryExpiredTokenException(body.Error, context);
+    const deserialized = de_ExpiredTokenException(body.Error, context);
     const exception = new models_0_1.ExpiredTokenException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_queryIDPCommunicationErrorExceptionResponse = async (parsedOutput, context) => {
+const de_IDPCommunicationErrorExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryIDPCommunicationErrorException(body.Error, context);
+    const deserialized = de_IDPCommunicationErrorException(body.Error, context);
     const exception = new models_0_1.IDPCommunicationErrorException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_queryIDPRejectedClaimExceptionResponse = async (parsedOutput, context) => {
+const de_IDPRejectedClaimExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryIDPRejectedClaimException(body.Error, context);
+    const deserialized = de_IDPRejectedClaimException(body.Error, context);
     const exception = new models_0_1.IDPRejectedClaimException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_queryInvalidAuthorizationMessageExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidAuthorizationMessageExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryInvalidAuthorizationMessageException(body.Error, context);
+    const deserialized = de_InvalidAuthorizationMessageException(body.Error, context);
     const exception = new models_0_1.InvalidAuthorizationMessageException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_queryInvalidIdentityTokenExceptionResponse = async (parsedOutput, context) => {
+const de_InvalidIdentityTokenExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryInvalidIdentityTokenException(body.Error, context);
+    const deserialized = de_InvalidIdentityTokenException(body.Error, context);
     const exception = new models_0_1.InvalidIdentityTokenException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_queryMalformedPolicyDocumentExceptionResponse = async (parsedOutput, context) => {
+const de_MalformedPolicyDocumentExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryMalformedPolicyDocumentException(body.Error, context);
+    const deserialized = de_MalformedPolicyDocumentException(body.Error, context);
     const exception = new models_0_1.MalformedPolicyDocumentException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_queryPackedPolicyTooLargeExceptionResponse = async (parsedOutput, context) => {
+const de_PackedPolicyTooLargeExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryPackedPolicyTooLargeException(body.Error, context);
+    const deserialized = de_PackedPolicyTooLargeException(body.Error, context);
     const exception = new models_0_1.PackedPolicyTooLargeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const deserializeAws_queryRegionDisabledExceptionResponse = async (parsedOutput, context) => {
+const de_RegionDisabledExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = deserializeAws_queryRegionDisabledException(body.Error, context);
+    const deserialized = de_RegionDisabledException(body.Error, context);
     const exception = new models_0_1.RegionDisabledException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const serializeAws_queryAssumeRoleRequest = (input, context) => {
+const se_AssumeRoleRequest = (input, context) => {
     const entries = {};
     if (input.RoleArn != null) {
         entries["RoleArn"] = input.RoleArn;
@@ -11056,7 +11036,7 @@ const serializeAws_queryAssumeRoleRequest = (input, context) => {
         entries["RoleSessionName"] = input.RoleSessionName;
     }
     if (input.PolicyArns != null) {
-        const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
+        const memberEntries = se_policyDescriptorListType(input.PolicyArns, context);
         if (input.PolicyArns?.length === 0) {
             entries.PolicyArns = [];
         }
@@ -11072,7 +11052,7 @@ const serializeAws_queryAssumeRoleRequest = (input, context) => {
         entries["DurationSeconds"] = input.DurationSeconds;
     }
     if (input.Tags != null) {
-        const memberEntries = serializeAws_querytagListType(input.Tags, context);
+        const memberEntries = se_tagListType(input.Tags, context);
         if (input.Tags?.length === 0) {
             entries.Tags = [];
         }
@@ -11082,7 +11062,7 @@ const serializeAws_queryAssumeRoleRequest = (input, context) => {
         });
     }
     if (input.TransitiveTagKeys != null) {
-        const memberEntries = serializeAws_querytagKeyListType(input.TransitiveTagKeys, context);
+        const memberEntries = se_tagKeyListType(input.TransitiveTagKeys, context);
         if (input.TransitiveTagKeys?.length === 0) {
             entries.TransitiveTagKeys = [];
         }
@@ -11105,7 +11085,7 @@ const serializeAws_queryAssumeRoleRequest = (input, context) => {
     }
     return entries;
 };
-const serializeAws_queryAssumeRoleWithSAMLRequest = (input, context) => {
+const se_AssumeRoleWithSAMLRequest = (input, context) => {
     const entries = {};
     if (input.RoleArn != null) {
         entries["RoleArn"] = input.RoleArn;
@@ -11117,7 +11097,7 @@ const serializeAws_queryAssumeRoleWithSAMLRequest = (input, context) => {
         entries["SAMLAssertion"] = input.SAMLAssertion;
     }
     if (input.PolicyArns != null) {
-        const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
+        const memberEntries = se_policyDescriptorListType(input.PolicyArns, context);
         if (input.PolicyArns?.length === 0) {
             entries.PolicyArns = [];
         }
@@ -11134,7 +11114,7 @@ const serializeAws_queryAssumeRoleWithSAMLRequest = (input, context) => {
     }
     return entries;
 };
-const serializeAws_queryAssumeRoleWithWebIdentityRequest = (input, context) => {
+const se_AssumeRoleWithWebIdentityRequest = (input, context) => {
     const entries = {};
     if (input.RoleArn != null) {
         entries["RoleArn"] = input.RoleArn;
@@ -11149,7 +11129,7 @@ const serializeAws_queryAssumeRoleWithWebIdentityRequest = (input, context) => {
         entries["ProviderId"] = input.ProviderId;
     }
     if (input.PolicyArns != null) {
-        const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
+        const memberEntries = se_policyDescriptorListType(input.PolicyArns, context);
         if (input.PolicyArns?.length === 0) {
             entries.PolicyArns = [];
         }
@@ -11166,25 +11146,25 @@ const serializeAws_queryAssumeRoleWithWebIdentityRequest = (input, context) => {
     }
     return entries;
 };
-const serializeAws_queryDecodeAuthorizationMessageRequest = (input, context) => {
+const se_DecodeAuthorizationMessageRequest = (input, context) => {
     const entries = {};
     if (input.EncodedMessage != null) {
         entries["EncodedMessage"] = input.EncodedMessage;
     }
     return entries;
 };
-const serializeAws_queryGetAccessKeyInfoRequest = (input, context) => {
+const se_GetAccessKeyInfoRequest = (input, context) => {
     const entries = {};
     if (input.AccessKeyId != null) {
         entries["AccessKeyId"] = input.AccessKeyId;
     }
     return entries;
 };
-const serializeAws_queryGetCallerIdentityRequest = (input, context) => {
+const se_GetCallerIdentityRequest = (input, context) => {
     const entries = {};
     return entries;
 };
-const serializeAws_queryGetFederationTokenRequest = (input, context) => {
+const se_GetFederationTokenRequest = (input, context) => {
     const entries = {};
     if (input.Name != null) {
         entries["Name"] = input.Name;
@@ -11193,7 +11173,7 @@ const serializeAws_queryGetFederationTokenRequest = (input, context) => {
         entries["Policy"] = input.Policy;
     }
     if (input.PolicyArns != null) {
-        const memberEntries = serializeAws_querypolicyDescriptorListType(input.PolicyArns, context);
+        const memberEntries = se_policyDescriptorListType(input.PolicyArns, context);
         if (input.PolicyArns?.length === 0) {
             entries.PolicyArns = [];
         }
@@ -11206,7 +11186,7 @@ const serializeAws_queryGetFederationTokenRequest = (input, context) => {
         entries["DurationSeconds"] = input.DurationSeconds;
     }
     if (input.Tags != null) {
-        const memberEntries = serializeAws_querytagListType(input.Tags, context);
+        const memberEntries = se_tagListType(input.Tags, context);
         if (input.Tags?.length === 0) {
             entries.Tags = [];
         }
@@ -11217,7 +11197,7 @@ const serializeAws_queryGetFederationTokenRequest = (input, context) => {
     }
     return entries;
 };
-const serializeAws_queryGetSessionTokenRequest = (input, context) => {
+const se_GetSessionTokenRequest = (input, context) => {
     const entries = {};
     if (input.DurationSeconds != null) {
         entries["DurationSeconds"] = input.DurationSeconds;
@@ -11230,14 +11210,14 @@ const serializeAws_queryGetSessionTokenRequest = (input, context) => {
     }
     return entries;
 };
-const serializeAws_querypolicyDescriptorListType = (input, context) => {
+const se_policyDescriptorListType = (input, context) => {
     const entries = {};
     let counter = 1;
     for (const entry of input) {
         if (entry === null) {
             continue;
         }
-        const memberEntries = serializeAws_queryPolicyDescriptorType(entry, context);
+        const memberEntries = se_PolicyDescriptorType(entry, context);
         Object.entries(memberEntries).forEach(([key, value]) => {
             entries[`member.${counter}.${key}`] = value;
         });
@@ -11245,14 +11225,14 @@ const serializeAws_querypolicyDescriptorListType = (input, context) => {
     }
     return entries;
 };
-const serializeAws_queryPolicyDescriptorType = (input, context) => {
+const se_PolicyDescriptorType = (input, context) => {
     const entries = {};
     if (input.arn != null) {
         entries["arn"] = input.arn;
     }
     return entries;
 };
-const serializeAws_queryTag = (input, context) => {
+const se_Tag = (input, context) => {
     const entries = {};
     if (input.Key != null) {
         entries["Key"] = input.Key;
@@ -11262,7 +11242,7 @@ const serializeAws_queryTag = (input, context) => {
     }
     return entries;
 };
-const serializeAws_querytagKeyListType = (input, context) => {
+const se_tagKeyListType = (input, context) => {
     const entries = {};
     let counter = 1;
     for (const entry of input) {
@@ -11274,14 +11254,14 @@ const serializeAws_querytagKeyListType = (input, context) => {
     }
     return entries;
 };
-const serializeAws_querytagListType = (input, context) => {
+const se_tagListType = (input, context) => {
     const entries = {};
     let counter = 1;
     for (const entry of input) {
         if (entry === null) {
             continue;
         }
-        const memberEntries = serializeAws_queryTag(entry, context);
+        const memberEntries = se_Tag(entry, context);
         Object.entries(memberEntries).forEach(([key, value]) => {
             entries[`member.${counter}.${key}`] = value;
         });
@@ -11289,7 +11269,7 @@ const serializeAws_querytagListType = (input, context) => {
     }
     return entries;
 };
-const deserializeAws_queryAssumedRoleUser = (output, context) => {
+const de_AssumedRoleUser = (output, context) => {
     const contents = {};
     if (output["AssumedRoleId"] !== undefined) {
         contents.AssumedRoleId = (0, smithy_client_1.expectString)(output["AssumedRoleId"]);
@@ -11299,13 +11279,13 @@ const deserializeAws_queryAssumedRoleUser = (output, context) => {
     }
     return contents;
 };
-const deserializeAws_queryAssumeRoleResponse = (output, context) => {
+const de_AssumeRoleResponse = (output, context) => {
     const contents = {};
     if (output["Credentials"] !== undefined) {
-        contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
+        contents.Credentials = de_Credentials(output["Credentials"], context);
     }
     if (output["AssumedRoleUser"] !== undefined) {
-        contents.AssumedRoleUser = deserializeAws_queryAssumedRoleUser(output["AssumedRoleUser"], context);
+        contents.AssumedRoleUser = de_AssumedRoleUser(output["AssumedRoleUser"], context);
     }
     if (output["PackedPolicySize"] !== undefined) {
         contents.PackedPolicySize = (0, smithy_client_1.strictParseInt32)(output["PackedPolicySize"]);
@@ -11315,13 +11295,13 @@ const deserializeAws_queryAssumeRoleResponse = (output, context) => {
     }
     return contents;
 };
-const deserializeAws_queryAssumeRoleWithSAMLResponse = (output, context) => {
+const de_AssumeRoleWithSAMLResponse = (output, context) => {
     const contents = {};
     if (output["Credentials"] !== undefined) {
-        contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
+        contents.Credentials = de_Credentials(output["Credentials"], context);
     }
     if (output["AssumedRoleUser"] !== undefined) {
-        contents.AssumedRoleUser = deserializeAws_queryAssumedRoleUser(output["AssumedRoleUser"], context);
+        contents.AssumedRoleUser = de_AssumedRoleUser(output["AssumedRoleUser"], context);
     }
     if (output["PackedPolicySize"] !== undefined) {
         contents.PackedPolicySize = (0, smithy_client_1.strictParseInt32)(output["PackedPolicySize"]);
@@ -11346,16 +11326,16 @@ const deserializeAws_queryAssumeRoleWithSAMLResponse = (output, context) => {
     }
     return contents;
 };
-const deserializeAws_queryAssumeRoleWithWebIdentityResponse = (output, context) => {
+const de_AssumeRoleWithWebIdentityResponse = (output, context) => {
     const contents = {};
     if (output["Credentials"] !== undefined) {
-        contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
+        contents.Credentials = de_Credentials(output["Credentials"], context);
     }
     if (output["SubjectFromWebIdentityToken"] !== undefined) {
         contents.SubjectFromWebIdentityToken = (0, smithy_client_1.expectString)(output["SubjectFromWebIdentityToken"]);
     }
     if (output["AssumedRoleUser"] !== undefined) {
-        contents.AssumedRoleUser = deserializeAws_queryAssumedRoleUser(output["AssumedRoleUser"], context);
+        contents.AssumedRoleUser = de_AssumedRoleUser(output["AssumedRoleUser"], context);
     }
     if (output["PackedPolicySize"] !== undefined) {
         contents.PackedPolicySize = (0, smithy_client_1.strictParseInt32)(output["PackedPolicySize"]);
@@ -11371,7 +11351,7 @@ const deserializeAws_queryAssumeRoleWithWebIdentityResponse = (output, context) 
     }
     return contents;
 };
-const deserializeAws_queryCredentials = (output, context) => {
+const de_Credentials = (output, context) => {
     const contents = {};
     if (output["AccessKeyId"] !== undefined) {
         contents.AccessKeyId = (0, smithy_client_1.expectString)(output["AccessKeyId"]);
@@ -11387,21 +11367,21 @@ const deserializeAws_queryCredentials = (output, context) => {
     }
     return contents;
 };
-const deserializeAws_queryDecodeAuthorizationMessageResponse = (output, context) => {
+const de_DecodeAuthorizationMessageResponse = (output, context) => {
     const contents = {};
     if (output["DecodedMessage"] !== undefined) {
         contents.DecodedMessage = (0, smithy_client_1.expectString)(output["DecodedMessage"]);
     }
     return contents;
 };
-const deserializeAws_queryExpiredTokenException = (output, context) => {
+const de_ExpiredTokenException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
     }
     return contents;
 };
-const deserializeAws_queryFederatedUser = (output, context) => {
+const de_FederatedUser = (output, context) => {
     const contents = {};
     if (output["FederatedUserId"] !== undefined) {
         contents.FederatedUserId = (0, smithy_client_1.expectString)(output["FederatedUserId"]);
@@ -11411,14 +11391,14 @@ const deserializeAws_queryFederatedUser = (output, context) => {
     }
     return contents;
 };
-const deserializeAws_queryGetAccessKeyInfoResponse = (output, context) => {
+const de_GetAccessKeyInfoResponse = (output, context) => {
     const contents = {};
     if (output["Account"] !== undefined) {
         contents.Account = (0, smithy_client_1.expectString)(output["Account"]);
     }
     return contents;
 };
-const deserializeAws_queryGetCallerIdentityResponse = (output, context) => {
+const de_GetCallerIdentityResponse = (output, context) => {
     const contents = {};
     if (output["UserId"] !== undefined) {
         contents.UserId = (0, smithy_client_1.expectString)(output["UserId"]);
@@ -11431,69 +11411,69 @@ const deserializeAws_queryGetCallerIdentityResponse = (output, context) => {
     }
     return contents;
 };
-const deserializeAws_queryGetFederationTokenResponse = (output, context) => {
+const de_GetFederationTokenResponse = (output, context) => {
     const contents = {};
     if (output["Credentials"] !== undefined) {
-        contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
+        contents.Credentials = de_Credentials(output["Credentials"], context);
     }
     if (output["FederatedUser"] !== undefined) {
-        contents.FederatedUser = deserializeAws_queryFederatedUser(output["FederatedUser"], context);
+        contents.FederatedUser = de_FederatedUser(output["FederatedUser"], context);
     }
     if (output["PackedPolicySize"] !== undefined) {
         contents.PackedPolicySize = (0, smithy_client_1.strictParseInt32)(output["PackedPolicySize"]);
     }
     return contents;
 };
-const deserializeAws_queryGetSessionTokenResponse = (output, context) => {
+const de_GetSessionTokenResponse = (output, context) => {
     const contents = {};
     if (output["Credentials"] !== undefined) {
-        contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
+        contents.Credentials = de_Credentials(output["Credentials"], context);
     }
     return contents;
 };
-const deserializeAws_queryIDPCommunicationErrorException = (output, context) => {
+const de_IDPCommunicationErrorException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
     }
     return contents;
 };
-const deserializeAws_queryIDPRejectedClaimException = (output, context) => {
+const de_IDPRejectedClaimException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
     }
     return contents;
 };
-const deserializeAws_queryInvalidAuthorizationMessageException = (output, context) => {
+const de_InvalidAuthorizationMessageException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
     }
     return contents;
 };
-const deserializeAws_queryInvalidIdentityTokenException = (output, context) => {
+const de_InvalidIdentityTokenException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
     }
     return contents;
 };
-const deserializeAws_queryMalformedPolicyDocumentException = (output, context) => {
+const de_MalformedPolicyDocumentException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
     }
     return contents;
 };
-const deserializeAws_queryPackedPolicyTooLargeException = (output, context) => {
+const de_PackedPolicyTooLargeException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
     }
     return contents;
 };
-const deserializeAws_queryRegionDisabledException = (output, context) => {
+const de_RegionDisabledException = (output, context) => {
     const contents = {};
     if (output["message"] !== undefined) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
@@ -25946,7 +25926,7 @@ exports.LazyJsonString = LazyJsonString;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.convertMap = exports.map = void 0;
+exports.take = exports.convertMap = exports.map = void 0;
 function map(arg0, arg1, arg2) {
     let target;
     let filter;
@@ -25971,25 +25951,7 @@ function map(arg0, arg1, arg2) {
             target[key] = instructions[key];
             continue;
         }
-        let [filter, value] = instructions[key];
-        if (typeof value === "function") {
-            let _value;
-            const defaultFilterPassed = filter === undefined && (_value = value()) != null;
-            const customFilterPassed = (typeof filter === "function" && !!filter(void 0)) || (typeof filter !== "function" && !!filter);
-            if (defaultFilterPassed) {
-                target[key] = _value;
-            }
-            else if (customFilterPassed) {
-                target[key] = value();
-            }
-        }
-        else {
-            const defaultFilterPassed = filter === undefined && value != null;
-            const customFilterPassed = (typeof filter === "function" && !!filter(value)) || (typeof filter !== "function" && !!filter);
-            if (defaultFilterPassed || customFilterPassed) {
-                target[key] = value;
-            }
-        }
+        applyInstruction(target, null, instructions, key);
     }
     return target;
 }
@@ -26002,6 +25964,14 @@ const convertMap = (target) => {
     return output;
 };
 exports.convertMap = convertMap;
+const take = (source, instructions) => {
+    const out = {};
+    for (const key in instructions) {
+        applyInstruction(out, source, instructions, key);
+    }
+    return out;
+};
+exports.take = take;
 const mapWithFilter = (target, filter, instructions) => {
     return map(target, Object.entries(instructions).reduce((_instructions, [key, value]) => {
         if (Array.isArray(value)) {
@@ -26018,6 +25988,40 @@ const mapWithFilter = (target, filter, instructions) => {
         return _instructions;
     }, {}));
 };
+const applyInstruction = (target, source, instructions, targetKey) => {
+    if (source !== null) {
+        let instruction = instructions[targetKey];
+        if (typeof instruction === "function") {
+            instruction = [, instruction];
+        }
+        const [filter = nonNullish, valueFn = pass, sourceKey = targetKey] = instruction;
+        if ((typeof filter === "function" && filter(source[sourceKey])) || (typeof filter !== "function" && !!filter)) {
+            target[targetKey] = valueFn(source[sourceKey]);
+        }
+        return;
+    }
+    let [filter, value] = instructions[targetKey];
+    if (typeof value === "function") {
+        let _value;
+        const defaultFilterPassed = filter === undefined && (_value = value()) != null;
+        const customFilterPassed = (typeof filter === "function" && !!filter(void 0)) || (typeof filter !== "function" && !!filter);
+        if (defaultFilterPassed) {
+            target[targetKey] = _value;
+        }
+        else if (customFilterPassed) {
+            target[targetKey] = value();
+        }
+    }
+    else {
+        const defaultFilterPassed = filter === undefined && value != null;
+        const customFilterPassed = (typeof filter === "function" && !!filter(value)) || (typeof filter !== "function" && !!filter);
+        if (defaultFilterPassed || customFilterPassed) {
+            target[targetKey] = value;
+        }
+    }
+};
+const nonNullish = (_) => _ != null;
+const pass = (_) => _;
 
 
 /***/ }),
@@ -27444,6 +27448,50 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
+/***/ 23213:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+
+/***/ }),
+
+/***/ 30820:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const tslib_1 = __nccwpck_require__(94333);
+tslib_1.__exportStar(__nccwpck_require__(23213), exports);
+tslib_1.__exportStar(__nccwpck_require__(76781), exports);
+tslib_1.__exportStar(__nccwpck_require__(14515), exports);
+
+
+/***/ }),
+
+/***/ 76781:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+
+/***/ }),
+
+/***/ 14515:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+
+/***/ }),
+
 /***/ 67736:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -27594,6 +27642,7 @@ tslib_1.__exportStar(__nccwpck_require__(26913), exports);
 tslib_1.__exportStar(__nccwpck_require__(65861), exports);
 tslib_1.__exportStar(__nccwpck_require__(76527), exports);
 tslib_1.__exportStar(__nccwpck_require__(48470), exports);
+tslib_1.__exportStar(__nccwpck_require__(30820), exports);
 tslib_1.__exportStar(__nccwpck_require__(67736), exports);
 tslib_1.__exportStar(__nccwpck_require__(13268), exports);
 tslib_1.__exportStar(__nccwpck_require__(90142), exports);
@@ -36572,7 +36621,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.303.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.303.0","@aws-sdk/config-resolver":"3.303.0","@aws-sdk/credential-provider-node":"3.303.0","@aws-sdk/fetch-http-handler":"3.303.0","@aws-sdk/hash-node":"3.303.0","@aws-sdk/invalid-dependency":"3.303.0","@aws-sdk/middleware-content-length":"3.303.0","@aws-sdk/middleware-endpoint":"3.303.0","@aws-sdk/middleware-host-header":"3.303.0","@aws-sdk/middleware-logger":"3.303.0","@aws-sdk/middleware-recursion-detection":"3.303.0","@aws-sdk/middleware-retry":"3.303.0","@aws-sdk/middleware-serde":"3.303.0","@aws-sdk/middleware-signing":"3.303.0","@aws-sdk/middleware-stack":"3.303.0","@aws-sdk/middleware-user-agent":"3.303.0","@aws-sdk/node-config-provider":"3.303.0","@aws-sdk/node-http-handler":"3.303.0","@aws-sdk/protocol-http":"3.303.0","@aws-sdk/smithy-client":"3.303.0","@aws-sdk/types":"3.303.0","@aws-sdk/url-parser":"3.303.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.303.0","@aws-sdk/util-defaults-mode-node":"3.303.0","@aws-sdk/util-endpoints":"3.303.0","@aws-sdk/util-retry":"3.303.0","@aws-sdk/util-user-agent-browser":"3.303.0","@aws-sdk/util-user-agent-node":"3.303.0","@aws-sdk/util-utf8":"3.303.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.309.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.309.0","@aws-sdk/config-resolver":"3.306.0","@aws-sdk/credential-provider-node":"3.309.0","@aws-sdk/fetch-http-handler":"3.306.0","@aws-sdk/hash-node":"3.306.0","@aws-sdk/invalid-dependency":"3.306.0","@aws-sdk/middleware-content-length":"3.306.0","@aws-sdk/middleware-endpoint":"3.306.0","@aws-sdk/middleware-host-header":"3.306.0","@aws-sdk/middleware-logger":"3.306.0","@aws-sdk/middleware-recursion-detection":"3.306.0","@aws-sdk/middleware-retry":"3.306.0","@aws-sdk/middleware-serde":"3.306.0","@aws-sdk/middleware-signing":"3.306.0","@aws-sdk/middleware-stack":"3.306.0","@aws-sdk/middleware-user-agent":"3.306.0","@aws-sdk/node-config-provider":"3.306.0","@aws-sdk/node-http-handler":"3.306.0","@aws-sdk/protocol-http":"3.306.0","@aws-sdk/smithy-client":"3.309.0","@aws-sdk/types":"3.306.0","@aws-sdk/url-parser":"3.306.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.309.0","@aws-sdk/util-defaults-mode-node":"3.309.0","@aws-sdk/util-endpoints":"3.306.0","@aws-sdk/util-retry":"3.306.0","@aws-sdk/util-user-agent-browser":"3.306.0","@aws-sdk/util-user-agent-node":"3.306.0","@aws-sdk/util-utf8":"3.303.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ }),
 
@@ -36580,7 +36629,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","descript
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.303.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.303.0","@aws-sdk/fetch-http-handler":"3.303.0","@aws-sdk/hash-node":"3.303.0","@aws-sdk/invalid-dependency":"3.303.0","@aws-sdk/middleware-content-length":"3.303.0","@aws-sdk/middleware-endpoint":"3.303.0","@aws-sdk/middleware-host-header":"3.303.0","@aws-sdk/middleware-logger":"3.303.0","@aws-sdk/middleware-recursion-detection":"3.303.0","@aws-sdk/middleware-retry":"3.303.0","@aws-sdk/middleware-serde":"3.303.0","@aws-sdk/middleware-stack":"3.303.0","@aws-sdk/middleware-user-agent":"3.303.0","@aws-sdk/node-config-provider":"3.303.0","@aws-sdk/node-http-handler":"3.303.0","@aws-sdk/protocol-http":"3.303.0","@aws-sdk/smithy-client":"3.303.0","@aws-sdk/types":"3.303.0","@aws-sdk/url-parser":"3.303.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.303.0","@aws-sdk/util-defaults-mode-node":"3.303.0","@aws-sdk/util-endpoints":"3.303.0","@aws-sdk/util-retry":"3.303.0","@aws-sdk/util-user-agent-browser":"3.303.0","@aws-sdk/util-user-agent-node":"3.303.0","@aws-sdk/util-utf8":"3.303.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.309.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.306.0","@aws-sdk/fetch-http-handler":"3.306.0","@aws-sdk/hash-node":"3.306.0","@aws-sdk/invalid-dependency":"3.306.0","@aws-sdk/middleware-content-length":"3.306.0","@aws-sdk/middleware-endpoint":"3.306.0","@aws-sdk/middleware-host-header":"3.306.0","@aws-sdk/middleware-logger":"3.306.0","@aws-sdk/middleware-recursion-detection":"3.306.0","@aws-sdk/middleware-retry":"3.306.0","@aws-sdk/middleware-serde":"3.306.0","@aws-sdk/middleware-stack":"3.306.0","@aws-sdk/middleware-user-agent":"3.306.0","@aws-sdk/node-config-provider":"3.306.0","@aws-sdk/node-http-handler":"3.306.0","@aws-sdk/protocol-http":"3.306.0","@aws-sdk/smithy-client":"3.309.0","@aws-sdk/types":"3.306.0","@aws-sdk/url-parser":"3.306.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.309.0","@aws-sdk/util-defaults-mode-node":"3.309.0","@aws-sdk/util-endpoints":"3.306.0","@aws-sdk/util-retry":"3.306.0","@aws-sdk/util-user-agent-browser":"3.306.0","@aws-sdk/util-user-agent-node":"3.306.0","@aws-sdk/util-utf8":"3.303.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
 
 /***/ }),
 
@@ -36588,7 +36637,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"A
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.303.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.303.0","@aws-sdk/fetch-http-handler":"3.303.0","@aws-sdk/hash-node":"3.303.0","@aws-sdk/invalid-dependency":"3.303.0","@aws-sdk/middleware-content-length":"3.303.0","@aws-sdk/middleware-endpoint":"3.303.0","@aws-sdk/middleware-host-header":"3.303.0","@aws-sdk/middleware-logger":"3.303.0","@aws-sdk/middleware-recursion-detection":"3.303.0","@aws-sdk/middleware-retry":"3.303.0","@aws-sdk/middleware-serde":"3.303.0","@aws-sdk/middleware-stack":"3.303.0","@aws-sdk/middleware-user-agent":"3.303.0","@aws-sdk/node-config-provider":"3.303.0","@aws-sdk/node-http-handler":"3.303.0","@aws-sdk/protocol-http":"3.303.0","@aws-sdk/smithy-client":"3.303.0","@aws-sdk/types":"3.303.0","@aws-sdk/url-parser":"3.303.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.303.0","@aws-sdk/util-defaults-mode-node":"3.303.0","@aws-sdk/util-endpoints":"3.303.0","@aws-sdk/util-retry":"3.303.0","@aws-sdk/util-user-agent-browser":"3.303.0","@aws-sdk/util-user-agent-node":"3.303.0","@aws-sdk/util-utf8":"3.303.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.309.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.306.0","@aws-sdk/fetch-http-handler":"3.306.0","@aws-sdk/hash-node":"3.306.0","@aws-sdk/invalid-dependency":"3.306.0","@aws-sdk/middleware-content-length":"3.306.0","@aws-sdk/middleware-endpoint":"3.306.0","@aws-sdk/middleware-host-header":"3.306.0","@aws-sdk/middleware-logger":"3.306.0","@aws-sdk/middleware-recursion-detection":"3.306.0","@aws-sdk/middleware-retry":"3.306.0","@aws-sdk/middleware-serde":"3.306.0","@aws-sdk/middleware-stack":"3.306.0","@aws-sdk/middleware-user-agent":"3.306.0","@aws-sdk/node-config-provider":"3.306.0","@aws-sdk/node-http-handler":"3.306.0","@aws-sdk/protocol-http":"3.306.0","@aws-sdk/smithy-client":"3.309.0","@aws-sdk/types":"3.306.0","@aws-sdk/url-parser":"3.306.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.309.0","@aws-sdk/util-defaults-mode-node":"3.309.0","@aws-sdk/util-endpoints":"3.306.0","@aws-sdk/util-retry":"3.306.0","@aws-sdk/util-user-agent-browser":"3.306.0","@aws-sdk/util-user-agent-node":"3.306.0","@aws-sdk/util-utf8":"3.303.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -36596,7 +36645,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.303.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.303.0","@aws-sdk/credential-provider-node":"3.303.0","@aws-sdk/fetch-http-handler":"3.303.0","@aws-sdk/hash-node":"3.303.0","@aws-sdk/invalid-dependency":"3.303.0","@aws-sdk/middleware-content-length":"3.303.0","@aws-sdk/middleware-endpoint":"3.303.0","@aws-sdk/middleware-host-header":"3.303.0","@aws-sdk/middleware-logger":"3.303.0","@aws-sdk/middleware-recursion-detection":"3.303.0","@aws-sdk/middleware-retry":"3.303.0","@aws-sdk/middleware-sdk-sts":"3.303.0","@aws-sdk/middleware-serde":"3.303.0","@aws-sdk/middleware-signing":"3.303.0","@aws-sdk/middleware-stack":"3.303.0","@aws-sdk/middleware-user-agent":"3.303.0","@aws-sdk/node-config-provider":"3.303.0","@aws-sdk/node-http-handler":"3.303.0","@aws-sdk/protocol-http":"3.303.0","@aws-sdk/smithy-client":"3.303.0","@aws-sdk/types":"3.303.0","@aws-sdk/url-parser":"3.303.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.303.0","@aws-sdk/util-defaults-mode-node":"3.303.0","@aws-sdk/util-endpoints":"3.303.0","@aws-sdk/util-retry":"3.303.0","@aws-sdk/util-user-agent-browser":"3.303.0","@aws-sdk/util-user-agent-node":"3.303.0","@aws-sdk/util-utf8":"3.303.0","fast-xml-parser":"4.1.2","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.309.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.306.0","@aws-sdk/credential-provider-node":"3.309.0","@aws-sdk/fetch-http-handler":"3.306.0","@aws-sdk/hash-node":"3.306.0","@aws-sdk/invalid-dependency":"3.306.0","@aws-sdk/middleware-content-length":"3.306.0","@aws-sdk/middleware-endpoint":"3.306.0","@aws-sdk/middleware-host-header":"3.306.0","@aws-sdk/middleware-logger":"3.306.0","@aws-sdk/middleware-recursion-detection":"3.306.0","@aws-sdk/middleware-retry":"3.306.0","@aws-sdk/middleware-sdk-sts":"3.306.0","@aws-sdk/middleware-serde":"3.306.0","@aws-sdk/middleware-signing":"3.306.0","@aws-sdk/middleware-stack":"3.306.0","@aws-sdk/middleware-user-agent":"3.306.0","@aws-sdk/node-config-provider":"3.306.0","@aws-sdk/node-http-handler":"3.306.0","@aws-sdk/protocol-http":"3.306.0","@aws-sdk/smithy-client":"3.309.0","@aws-sdk/types":"3.306.0","@aws-sdk/url-parser":"3.306.0","@aws-sdk/util-base64":"3.303.0","@aws-sdk/util-body-length-browser":"3.303.0","@aws-sdk/util-body-length-node":"3.303.0","@aws-sdk/util-defaults-mode-browser":"3.309.0","@aws-sdk/util-defaults-mode-node":"3.309.0","@aws-sdk/util-endpoints":"3.306.0","@aws-sdk/util-retry":"3.306.0","@aws-sdk/util-user-agent-browser":"3.306.0","@aws-sdk/util-user-agent-node":"3.306.0","@aws-sdk/util-utf8":"3.303.0","fast-xml-parser":"4.1.2","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.303.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
