@@ -1919,6 +1919,7 @@ exports.checkBypass = checkBypass;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SecretsManager = void 0;
+const smithy_client_1 = __nccwpck_require__(4963);
 const CancelRotateSecretCommand_1 = __nccwpck_require__(93679);
 const CreateSecretCommand_1 = __nccwpck_require__(53210);
 const DeleteResourcePolicyCommand_1 = __nccwpck_require__(50717);
@@ -1942,317 +1943,34 @@ const UpdateSecretCommand_1 = __nccwpck_require__(58778);
 const UpdateSecretVersionStageCommand_1 = __nccwpck_require__(11564);
 const ValidateResourcePolicyCommand_1 = __nccwpck_require__(81486);
 const SecretsManagerClient_1 = __nccwpck_require__(50162);
+const commands = {
+    CancelRotateSecretCommand: CancelRotateSecretCommand_1.CancelRotateSecretCommand,
+    CreateSecretCommand: CreateSecretCommand_1.CreateSecretCommand,
+    DeleteResourcePolicyCommand: DeleteResourcePolicyCommand_1.DeleteResourcePolicyCommand,
+    DeleteSecretCommand: DeleteSecretCommand_1.DeleteSecretCommand,
+    DescribeSecretCommand: DescribeSecretCommand_1.DescribeSecretCommand,
+    GetRandomPasswordCommand: GetRandomPasswordCommand_1.GetRandomPasswordCommand,
+    GetResourcePolicyCommand: GetResourcePolicyCommand_1.GetResourcePolicyCommand,
+    GetSecretValueCommand: GetSecretValueCommand_1.GetSecretValueCommand,
+    ListSecretsCommand: ListSecretsCommand_1.ListSecretsCommand,
+    ListSecretVersionIdsCommand: ListSecretVersionIdsCommand_1.ListSecretVersionIdsCommand,
+    PutResourcePolicyCommand: PutResourcePolicyCommand_1.PutResourcePolicyCommand,
+    PutSecretValueCommand: PutSecretValueCommand_1.PutSecretValueCommand,
+    RemoveRegionsFromReplicationCommand: RemoveRegionsFromReplicationCommand_1.RemoveRegionsFromReplicationCommand,
+    ReplicateSecretToRegionsCommand: ReplicateSecretToRegionsCommand_1.ReplicateSecretToRegionsCommand,
+    RestoreSecretCommand: RestoreSecretCommand_1.RestoreSecretCommand,
+    RotateSecretCommand: RotateSecretCommand_1.RotateSecretCommand,
+    StopReplicationToReplicaCommand: StopReplicationToReplicaCommand_1.StopReplicationToReplicaCommand,
+    TagResourceCommand: TagResourceCommand_1.TagResourceCommand,
+    UntagResourceCommand: UntagResourceCommand_1.UntagResourceCommand,
+    UpdateSecretCommand: UpdateSecretCommand_1.UpdateSecretCommand,
+    UpdateSecretVersionStageCommand: UpdateSecretVersionStageCommand_1.UpdateSecretVersionStageCommand,
+    ValidateResourcePolicyCommand: ValidateResourcePolicyCommand_1.ValidateResourcePolicyCommand,
+};
 class SecretsManager extends SecretsManagerClient_1.SecretsManagerClient {
-    cancelRotateSecret(args, optionsOrCb, cb) {
-        const command = new CancelRotateSecretCommand_1.CancelRotateSecretCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    createSecret(args, optionsOrCb, cb) {
-        const command = new CreateSecretCommand_1.CreateSecretCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    deleteResourcePolicy(args, optionsOrCb, cb) {
-        const command = new DeleteResourcePolicyCommand_1.DeleteResourcePolicyCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    deleteSecret(args, optionsOrCb, cb) {
-        const command = new DeleteSecretCommand_1.DeleteSecretCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    describeSecret(args, optionsOrCb, cb) {
-        const command = new DescribeSecretCommand_1.DescribeSecretCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    getRandomPassword(args, optionsOrCb, cb) {
-        const command = new GetRandomPasswordCommand_1.GetRandomPasswordCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    getResourcePolicy(args, optionsOrCb, cb) {
-        const command = new GetResourcePolicyCommand_1.GetResourcePolicyCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    getSecretValue(args, optionsOrCb, cb) {
-        const command = new GetSecretValueCommand_1.GetSecretValueCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    listSecrets(args, optionsOrCb, cb) {
-        const command = new ListSecretsCommand_1.ListSecretsCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    listSecretVersionIds(args, optionsOrCb, cb) {
-        const command = new ListSecretVersionIdsCommand_1.ListSecretVersionIdsCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    putResourcePolicy(args, optionsOrCb, cb) {
-        const command = new PutResourcePolicyCommand_1.PutResourcePolicyCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    putSecretValue(args, optionsOrCb, cb) {
-        const command = new PutSecretValueCommand_1.PutSecretValueCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    removeRegionsFromReplication(args, optionsOrCb, cb) {
-        const command = new RemoveRegionsFromReplicationCommand_1.RemoveRegionsFromReplicationCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    replicateSecretToRegions(args, optionsOrCb, cb) {
-        const command = new ReplicateSecretToRegionsCommand_1.ReplicateSecretToRegionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    restoreSecret(args, optionsOrCb, cb) {
-        const command = new RestoreSecretCommand_1.RestoreSecretCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    rotateSecret(args, optionsOrCb, cb) {
-        const command = new RotateSecretCommand_1.RotateSecretCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    stopReplicationToReplica(args, optionsOrCb, cb) {
-        const command = new StopReplicationToReplicaCommand_1.StopReplicationToReplicaCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    tagResource(args, optionsOrCb, cb) {
-        const command = new TagResourceCommand_1.TagResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    untagResource(args, optionsOrCb, cb) {
-        const command = new UntagResourceCommand_1.UntagResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    updateSecret(args, optionsOrCb, cb) {
-        const command = new UpdateSecretCommand_1.UpdateSecretCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    updateSecretVersionStage(args, optionsOrCb, cb) {
-        const command = new UpdateSecretVersionStageCommand_1.UpdateSecretVersionStageCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    validateResourcePolicy(args, optionsOrCb, cb) {
-        const command = new ValidateResourcePolicyCommand_1.ValidateResourcePolicyCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
 }
 exports.SecretsManager = SecretsManager;
+(0, smithy_client_1.createAggregatedClient)(commands, SecretsManager);
 
 
 /***/ }),
@@ -3955,7 +3673,7 @@ const SecretsManagerServiceException_1 = __nccwpck_require__(67281);
 const se_CancelRotateSecretCommand = async (input, context) => {
     const headers = sharedHeaders("CancelRotateSecret");
     let body;
-    body = JSON.stringify(se_CancelRotateSecretRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_CancelRotateSecretCommand = se_CancelRotateSecretCommand;
@@ -3969,63 +3687,63 @@ exports.se_CreateSecretCommand = se_CreateSecretCommand;
 const se_DeleteResourcePolicyCommand = async (input, context) => {
     const headers = sharedHeaders("DeleteResourcePolicy");
     let body;
-    body = JSON.stringify(se_DeleteResourcePolicyRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_DeleteResourcePolicyCommand = se_DeleteResourcePolicyCommand;
 const se_DeleteSecretCommand = async (input, context) => {
     const headers = sharedHeaders("DeleteSecret");
     let body;
-    body = JSON.stringify(se_DeleteSecretRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_DeleteSecretCommand = se_DeleteSecretCommand;
 const se_DescribeSecretCommand = async (input, context) => {
     const headers = sharedHeaders("DescribeSecret");
     let body;
-    body = JSON.stringify(se_DescribeSecretRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_DescribeSecretCommand = se_DescribeSecretCommand;
 const se_GetRandomPasswordCommand = async (input, context) => {
     const headers = sharedHeaders("GetRandomPassword");
     let body;
-    body = JSON.stringify(se_GetRandomPasswordRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_GetRandomPasswordCommand = se_GetRandomPasswordCommand;
 const se_GetResourcePolicyCommand = async (input, context) => {
     const headers = sharedHeaders("GetResourcePolicy");
     let body;
-    body = JSON.stringify(se_GetResourcePolicyRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_GetResourcePolicyCommand = se_GetResourcePolicyCommand;
 const se_GetSecretValueCommand = async (input, context) => {
     const headers = sharedHeaders("GetSecretValue");
     let body;
-    body = JSON.stringify(se_GetSecretValueRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_GetSecretValueCommand = se_GetSecretValueCommand;
 const se_ListSecretsCommand = async (input, context) => {
     const headers = sharedHeaders("ListSecrets");
     let body;
-    body = JSON.stringify(se_ListSecretsRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_ListSecretsCommand = se_ListSecretsCommand;
 const se_ListSecretVersionIdsCommand = async (input, context) => {
     const headers = sharedHeaders("ListSecretVersionIds");
     let body;
-    body = JSON.stringify(se_ListSecretVersionIdsRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_ListSecretVersionIdsCommand = se_ListSecretVersionIdsCommand;
 const se_PutResourcePolicyCommand = async (input, context) => {
     const headers = sharedHeaders("PutResourcePolicy");
     let body;
-    body = JSON.stringify(se_PutResourcePolicyRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_PutResourcePolicyCommand = se_PutResourcePolicyCommand;
@@ -4039,21 +3757,21 @@ exports.se_PutSecretValueCommand = se_PutSecretValueCommand;
 const se_RemoveRegionsFromReplicationCommand = async (input, context) => {
     const headers = sharedHeaders("RemoveRegionsFromReplication");
     let body;
-    body = JSON.stringify(se_RemoveRegionsFromReplicationRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_RemoveRegionsFromReplicationCommand = se_RemoveRegionsFromReplicationCommand;
 const se_ReplicateSecretToRegionsCommand = async (input, context) => {
     const headers = sharedHeaders("ReplicateSecretToRegions");
     let body;
-    body = JSON.stringify(se_ReplicateSecretToRegionsRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_ReplicateSecretToRegionsCommand = se_ReplicateSecretToRegionsCommand;
 const se_RestoreSecretCommand = async (input, context) => {
     const headers = sharedHeaders("RestoreSecret");
     let body;
-    body = JSON.stringify(se_RestoreSecretRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_RestoreSecretCommand = se_RestoreSecretCommand;
@@ -4067,21 +3785,21 @@ exports.se_RotateSecretCommand = se_RotateSecretCommand;
 const se_StopReplicationToReplicaCommand = async (input, context) => {
     const headers = sharedHeaders("StopReplicationToReplica");
     let body;
-    body = JSON.stringify(se_StopReplicationToReplicaRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_StopReplicationToReplicaCommand = se_StopReplicationToReplicaCommand;
 const se_TagResourceCommand = async (input, context) => {
     const headers = sharedHeaders("TagResource");
     let body;
-    body = JSON.stringify(se_TagResourceRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_TagResourceCommand = se_TagResourceCommand;
 const se_UntagResourceCommand = async (input, context) => {
     const headers = sharedHeaders("UntagResource");
     let body;
-    body = JSON.stringify(se_UntagResourceRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_UntagResourceCommand = se_UntagResourceCommand;
@@ -4095,14 +3813,14 @@ exports.se_UpdateSecretCommand = se_UpdateSecretCommand;
 const se_UpdateSecretVersionStageCommand = async (input, context) => {
     const headers = sharedHeaders("UpdateSecretVersionStage");
     let body;
-    body = JSON.stringify(se_UpdateSecretVersionStageRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_UpdateSecretVersionStageCommand = se_UpdateSecretVersionStageCommand;
 const se_ValidateResourcePolicyCommand = async (input, context) => {
     const headers = sharedHeaders("ValidateResourcePolicy");
     let body;
-    body = JSON.stringify(se_ValidateResourcePolicyRequest(input, context));
+    body = JSON.stringify((0, smithy_client_1._json)(input));
     return buildHttpRpcRequest(context, headers, "/", undefined, body);
 };
 exports.se_ValidateResourcePolicyCommand = se_ValidateResourcePolicyCommand;
@@ -4112,12 +3830,12 @@ const de_CancelRotateSecretCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_CancelRotateSecretResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_CancelRotateSecretCommand = de_CancelRotateSecretCommand;
 const de_CancelRotateSecretCommandError = async (output, context) => {
@@ -4141,10 +3859,9 @@ const de_CancelRotateSecretCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4160,7 +3877,7 @@ const de_CreateSecretCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_CreateSecretCommand = de_CreateSecretCommand;
 const de_CreateSecretCommandError = async (output, context) => {
@@ -4202,10 +3919,9 @@ const de_CreateSecretCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4216,12 +3932,12 @@ const de_DeleteResourcePolicyCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_DeleteResourcePolicyResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_DeleteResourcePolicyCommand = de_DeleteResourcePolicyCommand;
 const de_DeleteResourcePolicyCommandError = async (output, context) => {
@@ -4245,10 +3961,9 @@ const de_DeleteResourcePolicyCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4264,7 +3979,7 @@ const de_DeleteSecretCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_DeleteSecretCommand = de_DeleteSecretCommand;
 const de_DeleteSecretCommandError = async (output, context) => {
@@ -4288,10 +4003,9 @@ const de_DeleteSecretCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4307,7 +4021,7 @@ const de_DescribeSecretCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_DescribeSecretCommand = de_DescribeSecretCommand;
 const de_DescribeSecretCommandError = async (output, context) => {
@@ -4328,10 +4042,9 @@ const de_DescribeSecretCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4342,12 +4055,12 @@ const de_GetRandomPasswordCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_GetRandomPasswordResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_GetRandomPasswordCommand = de_GetRandomPasswordCommand;
 const de_GetRandomPasswordCommandError = async (output, context) => {
@@ -4368,10 +4081,9 @@ const de_GetRandomPasswordCommandError = async (output, context) => {
             throw await de_InvalidRequestExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4382,12 +4094,12 @@ const de_GetResourcePolicyCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_GetResourcePolicyResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_GetResourcePolicyCommand = de_GetResourcePolicyCommand;
 const de_GetResourcePolicyCommandError = async (output, context) => {
@@ -4411,10 +4123,9 @@ const de_GetResourcePolicyCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4430,7 +4141,7 @@ const de_GetSecretValueCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_GetSecretValueCommand = de_GetSecretValueCommand;
 const de_GetSecretValueCommandError = async (output, context) => {
@@ -4457,10 +4168,9 @@ const de_GetSecretValueCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4476,7 +4186,7 @@ const de_ListSecretsCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_ListSecretsCommand = de_ListSecretsCommand;
 const de_ListSecretsCommandError = async (output, context) => {
@@ -4497,10 +4207,9 @@ const de_ListSecretsCommandError = async (output, context) => {
             throw await de_InvalidParameterExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4516,7 +4225,7 @@ const de_ListSecretVersionIdsCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_ListSecretVersionIdsCommand = de_ListSecretVersionIdsCommand;
 const de_ListSecretVersionIdsCommandError = async (output, context) => {
@@ -4540,10 +4249,9 @@ const de_ListSecretVersionIdsCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4554,12 +4262,12 @@ const de_PutResourcePolicyCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_PutResourcePolicyResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_PutResourcePolicyCommand = de_PutResourcePolicyCommand;
 const de_PutResourcePolicyCommandError = async (output, context) => {
@@ -4589,10 +4297,9 @@ const de_PutResourcePolicyCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4603,12 +4310,12 @@ const de_PutSecretValueCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_PutSecretValueResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_PutSecretValueCommand = de_PutSecretValueCommand;
 const de_PutSecretValueCommandError = async (output, context) => {
@@ -4644,10 +4351,9 @@ const de_PutSecretValueCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4663,7 +4369,7 @@ const de_RemoveRegionsFromReplicationCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_RemoveRegionsFromReplicationCommand = de_RemoveRegionsFromReplicationCommand;
 const de_RemoveRegionsFromReplicationCommandError = async (output, context) => {
@@ -4687,10 +4393,9 @@ const de_RemoveRegionsFromReplicationCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4706,7 +4411,7 @@ const de_ReplicateSecretToRegionsCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_ReplicateSecretToRegionsCommand = de_ReplicateSecretToRegionsCommand;
 const de_ReplicateSecretToRegionsCommandError = async (output, context) => {
@@ -4730,10 +4435,9 @@ const de_ReplicateSecretToRegionsCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4744,12 +4448,12 @@ const de_RestoreSecretCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_RestoreSecretResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_RestoreSecretCommand = de_RestoreSecretCommand;
 const de_RestoreSecretCommandError = async (output, context) => {
@@ -4773,10 +4477,9 @@ const de_RestoreSecretCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4787,12 +4490,12 @@ const de_RotateSecretCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_RotateSecretResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_RotateSecretCommand = de_RotateSecretCommand;
 const de_RotateSecretCommandError = async (output, context) => {
@@ -4816,10 +4519,9 @@ const de_RotateSecretCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4830,12 +4532,12 @@ const de_StopReplicationToReplicaCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_StopReplicationToReplicaResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_StopReplicationToReplicaCommand = de_StopReplicationToReplicaCommand;
 const de_StopReplicationToReplicaCommandError = async (output, context) => {
@@ -4859,10 +4561,9 @@ const de_StopReplicationToReplicaCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4875,7 +4576,7 @@ const de_TagResourceCommand = async (output, context) => {
     const response = {
         $metadata: deserializeMetadata(output),
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_TagResourceCommand = de_TagResourceCommand;
 const de_TagResourceCommandError = async (output, context) => {
@@ -4899,10 +4600,9 @@ const de_TagResourceCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4915,7 +4615,7 @@ const de_UntagResourceCommand = async (output, context) => {
     const response = {
         $metadata: deserializeMetadata(output),
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_UntagResourceCommand = de_UntagResourceCommand;
 const de_UntagResourceCommandError = async (output, context) => {
@@ -4939,10 +4639,9 @@ const de_UntagResourceCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -4953,12 +4652,12 @@ const de_UpdateSecretCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_UpdateSecretResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_UpdateSecretCommand = de_UpdateSecretCommand;
 const de_UpdateSecretCommandError = async (output, context) => {
@@ -5000,10 +4699,9 @@ const de_UpdateSecretCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -5014,12 +4712,12 @@ const de_UpdateSecretVersionStageCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_UpdateSecretVersionStageResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_UpdateSecretVersionStageCommand = de_UpdateSecretVersionStageCommand;
 const de_UpdateSecretVersionStageCommandError = async (output, context) => {
@@ -5046,10 +4744,9 @@ const de_UpdateSecretVersionStageCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
@@ -5060,12 +4757,12 @@ const de_ValidateResourcePolicyCommand = async (output, context) => {
     }
     const data = await parseBody(output.body, context);
     let contents = {};
-    contents = de_ValidateResourcePolicyResponse(data, context);
+    contents = (0, smithy_client_1._json)(data);
     const response = {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_ValidateResourcePolicyCommand = de_ValidateResourcePolicyCommand;
 const de_ValidateResourcePolicyCommandError = async (output, context) => {
@@ -5092,17 +4789,16 @@ const de_ValidateResourcePolicyCommandError = async (output, context) => {
             throw await de_ResourceNotFoundExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SecretsManagerServiceException_1.SecretsManagerServiceException,
                 errorCode,
             });
     }
 };
 const de_DecryptionFailureRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_DecryptionFailure(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.DecryptionFailure({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5111,7 +4807,7 @@ const de_DecryptionFailureRes = async (parsedOutput, context) => {
 };
 const de_EncryptionFailureRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_EncryptionFailure(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.EncryptionFailure({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5120,7 +4816,7 @@ const de_EncryptionFailureRes = async (parsedOutput, context) => {
 };
 const de_InternalServiceErrorRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_InternalServiceError(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.InternalServiceError({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5129,7 +4825,7 @@ const de_InternalServiceErrorRes = async (parsedOutput, context) => {
 };
 const de_InvalidNextTokenExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_InvalidNextTokenException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.InvalidNextTokenException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5138,7 +4834,7 @@ const de_InvalidNextTokenExceptionRes = async (parsedOutput, context) => {
 };
 const de_InvalidParameterExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_InvalidParameterException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.InvalidParameterException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5147,7 +4843,7 @@ const de_InvalidParameterExceptionRes = async (parsedOutput, context) => {
 };
 const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_InvalidRequestException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.InvalidRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5156,7 +4852,7 @@ const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
 };
 const de_LimitExceededExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_LimitExceededException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.LimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5165,7 +4861,7 @@ const de_LimitExceededExceptionRes = async (parsedOutput, context) => {
 };
 const de_MalformedPolicyDocumentExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_MalformedPolicyDocumentException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.MalformedPolicyDocumentException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5174,7 +4870,7 @@ const de_MalformedPolicyDocumentExceptionRes = async (parsedOutput, context) => 
 };
 const de_PreconditionNotMetExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_PreconditionNotMetException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.PreconditionNotMetException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5183,7 +4879,7 @@ const de_PreconditionNotMetExceptionRes = async (parsedOutput, context) => {
 };
 const de_PublicPolicyExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_PublicPolicyException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.PublicPolicyException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5192,7 +4888,7 @@ const de_PublicPolicyExceptionRes = async (parsedOutput, context) => {
 };
 const de_ResourceExistsExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_ResourceExistsException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.ResourceExistsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
@@ -5201,646 +4897,188 @@ const de_ResourceExistsExceptionRes = async (parsedOutput, context) => {
 };
 const de_ResourceNotFoundExceptionRes = async (parsedOutput, context) => {
     const body = parsedOutput.body;
-    const deserialized = de_ResourceNotFoundException(body, context);
+    const deserialized = (0, smithy_client_1._json)(body);
     const exception = new models_0_1.ResourceNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, body);
 };
-const se_AddReplicaRegionListType = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return se_ReplicaRegionType(entry, context);
-    });
-};
-const se_CancelRotateSecretRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
 const se_CreateSecretRequest = (input, context) => {
-    return {
-        ...(input.AddReplicaRegions != null && {
-            AddReplicaRegions: se_AddReplicaRegionListType(input.AddReplicaRegions, context),
-        }),
-        ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
-        ...(input.Description != null && { Description: input.Description }),
-        ...(input.ForceOverwriteReplicaSecret != null && {
-            ForceOverwriteReplicaSecret: input.ForceOverwriteReplicaSecret,
-        }),
-        ...(input.KmsKeyId != null && { KmsKeyId: input.KmsKeyId }),
-        ...(input.Name != null && { Name: input.Name }),
-        ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
-        ...(input.SecretString != null && { SecretString: input.SecretString }),
-        ...(input.Tags != null && { Tags: se_TagListType(input.Tags, context) }),
-    };
-};
-const se_DeleteResourcePolicyRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_DeleteSecretRequest = (input, context) => {
-    return {
-        ...(input.ForceDeleteWithoutRecovery != null && { ForceDeleteWithoutRecovery: input.ForceDeleteWithoutRecovery }),
-        ...(input.RecoveryWindowInDays != null && { RecoveryWindowInDays: input.RecoveryWindowInDays }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_DescribeSecretRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_Filter = (input, context) => {
-    return {
-        ...(input.Key != null && { Key: input.Key }),
-        ...(input.Values != null && { Values: se_FilterValuesStringList(input.Values, context) }),
-    };
-};
-const se_FiltersListType = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return se_Filter(entry, context);
+    return (0, smithy_client_1.take)(input, {
+        AddReplicaRegions: smithy_client_1._json,
+        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
+        Description: [],
+        ForceOverwriteReplicaSecret: [],
+        KmsKeyId: [],
+        Name: [],
+        SecretBinary: context.base64Encoder,
+        SecretString: [],
+        Tags: smithy_client_1._json,
     });
-};
-const se_FilterValuesStringList = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return entry;
-    });
-};
-const se_GetRandomPasswordRequest = (input, context) => {
-    return {
-        ...(input.ExcludeCharacters != null && { ExcludeCharacters: input.ExcludeCharacters }),
-        ...(input.ExcludeLowercase != null && { ExcludeLowercase: input.ExcludeLowercase }),
-        ...(input.ExcludeNumbers != null && { ExcludeNumbers: input.ExcludeNumbers }),
-        ...(input.ExcludePunctuation != null && { ExcludePunctuation: input.ExcludePunctuation }),
-        ...(input.ExcludeUppercase != null && { ExcludeUppercase: input.ExcludeUppercase }),
-        ...(input.IncludeSpace != null && { IncludeSpace: input.IncludeSpace }),
-        ...(input.PasswordLength != null && { PasswordLength: input.PasswordLength }),
-        ...(input.RequireEachIncludedType != null && { RequireEachIncludedType: input.RequireEachIncludedType }),
-    };
-};
-const se_GetResourcePolicyRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_GetSecretValueRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.VersionId != null && { VersionId: input.VersionId }),
-        ...(input.VersionStage != null && { VersionStage: input.VersionStage }),
-    };
-};
-const se_ListSecretsRequest = (input, context) => {
-    return {
-        ...(input.Filters != null && { Filters: se_FiltersListType(input.Filters, context) }),
-        ...(input.IncludePlannedDeletion != null && { IncludePlannedDeletion: input.IncludePlannedDeletion }),
-        ...(input.MaxResults != null && { MaxResults: input.MaxResults }),
-        ...(input.NextToken != null && { NextToken: input.NextToken }),
-        ...(input.SortOrder != null && { SortOrder: input.SortOrder }),
-    };
-};
-const se_ListSecretVersionIdsRequest = (input, context) => {
-    return {
-        ...(input.IncludeDeprecated != null && { IncludeDeprecated: input.IncludeDeprecated }),
-        ...(input.MaxResults != null && { MaxResults: input.MaxResults }),
-        ...(input.NextToken != null && { NextToken: input.NextToken }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_PutResourcePolicyRequest = (input, context) => {
-    return {
-        ...(input.BlockPublicPolicy != null && { BlockPublicPolicy: input.BlockPublicPolicy }),
-        ...(input.ResourcePolicy != null && { ResourcePolicy: input.ResourcePolicy }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
 };
 const se_PutSecretValueRequest = (input, context) => {
-    return {
-        ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
-        ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.SecretString != null && { SecretString: input.SecretString }),
-        ...(input.VersionStages != null && { VersionStages: se_SecretVersionStagesType(input.VersionStages, context) }),
-    };
-};
-const se_RemoveRegionsFromReplicationRequest = (input, context) => {
-    return {
-        ...(input.RemoveReplicaRegions != null && {
-            RemoveReplicaRegions: se_RemoveReplicaRegionListType(input.RemoveReplicaRegions, context),
-        }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_RemoveReplicaRegionListType = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return entry;
+    return (0, smithy_client_1.take)(input, {
+        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
+        SecretBinary: context.base64Encoder,
+        SecretId: [],
+        SecretString: [],
+        VersionStages: smithy_client_1._json,
     });
-};
-const se_ReplicaRegionType = (input, context) => {
-    return {
-        ...(input.KmsKeyId != null && { KmsKeyId: input.KmsKeyId }),
-        ...(input.Region != null && { Region: input.Region }),
-    };
-};
-const se_ReplicateSecretToRegionsRequest = (input, context) => {
-    return {
-        ...(input.AddReplicaRegions != null && {
-            AddReplicaRegions: se_AddReplicaRegionListType(input.AddReplicaRegions, context),
-        }),
-        ...(input.ForceOverwriteReplicaSecret != null && {
-            ForceOverwriteReplicaSecret: input.ForceOverwriteReplicaSecret,
-        }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_RestoreSecretRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
 };
 const se_RotateSecretRequest = (input, context) => {
-    return {
-        ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
-        ...(input.RotateImmediately != null && { RotateImmediately: input.RotateImmediately }),
-        ...(input.RotationLambdaARN != null && { RotationLambdaARN: input.RotationLambdaARN }),
-        ...(input.RotationRules != null && { RotationRules: se_RotationRulesType(input.RotationRules, context) }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_RotationRulesType = (input, context) => {
-    return {
-        ...(input.AutomaticallyAfterDays != null && { AutomaticallyAfterDays: input.AutomaticallyAfterDays }),
-        ...(input.Duration != null && { Duration: input.Duration }),
-        ...(input.ScheduleExpression != null && { ScheduleExpression: input.ScheduleExpression }),
-    };
-};
-const se_SecretVersionStagesType = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return entry;
+    return (0, smithy_client_1.take)(input, {
+        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
+        RotateImmediately: [],
+        RotationLambdaARN: [],
+        RotationRules: smithy_client_1._json,
+        SecretId: [],
     });
-};
-const se_StopReplicationToReplicaRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const se_Tag = (input, context) => {
-    return {
-        ...(input.Key != null && { Key: input.Key }),
-        ...(input.Value != null && { Value: input.Value }),
-    };
-};
-const se_TagKeyListType = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return entry;
-    });
-};
-const se_TagListType = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return se_Tag(entry, context);
-    });
-};
-const se_TagResourceRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.Tags != null && { Tags: se_TagListType(input.Tags, context) }),
-    };
-};
-const se_UntagResourceRequest = (input, context) => {
-    return {
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.TagKeys != null && { TagKeys: se_TagKeyListType(input.TagKeys, context) }),
-    };
 };
 const se_UpdateSecretRequest = (input, context) => {
-    return {
-        ClientRequestToken: input.ClientRequestToken ?? (0, uuid_1.v4)(),
-        ...(input.Description != null && { Description: input.Description }),
-        ...(input.KmsKeyId != null && { KmsKeyId: input.KmsKeyId }),
-        ...(input.SecretBinary != null && { SecretBinary: context.base64Encoder(input.SecretBinary) }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.SecretString != null && { SecretString: input.SecretString }),
-    };
-};
-const se_UpdateSecretVersionStageRequest = (input, context) => {
-    return {
-        ...(input.MoveToVersionId != null && { MoveToVersionId: input.MoveToVersionId }),
-        ...(input.RemoveFromVersionId != null && { RemoveFromVersionId: input.RemoveFromVersionId }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-        ...(input.VersionStage != null && { VersionStage: input.VersionStage }),
-    };
-};
-const se_ValidateResourcePolicyRequest = (input, context) => {
-    return {
-        ...(input.ResourcePolicy != null && { ResourcePolicy: input.ResourcePolicy }),
-        ...(input.SecretId != null && { SecretId: input.SecretId }),
-    };
-};
-const de_CancelRotateSecretResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-    };
+    return (0, smithy_client_1.take)(input, {
+        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
+        Description: [],
+        KmsKeyId: [],
+        SecretBinary: context.base64Encoder,
+        SecretId: [],
+        SecretString: [],
+    });
 };
 const de_CreateSecretResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
-        VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-    };
-};
-const de_DecryptionFailure = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_DeleteResourcePolicyResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-    };
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        ReplicationStatus: (_) => de_ReplicationStatusListType(_, context),
+        VersionId: smithy_client_1.expectString,
+    });
 };
 const de_DeleteSecretResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        DeletionDate: output.DeletionDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.DeletionDate)))
-            : undefined,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-    };
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        DeletionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+    });
 };
 const de_DescribeSecretResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        CreatedDate: output.CreatedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
-            : undefined,
-        DeletedDate: output.DeletedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.DeletedDate)))
-            : undefined,
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        KmsKeyId: (0, smithy_client_1.expectString)(output.KmsKeyId),
-        LastAccessedDate: output.LastAccessedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
-            : undefined,
-        LastChangedDate: output.LastChangedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastChangedDate)))
-            : undefined,
-        LastRotatedDate: output.LastRotatedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastRotatedDate)))
-            : undefined,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        NextRotationDate: output.NextRotationDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.NextRotationDate)))
-            : undefined,
-        OwningService: (0, smithy_client_1.expectString)(output.OwningService),
-        PrimaryRegion: (0, smithy_client_1.expectString)(output.PrimaryRegion),
-        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
-        RotationEnabled: (0, smithy_client_1.expectBoolean)(output.RotationEnabled),
-        RotationLambdaARN: (0, smithy_client_1.expectString)(output.RotationLambdaARN),
-        RotationRules: output.RotationRules != null ? de_RotationRulesType(output.RotationRules, context) : undefined,
-        Tags: output.Tags != null ? de_TagListType(output.Tags, context) : undefined,
-        VersionIdsToStages: output.VersionIdsToStages != null
-            ? de_SecretVersionsToStagesMapType(output.VersionIdsToStages, context)
-            : undefined,
-    };
-};
-const de_EncryptionFailure = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_GetRandomPasswordResponse = (output, context) => {
-    return {
-        RandomPassword: (0, smithy_client_1.expectString)(output.RandomPassword),
-    };
-};
-const de_GetResourcePolicyResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        ResourcePolicy: (0, smithy_client_1.expectString)(output.ResourcePolicy),
-    };
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DeletedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Description: smithy_client_1.expectString,
+        KmsKeyId: smithy_client_1.expectString,
+        LastAccessedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastChangedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastRotatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        NextRotationDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        OwningService: smithy_client_1.expectString,
+        PrimaryRegion: smithy_client_1.expectString,
+        ReplicationStatus: (_) => de_ReplicationStatusListType(_, context),
+        RotationEnabled: smithy_client_1.expectBoolean,
+        RotationLambdaARN: smithy_client_1.expectString,
+        RotationRules: smithy_client_1._json,
+        Tags: smithy_client_1._json,
+        VersionIdsToStages: smithy_client_1._json,
+    });
 };
 const de_GetSecretValueResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        CreatedDate: output.CreatedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
-            : undefined,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        SecretBinary: output.SecretBinary != null ? context.base64Decoder(output.SecretBinary) : undefined,
-        SecretString: (0, smithy_client_1.expectString)(output.SecretString),
-        VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages != null ? de_SecretVersionStagesType(output.VersionStages, context) : undefined,
-    };
-};
-const de_InternalServiceError = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_InvalidNextTokenException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_InvalidParameterException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_InvalidRequestException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_KmsKeyIdListType = (output, context) => {
-    const retVal = (output || [])
-        .filter((e) => e != null)
-        .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        SecretBinary: context.base64Decoder,
+        SecretString: smithy_client_1.expectString,
+        VersionId: smithy_client_1.expectString,
+        VersionStages: smithy_client_1._json,
     });
-    return retVal;
-};
-const de_LimitExceededException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
 };
 const de_ListSecretsResponse = (output, context) => {
-    return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        SecretList: output.SecretList != null ? de_SecretListType(output.SecretList, context) : undefined,
-    };
+    return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        SecretList: (_) => de_SecretListType(_, context),
+    });
 };
 const de_ListSecretVersionIdsResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Versions: output.Versions != null ? de_SecretVersionsListType(output.Versions, context) : undefined,
-    };
-};
-const de_MalformedPolicyDocumentException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_PreconditionNotMetException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_PublicPolicyException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_PutResourcePolicyResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-    };
-};
-const de_PutSecretValueResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages != null ? de_SecretVersionStagesType(output.VersionStages, context) : undefined,
-    };
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        NextToken: smithy_client_1.expectString,
+        Versions: (_) => de_SecretVersionsListType(_, context),
+    });
 };
 const de_RemoveRegionsFromReplicationResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
-    };
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        ReplicationStatus: (_) => de_ReplicationStatusListType(_, context),
+    });
 };
 const de_ReplicateSecretToRegionsResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        ReplicationStatus: output.ReplicationStatus != null ? de_ReplicationStatusListType(output.ReplicationStatus, context) : undefined,
-    };
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        ReplicationStatus: (_) => de_ReplicationStatusListType(_, context),
+    });
 };
 const de_ReplicationStatusListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
         return de_ReplicationStatusType(entry, context);
     });
     return retVal;
 };
 const de_ReplicationStatusType = (output, context) => {
-    return {
-        KmsKeyId: (0, smithy_client_1.expectString)(output.KmsKeyId),
-        LastAccessedDate: output.LastAccessedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
-            : undefined,
-        Region: (0, smithy_client_1.expectString)(output.Region),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusMessage: (0, smithy_client_1.expectString)(output.StatusMessage),
-    };
-};
-const de_ResourceExistsException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_ResourceNotFoundException = (output, context) => {
-    return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-    };
-};
-const de_RestoreSecretResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-    };
-};
-const de_RotateSecretResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-    };
-};
-const de_RotationRulesType = (output, context) => {
-    return {
-        AutomaticallyAfterDays: (0, smithy_client_1.expectLong)(output.AutomaticallyAfterDays),
-        Duration: (0, smithy_client_1.expectString)(output.Duration),
-        ScheduleExpression: (0, smithy_client_1.expectString)(output.ScheduleExpression),
-    };
+    return (0, smithy_client_1.take)(output, {
+        KmsKeyId: smithy_client_1.expectString,
+        LastAccessedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Region: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        StatusMessage: smithy_client_1.expectString,
+    });
 };
 const de_SecretListEntry = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        CreatedDate: output.CreatedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
-            : undefined,
-        DeletedDate: output.DeletedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.DeletedDate)))
-            : undefined,
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        KmsKeyId: (0, smithy_client_1.expectString)(output.KmsKeyId),
-        LastAccessedDate: output.LastAccessedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
-            : undefined,
-        LastChangedDate: output.LastChangedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastChangedDate)))
-            : undefined,
-        LastRotatedDate: output.LastRotatedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastRotatedDate)))
-            : undefined,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        NextRotationDate: output.NextRotationDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.NextRotationDate)))
-            : undefined,
-        OwningService: (0, smithy_client_1.expectString)(output.OwningService),
-        PrimaryRegion: (0, smithy_client_1.expectString)(output.PrimaryRegion),
-        RotationEnabled: (0, smithy_client_1.expectBoolean)(output.RotationEnabled),
-        RotationLambdaARN: (0, smithy_client_1.expectString)(output.RotationLambdaARN),
-        RotationRules: output.RotationRules != null ? de_RotationRulesType(output.RotationRules, context) : undefined,
-        SecretVersionsToStages: output.SecretVersionsToStages != null
-            ? de_SecretVersionsToStagesMapType(output.SecretVersionsToStages, context)
-            : undefined,
-        Tags: output.Tags != null ? de_TagListType(output.Tags, context) : undefined,
-    };
+    return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DeletedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Description: smithy_client_1.expectString,
+        KmsKeyId: smithy_client_1.expectString,
+        LastAccessedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastChangedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastRotatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        NextRotationDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        OwningService: smithy_client_1.expectString,
+        PrimaryRegion: smithy_client_1.expectString,
+        RotationEnabled: smithy_client_1.expectBoolean,
+        RotationLambdaARN: smithy_client_1.expectString,
+        RotationRules: smithy_client_1._json,
+        SecretVersionsToStages: smithy_client_1._json,
+        Tags: smithy_client_1._json,
+    });
 };
 const de_SecretListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
         return de_SecretListEntry(entry, context);
     });
     return retVal;
 };
 const de_SecretVersionsListEntry = (output, context) => {
-    return {
-        CreatedDate: output.CreatedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate)))
-            : undefined,
-        KmsKeyIds: output.KmsKeyIds != null ? de_KmsKeyIdListType(output.KmsKeyIds, context) : undefined,
-        LastAccessedDate: output.LastAccessedDate != null
-            ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAccessedDate)))
-            : undefined,
-        VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-        VersionStages: output.VersionStages != null ? de_SecretVersionStagesType(output.VersionStages, context) : undefined,
-    };
+    return (0, smithy_client_1.take)(output, {
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        KmsKeyIds: smithy_client_1._json,
+        LastAccessedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        VersionId: smithy_client_1.expectString,
+        VersionStages: smithy_client_1._json,
+    });
 };
 const de_SecretVersionsListType = (output, context) => {
     const retVal = (output || [])
         .filter((e) => e != null)
         .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
         return de_SecretVersionsListEntry(entry, context);
-    });
-    return retVal;
-};
-const de_SecretVersionStagesType = (output, context) => {
-    const retVal = (output || [])
-        .filter((e) => e != null)
-        .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-    });
-    return retVal;
-};
-const de_SecretVersionsToStagesMapType = (output, context) => {
-    return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-            return acc;
-        }
-        acc[key] = de_SecretVersionStagesType(value, context);
-        return acc;
-    }, {});
-};
-const de_StopReplicationToReplicaResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-    };
-};
-const de_Tag = (output, context) => {
-    return {
-        Key: (0, smithy_client_1.expectString)(output.Key),
-        Value: (0, smithy_client_1.expectString)(output.Value),
-    };
-};
-const de_TagListType = (output, context) => {
-    const retVal = (output || [])
-        .filter((e) => e != null)
-        .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
-        return de_Tag(entry, context);
-    });
-    return retVal;
-};
-const de_UpdateSecretResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        VersionId: (0, smithy_client_1.expectString)(output.VersionId),
-    };
-};
-const de_UpdateSecretVersionStageResponse = (output, context) => {
-    return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-    };
-};
-const de_ValidateResourcePolicyResponse = (output, context) => {
-    return {
-        PolicyValidationPassed: (0, smithy_client_1.expectBoolean)(output.PolicyValidationPassed),
-        ValidationErrors: output.ValidationErrors != null ? de_ValidationErrorsType(output.ValidationErrors, context) : undefined,
-    };
-};
-const de_ValidationErrorsEntry = (output, context) => {
-    return {
-        CheckName: (0, smithy_client_1.expectString)(output.CheckName),
-        ErrorMessage: (0, smithy_client_1.expectString)(output.ErrorMessage),
-    };
-};
-const de_ValidationErrorsType = (output, context) => {
-    const retVal = (output || [])
-        .filter((e) => e != null)
-        .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
-        return de_ValidationErrorsEntry(entry, context);
     });
     return retVal;
 };
@@ -5857,6 +5095,7 @@ const collectBody = (streamBody = new Uint8Array(), context) => {
     return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
 };
 const collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+const throwDefaultError = (0, smithy_client_1.withBaseException)(SecretsManagerServiceException_1.SecretsManagerServiceException);
 const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const contents = {
@@ -6394,55 +5633,20 @@ var __createBinding;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SSOOIDC = void 0;
+const smithy_client_1 = __nccwpck_require__(4963);
 const CreateTokenCommand_1 = __nccwpck_require__(62853);
 const RegisterClientCommand_1 = __nccwpck_require__(36677);
 const StartDeviceAuthorizationCommand_1 = __nccwpck_require__(38359);
 const SSOOIDCClient_1 = __nccwpck_require__(70139);
+const commands = {
+    CreateTokenCommand: CreateTokenCommand_1.CreateTokenCommand,
+    RegisterClientCommand: RegisterClientCommand_1.RegisterClientCommand,
+    StartDeviceAuthorizationCommand: StartDeviceAuthorizationCommand_1.StartDeviceAuthorizationCommand,
+};
 class SSOOIDC extends SSOOIDCClient_1.SSOOIDCClient {
-    createToken(args, optionsOrCb, cb) {
-        const command = new CreateTokenCommand_1.CreateTokenCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    registerClient(args, optionsOrCb, cb) {
-        const command = new RegisterClientCommand_1.RegisterClientCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    startDeviceAuthorization(args, optionsOrCb, cb) {
-        const command = new StartDeviceAuthorizationCommand_1.StartDeviceAuthorizationCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
 }
 exports.SSOOIDC = SSOOIDC;
+(0, smithy_client_1.createAggregatedClient)(commands, SSOOIDC);
 
 
 /***/ }),
@@ -6979,16 +6183,16 @@ const se_CreateTokenCommand = async (input, context) => {
     };
     const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/token";
     let body;
-    body = JSON.stringify({
-        ...(input.clientId != null && { clientId: input.clientId }),
-        ...(input.clientSecret != null && { clientSecret: input.clientSecret }),
-        ...(input.code != null && { code: input.code }),
-        ...(input.deviceCode != null && { deviceCode: input.deviceCode }),
-        ...(input.grantType != null && { grantType: input.grantType }),
-        ...(input.redirectUri != null && { redirectUri: input.redirectUri }),
-        ...(input.refreshToken != null && { refreshToken: input.refreshToken }),
-        ...(input.scope != null && { scope: se_Scopes(input.scope, context) }),
-    });
+    body = JSON.stringify((0, smithy_client_1.take)(input, {
+        clientId: [],
+        clientSecret: [],
+        code: [],
+        deviceCode: [],
+        grantType: [],
+        redirectUri: [],
+        refreshToken: [],
+        scope: (_) => (0, smithy_client_1._json)(_),
+    }));
     return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -7007,11 +6211,11 @@ const se_RegisterClientCommand = async (input, context) => {
     };
     const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/client/register";
     let body;
-    body = JSON.stringify({
-        ...(input.clientName != null && { clientName: input.clientName }),
-        ...(input.clientType != null && { clientType: input.clientType }),
-        ...(input.scopes != null && { scopes: se_Scopes(input.scopes, context) }),
-    });
+    body = JSON.stringify((0, smithy_client_1.take)(input, {
+        clientName: [],
+        clientType: [],
+        scopes: (_) => (0, smithy_client_1._json)(_),
+    }));
     return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -7030,11 +6234,11 @@ const se_StartDeviceAuthorizationCommand = async (input, context) => {
     };
     const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/device_authorization";
     let body;
-    body = JSON.stringify({
-        ...(input.clientId != null && { clientId: input.clientId }),
-        ...(input.clientSecret != null && { clientSecret: input.clientSecret }),
-        ...(input.startUrl != null && { startUrl: input.startUrl }),
-    });
+    body = JSON.stringify((0, smithy_client_1.take)(input, {
+        clientId: [],
+        clientSecret: [],
+        startUrl: [],
+    }));
     return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -7050,25 +6254,18 @@ const de_CreateTokenCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_CreateTokenCommandError(output, context);
     }
-    const contents = map({
+    const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-    if (data.accessToken != null) {
-        contents.accessToken = (0, smithy_client_1.expectString)(data.accessToken);
-    }
-    if (data.expiresIn != null) {
-        contents.expiresIn = (0, smithy_client_1.expectInt32)(data.expiresIn);
-    }
-    if (data.idToken != null) {
-        contents.idToken = (0, smithy_client_1.expectString)(data.idToken);
-    }
-    if (data.refreshToken != null) {
-        contents.refreshToken = (0, smithy_client_1.expectString)(data.refreshToken);
-    }
-    if (data.tokenType != null) {
-        contents.tokenType = (0, smithy_client_1.expectString)(data.tokenType);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        accessToken: smithy_client_1.expectString,
+        expiresIn: smithy_client_1.expectInt32,
+        idToken: smithy_client_1.expectString,
+        refreshToken: smithy_client_1.expectString,
+        tokenType: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     return contents;
 };
 exports.de_CreateTokenCommand = de_CreateTokenCommand;
@@ -7114,10 +6311,9 @@ const de_CreateTokenCommandError = async (output, context) => {
             throw await de_UnsupportedGrantTypeExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SSOOIDCServiceException_1.SSOOIDCServiceException,
                 errorCode,
             });
     }
@@ -7126,28 +6322,19 @@ const de_RegisterClientCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_RegisterClientCommandError(output, context);
     }
-    const contents = map({
+    const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-    if (data.authorizationEndpoint != null) {
-        contents.authorizationEndpoint = (0, smithy_client_1.expectString)(data.authorizationEndpoint);
-    }
-    if (data.clientId != null) {
-        contents.clientId = (0, smithy_client_1.expectString)(data.clientId);
-    }
-    if (data.clientIdIssuedAt != null) {
-        contents.clientIdIssuedAt = (0, smithy_client_1.expectLong)(data.clientIdIssuedAt);
-    }
-    if (data.clientSecret != null) {
-        contents.clientSecret = (0, smithy_client_1.expectString)(data.clientSecret);
-    }
-    if (data.clientSecretExpiresAt != null) {
-        contents.clientSecretExpiresAt = (0, smithy_client_1.expectLong)(data.clientSecretExpiresAt);
-    }
-    if (data.tokenEndpoint != null) {
-        contents.tokenEndpoint = (0, smithy_client_1.expectString)(data.tokenEndpoint);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        authorizationEndpoint: smithy_client_1.expectString,
+        clientId: smithy_client_1.expectString,
+        clientIdIssuedAt: smithy_client_1.expectLong,
+        clientSecret: smithy_client_1.expectString,
+        clientSecretExpiresAt: smithy_client_1.expectLong,
+        tokenEndpoint: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     return contents;
 };
 exports.de_RegisterClientCommand = de_RegisterClientCommand;
@@ -7172,10 +6359,9 @@ const de_RegisterClientCommandError = async (output, context) => {
             throw await de_InvalidScopeExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SSOOIDCServiceException_1.SSOOIDCServiceException,
                 errorCode,
             });
     }
@@ -7184,28 +6370,19 @@ const de_StartDeviceAuthorizationCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_StartDeviceAuthorizationCommandError(output, context);
     }
-    const contents = map({
+    const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-    if (data.deviceCode != null) {
-        contents.deviceCode = (0, smithy_client_1.expectString)(data.deviceCode);
-    }
-    if (data.expiresIn != null) {
-        contents.expiresIn = (0, smithy_client_1.expectInt32)(data.expiresIn);
-    }
-    if (data.interval != null) {
-        contents.interval = (0, smithy_client_1.expectInt32)(data.interval);
-    }
-    if (data.userCode != null) {
-        contents.userCode = (0, smithy_client_1.expectString)(data.userCode);
-    }
-    if (data.verificationUri != null) {
-        contents.verificationUri = (0, smithy_client_1.expectString)(data.verificationUri);
-    }
-    if (data.verificationUriComplete != null) {
-        contents.verificationUriComplete = (0, smithy_client_1.expectString)(data.verificationUriComplete);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        deviceCode: smithy_client_1.expectString,
+        expiresIn: smithy_client_1.expectInt32,
+        interval: smithy_client_1.expectInt32,
+        userCode: smithy_client_1.expectString,
+        verificationUri: smithy_client_1.expectString,
+        verificationUriComplete: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     return contents;
 };
 exports.de_StartDeviceAuthorizationCommand = de_StartDeviceAuthorizationCommand;
@@ -7233,24 +6410,22 @@ const de_StartDeviceAuthorizationCommandError = async (output, context) => {
             throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SSOOIDCServiceException_1.SSOOIDCServiceException,
                 errorCode,
             });
     }
 };
-const map = smithy_client_1.map;
+const throwDefaultError = (0, smithy_client_1.withBaseException)(SSOOIDCServiceException_1.SSOOIDCServiceException);
 const de_AccessDeniedExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.AccessDeniedException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7258,14 +6433,13 @@ const de_AccessDeniedExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_AuthorizationPendingExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.AuthorizationPendingException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7273,14 +6447,13 @@ const de_AuthorizationPendingExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_ExpiredTokenExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.ExpiredTokenException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7288,14 +6461,13 @@ const de_ExpiredTokenExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_InternalServerExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.InternalServerException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7303,14 +6475,13 @@ const de_InternalServerExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_InvalidClientExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.InvalidClientException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7318,14 +6489,13 @@ const de_InvalidClientExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_InvalidClientMetadataExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.InvalidClientMetadataException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7333,14 +6503,13 @@ const de_InvalidClientMetadataExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_InvalidGrantExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.InvalidGrantException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7348,14 +6517,13 @@ const de_InvalidGrantExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.InvalidRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7363,14 +6531,13 @@ const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_InvalidScopeExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.InvalidScopeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7378,14 +6545,13 @@ const de_InvalidScopeExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_SlowDownExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.SlowDownException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7393,14 +6559,13 @@ const de_SlowDownExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_UnauthorizedClientExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.UnauthorizedClientException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -7408,26 +6573,18 @@ const de_UnauthorizedClientExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_UnsupportedGrantTypeExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-    }
-    if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.UnsupportedGrantTypeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-};
-const se_Scopes = (input, context) => {
-    return input
-        .filter((e) => e != null)
-        .map((entry) => {
-        return entry;
-    });
 };
 const deserializeMetadata = (output) => ({
     httpStatusCode: output.statusCode,
@@ -7957,70 +7114,22 @@ var __createBinding;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SSO = void 0;
+const smithy_client_1 = __nccwpck_require__(4963);
 const GetRoleCredentialsCommand_1 = __nccwpck_require__(18972);
 const ListAccountRolesCommand_1 = __nccwpck_require__(1513);
 const ListAccountsCommand_1 = __nccwpck_require__(64296);
 const LogoutCommand_1 = __nccwpck_require__(12586);
 const SSOClient_1 = __nccwpck_require__(71057);
+const commands = {
+    GetRoleCredentialsCommand: GetRoleCredentialsCommand_1.GetRoleCredentialsCommand,
+    ListAccountRolesCommand: ListAccountRolesCommand_1.ListAccountRolesCommand,
+    ListAccountsCommand: ListAccountsCommand_1.ListAccountsCommand,
+    LogoutCommand: LogoutCommand_1.LogoutCommand,
+};
 class SSO extends SSOClient_1.SSOClient {
-    getRoleCredentials(args, optionsOrCb, cb) {
-        const command = new GetRoleCredentialsCommand_1.GetRoleCredentialsCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    listAccountRoles(args, optionsOrCb, cb) {
-        const command = new ListAccountRolesCommand_1.ListAccountRolesCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    listAccounts(args, optionsOrCb, cb) {
-        const command = new ListAccountsCommand_1.ListAccountsCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    logout(args, optionsOrCb, cb) {
-        const command = new LogoutCommand_1.LogoutCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
 }
 exports.SSO = SSO;
+(0, smithy_client_1.createAggregatedClient)(commands, SSO);
 
 
 /***/ }),
@@ -8613,11 +7722,11 @@ const models_0_1 = __nccwpck_require__(66390);
 const SSOServiceException_1 = __nccwpck_require__(81517);
 const se_GetRoleCredentialsCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-    const headers = map({}, isSerializableHeaderValue, {
+    const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
     });
     const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/federation/credentials";
-    const query = map({
+    const query = (0, smithy_client_1.map)({
         role_name: [, (0, smithy_client_1.expectNonNull)(input.roleName, `roleName`)],
         account_id: [, (0, smithy_client_1.expectNonNull)(input.accountId, `accountId`)],
     });
@@ -8636,11 +7745,11 @@ const se_GetRoleCredentialsCommand = async (input, context) => {
 exports.se_GetRoleCredentialsCommand = se_GetRoleCredentialsCommand;
 const se_ListAccountRolesCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-    const headers = map({}, isSerializableHeaderValue, {
+    const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
     });
     const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/assignment/roles";
-    const query = map({
+    const query = (0, smithy_client_1.map)({
         next_token: [, input.nextToken],
         max_result: [() => input.maxResults !== void 0, () => input.maxResults.toString()],
         account_id: [, (0, smithy_client_1.expectNonNull)(input.accountId, `accountId`)],
@@ -8660,11 +7769,11 @@ const se_ListAccountRolesCommand = async (input, context) => {
 exports.se_ListAccountRolesCommand = se_ListAccountRolesCommand;
 const se_ListAccountsCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-    const headers = map({}, isSerializableHeaderValue, {
+    const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
     });
     const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/assignment/accounts";
-    const query = map({
+    const query = (0, smithy_client_1.map)({
         next_token: [, input.nextToken],
         max_result: [() => input.maxResults !== void 0, () => input.maxResults.toString()],
     });
@@ -8683,7 +7792,7 @@ const se_ListAccountsCommand = async (input, context) => {
 exports.se_ListAccountsCommand = se_ListAccountsCommand;
 const se_LogoutCommand = async (input, context) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-    const headers = map({}, isSerializableHeaderValue, {
+    const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken,
     });
     const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}` + "/logout";
@@ -8703,13 +7812,14 @@ const de_GetRoleCredentialsCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetRoleCredentialsCommandError(output, context);
     }
-    const contents = map({
+    const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-    if (data.roleCredentials != null) {
-        contents.roleCredentials = de_RoleCredentials(data.roleCredentials, context);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        roleCredentials: smithy_client_1._json,
+    });
+    Object.assign(contents, doc);
     return contents;
 };
 exports.de_GetRoleCredentialsCommand = de_GetRoleCredentialsCommand;
@@ -8734,10 +7844,9 @@ const de_GetRoleCredentialsCommandError = async (output, context) => {
             throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SSOServiceException_1.SSOServiceException,
                 errorCode,
             });
     }
@@ -8746,16 +7855,15 @@ const de_ListAccountRolesCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListAccountRolesCommandError(output, context);
     }
-    const contents = map({
+    const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-    if (data.nextToken != null) {
-        contents.nextToken = (0, smithy_client_1.expectString)(data.nextToken);
-    }
-    if (data.roleList != null) {
-        contents.roleList = de_RoleListType(data.roleList, context);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        nextToken: smithy_client_1.expectString,
+        roleList: smithy_client_1._json,
+    });
+    Object.assign(contents, doc);
     return contents;
 };
 exports.de_ListAccountRolesCommand = de_ListAccountRolesCommand;
@@ -8780,10 +7888,9 @@ const de_ListAccountRolesCommandError = async (output, context) => {
             throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SSOServiceException_1.SSOServiceException,
                 errorCode,
             });
     }
@@ -8792,16 +7899,15 @@ const de_ListAccountsCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListAccountsCommandError(output, context);
     }
-    const contents = map({
+    const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output),
     });
     const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-    if (data.accountList != null) {
-        contents.accountList = de_AccountListType(data.accountList, context);
-    }
-    if (data.nextToken != null) {
-        contents.nextToken = (0, smithy_client_1.expectString)(data.nextToken);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        accountList: smithy_client_1._json,
+        nextToken: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     return contents;
 };
 exports.de_ListAccountsCommand = de_ListAccountsCommand;
@@ -8826,10 +7932,9 @@ const de_ListAccountsCommandError = async (output, context) => {
             throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SSOServiceException_1.SSOServiceException,
                 errorCode,
             });
     }
@@ -8838,7 +7943,7 @@ const de_LogoutCommand = async (output, context) => {
     if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_LogoutCommandError(output, context);
     }
-    const contents = map({
+    const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output),
     });
     await collectBody(output.body, context);
@@ -8863,21 +7968,21 @@ const de_LogoutCommandError = async (output, context) => {
             throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody,
-                exceptionCtor: SSOServiceException_1.SSOServiceException,
                 errorCode,
             });
     }
 };
-const map = smithy_client_1.map;
+const throwDefaultError = (0, smithy_client_1.withBaseException)(SSOServiceException_1.SSOServiceException);
 const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.InvalidRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -8885,11 +7990,12 @@ const de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_ResourceNotFoundExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.ResourceNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -8897,11 +8003,12 @@ const de_ResourceNotFoundExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_TooManyRequestsExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.TooManyRequestsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
@@ -8909,59 +8016,17 @@ const de_TooManyRequestsExceptionRes = async (parsedOutput, context) => {
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
 };
 const de_UnauthorizedExceptionRes = async (parsedOutput, context) => {
-    const contents = map({});
+    const contents = (0, smithy_client_1.map)({});
     const data = parsedOutput.body;
-    if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-    }
+    const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString,
+    });
+    Object.assign(contents, doc);
     const exception = new models_0_1.UnauthorizedException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents,
     });
     return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-};
-const de_AccountInfo = (output, context) => {
-    return {
-        accountId: (0, smithy_client_1.expectString)(output.accountId),
-        accountName: (0, smithy_client_1.expectString)(output.accountName),
-        emailAddress: (0, smithy_client_1.expectString)(output.emailAddress),
-    };
-};
-const de_AccountListType = (output, context) => {
-    const retVal = (output || [])
-        .filter((e) => e != null)
-        .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
-        return de_AccountInfo(entry, context);
-    });
-    return retVal;
-};
-const de_RoleCredentials = (output, context) => {
-    return {
-        accessKeyId: (0, smithy_client_1.expectString)(output.accessKeyId),
-        expiration: (0, smithy_client_1.expectLong)(output.expiration),
-        secretAccessKey: (0, smithy_client_1.expectString)(output.secretAccessKey),
-        sessionToken: (0, smithy_client_1.expectString)(output.sessionToken),
-    };
-};
-const de_RoleInfo = (output, context) => {
-    return {
-        accountId: (0, smithy_client_1.expectString)(output.accountId),
-        roleName: (0, smithy_client_1.expectString)(output.roleName),
-    };
-};
-const de_RoleListType = (output, context) => {
-    const retVal = (output || [])
-        .filter((e) => e != null)
-        .map((entry) => {
-        if (entry === null) {
-            return null;
-        }
-        return de_RoleInfo(entry, context);
-    });
-    return retVal;
 };
 const deserializeMetadata = (output) => ({
     httpStatusCode: output.statusCode,
@@ -9491,6 +8556,7 @@ var __createBinding;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.STS = void 0;
+const smithy_client_1 = __nccwpck_require__(4963);
 const AssumeRoleCommand_1 = __nccwpck_require__(59802);
 const AssumeRoleWithSAMLCommand_1 = __nccwpck_require__(72865);
 const AssumeRoleWithWebIdentityCommand_1 = __nccwpck_require__(37451);
@@ -9500,121 +8566,20 @@ const GetCallerIdentityCommand_1 = __nccwpck_require__(24278);
 const GetFederationTokenCommand_1 = __nccwpck_require__(57552);
 const GetSessionTokenCommand_1 = __nccwpck_require__(43285);
 const STSClient_1 = __nccwpck_require__(64195);
+const commands = {
+    AssumeRoleCommand: AssumeRoleCommand_1.AssumeRoleCommand,
+    AssumeRoleWithSAMLCommand: AssumeRoleWithSAMLCommand_1.AssumeRoleWithSAMLCommand,
+    AssumeRoleWithWebIdentityCommand: AssumeRoleWithWebIdentityCommand_1.AssumeRoleWithWebIdentityCommand,
+    DecodeAuthorizationMessageCommand: DecodeAuthorizationMessageCommand_1.DecodeAuthorizationMessageCommand,
+    GetAccessKeyInfoCommand: GetAccessKeyInfoCommand_1.GetAccessKeyInfoCommand,
+    GetCallerIdentityCommand: GetCallerIdentityCommand_1.GetCallerIdentityCommand,
+    GetFederationTokenCommand: GetFederationTokenCommand_1.GetFederationTokenCommand,
+    GetSessionTokenCommand: GetSessionTokenCommand_1.GetSessionTokenCommand,
+};
 class STS extends STSClient_1.STSClient {
-    assumeRole(args, optionsOrCb, cb) {
-        const command = new AssumeRoleCommand_1.AssumeRoleCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    assumeRoleWithSAML(args, optionsOrCb, cb) {
-        const command = new AssumeRoleWithSAMLCommand_1.AssumeRoleWithSAMLCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    assumeRoleWithWebIdentity(args, optionsOrCb, cb) {
-        const command = new AssumeRoleWithWebIdentityCommand_1.AssumeRoleWithWebIdentityCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    decodeAuthorizationMessage(args, optionsOrCb, cb) {
-        const command = new DecodeAuthorizationMessageCommand_1.DecodeAuthorizationMessageCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    getAccessKeyInfo(args, optionsOrCb, cb) {
-        const command = new GetAccessKeyInfoCommand_1.GetAccessKeyInfoCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    getCallerIdentity(args, optionsOrCb, cb) {
-        const command = new GetCallerIdentityCommand_1.GetCallerIdentityCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    getFederationToken(args, optionsOrCb, cb) {
-        const command = new GetFederationTokenCommand_1.GetFederationTokenCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
-    getSessionToken(args, optionsOrCb, cb) {
-        const command = new GetSessionTokenCommand_1.GetSessionTokenCommand(args);
-        if (typeof optionsOrCb === "function") {
-            this.send(command, optionsOrCb);
-        }
-        else if (typeof cb === "function") {
-            if (typeof optionsOrCb !== "object")
-                throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-            this.send(command, optionsOrCb || {}, cb);
-        }
-        else {
-            return this.send(command, optionsOrCb);
-        }
-    }
 }
 exports.STS = STS;
+(0, smithy_client_1.createAggregatedClient)(commands, STS);
 
 
 /***/ }),
@@ -10582,7 +9547,7 @@ const de_AssumeRoleCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_AssumeRoleCommand = de_AssumeRoleCommand;
 const de_AssumeRoleCommandError = async (output, context) => {
@@ -10606,10 +9571,9 @@ const de_AssumeRoleCommandError = async (output, context) => {
             throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody: parsedBody.Error,
-                exceptionCtor: STSServiceException_1.STSServiceException,
                 errorCode,
             });
     }
@@ -10625,7 +9589,7 @@ const de_AssumeRoleWithSAMLCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_AssumeRoleWithSAMLCommand = de_AssumeRoleWithSAMLCommand;
 const de_AssumeRoleWithSAMLCommandError = async (output, context) => {
@@ -10655,10 +9619,9 @@ const de_AssumeRoleWithSAMLCommandError = async (output, context) => {
             throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody: parsedBody.Error,
-                exceptionCtor: STSServiceException_1.STSServiceException,
                 errorCode,
             });
     }
@@ -10674,7 +9637,7 @@ const de_AssumeRoleWithWebIdentityCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_AssumeRoleWithWebIdentityCommand = de_AssumeRoleWithWebIdentityCommand;
 const de_AssumeRoleWithWebIdentityCommandError = async (output, context) => {
@@ -10707,10 +9670,9 @@ const de_AssumeRoleWithWebIdentityCommandError = async (output, context) => {
             throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody: parsedBody.Error,
-                exceptionCtor: STSServiceException_1.STSServiceException,
                 errorCode,
             });
     }
@@ -10726,7 +9688,7 @@ const de_DecodeAuthorizationMessageCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_DecodeAuthorizationMessageCommand = de_DecodeAuthorizationMessageCommand;
 const de_DecodeAuthorizationMessageCommandError = async (output, context) => {
@@ -10741,10 +9703,9 @@ const de_DecodeAuthorizationMessageCommandError = async (output, context) => {
             throw await de_InvalidAuthorizationMessageExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody: parsedBody.Error,
-                exceptionCtor: STSServiceException_1.STSServiceException,
                 errorCode,
             });
     }
@@ -10760,7 +9721,7 @@ const de_GetAccessKeyInfoCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_GetAccessKeyInfoCommand = de_GetAccessKeyInfoCommand;
 const de_GetAccessKeyInfoCommandError = async (output, context) => {
@@ -10770,10 +9731,9 @@ const de_GetAccessKeyInfoCommandError = async (output, context) => {
     };
     const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     const parsedBody = parsedOutput.body;
-    (0, smithy_client_1.throwDefaultError)({
+    return throwDefaultError({
         output,
         parsedBody: parsedBody.Error,
-        exceptionCtor: STSServiceException_1.STSServiceException,
         errorCode,
     });
 };
@@ -10788,7 +9748,7 @@ const de_GetCallerIdentityCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_GetCallerIdentityCommand = de_GetCallerIdentityCommand;
 const de_GetCallerIdentityCommandError = async (output, context) => {
@@ -10798,10 +9758,9 @@ const de_GetCallerIdentityCommandError = async (output, context) => {
     };
     const errorCode = loadQueryErrorCode(output, parsedOutput.body);
     const parsedBody = parsedOutput.body;
-    (0, smithy_client_1.throwDefaultError)({
+    return throwDefaultError({
         output,
         parsedBody: parsedBody.Error,
-        exceptionCtor: STSServiceException_1.STSServiceException,
         errorCode,
     });
 };
@@ -10816,7 +9775,7 @@ const de_GetFederationTokenCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_GetFederationTokenCommand = de_GetFederationTokenCommand;
 const de_GetFederationTokenCommandError = async (output, context) => {
@@ -10837,10 +9796,9 @@ const de_GetFederationTokenCommandError = async (output, context) => {
             throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody: parsedBody.Error,
-                exceptionCtor: STSServiceException_1.STSServiceException,
                 errorCode,
             });
     }
@@ -10856,7 +9814,7 @@ const de_GetSessionTokenCommand = async (output, context) => {
         $metadata: deserializeMetadata(output),
         ...contents,
     };
-    return Promise.resolve(response);
+    return response;
 };
 exports.de_GetSessionTokenCommand = de_GetSessionTokenCommand;
 const de_GetSessionTokenCommandError = async (output, context) => {
@@ -10871,10 +9829,9 @@ const de_GetSessionTokenCommandError = async (output, context) => {
             throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
             const parsedBody = parsedOutput.body;
-            (0, smithy_client_1.throwDefaultError)({
+            return throwDefaultError({
                 output,
                 parsedBody: parsedBody.Error,
-                exceptionCtor: STSServiceException_1.STSServiceException,
                 errorCode,
             });
     }
@@ -11417,6 +10374,7 @@ const collectBody = (streamBody = new Uint8Array(), context) => {
     return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
 };
 const collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+const throwDefaultError = (0, smithy_client_1.withBaseException)(STSServiceException_1.STSServiceException);
 const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
     const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
     const contents = {
@@ -25392,6 +24350,39 @@ exports.SENSITIVE_STRING = "***SensitiveInformation***";
 
 /***/ }),
 
+/***/ 65516:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.createAggregatedClient = void 0;
+const createAggregatedClient = (commands, Client) => {
+    for (const command of Object.keys(commands)) {
+        const CommandCtor = commands[command];
+        const methodImpl = async function (args, optionsOrCb, cb) {
+            const command = new CommandCtor(args);
+            if (typeof optionsOrCb === "function") {
+                this.send(command, optionsOrCb);
+            }
+            else if (typeof cb === "function") {
+                if (typeof optionsOrCb !== "object")
+                    throw new Error(`Expected http options but got ${typeof optionsOrCb}`);
+                this.send(command, optionsOrCb || {}, cb);
+            }
+            else {
+                return this.send(command, optionsOrCb);
+            }
+        };
+        const methodName = (command[0].toLowerCase() + command.slice(1)).replace(/Command$/, "");
+        Client.prototype[methodName] = methodImpl;
+    }
+};
+exports.createAggregatedClient = createAggregatedClient;
+
+
+/***/ }),
+
 /***/ 24695:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -25601,7 +24592,7 @@ const stripLeadingZeroes = (value) => {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.throwDefaultError = void 0;
+exports.withBaseException = exports.throwDefaultError = void 0;
 const exceptions_1 = __nccwpck_require__(57778);
 const throwDefaultError = ({ output, parsedBody, exceptionCtor, errorCode }) => {
     const $metadata = deserializeMetadata(output);
@@ -25614,6 +24605,12 @@ const throwDefaultError = ({ output, parsedBody, exceptionCtor, errorCode }) => 
     throw (0, exceptions_1.decorateServiceException)(response, parsedBody);
 };
 exports.throwDefaultError = throwDefaultError;
+const withBaseException = (ExceptionCtor) => {
+    return ({ output, parsedBody, errorCode }) => {
+        (0, exports.throwDefaultError)({ output, parsedBody, exceptionCtor: ExceptionCtor, errorCode });
+    };
+};
+exports.withBaseException = withBaseException;
 const deserializeMetadata = (output) => {
     var _a, _b;
     return ({
@@ -25783,6 +24780,7 @@ tslib_1.__exportStar(__nccwpck_require__(78571), exports);
 tslib_1.__exportStar(__nccwpck_require__(36034), exports);
 tslib_1.__exportStar(__nccwpck_require__(4014), exports);
 tslib_1.__exportStar(__nccwpck_require__(78392), exports);
+tslib_1.__exportStar(__nccwpck_require__(65516), exports);
 tslib_1.__exportStar(__nccwpck_require__(24695), exports);
 tslib_1.__exportStar(__nccwpck_require__(47222), exports);
 tslib_1.__exportStar(__nccwpck_require__(33088), exports);
@@ -25796,6 +24794,7 @@ tslib_1.__exportStar(__nccwpck_require__(21599), exports);
 tslib_1.__exportStar(__nccwpck_require__(34014), exports);
 tslib_1.__exportStar(__nccwpck_require__(80308), exports);
 tslib_1.__exportStar(__nccwpck_require__(38000), exports);
+tslib_1.__exportStar(__nccwpck_require__(59801), exports);
 tslib_1.__exportStar(__nccwpck_require__(48730), exports);
 
 
@@ -26266,6 +25265,37 @@ const serializeFloat = (value) => {
     }
 };
 exports.serializeFloat = serializeFloat;
+
+
+/***/ }),
+
+/***/ 59801:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports._json = void 0;
+const _json = (obj) => {
+    if (obj == null) {
+        return {};
+    }
+    if (Array.isArray(obj)) {
+        return obj.filter((_) => _ != null);
+    }
+    if (typeof obj === "object") {
+        const target = {};
+        for (const key of Object.keys(obj)) {
+            if (obj[key] == null) {
+                continue;
+            }
+            target[key] = (0, exports._json)(obj[key]);
+        }
+        return target;
+    }
+    return obj;
+};
+exports._json = _json;
 
 
 /***/ }),
@@ -36548,7 +35578,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.312.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.312.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/credential-provider-node":"3.310.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-signing":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.310.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.310.0","@aws-sdk/util-defaults-mode-node":"3.310.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.317.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.316.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/credential-provider-node":"3.316.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-signing":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.316.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.316.0","@aws-sdk/util-defaults-mode-node":"3.316.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ }),
 
@@ -36556,7 +35586,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","descript
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.310.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.310.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.310.0","@aws-sdk/util-defaults-mode-node":"3.310.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.316.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.316.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.316.0","@aws-sdk/util-defaults-mode-node":"3.316.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
 
 /***/ }),
 
@@ -36564,7 +35594,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"A
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.310.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.310.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.310.0","@aws-sdk/util-defaults-mode-node":"3.310.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.316.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.316.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.316.0","@aws-sdk/util-defaults-mode-node":"3.316.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -36572,7 +35602,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.312.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/credential-provider-node":"3.310.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-sdk-sts":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-signing":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.310.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.310.0","@aws-sdk/util-defaults-mode-node":"3.310.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","fast-xml-parser":"4.1.2","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.316.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.310.0","@aws-sdk/credential-provider-node":"3.316.0","@aws-sdk/fetch-http-handler":"3.310.0","@aws-sdk/hash-node":"3.310.0","@aws-sdk/invalid-dependency":"3.310.0","@aws-sdk/middleware-content-length":"3.310.0","@aws-sdk/middleware-endpoint":"3.310.0","@aws-sdk/middleware-host-header":"3.310.0","@aws-sdk/middleware-logger":"3.310.0","@aws-sdk/middleware-recursion-detection":"3.310.0","@aws-sdk/middleware-retry":"3.310.0","@aws-sdk/middleware-sdk-sts":"3.310.0","@aws-sdk/middleware-serde":"3.310.0","@aws-sdk/middleware-signing":"3.310.0","@aws-sdk/middleware-stack":"3.310.0","@aws-sdk/middleware-user-agent":"3.310.0","@aws-sdk/node-config-provider":"3.310.0","@aws-sdk/node-http-handler":"3.310.0","@aws-sdk/protocol-http":"3.310.0","@aws-sdk/smithy-client":"3.316.0","@aws-sdk/types":"3.310.0","@aws-sdk/url-parser":"3.310.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.316.0","@aws-sdk/util-defaults-mode-node":"3.316.0","@aws-sdk/util-endpoints":"3.310.0","@aws-sdk/util-retry":"3.310.0","@aws-sdk/util-user-agent-browser":"3.310.0","@aws-sdk/util-user-agent-node":"3.310.0","@aws-sdk/util-utf8":"3.310.0","fast-xml-parser":"4.1.2","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
