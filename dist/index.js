@@ -21790,6 +21790,7 @@ class NodeHttpHandler {
             this.config = await this.configProvider;
         }
         return new Promise((_resolve, _reject) => {
+            var _a, _b;
             let writeRequestBodyPromise = undefined;
             const resolve = async (arg) => {
                 await writeRequestBodyPromise;
@@ -21810,18 +21811,33 @@ class NodeHttpHandler {
             }
             const isSSL = request.protocol === "https:";
             const queryString = (0, querystring_builder_1.buildQueryString)(request.query || {});
+            let auth = undefined;
+            if (request.username != null || request.password != null) {
+                const username = (_a = request.username) !== null && _a !== void 0 ? _a : "";
+                const password = (_b = request.password) !== null && _b !== void 0 ? _b : "";
+                auth = `${username}:${password}`;
+            }
+            let path = request.path;
+            if (queryString) {
+                path += `?${queryString}`;
+            }
+            if (request.fragment) {
+                path += `#${request.fragment}`;
+            }
             const nodeHttpsOptions = {
                 headers: request.headers,
                 host: request.hostname,
                 method: request.method,
-                path: queryString ? `${request.path}?${queryString}` : request.path,
+                path,
                 port: request.port,
                 agent: isSSL ? this.config.httpsAgent : this.config.httpAgent,
+                auth,
             };
             const requestFunc = isSSL ? https_1.request : http_1.request;
             const req = requestFunc(nodeHttpsOptions, (res) => {
                 const httpResponse = new protocol_http_1.HttpResponse({
                     statusCode: res.statusCode || -1,
+                    reason: res.statusMessage,
                     headers: (0, get_transformed_headers_1.getTransformedHeaders)(res.headers),
                     body: res,
                 });
@@ -22048,7 +22064,7 @@ class NodeHttp2Handler {
         }
         const { requestTimeout, disableConcurrentStreams } = this.config;
         return new Promise((_resolve, _reject) => {
-            var _a;
+            var _a, _b, _c;
             let fulfilled = false;
             let writeRequestBodyPromise = undefined;
             const resolve = async (arg) => {
@@ -22066,11 +22082,17 @@ class NodeHttp2Handler {
                 reject(abortError);
                 return;
             }
-            const { hostname, method, port, protocol, path, query } = request;
-            const authority = `${protocol}//${hostname}${port ? `:${port}` : ""}`;
+            const { hostname, method, port, protocol, query } = request;
+            let auth = "";
+            if (request.username != null || request.password != null) {
+                const username = (_a = request.username) !== null && _a !== void 0 ? _a : "";
+                const password = (_b = request.password) !== null && _b !== void 0 ? _b : "";
+                auth = `${username}:${password}@`;
+            }
+            const authority = `${protocol}//${auth}${hostname}${port ? `:${port}` : ""}`;
             const requestContext = { destination: new URL(authority) };
             const session = this.connectionManager.lease(requestContext, {
-                requestTimeout: (_a = this.config) === null || _a === void 0 ? void 0 : _a.sessionTimeout,
+                requestTimeout: (_c = this.config) === null || _c === void 0 ? void 0 : _c.sessionTimeout,
                 disableConcurrentStreams: disableConcurrentStreams || false,
             });
             const rejectWithDestroy = (err) => {
@@ -22081,9 +22103,16 @@ class NodeHttp2Handler {
                 reject(err);
             };
             const queryString = (0, querystring_builder_1.buildQueryString)(query || {});
+            let path = request.path;
+            if (queryString) {
+                path += `?${queryString}`;
+            }
+            if (request.fragment) {
+                path += `#${request.fragment}`;
+            }
             const req = session.request({
                 ...request.headers,
-                [http2_1.constants.HTTP2_HEADER_PATH]: queryString ? `${path}?${queryString}` : path,
+                [http2_1.constants.HTTP2_HEADER_PATH]: path,
                 [http2_1.constants.HTTP2_HEADER_METHOD]: method,
             });
             session.ref();
@@ -22157,17 +22186,20 @@ const setConnectionTimeout = (request, reject, timeoutInMs = 0) => {
     if (!timeoutInMs) {
         return;
     }
+    const timeoutId = setTimeout(() => {
+        request.destroy();
+        reject(Object.assign(new Error(`Socket timed out without establishing a connection within ${timeoutInMs} ms`), {
+            name: "TimeoutError",
+        }));
+    }, timeoutInMs);
     request.on("socket", (socket) => {
         if (socket.connecting) {
-            const timeoutId = setTimeout(() => {
-                request.destroy();
-                reject(Object.assign(new Error(`Socket timed out without establishing a connection within ${timeoutInMs} ms`), {
-                    name: "TimeoutError",
-                }));
-            }, timeoutInMs);
             socket.on("connect", () => {
                 clearTimeout(timeoutId);
             });
+        }
+        else {
+            clearTimeout(timeoutId);
         }
     });
 };
@@ -22277,6 +22309,7 @@ async function writeRequestBody(httpRequest, request, maxContinueTimeoutMs = MIN
     const headers = (_a = request.headers) !== null && _a !== void 0 ? _a : {};
     const expect = headers["Expect"] || headers["expect"];
     let timeoutId = -1;
+    let hasError = false;
     if (expect === "100-continue") {
         await Promise.race([
             new Promise((resolve) => {
@@ -22287,10 +22320,17 @@ async function writeRequestBody(httpRequest, request, maxContinueTimeoutMs = MIN
                     clearTimeout(timeoutId);
                     resolve();
                 });
+                httpRequest.on("error", () => {
+                    hasError = true;
+                    clearTimeout(timeoutId);
+                    resolve();
+                });
             }),
         ]);
     }
-    writeBody(httpRequest, request.body);
+    if (!hasError) {
+        writeBody(httpRequest, request.body);
+    }
 }
 exports.writeRequestBody = writeRequestBody;
 function writeBody(httpRequest, body) {
@@ -23354,6 +23394,9 @@ class HttpRequest {
                 : options.protocol
             : "https:";
         this.path = options.path ? (options.path.charAt(0) !== "/" ? `/${options.path}` : options.path) : "/";
+        this.username = options.username;
+        this.password = options.password;
+        this.fragment = options.fragment;
     }
     static isInstance(request) {
         if (!request)
@@ -23400,6 +23443,7 @@ exports.HttpResponse = void 0;
 class HttpResponse {
     constructor(options) {
         this.statusCode = options.statusCode;
+        this.reason = options.reason;
         this.headers = options.headers || {};
         this.body = options.body;
     }
@@ -28012,6 +28056,7 @@ tslib_1.__exportStar(__nccwpck_require__(93818), exports);
 tslib_1.__exportStar(__nccwpck_require__(51991), exports);
 tslib_1.__exportStar(__nccwpck_require__(24296), exports);
 tslib_1.__exportStar(__nccwpck_require__(59416), exports);
+tslib_1.__exportStar(__nccwpck_require__(92772), exports);
 tslib_1.__exportStar(__nccwpck_require__(20134), exports);
 tslib_1.__exportStar(__nccwpck_require__(34465), exports);
 
@@ -28151,6 +28196,16 @@ var RequestHandlerProtocol;
     RequestHandlerProtocol["HTTP_1_0"] = "http/1.0";
     RequestHandlerProtocol["TDS_8_0"] = "tds/8.0";
 })(RequestHandlerProtocol = exports.RequestHandlerProtocol || (exports.RequestHandlerProtocol = {}));
+
+
+/***/ }),
+
+/***/ 92772:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 
 /***/ }),
@@ -35147,6 +35202,7 @@ const defaultOptions = {
   stopNodes: [],
   // transformTagName: false,
   // transformAttributeName: false,
+  oneListGroup: false
 };
 
 function Builder(options) {
@@ -35217,6 +35273,7 @@ Builder.prototype.j2x = function(jObj, level) {
     } else if (Array.isArray(jObj[key])) {
       //repeated nodes
       const arrLen = jObj[key].length;
+      let listTagVal = "";
       for (let j = 0; j < arrLen; j++) {
         const item = jObj[key][j];
         if (typeof item === 'undefined') {
@@ -35226,11 +35283,19 @@ Builder.prototype.j2x = function(jObj, level) {
           else val += this.indentate(level) + '<' + key + '/' + this.tagEndChar;
           // val += this.indentate(level) + '<' + key + '/' + this.tagEndChar;
         } else if (typeof item === 'object') {
-          val += this.processTextOrObjNode(item, key, level)
+          if(this.options.oneListGroup ){
+            listTagVal += this.j2x(item, level + 1).val;
+          }else{
+            listTagVal += this.processTextOrObjNode(item, key, level)
+          }
         } else {
-          val += this.buildTextValNode(item, key, '', level);
+          listTagVal += this.buildTextValNode(item, key, '', level);
         }
       }
+      if(this.options.oneListGroup){
+        listTagVal = this.buildObjectNode(listTagVal, key, '', level);
+      }
+      val += listTagVal;
     } else {
       //nested node
       if (this.options.attributesGroupName && key === this.options.attributesGroupName) {
@@ -35519,80 +35584,34 @@ function readDocType(xmlData, i){
     {    
         i = i+9;
         let angleBracketsCount = 1;
-        let hasBody = false, entity = false, comment = false;
+        let hasBody = false, comment = false;
         let exp = "";
         for(;i<xmlData.length;i++){
-            if (xmlData[i] === '<' && !comment) {
-                if( hasBody && 
-                     xmlData[i+1] === '!' &&
-                     xmlData[i+2] === 'E' &&
-                     xmlData[i+3] === 'N' &&
-                     xmlData[i+4] === 'T' &&
-                     xmlData[i+5] === 'I' &&
-                     xmlData[i+6] === 'T' &&
-                     xmlData[i+7] === 'Y'
-                ){
-                    i += 7;
-                    entity = true;
-                }else if( hasBody && 
-                    xmlData[i+1] === '!' &&
-                     xmlData[i+2] === 'E' &&
-                     xmlData[i+3] === 'L' &&
-                     xmlData[i+4] === 'E' &&
-                     xmlData[i+5] === 'M' &&
-                     xmlData[i+6] === 'E' &&
-                     xmlData[i+7] === 'N' &&
-                     xmlData[i+8] === 'T'
-                ){
-                    //Not supported
-                    i += 8;
-                }else if( hasBody && 
-                    xmlData[i+1] === '!' &&
-                    xmlData[i+2] === 'A' &&
-                    xmlData[i+3] === 'T' &&
-                    xmlData[i+4] === 'T' &&
-                    xmlData[i+5] === 'L' &&
-                    xmlData[i+6] === 'I' &&
-                    xmlData[i+7] === 'S' &&
-                    xmlData[i+8] === 'T'
-                ){
-                    //Not supported
-                    i += 8;
-                }else if( hasBody && 
-                    xmlData[i+1] === '!' &&
-                    xmlData[i+2] === 'N' &&
-                    xmlData[i+3] === 'O' &&
-                    xmlData[i+4] === 'T' &&
-                    xmlData[i+5] === 'A' &&
-                    xmlData[i+6] === 'T' &&
-                    xmlData[i+7] === 'I' &&
-                    xmlData[i+8] === 'O' &&
-                    xmlData[i+9] === 'N'
-                ){
-                    //Not supported
-                    i += 9;
-                }else if( //comment
-                    xmlData[i+1] === '!' &&
-                    xmlData[i+2] === '-' &&
-                    xmlData[i+3] === '-'
-                ){
-                    comment = true;
-                }else{
-                    throw new Error("Invalid DOCTYPE");
+            if (xmlData[i] === '<' && !comment) { //Determine the tag type
+                if( hasBody && isEntity(xmlData, i)){
+                    i += 7; 
+                    [entityName, val,i] = readEntityExp(xmlData,i+1);
+                    if(val.indexOf("&") === -1) //Parameter entities are not supported
+                        entities[ validateEntityName(entityName) ] = {
+                            regx : RegExp( `&${entityName};`,"g"),
+                            val: val
+                        };
                 }
+                else if( hasBody && isElement(xmlData, i))  i += 8;//Not supported
+                else if( hasBody && isAttlist(xmlData, i))  i += 8;//Not supported
+                else if( hasBody && isNotation(xmlData, i)) i += 9;//Not supported
+                else if( isComment)                         comment = true;
+                else                                        throw new Error("Invalid DOCTYPE");
+
                 angleBracketsCount++;
                 exp = "";
-            } else if (xmlData[i] === '>') {
+            } else if (xmlData[i] === '>') { //Read tag content
                 if(comment){
                     if( xmlData[i - 1] === "-" && xmlData[i - 2] === "-"){
                         comment = false;
                         angleBracketsCount--;
                     }
                 }else{
-                    if(entity) {
-                        parseEntityExp(exp, entities);
-                        entity = false;
-                    }
                     angleBracketsCount--;
                 }
                 if (angleBracketsCount === 0) {
@@ -35613,16 +35632,99 @@ function readDocType(xmlData, i){
     return {entities, i};
 }
 
-const entityRegex = RegExp("^\\s([a-zA-z0-0]+)[ \t](['\"])([^&]+)\\2");
-function parseEntityExp(exp, entities){
-    const match = entityRegex.exec(exp);
-    if(match){
-        entities[ match[1] ] = {
-            regx : RegExp( `&${match[1]};`,"g"),
-            val: match[3]
-        };
+function readEntityExp(xmlData,i){
+    //External entities are not supported
+    //    <!ENTITY ext SYSTEM "http://normal-website.com" >
+
+    //Parameter entities are not supported
+    //    <!ENTITY entityname "&anotherElement;">
+
+    //Internal entities are supported
+    //    <!ENTITY entityname "replacement text">
+    
+    //read EntityName
+    let entityName = "";
+    for (; i < xmlData.length && (xmlData[i] !== "'" && xmlData[i] !== '"' ); i++) {
+        // if(xmlData[i] === " ") continue;
+        // else 
+        entityName += xmlData[i];
     }
+    entityName = entityName.trim();
+    if(entityName.indexOf(" ") !== -1) throw new Error("External entites are not supported");
+
+    //read Entity Value
+    const startChar = xmlData[i++];
+    let val = ""
+    for (; i < xmlData.length && xmlData[i] !== startChar ; i++) {
+        val += xmlData[i];
+    }
+    return [entityName, val, i];
 }
+
+function isComment(xmlData, i){
+    if(xmlData[i+1] === '!' &&
+    xmlData[i+2] === '-' &&
+    xmlData[i+3] === '-') return true
+    return false
+}
+function isEntity(xmlData, i){
+    if(xmlData[i+1] === '!' &&
+    xmlData[i+2] === 'E' &&
+    xmlData[i+3] === 'N' &&
+    xmlData[i+4] === 'T' &&
+    xmlData[i+5] === 'I' &&
+    xmlData[i+6] === 'T' &&
+    xmlData[i+7] === 'Y') return true
+    return false
+}
+function isElement(xmlData, i){
+    if(xmlData[i+1] === '!' &&
+    xmlData[i+2] === 'E' &&
+    xmlData[i+3] === 'L' &&
+    xmlData[i+4] === 'E' &&
+    xmlData[i+5] === 'M' &&
+    xmlData[i+6] === 'E' &&
+    xmlData[i+7] === 'N' &&
+    xmlData[i+8] === 'T') return true
+    return false
+}
+
+function isAttlist(xmlData, i){
+    if(xmlData[i+1] === '!' &&
+    xmlData[i+2] === 'A' &&
+    xmlData[i+3] === 'T' &&
+    xmlData[i+4] === 'T' &&
+    xmlData[i+5] === 'L' &&
+    xmlData[i+6] === 'I' &&
+    xmlData[i+7] === 'S' &&
+    xmlData[i+8] === 'T') return true
+    return false
+}
+function isNotation(xmlData, i){
+    if(xmlData[i+1] === '!' &&
+    xmlData[i+2] === 'N' &&
+    xmlData[i+3] === 'O' &&
+    xmlData[i+4] === 'T' &&
+    xmlData[i+5] === 'A' &&
+    xmlData[i+6] === 'T' &&
+    xmlData[i+7] === 'I' &&
+    xmlData[i+8] === 'O' &&
+    xmlData[i+9] === 'N') return true
+    return false
+}
+
+//an entity name should not contains special characters that may be used in regex
+//Eg !?\\\/[]$%{}^&*()<>
+const specialChar = "!?\\\/[]$%{}^&*()<>|+";
+
+function validateEntityName(name){
+    for (let i = 0; i < specialChar.length; i++) {
+        const ch = specialChar[i];
+        if(name.indexOf(ch) !== -1) throw new Error(`Invalid character ${ch} in entity name`);
+    }
+    return name;
+}
+
 module.exports = readDocType;
 
 /***/ }),
@@ -35666,6 +35768,10 @@ const defaultOptions = {
     ignorePiTags: false,
     transformTagName: false,
     transformAttributeName: false,
+    updateTag: function(tagName, jPath, attrs){
+      return tagName
+    },
+    // skipEmptyListItem: false
 };
    
 const buildOptions = function(options) {
@@ -35733,6 +35839,7 @@ class OrderedObjParser{
     this.replaceEntitiesValue = replaceEntitiesValue;
     this.readStopNodeData = readStopNodeData;
     this.saveTextToParentTag = saveTextToParentTag;
+    this.addChild = addChild;
   }
 
 }
@@ -35804,7 +35911,7 @@ function resolveNameSpace(tagname) {
 //const attrsRegx = new RegExp("([\\w\\-\\.\\:]+)\\s*=\\s*(['\"])((.|\n)*?)\\2","gm");
 const attrsRegx = new RegExp('([^\\s=]+)\\s*(=\\s*([\'"])([\\s\\S]*?)\\3)?', 'gm');
 
-function buildAttributesMap(attrStr, jPath) {
+function buildAttributesMap(attrStr, jPath, tagName) {
   if (!this.options.ignoreAttributes && typeof attrStr === 'string') {
     // attrStr = attrStr.replace(/\r?\n/g, ' ');
     //attrStr = attrStr || attrStr.trim();
@@ -35854,7 +35961,7 @@ function buildAttributesMap(attrStr, jPath) {
       attrCollection[this.options.attributesGroupName] = attrs;
       return attrCollection;
     }
-    return attrs;
+    return attrs
   }
 }
 
@@ -35888,9 +35995,21 @@ const parseXml = function(xmlData) {
           textData = this.saveTextToParentTag(textData, currentNode, jPath);
         }
 
-        jPath = jPath.substr(0, jPath.lastIndexOf("."));
-        
-        currentNode = this.tagsNodeStack.pop();//avoid recurssion, set the parent tag scope
+        //check if last tag of nested tag was unpaired tag
+        const lastTagName = jPath.substring(jPath.lastIndexOf(".")+1);
+        if(tagName && this.options.unpairedTags.indexOf(tagName) !== -1 ){
+          throw new Error(`Unpaired tag can not be used as closing tag: </${tagName}>`);
+        }
+        let propIndex = 0
+        if(lastTagName && this.options.unpairedTags.indexOf(lastTagName) !== -1 ){
+          propIndex = jPath.lastIndexOf('.', jPath.lastIndexOf('.')-1)
+          this.tagsNodeStack.pop();
+        }else{
+          propIndex = jPath.lastIndexOf(".");
+        }
+        jPath = jPath.substring(0, propIndex);
+
+        currentNode = this.tagsNodeStack.pop();//avoid recursion, set the parent tag scope
         textData = "";
         i = closeIndex;
       } else if( xmlData[i+1] === '?') {
@@ -35907,9 +36026,9 @@ const parseXml = function(xmlData) {
           childNode.add(this.options.textNodeName, "");
           
           if(tagData.tagName !== tagData.tagExp && tagData.attrExpPresent){
-            childNode[":@"] = this.buildAttributesMap(tagData.tagExp, jPath);
+            childNode[":@"] = this.buildAttributesMap(tagData.tagExp, jPath, tagData.tagName);
           }
-          currentNode.addChild(childNode);
+          this.addChild(currentNode, childNode, jPath)
 
         }
 
@@ -35966,23 +36085,22 @@ const parseXml = function(xmlData) {
           }
         }
 
-        if(tagName !== xmlObj.tagname){
-          jPath += jPath ? "." + tagName : tagName;
-        }
-
         //check if last tag was unpaired tag
         const lastTag = currentNode;
         if(lastTag && this.options.unpairedTags.indexOf(lastTag.tagname) !== -1 ){
           currentNode = this.tagsNodeStack.pop();
+          jPath = jPath.substring(0, jPath.lastIndexOf("."));
         }
-
+        if(tagName !== xmlObj.tagname){
+          jPath += jPath ? "." + tagName : tagName;
+        }
         if (this.isItStopNode(this.options.stopNodes, jPath, tagName)) { //TODO: namespace
           let tagContent = "";
           //self-closing tag
           if(tagExp.length > 0 && tagExp.lastIndexOf("/") === tagExp.length - 1){
             i = result.closeIndex;
           }
-          //boolean tag
+          //unpaired tag
           else if(this.options.unpairedTags.indexOf(tagName) !== -1){
             i = result.closeIndex;
           }
@@ -35997,7 +36115,7 @@ const parseXml = function(xmlData) {
 
           const childNode = new xmlNode(tagName);
           if(tagName !== tagExp && attrExpPresent){
-            childNode[":@"] = this.buildAttributesMap(tagExp, jPath);
+            childNode[":@"] = this.buildAttributesMap(tagExp, jPath, tagName);
           }
           if(tagContent) {
             tagContent = this.parseTextData(tagContent, tagName, jPath, true, attrExpPresent, true, true);
@@ -36006,7 +36124,7 @@ const parseXml = function(xmlData) {
           jPath = jPath.substr(0, jPath.lastIndexOf("."));
           childNode.add(this.options.textNodeName, tagContent);
           
-          currentNode.addChild(childNode);
+          this.addChild(currentNode, childNode, jPath)
         }else{
   //selfClosing tag
           if(tagExp.length > 0 && tagExp.lastIndexOf("/") === tagExp.length - 1){
@@ -36023,10 +36141,10 @@ const parseXml = function(xmlData) {
 
             const childNode = new xmlNode(tagName);
             if(tagName !== tagExp && attrExpPresent){
-              childNode[":@"] = this.buildAttributesMap(tagExp, jPath);
+              childNode[":@"] = this.buildAttributesMap(tagExp, jPath, tagName);
             }
+            this.addChild(currentNode, childNode, jPath)
             jPath = jPath.substr(0, jPath.lastIndexOf("."));
-            currentNode.addChild(childNode);
           }
     //opening tag
           else{
@@ -36034,9 +36152,9 @@ const parseXml = function(xmlData) {
             this.tagsNodeStack.push(currentNode);
             
             if(tagName !== tagExp && attrExpPresent){
-              childNode[":@"] = this.buildAttributesMap(tagExp, jPath);
+              childNode[":@"] = this.buildAttributesMap(tagExp, jPath, tagName);
             }
-            currentNode.addChild(childNode);
+            this.addChild(currentNode, childNode, jPath)
             currentNode = childNode;
           }
           textData = "";
@@ -36048,6 +36166,17 @@ const parseXml = function(xmlData) {
     }
   }
   return xmlObj.child;
+}
+
+function addChild(currentNode, childNode, jPath){
+  const result = this.options.updateTag(childNode.tagname, jPath, childNode[":@"])
+  if(result === false){
+  }else if(typeof result === "string"){
+    childNode.tagname = result
+    currentNode.addChild(childNode);
+  }else{
+    currentNode.addChild(childNode);
+  }
 }
 
 const replaceEntitiesValue = function(val){
@@ -36106,7 +36235,7 @@ function isItStopNode(stopNodes, jPath, currentTagName){
 }
 
 /**
- * Returns the tag Expression and where it is ending handling single-dobule quotes situation
+ * Returns the tag Expression and where it is ending handling single-double quotes situation
  * @param {string} xmlData 
  * @param {number} i starting index
  * @returns 
@@ -36414,8 +36543,20 @@ function assignAttributes(obj, attrMap, jpath, options){
 }
 
 function isLeafTag(obj, options){
+  const { textNodeName } = options;
   const propCount = Object.keys(obj).length;
-  if( propCount === 0 || (propCount === 1 && obj[options.textNodeName]) ) return true;
+  
+  if (propCount === 0) {
+    return true;
+  }
+
+  if (
+    propCount === 1 &&
+    (obj[textNodeName] || typeof obj[textNodeName] === "boolean" || obj[textNodeName] === 0)
+  ) {
+    return true;
+  }
+
   return false;
 }
 exports.prettify = prettify;
@@ -37951,7 +38092,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.345.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.345.0","@aws-sdk/config-resolver":"3.342.0","@aws-sdk/credential-provider-node":"3.345.0","@aws-sdk/fetch-http-handler":"3.342.0","@aws-sdk/hash-node":"3.344.0","@aws-sdk/invalid-dependency":"3.342.0","@aws-sdk/middleware-content-length":"3.342.0","@aws-sdk/middleware-endpoint":"3.344.0","@aws-sdk/middleware-host-header":"3.342.0","@aws-sdk/middleware-logger":"3.342.0","@aws-sdk/middleware-recursion-detection":"3.342.0","@aws-sdk/middleware-retry":"3.342.0","@aws-sdk/middleware-serde":"3.342.0","@aws-sdk/middleware-signing":"3.342.0","@aws-sdk/middleware-stack":"3.342.0","@aws-sdk/middleware-user-agent":"3.345.0","@aws-sdk/node-config-provider":"3.342.0","@aws-sdk/node-http-handler":"3.344.0","@aws-sdk/smithy-client":"3.342.0","@aws-sdk/types":"3.342.0","@aws-sdk/url-parser":"3.342.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.342.0","@aws-sdk/util-defaults-mode-node":"3.342.0","@aws-sdk/util-endpoints":"3.342.0","@aws-sdk/util-retry":"3.342.0","@aws-sdk/util-user-agent-browser":"3.345.0","@aws-sdk/util-user-agent-node":"3.345.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.350.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/client-sts":"3.350.0","@aws-sdk/config-resolver":"3.347.0","@aws-sdk/credential-provider-node":"3.350.0","@aws-sdk/fetch-http-handler":"3.347.0","@aws-sdk/hash-node":"3.347.0","@aws-sdk/invalid-dependency":"3.347.0","@aws-sdk/middleware-content-length":"3.347.0","@aws-sdk/middleware-endpoint":"3.347.0","@aws-sdk/middleware-host-header":"3.347.0","@aws-sdk/middleware-logger":"3.347.0","@aws-sdk/middleware-recursion-detection":"3.347.0","@aws-sdk/middleware-retry":"3.347.0","@aws-sdk/middleware-serde":"3.347.0","@aws-sdk/middleware-signing":"3.347.0","@aws-sdk/middleware-stack":"3.347.0","@aws-sdk/middleware-user-agent":"3.347.0","@aws-sdk/node-config-provider":"3.347.0","@aws-sdk/node-http-handler":"3.350.0","@aws-sdk/smithy-client":"3.347.0","@aws-sdk/types":"3.347.0","@aws-sdk/url-parser":"3.347.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.347.0","@aws-sdk/util-defaults-mode-node":"3.347.0","@aws-sdk/util-endpoints":"3.347.0","@aws-sdk/util-retry":"3.347.0","@aws-sdk/util-user-agent-browser":"3.347.0","@aws-sdk/util-user-agent-node":"3.347.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","tslib":"^2.5.0","uuid":"^8.3.2"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","@types/uuid":"^8.3.0","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ }),
 
@@ -37959,7 +38100,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-secrets-manager","descript
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.345.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.342.0","@aws-sdk/fetch-http-handler":"3.342.0","@aws-sdk/hash-node":"3.344.0","@aws-sdk/invalid-dependency":"3.342.0","@aws-sdk/middleware-content-length":"3.342.0","@aws-sdk/middleware-endpoint":"3.344.0","@aws-sdk/middleware-host-header":"3.342.0","@aws-sdk/middleware-logger":"3.342.0","@aws-sdk/middleware-recursion-detection":"3.342.0","@aws-sdk/middleware-retry":"3.342.0","@aws-sdk/middleware-serde":"3.342.0","@aws-sdk/middleware-stack":"3.342.0","@aws-sdk/middleware-user-agent":"3.345.0","@aws-sdk/node-config-provider":"3.342.0","@aws-sdk/node-http-handler":"3.344.0","@aws-sdk/smithy-client":"3.342.0","@aws-sdk/types":"3.342.0","@aws-sdk/url-parser":"3.342.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.342.0","@aws-sdk/util-defaults-mode-node":"3.342.0","@aws-sdk/util-endpoints":"3.342.0","@aws-sdk/util-retry":"3.342.0","@aws-sdk/util-user-agent-browser":"3.345.0","@aws-sdk/util-user-agent-node":"3.345.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native","version":"3.350.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso-oidc"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.347.0","@aws-sdk/fetch-http-handler":"3.347.0","@aws-sdk/hash-node":"3.347.0","@aws-sdk/invalid-dependency":"3.347.0","@aws-sdk/middleware-content-length":"3.347.0","@aws-sdk/middleware-endpoint":"3.347.0","@aws-sdk/middleware-host-header":"3.347.0","@aws-sdk/middleware-logger":"3.347.0","@aws-sdk/middleware-recursion-detection":"3.347.0","@aws-sdk/middleware-retry":"3.347.0","@aws-sdk/middleware-serde":"3.347.0","@aws-sdk/middleware-stack":"3.347.0","@aws-sdk/middleware-user-agent":"3.347.0","@aws-sdk/node-config-provider":"3.347.0","@aws-sdk/node-http-handler":"3.350.0","@aws-sdk/smithy-client":"3.347.0","@aws-sdk/types":"3.347.0","@aws-sdk/url-parser":"3.347.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.347.0","@aws-sdk/util-defaults-mode-node":"3.347.0","@aws-sdk/util-endpoints":"3.347.0","@aws-sdk/util-retry":"3.347.0","@aws-sdk/util-user-agent-browser":"3.347.0","@aws-sdk/util-user-agent-node":"3.347.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso-oidc","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso-oidc"}}');
 
 /***/ }),
 
@@ -37967,7 +38108,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso-oidc","description":"A
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.345.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.342.0","@aws-sdk/fetch-http-handler":"3.342.0","@aws-sdk/hash-node":"3.344.0","@aws-sdk/invalid-dependency":"3.342.0","@aws-sdk/middleware-content-length":"3.342.0","@aws-sdk/middleware-endpoint":"3.344.0","@aws-sdk/middleware-host-header":"3.342.0","@aws-sdk/middleware-logger":"3.342.0","@aws-sdk/middleware-recursion-detection":"3.342.0","@aws-sdk/middleware-retry":"3.342.0","@aws-sdk/middleware-serde":"3.342.0","@aws-sdk/middleware-stack":"3.342.0","@aws-sdk/middleware-user-agent":"3.345.0","@aws-sdk/node-config-provider":"3.342.0","@aws-sdk/node-http-handler":"3.344.0","@aws-sdk/smithy-client":"3.342.0","@aws-sdk/types":"3.342.0","@aws-sdk/url-parser":"3.342.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.342.0","@aws-sdk/util-defaults-mode-node":"3.342.0","@aws-sdk/util-endpoints":"3.342.0","@aws-sdk/util-retry":"3.342.0","@aws-sdk/util-user-agent-browser":"3.345.0","@aws-sdk/util-user-agent-node":"3.345.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.350.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.347.0","@aws-sdk/fetch-http-handler":"3.347.0","@aws-sdk/hash-node":"3.347.0","@aws-sdk/invalid-dependency":"3.347.0","@aws-sdk/middleware-content-length":"3.347.0","@aws-sdk/middleware-endpoint":"3.347.0","@aws-sdk/middleware-host-header":"3.347.0","@aws-sdk/middleware-logger":"3.347.0","@aws-sdk/middleware-recursion-detection":"3.347.0","@aws-sdk/middleware-retry":"3.347.0","@aws-sdk/middleware-serde":"3.347.0","@aws-sdk/middleware-stack":"3.347.0","@aws-sdk/middleware-user-agent":"3.347.0","@aws-sdk/node-config-provider":"3.347.0","@aws-sdk/node-http-handler":"3.350.0","@aws-sdk/smithy-client":"3.347.0","@aws-sdk/types":"3.347.0","@aws-sdk/url-parser":"3.347.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.347.0","@aws-sdk/util-defaults-mode-node":"3.347.0","@aws-sdk/util-endpoints":"3.347.0","@aws-sdk/util-retry":"3.347.0","@aws-sdk/util-user-agent-browser":"3.347.0","@aws-sdk/util-user-agent-node":"3.347.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ }),
 
@@ -37975,7 +38116,7 @@ module.exports = JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SD
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.345.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.342.0","@aws-sdk/credential-provider-node":"3.345.0","@aws-sdk/fetch-http-handler":"3.342.0","@aws-sdk/hash-node":"3.344.0","@aws-sdk/invalid-dependency":"3.342.0","@aws-sdk/middleware-content-length":"3.342.0","@aws-sdk/middleware-endpoint":"3.344.0","@aws-sdk/middleware-host-header":"3.342.0","@aws-sdk/middleware-logger":"3.342.0","@aws-sdk/middleware-recursion-detection":"3.342.0","@aws-sdk/middleware-retry":"3.342.0","@aws-sdk/middleware-sdk-sts":"3.342.0","@aws-sdk/middleware-serde":"3.342.0","@aws-sdk/middleware-signing":"3.342.0","@aws-sdk/middleware-stack":"3.342.0","@aws-sdk/middleware-user-agent":"3.345.0","@aws-sdk/node-config-provider":"3.342.0","@aws-sdk/node-http-handler":"3.344.0","@aws-sdk/smithy-client":"3.342.0","@aws-sdk/types":"3.342.0","@aws-sdk/url-parser":"3.342.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.342.0","@aws-sdk/util-defaults-mode-node":"3.342.0","@aws-sdk/util-endpoints":"3.342.0","@aws-sdk/util-retry":"3.342.0","@aws-sdk/util-user-agent-browser":"3.345.0","@aws-sdk/util-user-agent-node":"3.345.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","fast-xml-parser":"4.1.2","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
+module.exports = JSON.parse('{"name":"@aws-sdk/client-sts","description":"AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native","version":"3.350.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"tsc -p tsconfig.cjs.json","build:docs":"typedoc","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sts","test":"yarn test:unit","test:unit":"jest"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"3.0.0","@aws-crypto/sha256-js":"3.0.0","@aws-sdk/config-resolver":"3.347.0","@aws-sdk/credential-provider-node":"3.350.0","@aws-sdk/fetch-http-handler":"3.347.0","@aws-sdk/hash-node":"3.347.0","@aws-sdk/invalid-dependency":"3.347.0","@aws-sdk/middleware-content-length":"3.347.0","@aws-sdk/middleware-endpoint":"3.347.0","@aws-sdk/middleware-host-header":"3.347.0","@aws-sdk/middleware-logger":"3.347.0","@aws-sdk/middleware-recursion-detection":"3.347.0","@aws-sdk/middleware-retry":"3.347.0","@aws-sdk/middleware-sdk-sts":"3.347.0","@aws-sdk/middleware-serde":"3.347.0","@aws-sdk/middleware-signing":"3.347.0","@aws-sdk/middleware-stack":"3.347.0","@aws-sdk/middleware-user-agent":"3.347.0","@aws-sdk/node-config-provider":"3.347.0","@aws-sdk/node-http-handler":"3.350.0","@aws-sdk/smithy-client":"3.347.0","@aws-sdk/types":"3.347.0","@aws-sdk/url-parser":"3.347.0","@aws-sdk/util-base64":"3.310.0","@aws-sdk/util-body-length-browser":"3.310.0","@aws-sdk/util-body-length-node":"3.310.0","@aws-sdk/util-defaults-mode-browser":"3.347.0","@aws-sdk/util-defaults-mode-node":"3.347.0","@aws-sdk/util-endpoints":"3.347.0","@aws-sdk/util-retry":"3.347.0","@aws-sdk/util-user-agent-browser":"3.347.0","@aws-sdk/util-user-agent-node":"3.347.0","@aws-sdk/util-utf8":"3.310.0","@smithy/protocol-http":"^1.0.1","@smithy/types":"^1.0.0","fast-xml-parser":"4.2.4","tslib":"^2.5.0"},"devDependencies":{"@aws-sdk/service-client-documentation-generator":"3.310.0","@tsconfig/node14":"1.0.3","@types/node":"^14.14.31","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typedoc":"0.23.23","typescript":"~4.9.5"},"engines":{"node":">=14.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sts","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sts"}}');
 
 /***/ }),
 
