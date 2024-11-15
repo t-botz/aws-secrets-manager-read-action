@@ -1,4 +1,12 @@
-import * as core from '@actions/core'
+import {
+  getInput,
+  debug,
+  setSecret,
+  exportVariable,
+  setOutput,
+  getBooleanInput,
+  setFailed
+} from '@actions/core'
 import {
   GetSecretValueCommand,
   SecretsManagerClient
@@ -6,7 +14,7 @@ import {
 import {promises as fs} from 'fs'
 
 function getOptionalInput(input: string): string | undefined {
-  const result = core.getInput(input, {required: false, trimWhitespace: true})
+  const result = getInput(input, {required: false, trimWhitespace: true})
   if (!result) {
     return undefined
   }
@@ -21,13 +29,13 @@ async function processJson(
   envFilePath?: string
 ): Promise<void> {
   if (!maskJsonValues && !keysAsEnvVars && !keysAsOutputs) {
-    core.debug('No JSON processing needed')
+    debug('No JSON processing needed')
     return
   }
 
-  core.debug('Parsing JSON')
+  debug('Parsing JSON')
   const secretObj = JSON.parse(secret, (_, value) => {
-    if (maskJsonValues) core.setSecret(value)
+    if (maskJsonValues) setSecret(value)
     return value
   })
 
@@ -40,11 +48,11 @@ async function processJson(
 }
 
 async function writeEnvFile(
-  secretObj: Object,
+  secretObj: object,
   envFilePath?: string
 ): Promise<void> {
   if (!envFilePath) {
-    core.debug('No need to export env file')
+    debug('No need to export env file')
     return
   }
   await fs.appendFile(
@@ -60,48 +68,48 @@ ${Object.entries(secretObj)
 }
 
 function exportKeys(
-  secretObj: Object,
+  secretObj: object,
   keysAsEnvVars: boolean,
   keysAsOutputs: boolean
 ): void {
   if (!keysAsEnvVars && !keysAsOutputs) {
-    core.debug('No JSON keys export needed')
+    debug('No JSON keys export needed')
     return
   }
   for (const [key, value] of Object.entries(secretObj)) {
     const valueAsString =
       typeof value === 'string' ? value : JSON.stringify(value)
     if (keysAsEnvVars) {
-      core.debug(`Exporting Env variable ${key}`)
-      core.exportVariable(key, valueAsString)
+      debug(`Exporting Env variable ${key}`)
+      exportVariable(key, valueAsString)
     }
     if (keysAsOutputs) {
-      core.debug(`Setting output ${key}`)
-      core.setOutput(key, valueAsString)
+      debug(`Setting output ${key}`)
+      setOutput(key, valueAsString)
     }
   }
 }
 
 async function run(): Promise<void> {
   try {
-    const secretId: string = core.getInput('secret-id', {
+    const secretId: string = getInput('secret-id', {
       required: true,
       trimWhitespace: true
     })
     const versionId = getOptionalInput('version-id')
     const versionStage = getOptionalInput('version-stage')
 
-    const maskValue = core.getBooleanInput('mask-value')
-    const maskJsonValues = core.getBooleanInput('mask-json-values')
-    const keysAsEnvVars = core.getBooleanInput('keys-as-env-vars')
-    const keysAsOutputs = core.getBooleanInput('keys-as-outputs')
+    const maskValue = getBooleanInput('mask-value')
+    const maskJsonValues = getBooleanInput('mask-json-values')
+    const keysAsEnvVars = getBooleanInput('keys-as-env-vars')
+    const keysAsOutputs = getBooleanInput('keys-as-outputs')
     const envFilePath = getOptionalInput('append-to-env-file')
 
     // Used mainly for unit test to use localstack
     const awsEndpoint = process.env['AWS_SECRETS_MANAGER_ENDPOINT_URL']
 
-    core.debug('Initialising SecretsManagerClient')
-    core.debug(`AWS endpoint override: ${awsEndpoint}`)
+    debug('Initialising SecretsManagerClient')
+    debug(`AWS endpoint override: ${awsEndpoint}`)
     const client = new SecretsManagerClient({
       endpoint: awsEndpoint
     })
@@ -111,11 +119,11 @@ async function run(): Promise<void> {
       VersionStage: versionStage
     })
 
-    core.debug('Getting secret')
+    debug('Getting secret')
     const response = await client.send(command)
 
     if (response.SecretString) {
-      if (maskValue) core.setSecret(response.SecretString)
+      if (maskValue) setSecret(response.SecretString)
       await processJson(
         response.SecretString,
         maskJsonValues,
@@ -124,12 +132,12 @@ async function run(): Promise<void> {
         envFilePath
       )
     } else {
-      core.debug('SecretString is undefined')
+      debug('SecretString is undefined')
     }
-    core.setOutput('secret', response.SecretString)
+    setOutput('secret', response.SecretString)
   } catch (error) {
-    if (error instanceof Error) core.setFailed(error)
-    else core.setFailed(`Unexpected error: ${error}`)
+    if (error instanceof Error) setFailed(error)
+    else setFailed(`Unexpected error: ${error}`)
   }
 }
 
