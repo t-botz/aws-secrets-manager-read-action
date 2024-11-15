@@ -5,7 +5,7 @@ jobs:
     if: github.actor != 'dependabot[bot]' # Dependabot commits are always followed by a dist folder commit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npm install
       - run: npm run all
   test:
@@ -25,7 +25,7 @@ jobs:
           - 4566:4566
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup some sample credentials
         run: |
           aws --endpoint-url="$AWS_SECRETS_MANAGER_ENDPOINT_URL" secretsmanager create-secret \
