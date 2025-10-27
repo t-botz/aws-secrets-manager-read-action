@@ -7663,10 +7663,12 @@ exports.userAgentMiddleware = userAgentMiddleware;
 /***/ }),
 
 /***/ 6463:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
+
+var configResolver = __nccwpck_require__(9316);
 
 const getAwsRegionExtensionConfiguration = (runtimeConfig) => {
     return {
@@ -7684,57 +7686,28 @@ const resolveAwsRegionExtensionConfiguration = (awsRegionExtensionConfiguration)
     };
 };
 
-const REGION_ENV_NAME = "AWS_REGION";
-const REGION_INI_NAME = "region";
-const NODE_REGION_CONFIG_OPTIONS = {
-    environmentVariableSelector: (env) => env[REGION_ENV_NAME],
-    configFileSelector: (profile) => profile[REGION_INI_NAME],
-    default: () => {
-        throw new Error("Region is missing");
-    },
-};
-const NODE_REGION_CONFIG_FILE_OPTIONS = {
-    preferredFile: "credentials",
-};
-
-const isFipsRegion = (region) => typeof region === "string" && (region.startsWith("fips-") || region.endsWith("-fips"));
-
-const getRealRegion = (region) => isFipsRegion(region)
-    ? ["fips-aws-global", "aws-fips"].includes(region)
-        ? "us-east-1"
-        : region.replace(/fips-(dkr-|prod-)?|-fips/, "")
-    : region;
-
-const resolveRegionConfig = (input) => {
-    const { region, useFipsEndpoint } = input;
-    if (!region) {
-        throw new Error("Region is missing");
-    }
-    return Object.assign(input, {
-        region: async () => {
-            if (typeof region === "string") {
-                return getRealRegion(region);
-            }
-            const providedRegion = await region();
-            return getRealRegion(providedRegion);
-        },
-        useFipsEndpoint: async () => {
-            const providedRegion = typeof region === "string" ? region : await region();
-            if (isFipsRegion(providedRegion)) {
-                return true;
-            }
-            return typeof useFipsEndpoint !== "function" ? Promise.resolve(!!useFipsEndpoint) : useFipsEndpoint();
-        },
-    });
-};
-
-exports.NODE_REGION_CONFIG_FILE_OPTIONS = NODE_REGION_CONFIG_FILE_OPTIONS;
-exports.NODE_REGION_CONFIG_OPTIONS = NODE_REGION_CONFIG_OPTIONS;
-exports.REGION_ENV_NAME = REGION_ENV_NAME;
-exports.REGION_INI_NAME = REGION_INI_NAME;
+Object.defineProperty(exports, "NODE_REGION_CONFIG_FILE_OPTIONS", ({
+    enumerable: true,
+    get: function () { return configResolver.NODE_REGION_CONFIG_FILE_OPTIONS; }
+}));
+Object.defineProperty(exports, "NODE_REGION_CONFIG_OPTIONS", ({
+    enumerable: true,
+    get: function () { return configResolver.NODE_REGION_CONFIG_OPTIONS; }
+}));
+Object.defineProperty(exports, "REGION_ENV_NAME", ({
+    enumerable: true,
+    get: function () { return configResolver.REGION_ENV_NAME; }
+}));
+Object.defineProperty(exports, "REGION_INI_NAME", ({
+    enumerable: true,
+    get: function () { return configResolver.REGION_INI_NAME; }
+}));
+Object.defineProperty(exports, "resolveRegionConfig", ({
+    enumerable: true,
+    get: function () { return configResolver.resolveRegionConfig; }
+}));
 exports.getAwsRegionExtensionConfiguration = getAwsRegionExtensionConfiguration;
 exports.resolveAwsRegionExtensionConfiguration = resolveAwsRegionExtensionConfiguration;
-exports.resolveRegionConfig = resolveRegionConfig;
 
 
 /***/ }),
@@ -7991,6 +7964,9 @@ var partitions = [
 			},
 			"us-isob-east-1": {
 				description: "US ISOB East (Ohio)"
+			},
+			"us-isob-west-1": {
+				description: "US ISOB West"
 			}
 		}
 	},
@@ -8489,6 +8465,7 @@ exports.InvokeStore = instance;
 
 var utilConfigProvider = __nccwpck_require__(6716);
 var utilMiddleware = __nccwpck_require__(6324);
+var utilEndpoints = __nccwpck_require__(9674);
 
 const ENV_USE_DUALSTACK_ENDPOINT = "AWS_USE_DUALSTACK_ENDPOINT";
 const CONFIG_USE_DUALSTACK_ENDPOINT = "use_dualstack_endpoint";
@@ -8560,6 +8537,16 @@ const NODE_REGION_CONFIG_FILE_OPTIONS = {
     preferredFile: "credentials",
 };
 
+const validRegions = new Set();
+const checkRegion = (region, check = utilEndpoints.isValidHostLabel) => {
+    if (!validRegions.has(region) && !check(region)) {
+        throw new Error(`Region not accepted: region="${region}" is not a valid hostname component.`);
+    }
+    else {
+        validRegions.add(region);
+    }
+};
+
 const isFipsRegion = (region) => typeof region === "string" && (region.startsWith("fips-") || region.endsWith("-fips"));
 
 const getRealRegion = (region) => isFipsRegion(region)
@@ -8575,11 +8562,10 @@ const resolveRegionConfig = (input) => {
     }
     return Object.assign(input, {
         region: async () => {
-            if (typeof region === "string") {
-                return getRealRegion(region);
-            }
-            const providedRegion = await region();
-            return getRealRegion(providedRegion);
+            const providedRegion = typeof region === "function" ? await region() : region;
+            const realRegion = getRealRegion(providedRegion);
+            checkRegion(realRegion);
+            return realRegion;
         },
         useFipsEndpoint: async () => {
             const providedRegion = typeof region === "string" ? region : await region();
@@ -13882,7 +13868,7 @@ const setSocketTimeout = (request, reject, timeoutInMs = 0) => {
 const MIN_WAIT_TIME = 6_000;
 async function writeRequestBody(httpRequest, request, maxContinueTimeoutMs = MIN_WAIT_TIME) {
     const headers = request.headers ?? {};
-    const expect = headers["Expect"] || headers["expect"];
+    const expect = headers.Expect || headers.expect;
     let timeoutId = -1;
     let sendBody = true;
     if (expect === "100-continue") {
@@ -14017,6 +14003,7 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
             this.config = await this.configProvider;
         }
         return new Promise((_resolve, _reject) => {
+            const config = this.config;
             let writeRequestBodyPromise = undefined;
             const timeouts = [];
             const resolve = async (arg) => {
@@ -14029,9 +14016,6 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
                 timeouts.forEach(timing.clearTimeout);
                 _reject(arg);
             };
-            if (!this.config) {
-                throw new Error("Node HTTP request handler config is not resolved");
-            }
             if (abortSignal?.aborted) {
                 const abortError = new Error("Request aborted");
                 abortError.name = "AbortError";
@@ -14039,11 +14023,18 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
                 return;
             }
             const isSSL = request.protocol === "https:";
-            const agent = isSSL ? this.config.httpsAgent : this.config.httpAgent;
+            const headers = request.headers ?? {};
+            const expectContinue = (headers.Expect ?? headers.expect) === "100-continue";
+            let agent = isSSL ? config.httpsAgent : config.httpAgent;
+            if (expectContinue) {
+                agent = new (isSSL ? https.Agent : http.Agent)({
+                    keepAlive: false,
+                    maxSockets: Infinity,
+                });
+            }
             timeouts.push(timing.setTimeout(() => {
-                this.socketWarningTimestamp = NodeHttpHandler.checkSocketUsage(agent, this.socketWarningTimestamp, this.config.logger);
-            }, this.config.socketAcquisitionWarningTimeout ??
-                (this.config.requestTimeout ?? 2000) + (this.config.connectionTimeout ?? 1000)));
+                this.socketWarningTimestamp = NodeHttpHandler.checkSocketUsage(agent, this.socketWarningTimestamp, config.logger);
+            }, config.socketAcquisitionWarningTimeout ?? (config.requestTimeout ?? 2000) + (config.connectionTimeout ?? 1000)));
             const queryString = querystringBuilder.buildQueryString(request.query || {});
             let auth = undefined;
             if (request.username != null || request.password != null) {
@@ -14108,10 +14099,10 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
                     abortSignal.onabort = onAbort;
                 }
             }
-            const effectiveRequestTimeout = requestTimeout ?? this.config.requestTimeout;
-            timeouts.push(setConnectionTimeout(req, reject, this.config.connectionTimeout));
-            timeouts.push(setRequestTimeout(req, reject, effectiveRequestTimeout, this.config.throwOnRequestTimeout, this.config.logger ?? console));
-            timeouts.push(setSocketTimeout(req, reject, this.config.socketTimeout));
+            const effectiveRequestTimeout = requestTimeout ?? config.requestTimeout;
+            timeouts.push(setConnectionTimeout(req, reject, config.connectionTimeout));
+            timeouts.push(setRequestTimeout(req, reject, effectiveRequestTimeout, config.throwOnRequestTimeout, config.logger ?? console));
+            timeouts.push(setSocketTimeout(req, reject, config.socketTimeout));
             const httpAgent = nodeHttpsOptions.agent;
             if (typeof httpAgent === "object" && "keepAlive" in httpAgent) {
                 timeouts.push(setSocketKeepAlive(req, {
@@ -19501,7 +19492,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.913.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.911.0","@aws-sdk/credential-provider-node":"3.913.0","@aws-sdk/middleware-host-header":"3.910.0","@aws-sdk/middleware-logger":"3.910.0","@aws-sdk/middleware-recursion-detection":"3.910.0","@aws-sdk/middleware-user-agent":"3.911.0","@aws-sdk/region-config-resolver":"3.910.0","@aws-sdk/types":"3.910.0","@aws-sdk/util-endpoints":"3.910.0","@aws-sdk/util-user-agent-browser":"3.910.0","@aws-sdk/util-user-agent-node":"3.911.0","@smithy/config-resolver":"^4.3.2","@smithy/core":"^3.16.1","@smithy/fetch-http-handler":"^5.3.3","@smithy/hash-node":"^4.2.2","@smithy/invalid-dependency":"^4.2.2","@smithy/middleware-content-length":"^4.2.2","@smithy/middleware-endpoint":"^4.3.3","@smithy/middleware-retry":"^4.4.3","@smithy/middleware-serde":"^4.2.2","@smithy/middleware-stack":"^4.2.2","@smithy/node-config-provider":"^4.3.2","@smithy/node-http-handler":"^4.4.1","@smithy/protocol-http":"^5.3.2","@smithy/smithy-client":"^4.8.1","@smithy/types":"^4.7.1","@smithy/url-parser":"^4.2.2","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.2","@smithy/util-defaults-mode-node":"^4.2.3","@smithy/util-endpoints":"^3.2.2","@smithy/util-middleware":"^4.2.2","@smithy/util-retry":"^4.2.2","@smithy/util-utf8":"^4.2.0","@smithy/uuid":"^1.1.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.8.3"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.917.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.916.0","@aws-sdk/credential-provider-node":"3.917.0","@aws-sdk/middleware-host-header":"3.914.0","@aws-sdk/middleware-logger":"3.914.0","@aws-sdk/middleware-recursion-detection":"3.914.0","@aws-sdk/middleware-user-agent":"3.916.0","@aws-sdk/region-config-resolver":"3.914.0","@aws-sdk/types":"3.914.0","@aws-sdk/util-endpoints":"3.916.0","@aws-sdk/util-user-agent-browser":"3.914.0","@aws-sdk/util-user-agent-node":"3.916.0","@smithy/config-resolver":"^4.4.0","@smithy/core":"^3.17.1","@smithy/fetch-http-handler":"^5.3.4","@smithy/hash-node":"^4.2.3","@smithy/invalid-dependency":"^4.2.3","@smithy/middleware-content-length":"^4.2.3","@smithy/middleware-endpoint":"^4.3.5","@smithy/middleware-retry":"^4.4.5","@smithy/middleware-serde":"^4.2.3","@smithy/middleware-stack":"^4.2.3","@smithy/node-config-provider":"^4.3.3","@smithy/node-http-handler":"^4.4.3","@smithy/protocol-http":"^5.3.3","@smithy/smithy-client":"^4.9.1","@smithy/types":"^4.8.0","@smithy/url-parser":"^4.2.3","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.4","@smithy/util-defaults-mode-node":"^4.2.6","@smithy/util-endpoints":"^3.2.3","@smithy/util-middleware":"^4.2.3","@smithy/util-retry":"^4.2.3","@smithy/util-utf8":"^4.2.0","@smithy/uuid":"^1.1.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.8.3"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ })
 
