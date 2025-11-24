@@ -3460,15 +3460,6 @@ let SecretsManagerServiceException$1 = class SecretsManagerServiceException exte
     }
 };
 
-const FilterNameStringType = {
-    all: "all",
-    description: "description",
-    name: "name",
-    owning_service: "owning-service",
-    primary_region: "primary-region",
-    tag_key: "tag-key",
-    tag_value: "tag-value",
-};
 let DecryptionFailure$1 = class DecryptionFailure extends SecretsManagerServiceException$1 {
     name = "DecryptionFailure";
     $fault = "client";
@@ -3553,11 +3544,6 @@ let ResourceNotFoundException$1 = class ResourceNotFoundException extends Secret
         this.Message = opts.Message;
     }
 };
-const StatusType = {
-    Failed: "Failed",
-    InProgress: "InProgress",
-    InSync: "InSync",
-};
 let EncryptionFailure$1 = class EncryptionFailure extends SecretsManagerServiceException$1 {
     name = "EncryptionFailure";
     $fault = "client";
@@ -3628,10 +3614,6 @@ let ResourceExistsException$1 = class ResourceExistsException extends SecretsMan
         this.Message = opts.Message;
     }
 };
-const SortOrderType = {
-    asc: "asc",
-    desc: "desc",
-};
 let PublicPolicyException$1 = class PublicPolicyException extends SecretsManagerServiceException$1 {
     name = "PublicPolicyException";
     $fault = "client";
@@ -3688,6 +3670,10 @@ const _EL = "ExcludeLowercase";
 const _EM = "ErrorMessage";
 const _EN = "ExcludeNumbers";
 const _EP = "ExcludePunctuation";
+const _ESRM = "ExternalSecretRotationMetadata";
+const _ESRMI = "ExternalSecretRotationMetadataItem";
+const _ESRMT = "ExternalSecretRotationMetadataType";
+const _ESRRA = "ExternalSecretRotationRoleArn";
 const _EU = "ExcludeUppercase";
 const _F = "Filters";
 const _FDWR = "ForceDeleteWithoutRecovery";
@@ -3804,6 +3790,7 @@ const _TLT = "TagListType";
 const _TR = "TagResource";
 const _TRR = "TagResourceRequest";
 const _Ta = "Tag";
+const _Ty = "Type";
 const _UR = "UntagResource";
 const _URR = "UntagResourceRequest";
 const _US = "UpdateSecret";
@@ -3812,7 +3799,7 @@ const _USRp = "UpdateSecretResponse";
 const _USVS = "UpdateSecretVersionStage";
 const _USVSR = "UpdateSecretVersionStageRequest";
 const _USVSRp = "UpdateSecretVersionStageResponse";
-const _V = "Values";
+const _V = "Value";
 const _VE = "ValidationErrors";
 const _VEE = "ValidationErrorsEntry";
 const _VET = "ValidationErrorsType";
@@ -3823,7 +3810,7 @@ const _VRPR = "ValidateResourcePolicyRequest";
 const _VRPRa = "ValidateResourcePolicyResponse";
 const _VS = "VersionStage";
 const _VSe = "VersionStages";
-const _Va = "Value";
+const _Va = "Values";
 const _Ve = "Versions";
 const _c = "client";
 const _e = "error";
@@ -3858,7 +3845,7 @@ var CreateSecretRequest = [
     n0,
     _CSR,
     0,
-    [_N, _CRT, _D, _KKI, _SB, _SS, _T, _ARR, _FORS],
+    [_N, _CRT, _D, _KKI, _SB, _SS, _T, _ARR, _FORS, _Ty],
     [
         0,
         [0, 4],
@@ -3869,6 +3856,7 @@ var CreateSecretRequest = [
         () => TagListType,
         () => AddReplicaRegionListType,
         2,
+        0,
     ],
 ];
 var CreateSecretResponse = [
@@ -3900,8 +3888,31 @@ var DescribeSecretResponse = [
     n0,
     _DSResc,
     0,
-    [_ARN, _N, _D, _KKI, _RE, _RLARN, _RR, _LRD, _LCD, _LAD, _DDe, _NRD, _T, _VITS, _OS, _CD, _PR, _RS],
     [
+        _ARN,
+        _N,
+        _Ty,
+        _D,
+        _KKI,
+        _RE,
+        _RLARN,
+        _RR,
+        _ESRM,
+        _ESRRA,
+        _LRD,
+        _LCD,
+        _LAD,
+        _DDe,
+        _NRD,
+        _T,
+        _VITS,
+        _OS,
+        _CD,
+        _PR,
+        _RS,
+    ],
+    [
+        0,
         0,
         0,
         0,
@@ -3909,6 +3920,8 @@ var DescribeSecretResponse = [
         2,
         0,
         () => RotationRulesType,
+        () => ExternalSecretRotationMetadataType,
+        0,
         4,
         4,
         4,
@@ -3933,7 +3946,8 @@ var EncryptionFailure = [
     [0],
 ];
 schema.TypeRegistry.for(n0).registerError(EncryptionFailure, EncryptionFailure$1);
-var Filter = [3, n0, _Fi, 0, [_K, _V], [0, 64 | 0]];
+var ExternalSecretRotationMetadataItem = [3, n0, _ESRMI, 0, [_K, _V], [0, 0]];
+var Filter = [3, n0, _Fi, 0, [_K, _Va], [0, 64 | 0]];
 var GetRandomPasswordRequest = [
     3,
     n0,
@@ -4134,8 +4148,8 @@ var RotateSecretRequest = [
     n0,
     _RSRo,
     0,
-    [_SI, _CRT, _RLARN, _RR, _RI],
-    [0, [0, 4], 0, () => RotationRulesType, 2],
+    [_SI, _CRT, _RLARN, _RR, _ESRM, _ESRRA, _RI],
+    [0, [0, 4], 0, () => RotationRulesType, () => ExternalSecretRotationMetadataType, 0, 2],
 ];
 var RotateSecretResponse = [3, n0, _RSRot, 0, [_ARN, _N, _VI], [0, 0, 0]];
 var RotationRulesType = [3, n0, _RRTo, 0, [_AAD, _Du, _SE], [1, 0, 0]];
@@ -4144,8 +4158,9 @@ var SecretListEntry = [
     n0,
     _SLE,
     0,
-    [_ARN, _N, _D, _KKI, _RE, _RLARN, _RR, _LRD, _LCD, _LAD, _DDe, _NRD, _T, _SVTS, _OS, _CD, _PR],
+    [_ARN, _N, _Ty, _D, _KKI, _RE, _RLARN, _RR, _ESRM, _ESRRA, _LRD, _LCD, _LAD, _DDe, _NRD, _T, _SVTS, _OS, _CD, _PR],
     [
+        0,
         0,
         0,
         0,
@@ -4153,6 +4168,8 @@ var SecretListEntry = [
         2,
         0,
         () => RotationRulesType,
+        () => ExternalSecretRotationMetadataType,
+        0,
         4,
         4,
         4,
@@ -4183,7 +4200,7 @@ var SecretVersionsListEntry = [
 ];
 var StopReplicationToReplicaRequest = [3, n0, _SRTRR, 0, [_SI], [0]];
 var StopReplicationToReplicaResponse = [3, n0, _SRTRRt, 0, [_ARN], [0]];
-var Tag = [3, n0, _Ta, 0, [_K, _Va], [0, 0]];
+var Tag = [3, n0, _Ta, 0, [_K, _V], [0, 0]];
 var TagResourceRequest = [3, n0, _TRR, 0, [_SI, _T], [0, () => TagListType]];
 var UntagResourceRequest = [3, n0, _URR, 0, [_SI, _TK], [0, 64 | 0]];
 var UpdateSecretRequest = [
@@ -4191,8 +4208,8 @@ var UpdateSecretRequest = [
     n0,
     _USR,
     0,
-    [_SI, _CRT, _D, _KKI, _SB, _SS],
-    [0, [0, 4], 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0]],
+    [_SI, _CRT, _D, _KKI, _SB, _SS, _Ty],
+    [0, [0, 4], 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 0],
 ];
 var UpdateSecretResponse = [3, n0, _USRp, 0, [_ARN, _N, _VI], [0, 0, 0]];
 var UpdateSecretVersionStageRequest = [
@@ -4219,6 +4236,13 @@ var SecretsManagerServiceException = [-3, _sm, "SecretsManagerServiceException",
 schema.TypeRegistry.for(_sm).registerError(SecretsManagerServiceException, SecretsManagerServiceException$1);
 var AddReplicaRegionListType = [1, n0, _ARRLT, 0, () => ReplicaRegionType];
 var APIErrorListType = [1, n0, _APIELT, 0, () => APIErrorType];
+var ExternalSecretRotationMetadataType = [
+    1,
+    n0,
+    _ESRMT,
+    0,
+    () => ExternalSecretRotationMetadataItem,
+];
 var FiltersListType = [1, n0, _FLT, 0, () => Filter];
 var ReplicationStatusListType = [1, n0, _RSLT, 0, () => ReplicationStatusType];
 var SecretListType = [1, n0, _SLT, 0, () => SecretListEntry];
@@ -4679,6 +4703,25 @@ const paginateBatchGetSecretValue = core.createPaginator(SecretsManagerClient, B
 const paginateListSecretVersionIds = core.createPaginator(SecretsManagerClient, ListSecretVersionIdsCommand, "NextToken", "NextToken", "MaxResults");
 
 const paginateListSecrets = core.createPaginator(SecretsManagerClient, ListSecretsCommand, "NextToken", "NextToken", "MaxResults");
+
+const FilterNameStringType = {
+    all: "all",
+    description: "description",
+    name: "name",
+    owning_service: "owning-service",
+    primary_region: "primary-region",
+    tag_key: "tag-key",
+    tag_value: "tag-value",
+};
+const StatusType = {
+    Failed: "Failed",
+    InProgress: "InProgress",
+    InSync: "InSync",
+};
+const SortOrderType = {
+    asc: "asc",
+    desc: "desc",
+};
 
 Object.defineProperty(exports, "$Command", ({
     enumerable: true,
@@ -8948,7 +8991,8 @@ const recursionDetectionMiddleware = () => (next) => async (args) => {
     }
     const functionName = process.env[ENV_LAMBDA_FUNCTION_NAME];
     const traceIdFromEnv = process.env[ENV_TRACE_ID];
-    const traceIdFromInvokeStore = lambda_invoke_store_1.InvokeStore.getXRayTraceId();
+    const invokeStore = await lambda_invoke_store_1.InvokeStore.getInstanceAsync();
+    const traceIdFromInvokeStore = invokeStore?.getXRayTraceId();
     const traceId = traceIdFromInvokeStore ?? traceIdFromEnv;
     const nonEmptyString = (str) => typeof str === "string" && str.length > 0;
     if (nonEmptyString(functionName) && nonEmptyString(traceId)) {
@@ -9904,70 +9948,128 @@ function parseXML(xmlString) {
 "use strict";
 
 
-var async_hooks = __nccwpck_require__(290);
-
-const noGlobalAwsLambda = process.env["AWS_LAMBDA_NODEJS_NO_GLOBAL_AWSLAMBDA"] === "1" ||
-    process.env["AWS_LAMBDA_NODEJS_NO_GLOBAL_AWSLAMBDA"] === "true";
-if (!noGlobalAwsLambda) {
+const PROTECTED_KEYS = {
+    REQUEST_ID: Symbol.for("_AWS_LAMBDA_REQUEST_ID"),
+    X_RAY_TRACE_ID: Symbol.for("_AWS_LAMBDA_X_RAY_TRACE_ID"),
+    TENANT_ID: Symbol.for("_AWS_LAMBDA_TENANT_ID"),
+};
+const NO_GLOBAL_AWS_LAMBDA = ["true", "1"].includes(process.env?.AWS_LAMBDA_NODEJS_NO_GLOBAL_AWSLAMBDA ?? "");
+if (!NO_GLOBAL_AWS_LAMBDA) {
     globalThis.awslambda = globalThis.awslambda || {};
 }
-const PROTECTED_KEYS = {
-    REQUEST_ID: Symbol("_AWS_LAMBDA_REQUEST_ID"),
-    X_RAY_TRACE_ID: Symbol("_AWS_LAMBDA_X_RAY_TRACE_ID"),
-    TENANT_ID: Symbol("_AWS_LAMBDA_TENANT_ID"),
-};
-class InvokeStoreImpl {
-    static storage = new async_hooks.AsyncLocalStorage();
+class InvokeStoreBase {
     static PROTECTED_KEYS = PROTECTED_KEYS;
-    static run(context, fn) {
-        return this.storage.run({ ...context }, fn);
+    isProtectedKey(key) {
+        return Object.values(PROTECTED_KEYS).includes(key);
     }
-    static getContext() {
-        return this.storage.getStore();
+    getRequestId() {
+        return this.get(PROTECTED_KEYS.REQUEST_ID) ?? "-";
     }
-    static get(key) {
-        const context = this.storage.getStore();
-        return context?.[key];
+    getXRayTraceId() {
+        return this.get(PROTECTED_KEYS.X_RAY_TRACE_ID);
     }
-    static set(key, value) {
+    getTenantId() {
+        return this.get(PROTECTED_KEYS.TENANT_ID);
+    }
+}
+class InvokeStoreSingle extends InvokeStoreBase {
+    currentContext;
+    getContext() {
+        return this.currentContext;
+    }
+    hasContext() {
+        return this.currentContext !== undefined;
+    }
+    get(key) {
+        return this.currentContext?.[key];
+    }
+    set(key, value) {
         if (this.isProtectedKey(key)) {
-            throw new Error(`Cannot modify protected Lambda context field`);
+            throw new Error(`Cannot modify protected Lambda context field: ${String(key)}`);
         }
-        const context = this.storage.getStore();
-        if (context) {
-            context[key] = value;
+        this.currentContext = this.currentContext || {};
+        this.currentContext[key] = value;
+    }
+    run(context, fn) {
+        this.currentContext = context;
+        try {
+            return fn();
+        }
+        finally {
+            this.currentContext = undefined;
         }
     }
-    static getRequestId() {
-        return this.get(this.PROTECTED_KEYS.REQUEST_ID) ?? "-";
+}
+class InvokeStoreMulti extends InvokeStoreBase {
+    als;
+    static async create() {
+        const instance = new InvokeStoreMulti();
+        const asyncHooks = await Promise.resolve(/* import() */).then(__nccwpck_require__.t.bind(__nccwpck_require__, 6698, 23));
+        instance.als = new asyncHooks.AsyncLocalStorage();
+        return instance;
     }
-    static getXRayTraceId() {
-        return this.get(this.PROTECTED_KEYS.X_RAY_TRACE_ID);
+    getContext() {
+        return this.als.getStore();
     }
-    static getTenantId() {
-        return this.get(this.PROTECTED_KEYS.TENANT_ID);
+    hasContext() {
+        return this.als.getStore() !== undefined;
     }
-    static hasContext() {
-        return this.storage.getStore() !== undefined;
+    get(key) {
+        return this.als.getStore()?.[key];
     }
-    static isProtectedKey(key) {
-        return (key === this.PROTECTED_KEYS.REQUEST_ID ||
-            key === this.PROTECTED_KEYS.X_RAY_TRACE_ID);
+    set(key, value) {
+        if (this.isProtectedKey(key)) {
+            throw new Error(`Cannot modify protected Lambda context field: ${String(key)}`);
+        }
+        const store = this.als.getStore();
+        if (!store) {
+            throw new Error("No context available");
+        }
+        store[key] = value;
+    }
+    run(context, fn) {
+        return this.als.run(context, fn);
     }
 }
-let instance;
-if (!noGlobalAwsLambda && globalThis.awslambda?.InvokeStore) {
-    instance = globalThis.awslambda.InvokeStore;
-}
-else {
-    instance = InvokeStoreImpl;
-    if (!noGlobalAwsLambda && globalThis.awslambda) {
-        globalThis.awslambda.InvokeStore = instance;
+exports.InvokeStore = void 0;
+(function (InvokeStore) {
+    let instance = null;
+    async function getInstanceAsync() {
+        if (!instance) {
+            instance = (async () => {
+                const isMulti = "AWS_LAMBDA_MAX_CONCURRENCY" in process.env;
+                const newInstance = isMulti
+                    ? await InvokeStoreMulti.create()
+                    : new InvokeStoreSingle();
+                if (!NO_GLOBAL_AWS_LAMBDA && globalThis.awslambda?.InvokeStore) {
+                    return globalThis.awslambda.InvokeStore;
+                }
+                else if (!NO_GLOBAL_AWS_LAMBDA && globalThis.awslambda) {
+                    globalThis.awslambda.InvokeStore = newInstance;
+                    return newInstance;
+                }
+                else {
+                    return newInstance;
+                }
+            })();
+        }
+        return instance;
     }
-}
-const InvokeStore = instance;
+    InvokeStore.getInstanceAsync = getInstanceAsync;
+    InvokeStore._testing = process.env.AWS_LAMBDA_BENCHMARK_MODE === "1"
+        ? {
+            reset: () => {
+                instance = null;
+                if (globalThis.awslambda?.InvokeStore) {
+                    delete globalThis.awslambda.InvokeStore;
+                }
+                globalThis.awslambda = {};
+            },
+        }
+        : undefined;
+})(exports.InvokeStore || (exports.InvokeStore = {}));
 
-exports.InvokeStore = InvokeStore;
+exports.InvokeStoreBase = InvokeStoreBase;
 
 
 /***/ }),
@@ -11903,6 +12005,9 @@ class HttpBindingProtocol extends HttpProtocol {
                 }
             }
         }
+        else if (nonHttpBindingMembers.discardResponseBody) {
+            await collectBody(response.body, context);
+        }
         dataObject.$metadata = this.deserializeMetadata(response);
         return dataObject;
     }
@@ -11914,12 +12019,14 @@ class HttpBindingProtocol extends HttpProtocol {
         else {
             dataObject = arg4;
         }
+        let discardResponseBody = true;
         const deserializer = this.deserializer;
         const ns = schema.NormalizedSchema.of(schema$1);
         const nonHttpBindingMembers = [];
         for (const [memberName, memberSchema] of ns.structIterator()) {
             const memberTraits = memberSchema.getMemberTraits();
             if (memberTraits.httpPayload) {
+                discardResponseBody = false;
                 const isStreaming = memberSchema.isStreaming();
                 if (isStreaming) {
                     const isEventStream = memberSchema.isStructSchema();
@@ -11983,6 +12090,7 @@ class HttpBindingProtocol extends HttpProtocol {
                 nonHttpBindingMembers.push(memberName);
             }
         }
+        nonHttpBindingMembers.discardResponseBody = discardResponseBody;
         return nonHttpBindingMembers;
     }
 }
@@ -20834,14 +20942,6 @@ module.exports = require("assert");
 
 /***/ }),
 
-/***/ 290:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("async_hooks");
-
-/***/ }),
-
 /***/ 181:
 /***/ ((module) => {
 
@@ -20922,6 +21022,22 @@ module.exports = require("net");
 
 /***/ }),
 
+/***/ 6698:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:async_hooks");
+
+/***/ }),
+
+/***/ 7598:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:crypto");
+
+/***/ }),
+
 /***/ 3024:
 /***/ ((module) => {
 
@@ -20935,6 +21051,22 @@ module.exports = require("node:fs");
 
 "use strict";
 module.exports = require("node:fs/promises");
+
+/***/ }),
+
+/***/ 8161:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:os");
+
+/***/ }),
+
+/***/ 6760:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:path");
 
 /***/ }),
 
@@ -21029,7 +21161,7 @@ module.exports = require("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.932.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.932.0","@aws-sdk/credential-provider-node":"3.932.0","@aws-sdk/middleware-host-header":"3.930.0","@aws-sdk/middleware-logger":"3.930.0","@aws-sdk/middleware-recursion-detection":"3.930.0","@aws-sdk/middleware-user-agent":"3.932.0","@aws-sdk/region-config-resolver":"3.930.0","@aws-sdk/types":"3.930.0","@aws-sdk/util-endpoints":"3.930.0","@aws-sdk/util-user-agent-browser":"3.930.0","@aws-sdk/util-user-agent-node":"3.932.0","@smithy/config-resolver":"^4.4.3","@smithy/core":"^3.18.2","@smithy/fetch-http-handler":"^5.3.6","@smithy/hash-node":"^4.2.5","@smithy/invalid-dependency":"^4.2.5","@smithy/middleware-content-length":"^4.2.5","@smithy/middleware-endpoint":"^4.3.9","@smithy/middleware-retry":"^4.4.9","@smithy/middleware-serde":"^4.2.5","@smithy/middleware-stack":"^4.2.5","@smithy/node-config-provider":"^4.3.5","@smithy/node-http-handler":"^4.4.5","@smithy/protocol-http":"^5.3.5","@smithy/smithy-client":"^4.9.5","@smithy/types":"^4.9.0","@smithy/url-parser":"^4.2.5","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.8","@smithy/util-defaults-mode-node":"^4.2.11","@smithy/util-endpoints":"^3.2.5","@smithy/util-middleware":"^4.2.5","@smithy/util-retry":"^4.2.5","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.8.3"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.936.0","scripts":{"build":"concurrently \'yarn:build:cjs\' \'yarn:build:es\' \'yarn:build:types\'","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.936.0","@aws-sdk/credential-provider-node":"3.936.0","@aws-sdk/middleware-host-header":"3.936.0","@aws-sdk/middleware-logger":"3.936.0","@aws-sdk/middleware-recursion-detection":"3.936.0","@aws-sdk/middleware-user-agent":"3.936.0","@aws-sdk/region-config-resolver":"3.936.0","@aws-sdk/types":"3.936.0","@aws-sdk/util-endpoints":"3.936.0","@aws-sdk/util-user-agent-browser":"3.936.0","@aws-sdk/util-user-agent-node":"3.936.0","@smithy/config-resolver":"^4.4.3","@smithy/core":"^3.18.5","@smithy/fetch-http-handler":"^5.3.6","@smithy/hash-node":"^4.2.5","@smithy/invalid-dependency":"^4.2.5","@smithy/middleware-content-length":"^4.2.5","@smithy/middleware-endpoint":"^4.3.12","@smithy/middleware-retry":"^4.4.12","@smithy/middleware-serde":"^4.2.6","@smithy/middleware-stack":"^4.2.5","@smithy/node-config-provider":"^4.3.5","@smithy/node-http-handler":"^4.4.5","@smithy/protocol-http":"^5.3.5","@smithy/smithy-client":"^4.9.8","@smithy/types":"^4.9.0","@smithy/url-parser":"^4.2.5","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.11","@smithy/util-defaults-mode-node":"^4.2.14","@smithy/util-endpoints":"^3.2.5","@smithy/util-middleware":"^4.2.5","@smithy/util-retry":"^4.2.5","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.8.3"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ })
 
