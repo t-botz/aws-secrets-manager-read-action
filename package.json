@@ -26,7 +26,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.11.1",
+    "@actions/core": "2.0.1",
     "@aws-sdk/client-secrets-manager": "3.950.0"
   },
   "devDependencies": {
