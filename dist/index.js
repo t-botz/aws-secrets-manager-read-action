@@ -3575,10 +3575,9 @@ const util_middleware_1 = __nccwpck_require__(6324);
 const defaultSecretsManagerHttpAuthSchemeParametersProvider = async (config, context, input) => {
     return {
         operation: (0, util_middleware_1.getSmithyContext)(context).operation,
-        region: (await (0, util_middleware_1.normalizeProvider)(config.region)()) ||
-            (() => {
-                throw new Error("expected `region` to be configured for `aws.auth#sigv4`");
-            })(),
+        region: await (0, util_middleware_1.normalizeProvider)(config.region)() || (() => {
+            throw new Error("expected `region` to be configured for `aws.auth#sigv4`");
+        })(),
     };
 };
 exports.defaultSecretsManagerHttpAuthSchemeParametersProvider = defaultSecretsManagerHttpAuthSchemeParametersProvider;
@@ -4144,496 +4143,455 @@ var RandomPasswordType = [0, n0, _RPT, 8, 0];
 var RotationTokenType = [0, n0, _RTT, 8, 0];
 var SecretBinaryType = [0, n0, _SBT, 8, 21];
 var SecretStringType = [0, n0, _SST, 8, 0];
-var APIErrorType$ = [3, n0, _APIET, 0, [_SI, _EC, _M], [0, 0, 0]];
-var BatchGetSecretValueRequest$ = [
-    3,
-    n0,
-    _BGSVR,
+var APIErrorType$ = [3, n0, _APIET,
+    0,
+    [_SI, _EC, _M],
+    [0, 0, 0]
+];
+var BatchGetSecretValueRequest$ = [3, n0, _BGSVR,
     0,
     [_SIL, _F, _MR, _NT],
-    [64 | 0, () => FiltersListType, 1, 0],
+    [64 | 0, () => FiltersListType, 1, 0]
 ];
-var BatchGetSecretValueResponse$ = [
-    3,
-    n0,
-    _BGSVRa,
+var BatchGetSecretValueResponse$ = [3, n0, _BGSVRa,
     0,
     [_SV, _NT, _E],
-    [[() => SecretValuesType, 0], 0, () => APIErrorListType],
+    [[() => SecretValuesType, 0], 0, () => APIErrorListType]
 ];
-var CancelRotateSecretRequest$ = [3, n0, _CRSR, 0, [_SI], [0]];
-var CancelRotateSecretResponse$ = [3, n0, _CRSRa, 0, [_ARN, _N, _VI], [0, 0, 0]];
-var CreateSecretRequest$ = [
-    3,
-    n0,
-    _CSR,
+var CancelRotateSecretRequest$ = [3, n0, _CRSR,
+    0,
+    [_SI],
+    [0]
+];
+var CancelRotateSecretResponse$ = [3, n0, _CRSRa,
+    0,
+    [_ARN, _N, _VI],
+    [0, 0, 0]
+];
+var CreateSecretRequest$ = [3, n0, _CSR,
     0,
     [_N, _CRT, _D, _KKI, _SB, _SS, _T, _ARR, _FORS, _Ty],
-    [
-        0,
-        [0, 4],
-        0,
-        0,
-        [() => SecretBinaryType, 0],
-        [() => SecretStringType, 0],
-        () => TagListType,
-        () => AddReplicaRegionListType,
-        2,
-        0,
-    ],
+    [0, [0, 4], 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], () => TagListType, () => AddReplicaRegionListType, 2, 0]
 ];
-var CreateSecretResponse$ = [
-    3,
-    n0,
-    _CSRr,
+var CreateSecretResponse$ = [3, n0, _CSRr,
     0,
     [_ARN, _N, _VI, _RS],
-    [0, 0, 0, () => ReplicationStatusListType],
+    [0, 0, 0, () => ReplicationStatusListType]
 ];
-var DecryptionFailure$ = [-3, n0, _DF, { [_e]: _c }, [_M], [0]];
+var DecryptionFailure$ = [-3, n0, _DF,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(DecryptionFailure$, DecryptionFailure);
-var DeleteResourcePolicyRequest$ = [3, n0, _DRPR, 0, [_SI], [0]];
-var DeleteResourcePolicyResponse$ = [3, n0, _DRPRe, 0, [_ARN, _N], [0, 0]];
-var DeleteSecretRequest$ = [3, n0, _DSR, 0, [_SI, _RWID, _FDWR], [0, 1, 2]];
-var DeleteSecretResponse$ = [3, n0, _DSRe, 0, [_ARN, _N, _DD], [0, 0, 4]];
-var DescribeSecretRequest$ = [3, n0, _DSRes, 0, [_SI], [0]];
-var DescribeSecretResponse$ = [
-    3,
-    n0,
-    _DSResc,
+var DeleteResourcePolicyRequest$ = [3, n0, _DRPR,
     0,
-    [
-        _ARN,
-        _N,
-        _Ty,
-        _D,
-        _KKI,
-        _RE,
-        _RLARN,
-        _RR,
-        _ESRM,
-        _ESRRA,
-        _LRD,
-        _LCD,
-        _LAD,
-        _DDe,
-        _NRD,
-        _T,
-        _VITS,
-        _OS,
-        _CD,
-        _PR,
-        _RS,
-    ],
-    [
-        0,
-        0,
-        0,
-        0,
-        0,
-        2,
-        0,
-        () => RotationRulesType$,
-        () => ExternalSecretRotationMetadataType,
-        0,
-        4,
-        4,
-        4,
-        4,
-        4,
-        () => TagListType,
-        [2, n0, _SVTSMT, 0, 0, 64 | 0],
-        0,
-        4,
-        0,
-        () => ReplicationStatusListType,
-    ],
+    [_SI],
+    [0]
 ];
-var EncryptionFailure$ = [-3, n0, _EF, { [_e]: _c }, [_M], [0]];
+var DeleteResourcePolicyResponse$ = [3, n0, _DRPRe,
+    0,
+    [_ARN, _N],
+    [0, 0]
+];
+var DeleteSecretRequest$ = [3, n0, _DSR,
+    0,
+    [_SI, _RWID, _FDWR],
+    [0, 1, 2]
+];
+var DeleteSecretResponse$ = [3, n0, _DSRe,
+    0,
+    [_ARN, _N, _DD],
+    [0, 0, 4]
+];
+var DescribeSecretRequest$ = [3, n0, _DSRes,
+    0,
+    [_SI],
+    [0]
+];
+var DescribeSecretResponse$ = [3, n0, _DSResc,
+    0,
+    [_ARN, _N, _Ty, _D, _KKI, _RE, _RLARN, _RR, _ESRM, _ESRRA, _LRD, _LCD, _LAD, _DDe, _NRD, _T, _VITS, _OS, _CD, _PR, _RS],
+    [0, 0, 0, 0, 0, 2, 0, () => RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 4, 4, 4, 4, 4, () => TagListType, [2, n0, _SVTSMT, 0, 0, 64 | 0], 0, 4, 0, () => ReplicationStatusListType]
+];
+var EncryptionFailure$ = [-3, n0, _EF,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(EncryptionFailure$, EncryptionFailure);
-var ExternalSecretRotationMetadataItem$ = [3, n0, _ESRMI, 0, [_K, _V], [0, 0]];
-var Filter$ = [3, n0, _Fi, 0, [_K, _Va], [0, 64 | 0]];
-var GetRandomPasswordRequest$ = [
-    3,
-    n0,
-    _GRPR,
+var ExternalSecretRotationMetadataItem$ = [3, n0, _ESRMI,
+    0,
+    [_K, _V],
+    [0, 0]
+];
+var Filter$ = [3, n0, _Fi,
+    0,
+    [_K, _Va],
+    [0, 64 | 0]
+];
+var GetRandomPasswordRequest$ = [3, n0, _GRPR,
     0,
     [_PL, _ECx, _EN, _EP, _EU, _EL, _IS, _REIT],
-    [1, 0, 2, 2, 2, 2, 2, 2],
+    [1, 0, 2, 2, 2, 2, 2, 2]
 ];
-var GetRandomPasswordResponse$ = [
-    3,
-    n0,
-    _GRPRe,
+var GetRandomPasswordResponse$ = [3, n0, _GRPRe,
     0,
     [_RP],
-    [[() => RandomPasswordType, 0]],
+    [[() => RandomPasswordType, 0]]
 ];
-var GetResourcePolicyRequest$ = [3, n0, _GRPRet, 0, [_SI], [0]];
-var GetResourcePolicyResponse$ = [3, n0, _GRPRete, 0, [_ARN, _N, _RPe], [0, 0, 0]];
-var GetSecretValueRequest$ = [3, n0, _GSVR, 0, [_SI, _VI, _VS], [0, 0, 0]];
-var GetSecretValueResponse$ = [
-    3,
-    n0,
-    _GSVRe,
+var GetResourcePolicyRequest$ = [3, n0, _GRPRet,
+    0,
+    [_SI],
+    [0]
+];
+var GetResourcePolicyResponse$ = [3, n0, _GRPRete,
+    0,
+    [_ARN, _N, _RPe],
+    [0, 0, 0]
+];
+var GetSecretValueRequest$ = [3, n0, _GSVR,
+    0,
+    [_SI, _VI, _VS],
+    [0, 0, 0]
+];
+var GetSecretValueResponse$ = [3, n0, _GSVRe,
     0,
     [_ARN, _N, _VI, _SB, _SS, _VSe, _CD],
-    [0, 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, 4],
+    [0, 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, 4]
 ];
-var InternalServiceError$ = [-3, n0, _ISE, { [_e]: _s }, [_M], [0]];
+var InternalServiceError$ = [-3, n0, _ISE,
+    { [_e]: _s },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(InternalServiceError$, InternalServiceError);
-var InvalidNextTokenException$ = [-3, n0, _INTE, { [_e]: _c }, [_M], [0]];
+var InvalidNextTokenException$ = [-3, n0, _INTE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(InvalidNextTokenException$, InvalidNextTokenException);
-var InvalidParameterException$ = [-3, n0, _IPE, { [_e]: _c }, [_M], [0]];
+var InvalidParameterException$ = [-3, n0, _IPE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(InvalidParameterException$, InvalidParameterException);
-var InvalidRequestException$ = [-3, n0, _IRE, { [_e]: _c }, [_M], [0]];
+var InvalidRequestException$ = [-3, n0, _IRE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(InvalidRequestException$, InvalidRequestException);
-var LimitExceededException$ = [-3, n0, _LEE, { [_e]: _c }, [_M], [0]];
+var LimitExceededException$ = [-3, n0, _LEE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(LimitExceededException$, LimitExceededException);
-var ListSecretsRequest$ = [
-    3,
-    n0,
-    _LSR,
+var ListSecretsRequest$ = [3, n0, _LSR,
     0,
     [_IPD, _MR, _NT, _F, _SO, _SBo],
-    [2, 1, 0, () => FiltersListType, 0, 0],
+    [2, 1, 0, () => FiltersListType, 0, 0]
 ];
-var ListSecretsResponse$ = [3, n0, _LSRi, 0, [_SL, _NT], [() => SecretListType, 0]];
-var ListSecretVersionIdsRequest$ = [3, n0, _LSVIR, 0, [_SI, _MR, _NT, _ID], [0, 1, 0, 2]];
-var ListSecretVersionIdsResponse$ = [
-    3,
-    n0,
-    _LSVIRi,
+var ListSecretsResponse$ = [3, n0, _LSRi,
+    0,
+    [_SL, _NT],
+    [() => SecretListType, 0]
+];
+var ListSecretVersionIdsRequest$ = [3, n0, _LSVIR,
+    0,
+    [_SI, _MR, _NT, _ID],
+    [0, 1, 0, 2]
+];
+var ListSecretVersionIdsResponse$ = [3, n0, _LSVIRi,
     0,
     [_Ve, _NT, _ARN, _N],
-    [() => SecretVersionsListType, 0, 0, 0],
+    [() => SecretVersionsListType, 0, 0, 0]
 ];
-var MalformedPolicyDocumentException$ = [-3, n0, _MPDE, { [_e]: _c }, [_M], [0]];
+var MalformedPolicyDocumentException$ = [-3, n0, _MPDE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(MalformedPolicyDocumentException$, MalformedPolicyDocumentException);
-var PreconditionNotMetException$ = [-3, n0, _PNME, { [_e]: _c }, [_M], [0]];
+var PreconditionNotMetException$ = [-3, n0, _PNME,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(PreconditionNotMetException$, PreconditionNotMetException);
-var PublicPolicyException$ = [-3, n0, _PPE, { [_e]: _c }, [_M], [0]];
+var PublicPolicyException$ = [-3, n0, _PPE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(PublicPolicyException$, PublicPolicyException);
-var PutResourcePolicyRequest$ = [3, n0, _PRPR, 0, [_SI, _RPe, _BPP], [0, 0, 2]];
-var PutResourcePolicyResponse$ = [3, n0, _PRPRu, 0, [_ARN, _N], [0, 0]];
-var PutSecretValueRequest$ = [
-    3,
-    n0,
-    _PSVR,
+var PutResourcePolicyRequest$ = [3, n0, _PRPR,
+    0,
+    [_SI, _RPe, _BPP],
+    [0, 0, 2]
+];
+var PutResourcePolicyResponse$ = [3, n0, _PRPRu,
+    0,
+    [_ARN, _N],
+    [0, 0]
+];
+var PutSecretValueRequest$ = [3, n0, _PSVR,
     0,
     [_SI, _CRT, _SB, _SS, _VSe, _RT],
-    [0, [0, 4], [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, [() => RotationTokenType, 0]],
+    [0, [0, 4], [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, [() => RotationTokenType, 0]]
 ];
-var PutSecretValueResponse$ = [
-    3,
-    n0,
-    _PSVRu,
+var PutSecretValueResponse$ = [3, n0, _PSVRu,
     0,
     [_ARN, _N, _VI, _VSe],
-    [0, 0, 0, 64 | 0],
+    [0, 0, 0, 64 | 0]
 ];
-var RemoveRegionsFromReplicationRequest$ = [3, n0, _RRFRR, 0, [_SI, _RRR], [0, 64 | 0]];
-var RemoveRegionsFromReplicationResponse$ = [
-    3,
-    n0,
-    _RRFRRe,
+var RemoveRegionsFromReplicationRequest$ = [3, n0, _RRFRR,
+    0,
+    [_SI, _RRR],
+    [0, 64 | 0]
+];
+var RemoveRegionsFromReplicationResponse$ = [3, n0, _RRFRRe,
     0,
     [_ARN, _RS],
-    [0, () => ReplicationStatusListType],
+    [0, () => ReplicationStatusListType]
 ];
-var ReplicaRegionType$ = [3, n0, _RRT, 0, [_R, _KKI], [0, 0]];
-var ReplicateSecretToRegionsRequest$ = [
-    3,
-    n0,
-    _RSTRR,
+var ReplicaRegionType$ = [3, n0, _RRT,
+    0,
+    [_R, _KKI],
+    [0, 0]
+];
+var ReplicateSecretToRegionsRequest$ = [3, n0, _RSTRR,
     0,
     [_SI, _ARR, _FORS],
-    [0, () => AddReplicaRegionListType, 2],
+    [0, () => AddReplicaRegionListType, 2]
 ];
-var ReplicateSecretToRegionsResponse$ = [
-    3,
-    n0,
-    _RSTRRe,
+var ReplicateSecretToRegionsResponse$ = [3, n0, _RSTRRe,
     0,
     [_ARN, _RS],
-    [0, () => ReplicationStatusListType],
+    [0, () => ReplicationStatusListType]
 ];
-var ReplicationStatusType$ = [3, n0, _RST, 0, [_R, _KKI, _S, _SM, _LAD], [0, 0, 0, 0, 4]];
-var ResourceExistsException$ = [-3, n0, _REE, { [_e]: _c }, [_M], [0]];
+var ReplicationStatusType$ = [3, n0, _RST,
+    0,
+    [_R, _KKI, _S, _SM, _LAD],
+    [0, 0, 0, 0, 4]
+];
+var ResourceExistsException$ = [-3, n0, _REE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(ResourceExistsException$, ResourceExistsException);
-var ResourceNotFoundException$ = [-3, n0, _RNFE, { [_e]: _c }, [_M], [0]];
+var ResourceNotFoundException$ = [-3, n0, _RNFE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
 schema.TypeRegistry.for(n0).registerError(ResourceNotFoundException$, ResourceNotFoundException);
-var RestoreSecretRequest$ = [3, n0, _RSR, 0, [_SI], [0]];
-var RestoreSecretResponse$ = [3, n0, _RSRe, 0, [_ARN, _N], [0, 0]];
-var RotateSecretRequest$ = [
-    3,
-    n0,
-    _RSRo,
+var RestoreSecretRequest$ = [3, n0, _RSR,
+    0,
+    [_SI],
+    [0]
+];
+var RestoreSecretResponse$ = [3, n0, _RSRe,
+    0,
+    [_ARN, _N],
+    [0, 0]
+];
+var RotateSecretRequest$ = [3, n0, _RSRo,
     0,
     [_SI, _CRT, _RLARN, _RR, _ESRM, _ESRRA, _RI],
-    [0, [0, 4], 0, () => RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 2],
+    [0, [0, 4], 0, () => RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 2]
 ];
-var RotateSecretResponse$ = [3, n0, _RSRot, 0, [_ARN, _N, _VI], [0, 0, 0]];
-var RotationRulesType$ = [3, n0, _RRTo, 0, [_AAD, _Du, _SE], [1, 0, 0]];
-var SecretListEntry$ = [
-    3,
-    n0,
-    _SLE,
+var RotateSecretResponse$ = [3, n0, _RSRot,
+    0,
+    [_ARN, _N, _VI],
+    [0, 0, 0]
+];
+var RotationRulesType$ = [3, n0, _RRTo,
+    0,
+    [_AAD, _Du, _SE],
+    [1, 0, 0]
+];
+var SecretListEntry$ = [3, n0, _SLE,
     0,
     [_ARN, _N, _Ty, _D, _KKI, _RE, _RLARN, _RR, _ESRM, _ESRRA, _LRD, _LCD, _LAD, _DDe, _NRD, _T, _SVTS, _OS, _CD, _PR],
-    [
-        0,
-        0,
-        0,
-        0,
-        0,
-        2,
-        0,
-        () => RotationRulesType$,
-        () => ExternalSecretRotationMetadataType,
-        0,
-        4,
-        4,
-        4,
-        4,
-        4,
-        () => TagListType,
-        [2, n0, _SVTSMT, 0, 0, 64 | 0],
-        0,
-        4,
-        0,
-    ],
+    [0, 0, 0, 0, 0, 2, 0, () => RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 4, 4, 4, 4, 4, () => TagListType, [2, n0, _SVTSMT, 0, 0, 64 | 0], 0, 4, 0]
 ];
-var SecretValueEntry$ = [
-    3,
-    n0,
-    _SVE,
+var SecretValueEntry$ = [3, n0, _SVE,
     0,
     [_ARN, _N, _VI, _SB, _SS, _VSe, _CD],
-    [0, 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, 4],
+    [0, 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, 4]
 ];
-var SecretVersionsListEntry$ = [
-    3,
-    n0,
-    _SVLE,
+var SecretVersionsListEntry$ = [3, n0, _SVLE,
     0,
     [_VI, _VSe, _LAD, _CD, _KKIm],
-    [0, 64 | 0, 4, 4, 64 | 0],
+    [0, 64 | 0, 4, 4, 64 | 0]
 ];
-var StopReplicationToReplicaRequest$ = [3, n0, _SRTRR, 0, [_SI], [0]];
-var StopReplicationToReplicaResponse$ = [3, n0, _SRTRRt, 0, [_ARN], [0]];
-var Tag$ = [3, n0, _Ta, 0, [_K, _V], [0, 0]];
-var TagResourceRequest$ = [3, n0, _TRR, 0, [_SI, _T], [0, () => TagListType]];
-var UntagResourceRequest$ = [3, n0, _URR, 0, [_SI, _TK], [0, 64 | 0]];
-var UpdateSecretRequest$ = [
-    3,
-    n0,
-    _USR,
+var StopReplicationToReplicaRequest$ = [3, n0, _SRTRR,
+    0,
+    [_SI],
+    [0]
+];
+var StopReplicationToReplicaResponse$ = [3, n0, _SRTRRt,
+    0,
+    [_ARN],
+    [0]
+];
+var Tag$ = [3, n0, _Ta,
+    0,
+    [_K, _V],
+    [0, 0]
+];
+var TagResourceRequest$ = [3, n0, _TRR,
+    0,
+    [_SI, _T],
+    [0, () => TagListType]
+];
+var UntagResourceRequest$ = [3, n0, _URR,
+    0,
+    [_SI, _TK],
+    [0, 64 | 0]
+];
+var UpdateSecretRequest$ = [3, n0, _USR,
     0,
     [_SI, _CRT, _D, _KKI, _SB, _SS, _Ty],
-    [0, [0, 4], 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 0],
+    [0, [0, 4], 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 0]
 ];
-var UpdateSecretResponse$ = [3, n0, _USRp, 0, [_ARN, _N, _VI], [0, 0, 0]];
-var UpdateSecretVersionStageRequest$ = [
-    3,
-    n0,
-    _USVSR,
+var UpdateSecretResponse$ = [3, n0, _USRp,
+    0,
+    [_ARN, _N, _VI],
+    [0, 0, 0]
+];
+var UpdateSecretVersionStageRequest$ = [3, n0, _USVSR,
     0,
     [_SI, _VS, _RFVI, _MTVI],
-    [0, 0, 0, 0],
+    [0, 0, 0, 0]
 ];
-var UpdateSecretVersionStageResponse$ = [3, n0, _USVSRp, 0, [_ARN, _N], [0, 0]];
-var ValidateResourcePolicyRequest$ = [3, n0, _VRPR, 0, [_SI, _RPe], [0, 0]];
-var ValidateResourcePolicyResponse$ = [
-    3,
-    n0,
-    _VRPRa,
+var UpdateSecretVersionStageResponse$ = [3, n0, _USVSRp,
+    0,
+    [_ARN, _N],
+    [0, 0]
+];
+var ValidateResourcePolicyRequest$ = [3, n0, _VRPR,
+    0,
+    [_SI, _RPe],
+    [0, 0]
+];
+var ValidateResourcePolicyResponse$ = [3, n0, _VRPRa,
     0,
     [_PVP, _VE],
-    [2, () => ValidationErrorsType],
+    [2, () => ValidationErrorsType]
 ];
-var ValidationErrorsEntry$ = [3, n0, _VEE, 0, [_CN, _EM], [0, 0]];
+var ValidationErrorsEntry$ = [3, n0, _VEE,
+    0,
+    [_CN, _EM],
+    [0, 0]
+];
 var __Unit = "unit";
 var SecretsManagerServiceException$ = [-3, _sm, "SecretsManagerServiceException", 0, [], []];
 schema.TypeRegistry.for(_sm).registerError(SecretsManagerServiceException$, SecretsManagerServiceException);
-var AddReplicaRegionListType = [1, n0, _ARRLT, 0, () => ReplicaRegionType$];
-var APIErrorListType = [1, n0, _APIELT, 0, () => APIErrorType$];
-var ExternalSecretRotationMetadataType = [
-    1,
-    n0,
-    _ESRMT,
-    0,
-    () => ExternalSecretRotationMetadataItem$,
+var AddReplicaRegionListType = [1, n0, _ARRLT,
+    0, () => ReplicaRegionType$
 ];
-var FiltersListType = [1, n0, _FLT, 0, () => Filter$];
-var ReplicationStatusListType = [1, n0, _RSLT, 0, () => ReplicationStatusType$];
-var SecretListType = [1, n0, _SLT, 0, () => SecretListEntry$];
-var SecretValuesType = [1, n0, _SVT, 0, [() => SecretValueEntry$, 0]];
-var SecretVersionsListType = [1, n0, _SVLT, 0, () => SecretVersionsListEntry$];
-var TagListType = [1, n0, _TLT, 0, () => Tag$];
-var ValidationErrorsType = [1, n0, _VET, 0, () => ValidationErrorsEntry$];
-var BatchGetSecretValue$ = [
-    9,
-    n0,
-    _BGSV,
-    0,
-    () => BatchGetSecretValueRequest$,
-    () => BatchGetSecretValueResponse$,
+var APIErrorListType = [1, n0, _APIELT,
+    0, () => APIErrorType$
 ];
-var CancelRotateSecret$ = [
-    9,
-    n0,
-    _CRS,
-    0,
-    () => CancelRotateSecretRequest$,
-    () => CancelRotateSecretResponse$,
+var ExternalSecretRotationMetadataType = [1, n0, _ESRMT,
+    0, () => ExternalSecretRotationMetadataItem$
 ];
-var CreateSecret$ = [
-    9,
-    n0,
-    _CS,
-    0,
-    () => CreateSecretRequest$,
-    () => CreateSecretResponse$,
+var FiltersListType = [1, n0, _FLT,
+    0, () => Filter$
 ];
-var DeleteResourcePolicy$ = [
-    9,
-    n0,
-    _DRP,
-    0,
-    () => DeleteResourcePolicyRequest$,
-    () => DeleteResourcePolicyResponse$,
+var ReplicationStatusListType = [1, n0, _RSLT,
+    0, () => ReplicationStatusType$
 ];
-var DeleteSecret$ = [
-    9,
-    n0,
-    _DS,
-    0,
-    () => DeleteSecretRequest$,
-    () => DeleteSecretResponse$,
+var SecretListType = [1, n0, _SLT,
+    0, () => SecretListEntry$
 ];
-var DescribeSecret$ = [
-    9,
-    n0,
-    _DSe,
-    0,
-    () => DescribeSecretRequest$,
-    () => DescribeSecretResponse$,
+var SecretValuesType = [1, n0, _SVT,
+    0, [() => SecretValueEntry$,
+        0]
 ];
-var GetRandomPassword$ = [
-    9,
-    n0,
-    _GRP,
-    0,
-    () => GetRandomPasswordRequest$,
-    () => GetRandomPasswordResponse$,
+var SecretVersionsListType = [1, n0, _SVLT,
+    0, () => SecretVersionsListEntry$
 ];
-var GetResourcePolicy$ = [
-    9,
-    n0,
-    _GRPe,
-    0,
-    () => GetResourcePolicyRequest$,
-    () => GetResourcePolicyResponse$,
+var TagListType = [1, n0, _TLT,
+    0, () => Tag$
 ];
-var GetSecretValue$ = [
-    9,
-    n0,
-    _GSV,
-    0,
-    () => GetSecretValueRequest$,
-    () => GetSecretValueResponse$,
+var ValidationErrorsType = [1, n0, _VET,
+    0, () => ValidationErrorsEntry$
 ];
-var ListSecrets$ = [9, n0, _LS, 0, () => ListSecretsRequest$, () => ListSecretsResponse$];
-var ListSecretVersionIds$ = [
-    9,
-    n0,
-    _LSVI,
-    0,
-    () => ListSecretVersionIdsRequest$,
-    () => ListSecretVersionIdsResponse$,
+var BatchGetSecretValue$ = [9, n0, _BGSV,
+    0, () => BatchGetSecretValueRequest$, () => BatchGetSecretValueResponse$
 ];
-var PutResourcePolicy$ = [
-    9,
-    n0,
-    _PRP,
-    0,
-    () => PutResourcePolicyRequest$,
-    () => PutResourcePolicyResponse$,
+var CancelRotateSecret$ = [9, n0, _CRS,
+    0, () => CancelRotateSecretRequest$, () => CancelRotateSecretResponse$
 ];
-var PutSecretValue$ = [
-    9,
-    n0,
-    _PSV,
-    0,
-    () => PutSecretValueRequest$,
-    () => PutSecretValueResponse$,
+var CreateSecret$ = [9, n0, _CS,
+    0, () => CreateSecretRequest$, () => CreateSecretResponse$
 ];
-var RemoveRegionsFromReplication$ = [
-    9,
-    n0,
-    _RRFR,
-    0,
-    () => RemoveRegionsFromReplicationRequest$,
-    () => RemoveRegionsFromReplicationResponse$,
+var DeleteResourcePolicy$ = [9, n0, _DRP,
+    0, () => DeleteResourcePolicyRequest$, () => DeleteResourcePolicyResponse$
 ];
-var ReplicateSecretToRegions$ = [
-    9,
-    n0,
-    _RSTR,
-    0,
-    () => ReplicateSecretToRegionsRequest$,
-    () => ReplicateSecretToRegionsResponse$,
+var DeleteSecret$ = [9, n0, _DS,
+    0, () => DeleteSecretRequest$, () => DeleteSecretResponse$
 ];
-var RestoreSecret$ = [
-    9,
-    n0,
-    _RSe,
-    0,
-    () => RestoreSecretRequest$,
-    () => RestoreSecretResponse$,
+var DescribeSecret$ = [9, n0, _DSe,
+    0, () => DescribeSecretRequest$, () => DescribeSecretResponse$
 ];
-var RotateSecret$ = [
-    9,
-    n0,
-    _RSo,
-    0,
-    () => RotateSecretRequest$,
-    () => RotateSecretResponse$,
+var GetRandomPassword$ = [9, n0, _GRP,
+    0, () => GetRandomPasswordRequest$, () => GetRandomPasswordResponse$
 ];
-var StopReplicationToReplica$ = [
-    9,
-    n0,
-    _SRTR,
-    0,
-    () => StopReplicationToReplicaRequest$,
-    () => StopReplicationToReplicaResponse$,
+var GetResourcePolicy$ = [9, n0, _GRPe,
+    0, () => GetResourcePolicyRequest$, () => GetResourcePolicyResponse$
 ];
-var TagResource$ = [9, n0, _TR, 0, () => TagResourceRequest$, () => __Unit];
-var UntagResource$ = [9, n0, _UR, 0, () => UntagResourceRequest$, () => __Unit];
-var UpdateSecret$ = [
-    9,
-    n0,
-    _US,
-    0,
-    () => UpdateSecretRequest$,
-    () => UpdateSecretResponse$,
+var GetSecretValue$ = [9, n0, _GSV,
+    0, () => GetSecretValueRequest$, () => GetSecretValueResponse$
 ];
-var UpdateSecretVersionStage$ = [
-    9,
-    n0,
-    _USVS,
-    0,
-    () => UpdateSecretVersionStageRequest$,
-    () => UpdateSecretVersionStageResponse$,
+var ListSecrets$ = [9, n0, _LS,
+    0, () => ListSecretsRequest$, () => ListSecretsResponse$
 ];
-var ValidateResourcePolicy$ = [
-    9,
-    n0,
-    _VRP,
-    0,
-    () => ValidateResourcePolicyRequest$,
-    () => ValidateResourcePolicyResponse$,
+var ListSecretVersionIds$ = [9, n0, _LSVI,
+    0, () => ListSecretVersionIdsRequest$, () => ListSecretVersionIdsResponse$
+];
+var PutResourcePolicy$ = [9, n0, _PRP,
+    0, () => PutResourcePolicyRequest$, () => PutResourcePolicyResponse$
+];
+var PutSecretValue$ = [9, n0, _PSV,
+    0, () => PutSecretValueRequest$, () => PutSecretValueResponse$
+];
+var RemoveRegionsFromReplication$ = [9, n0, _RRFR,
+    0, () => RemoveRegionsFromReplicationRequest$, () => RemoveRegionsFromReplicationResponse$
+];
+var ReplicateSecretToRegions$ = [9, n0, _RSTR,
+    0, () => ReplicateSecretToRegionsRequest$, () => ReplicateSecretToRegionsResponse$
+];
+var RestoreSecret$ = [9, n0, _RSe,
+    0, () => RestoreSecretRequest$, () => RestoreSecretResponse$
+];
+var RotateSecret$ = [9, n0, _RSo,
+    0, () => RotateSecretRequest$, () => RotateSecretResponse$
+];
+var StopReplicationToReplica$ = [9, n0, _SRTR,
+    0, () => StopReplicationToReplicaRequest$, () => StopReplicationToReplicaResponse$
+];
+var TagResource$ = [9, n0, _TR,
+    0, () => TagResourceRequest$, () => __Unit
+];
+var UntagResource$ = [9, n0, _UR,
+    0, () => UntagResourceRequest$, () => __Unit
+];
+var UpdateSecret$ = [9, n0, _US,
+    0, () => UpdateSecretRequest$, () => UpdateSecretResponse$
+];
+var UpdateSecretVersionStage$ = [9, n0, _USVS,
+    0, () => UpdateSecretVersionStageRequest$, () => UpdateSecretVersionStageResponse$
+];
+var ValidateResourcePolicy$ = [9, n0, _VRP,
+    0, () => ValidateResourcePolicyRequest$, () => ValidateResourcePolicyResponse$
 ];
 
 class BatchGetSecretValueCommand extends smithyClient.Command
@@ -4943,9 +4901,9 @@ smithyClient.createAggregatedClient(commands, SecretsManager);
 
 const paginateBatchGetSecretValue = core.createPaginator(SecretsManagerClient, BatchGetSecretValueCommand, "NextToken", "NextToken", "MaxResults");
 
-const paginateListSecretVersionIds = core.createPaginator(SecretsManagerClient, ListSecretVersionIdsCommand, "NextToken", "NextToken", "MaxResults");
-
 const paginateListSecrets = core.createPaginator(SecretsManagerClient, ListSecretsCommand, "NextToken", "NextToken", "MaxResults");
+
+const paginateListSecretVersionIds = core.createPaginator(SecretsManagerClient, ListSecretVersionIdsCommand, "NextToken", "NextToken", "MaxResults");
 
 const FilterNameStringType = {
     all: "all",
@@ -5160,11 +5118,9 @@ const getRuntimeConfig = (config) => {
         authSchemePreference: config?.authSchemePreference ?? (0, node_config_provider_1.loadConfig)(core_1.NODE_AUTH_SCHEME_PREFERENCE_OPTIONS, loaderConfig),
         bodyLengthChecker: config?.bodyLengthChecker ?? util_body_length_node_1.calculateBodyLength,
         credentialDefaultProvider: config?.credentialDefaultProvider ?? credential_provider_node_1.defaultProvider,
-        defaultUserAgentProvider: config?.defaultUserAgentProvider ??
-            (0, util_user_agent_node_1.createDefaultUserAgentProvider)({ serviceId: clientSharedValues.serviceId, clientVersion: package_json_1.default.version }),
+        defaultUserAgentProvider: config?.defaultUserAgentProvider ?? (0, util_user_agent_node_1.createDefaultUserAgentProvider)({ serviceId: clientSharedValues.serviceId, clientVersion: package_json_1.default.version }),
         maxAttempts: config?.maxAttempts ?? (0, node_config_provider_1.loadConfig)(middleware_retry_1.NODE_MAX_ATTEMPT_CONFIG_OPTIONS, config),
-        region: config?.region ??
-            (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_REGION_CONFIG_OPTIONS, { ...config_resolver_1.NODE_REGION_CONFIG_FILE_OPTIONS, ...loaderConfig }),
+        region: config?.region ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_REGION_CONFIG_OPTIONS, { ...config_resolver_1.NODE_REGION_CONFIG_FILE_OPTIONS, ...loaderConfig }),
         requestHandler: node_http_handler_1.NodeHttpHandler.create(config?.requestHandler ?? defaultConfigProvider),
         retryMode: config?.retryMode ??
             (0, node_config_provider_1.loadConfig)({
@@ -45806,7 +45762,7 @@ module.exports = parseParams
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.956.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"lerna run --scope $npm_package_name --include-dependencies build","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.956.0","@aws-sdk/credential-provider-node":"3.956.0","@aws-sdk/middleware-host-header":"3.956.0","@aws-sdk/middleware-logger":"3.956.0","@aws-sdk/middleware-recursion-detection":"3.956.0","@aws-sdk/middleware-user-agent":"3.956.0","@aws-sdk/region-config-resolver":"3.956.0","@aws-sdk/types":"3.956.0","@aws-sdk/util-endpoints":"3.956.0","@aws-sdk/util-user-agent-browser":"3.956.0","@aws-sdk/util-user-agent-node":"3.956.0","@smithy/config-resolver":"^4.4.5","@smithy/core":"^3.20.0","@smithy/fetch-http-handler":"^5.3.8","@smithy/hash-node":"^4.2.7","@smithy/invalid-dependency":"^4.2.7","@smithy/middleware-content-length":"^4.2.7","@smithy/middleware-endpoint":"^4.4.1","@smithy/middleware-retry":"^4.4.17","@smithy/middleware-serde":"^4.2.8","@smithy/middleware-stack":"^4.2.7","@smithy/node-config-provider":"^4.3.7","@smithy/node-http-handler":"^4.4.7","@smithy/protocol-http":"^5.3.7","@smithy/smithy-client":"^4.10.2","@smithy/types":"^4.11.0","@smithy/url-parser":"^4.2.7","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.16","@smithy/util-defaults-mode-node":"^4.2.19","@smithy/util-endpoints":"^3.2.7","@smithy/util-middleware":"^4.2.7","@smithy/util-retry":"^4.2.7","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.8.3"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.958.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"rimraf ./dist-* && rimraf *.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"3.957.0","@aws-sdk/credential-provider-node":"3.958.0","@aws-sdk/middleware-host-header":"3.957.0","@aws-sdk/middleware-logger":"3.957.0","@aws-sdk/middleware-recursion-detection":"3.957.0","@aws-sdk/middleware-user-agent":"3.957.0","@aws-sdk/region-config-resolver":"3.957.0","@aws-sdk/types":"3.957.0","@aws-sdk/util-endpoints":"3.957.0","@aws-sdk/util-user-agent-browser":"3.957.0","@aws-sdk/util-user-agent-node":"3.957.0","@smithy/config-resolver":"^4.4.5","@smithy/core":"^3.20.0","@smithy/fetch-http-handler":"^5.3.8","@smithy/hash-node":"^4.2.7","@smithy/invalid-dependency":"^4.2.7","@smithy/middleware-content-length":"^4.2.7","@smithy/middleware-endpoint":"^4.4.1","@smithy/middleware-retry":"^4.4.17","@smithy/middleware-serde":"^4.2.8","@smithy/middleware-stack":"^4.2.7","@smithy/node-config-provider":"^4.3.7","@smithy/node-http-handler":"^4.4.7","@smithy/protocol-http":"^5.3.7","@smithy/smithy-client":"^4.10.2","@smithy/types":"^4.11.0","@smithy/url-parser":"^4.2.7","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.16","@smithy/util-defaults-mode-node":"^4.2.19","@smithy/util-endpoints":"^3.2.7","@smithy/util-middleware":"^4.2.7","@smithy/util-retry":"^4.2.7","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node18":"18.2.4","@types/node":"^18.19.69","concurrently":"7.0.0","downlevel-dts":"0.10.1","rimraf":"3.0.2","typescript":"~5.8.3"},"engines":{"node":">=18.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ })
 
