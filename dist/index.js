@@ -4881,6 +4881,12 @@ class ValidateResourcePolicyCommand extends smithyClient.Command
     .build() {
 }
 
+const paginateBatchGetSecretValue = core.createPaginator(SecretsManagerClient, BatchGetSecretValueCommand, "NextToken", "NextToken", "MaxResults");
+
+const paginateListSecrets = core.createPaginator(SecretsManagerClient, ListSecretsCommand, "NextToken", "NextToken", "MaxResults");
+
+const paginateListSecretVersionIds = core.createPaginator(SecretsManagerClient, ListSecretVersionIdsCommand, "NextToken", "NextToken", "MaxResults");
+
 const commands = {
     BatchGetSecretValueCommand,
     CancelRotateSecretCommand,
@@ -4906,15 +4912,14 @@ const commands = {
     UpdateSecretVersionStageCommand,
     ValidateResourcePolicyCommand,
 };
+const paginators = {
+    paginateBatchGetSecretValue,
+    paginateListSecrets,
+    paginateListSecretVersionIds,
+};
 class SecretsManager extends SecretsManagerClient {
 }
-smithyClient.createAggregatedClient(commands, SecretsManager);
-
-const paginateBatchGetSecretValue = core.createPaginator(SecretsManagerClient, BatchGetSecretValueCommand, "NextToken", "NextToken", "MaxResults");
-
-const paginateListSecrets = core.createPaginator(SecretsManagerClient, ListSecretsCommand, "NextToken", "NextToken", "MaxResults");
-
-const paginateListSecretVersionIds = core.createPaginator(SecretsManagerClient, ListSecretVersionIdsCommand, "NextToken", "NextToken", "MaxResults");
+smithyClient.createAggregatedClient(commands, SecretsManager, { paginators });
 
 const FilterNameStringType = {
     all: "all",
@@ -5777,46 +5782,6 @@ class SerdeContextConfig {
     }
 }
 
-function* serializingStructIterator(ns, sourceObject) {
-    if (ns.isUnitSchema()) {
-        return;
-    }
-    const struct = ns.getSchema();
-    for (let i = 0; i < struct[4].length; ++i) {
-        const key = struct[4][i];
-        const memberSchema = struct[5][i];
-        const memberNs = new schema.NormalizedSchema([memberSchema, 0], key);
-        if (!(key in sourceObject) && !memberNs.isIdempotencyToken()) {
-            continue;
-        }
-        yield [key, memberNs];
-    }
-}
-function* deserializingStructIterator(ns, sourceObject, nameTrait) {
-    if (ns.isUnitSchema()) {
-        return;
-    }
-    const struct = ns.getSchema();
-    let keysRemaining = Object.keys(sourceObject).filter((k) => k !== "__type").length;
-    for (let i = 0; i < struct[4].length; ++i) {
-        if (keysRemaining === 0) {
-            break;
-        }
-        const key = struct[4][i];
-        const memberSchema = struct[5][i];
-        const memberNs = new schema.NormalizedSchema([memberSchema, 0], key);
-        let serializationKey = key;
-        if (nameTrait) {
-            serializationKey = memberNs.getMergedTraits()[nameTrait] ?? key;
-        }
-        if (!(serializationKey in sourceObject)) {
-            continue;
-        }
-        yield [key, memberNs];
-        keysRemaining -= 1;
-    }
-}
-
 class UnionSerde {
     from;
     to;
@@ -5944,7 +5909,7 @@ class JsonShapeDeserializer extends SerdeContextConfig {
                 if (union) {
                     unionSerde = new UnionSerde(record, out);
                 }
-                for (const [memberName, memberSchema] of deserializingStructIterator(ns, record, jsonName ? "jsonName" : false)) {
+                for (const [memberName, memberSchema] of ns.structIterator()) {
                     let fromKey = memberName;
                     if (jsonName) {
                         fromKey = memberSchema.getMergedTraits().jsonName ?? fromKey;
@@ -6153,7 +6118,7 @@ class JsonShapeSerializer extends SerdeContextConfig {
                 if (jsonName) {
                     nameMap = {};
                 }
-                for (const [memberName, memberSchema] of serializingStructIterator(ns, record)) {
+                for (const [memberName, memberSchema] of ns.structIterator()) {
                     const serializableValue = this._write(memberSchema, record[memberName], ns);
                     if (serializableValue !== undefined) {
                         let targetKey = memberName;
@@ -6772,7 +6737,7 @@ class QueryShapeSerializer extends SerdeContextConfig {
         else if (ns.isStructSchema()) {
             if (value && typeof value === "object") {
                 let didWriteMember = false;
-                for (const [memberName, member] of serializingStructIterator(ns, value)) {
+                for (const [memberName, member] of ns.structIterator()) {
                     if (value[memberName] == null && !member.isIdempotencyToken()) {
                         continue;
                     }
@@ -7073,7 +7038,7 @@ class XmlShapeSerializer extends SerdeContextConfig {
         }
         const structXmlNode = xmlBuilder.XmlNode.of(name);
         const [xmlnsAttr, xmlns] = this.getXmlnsAttribute(ns, parentXmlns);
-        for (const [memberName, memberSchema] of serializingStructIterator(ns, value)) {
+        for (const [memberName, memberSchema] of ns.structIterator()) {
             const val = value[memberName];
             if (val != null || memberSchema.isIdempotencyToken()) {
                 if (memberSchema.getMergedTraits().xmlAttribute) {
@@ -7742,46 +7707,6 @@ class SerdeContextConfig {
     }
 }
 
-function* serializingStructIterator(ns, sourceObject) {
-    if (ns.isUnitSchema()) {
-        return;
-    }
-    const struct = ns.getSchema();
-    for (let i = 0; i < struct[4].length; ++i) {
-        const key = struct[4][i];
-        const memberSchema = struct[5][i];
-        const memberNs = new schema.NormalizedSchema([memberSchema, 0], key);
-        if (!(key in sourceObject) && !memberNs.isIdempotencyToken()) {
-            continue;
-        }
-        yield [key, memberNs];
-    }
-}
-function* deserializingStructIterator(ns, sourceObject, nameTrait) {
-    if (ns.isUnitSchema()) {
-        return;
-    }
-    const struct = ns.getSchema();
-    let keysRemaining = Object.keys(sourceObject).filter((k) => k !== "__type").length;
-    for (let i = 0; i < struct[4].length; ++i) {
-        if (keysRemaining === 0) {
-            break;
-        }
-        const key = struct[4][i];
-        const memberSchema = struct[5][i];
-        const memberNs = new schema.NormalizedSchema([memberSchema, 0], key);
-        let serializationKey = key;
-        if (nameTrait) {
-            serializationKey = memberNs.getMergedTraits()[nameTrait] ?? key;
-        }
-        if (!(serializationKey in sourceObject)) {
-            continue;
-        }
-        yield [key, memberNs];
-        keysRemaining -= 1;
-    }
-}
-
 class UnionSerde {
     from;
     to;
@@ -7909,7 +7834,7 @@ class JsonShapeDeserializer extends SerdeContextConfig {
                 if (union) {
                     unionSerde = new UnionSerde(record, out);
                 }
-                for (const [memberName, memberSchema] of deserializingStructIterator(ns, record, jsonName ? "jsonName" : false)) {
+                for (const [memberName, memberSchema] of ns.structIterator()) {
                     let fromKey = memberName;
                     if (jsonName) {
                         fromKey = memberSchema.getMergedTraits().jsonName ?? fromKey;
@@ -8118,7 +8043,7 @@ class JsonShapeSerializer extends SerdeContextConfig {
                 if (jsonName) {
                     nameMap = {};
                 }
-                for (const [memberName, memberSchema] of serializingStructIterator(ns, record)) {
+                for (const [memberName, memberSchema] of ns.structIterator()) {
                     const serializableValue = this._write(memberSchema, record[memberName], ns);
                     if (serializableValue !== undefined) {
                         let targetKey = memberName;
@@ -8737,7 +8662,7 @@ class QueryShapeSerializer extends SerdeContextConfig {
         else if (ns.isStructSchema()) {
             if (value && typeof value === "object") {
                 let didWriteMember = false;
-                for (const [memberName, member] of serializingStructIterator(ns, value)) {
+                for (const [memberName, member] of ns.structIterator()) {
                     if (value[memberName] == null && !member.isIdempotencyToken()) {
                         continue;
                     }
@@ -9038,7 +8963,7 @@ class XmlShapeSerializer extends SerdeContextConfig {
         }
         const structXmlNode = xmlBuilder.XmlNode.of(name);
         const [xmlnsAttr, xmlns] = this.getXmlnsAttribute(ns, parentXmlns);
-        for (const [memberName, memberSchema] of serializingStructIterator(ns, value)) {
+        for (const [memberName, memberSchema] of ns.structIterator()) {
             const val = value[memberName];
             if (val != null || memberSchema.isIdempotencyToken()) {
                 if (memberSchema.getMergedTraits().xmlAttribute) {
@@ -9489,15 +9414,21 @@ function memoizeChain(providers, treatAsExpired) {
         else if (!credentials || treatAsExpired?.(credentials)) {
             if (credentials) {
                 if (!passiveLock) {
-                    passiveLock = chain(options).then((c) => {
+                    passiveLock = chain(options)
+                        .then((c) => {
                         credentials = c;
+                    })
+                        .finally(() => {
                         passiveLock = undefined;
                     });
                 }
             }
             else {
-                activeLock = chain(options).then((c) => {
+                activeLock = chain(options)
+                    .then((c) => {
                     credentials = c;
+                })
+                    .finally(() => {
                     activeLock = undefined;
                 });
                 return provider(options);
@@ -13676,7 +13607,7 @@ class NormalizedSchema {
     }
     getSchema() {
         const sc = this.schema;
-        if (sc[0] === 0) {
+        if (Array.isArray(sc) && sc[0] === 0) {
             return sc[4];
         }
         return sc;
@@ -13706,6 +13637,9 @@ class NormalizedSchema {
     }
     isStructSchema() {
         const sc = this.getSchema();
+        if (typeof sc !== "object") {
+            return false;
+        }
         const id = sc[0];
         return (id === 3 ||
             id === -3 ||
@@ -13713,6 +13647,9 @@ class NormalizedSchema {
     }
     isUnionSchema() {
         const sc = this.getSchema();
+        if (typeof sc !== "object") {
+            return false;
+        }
         return sc[0] === 4;
     }
     isBlobSchema() {
@@ -18491,9 +18428,8 @@ class ClassBuilder {
 
 const SENSITIVE_STRING = "***SensitiveInformation***";
 
-const createAggregatedClient = (commands, Client) => {
-    for (const command of Object.keys(commands)) {
-        const CommandCtor = commands[command];
+const createAggregatedClient = (commands, Client, options) => {
+    for (const [command, CommandCtor] of Object.entries(commands)) {
         const methodImpl = async function (args, optionsOrCb, cb) {
             const command = new CommandCtor(args);
             if (typeof optionsOrCb === "function") {
@@ -18510,6 +18446,33 @@ const createAggregatedClient = (commands, Client) => {
         };
         const methodName = (command[0].toLowerCase() + command.slice(1)).replace(/Command$/, "");
         Client.prototype[methodName] = methodImpl;
+    }
+    const { paginators = {}, waiters = {} } = options ?? {};
+    for (const [paginatorName, paginatorFn] of Object.entries(paginators)) {
+        if (Client.prototype[paginatorName] === void 0) {
+            Client.prototype[paginatorName] = function (commandInput = {}, paginationConfiguration, ...rest) {
+                return paginatorFn({
+                    ...paginationConfiguration,
+                    client: this,
+                }, commandInput, ...rest);
+            };
+        }
+    }
+    for (const [waiterName, waiterFn] of Object.entries(waiters)) {
+        if (Client.prototype[waiterName] === void 0) {
+            Client.prototype[waiterName] = async function (commandInput = {}, waiterConfiguration, ...rest) {
+                let config = waiterConfiguration;
+                if (typeof waiterConfiguration === "number") {
+                    config = {
+                        maxWaitTime: waiterConfiguration,
+                    };
+                }
+                return waiterFn({
+                    ...config,
+                    client: this,
+                }, commandInput, ...rest);
+            };
+        }
     }
 };
 
@@ -45941,7 +45904,7 @@ module.exports = parseParams
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.975.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.1","@aws-sdk/credential-provider-node":"^3.972.1","@aws-sdk/middleware-host-header":"^3.972.1","@aws-sdk/middleware-logger":"^3.972.1","@aws-sdk/middleware-recursion-detection":"^3.972.1","@aws-sdk/middleware-user-agent":"^3.972.2","@aws-sdk/region-config-resolver":"^3.972.1","@aws-sdk/types":"^3.973.0","@aws-sdk/util-endpoints":"3.972.0","@aws-sdk/util-user-agent-browser":"^3.972.1","@aws-sdk/util-user-agent-node":"^3.972.1","@smithy/config-resolver":"^4.4.6","@smithy/core":"^3.21.1","@smithy/fetch-http-handler":"^5.3.9","@smithy/hash-node":"^4.2.8","@smithy/invalid-dependency":"^4.2.8","@smithy/middleware-content-length":"^4.2.8","@smithy/middleware-endpoint":"^4.4.11","@smithy/middleware-retry":"^4.4.27","@smithy/middleware-serde":"^4.2.9","@smithy/middleware-stack":"^4.2.8","@smithy/node-config-provider":"^4.3.8","@smithy/node-http-handler":"^4.4.8","@smithy/protocol-http":"^5.3.8","@smithy/smithy-client":"^4.10.12","@smithy/types":"^4.12.0","@smithy/url-parser":"^4.2.8","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.26","@smithy/util-defaults-mode-node":"^4.2.29","@smithy/util-endpoints":"^3.2.8","@smithy/util-middleware":"^4.2.8","@smithy/util-retry":"^4.2.8","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.980.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.5","@aws-sdk/credential-provider-node":"^3.972.4","@aws-sdk/middleware-host-header":"^3.972.3","@aws-sdk/middleware-logger":"^3.972.3","@aws-sdk/middleware-recursion-detection":"^3.972.3","@aws-sdk/middleware-user-agent":"^3.972.5","@aws-sdk/region-config-resolver":"^3.972.3","@aws-sdk/types":"^3.973.1","@aws-sdk/util-endpoints":"3.980.0","@aws-sdk/util-user-agent-browser":"^3.972.3","@aws-sdk/util-user-agent-node":"^3.972.3","@smithy/config-resolver":"^4.4.6","@smithy/core":"^3.22.0","@smithy/fetch-http-handler":"^5.3.9","@smithy/hash-node":"^4.2.8","@smithy/invalid-dependency":"^4.2.8","@smithy/middleware-content-length":"^4.2.8","@smithy/middleware-endpoint":"^4.4.12","@smithy/middleware-retry":"^4.4.29","@smithy/middleware-serde":"^4.2.9","@smithy/middleware-stack":"^4.2.8","@smithy/node-config-provider":"^4.3.8","@smithy/node-http-handler":"^4.4.8","@smithy/protocol-http":"^5.3.8","@smithy/smithy-client":"^4.11.1","@smithy/types":"^4.12.0","@smithy/url-parser":"^4.2.8","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.28","@smithy/util-defaults-mode-node":"^4.2.31","@smithy/util-endpoints":"^3.2.8","@smithy/util-middleware":"^4.2.8","@smithy/util-retry":"^4.2.8","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ })
 
