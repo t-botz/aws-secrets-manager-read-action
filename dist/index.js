@@ -3690,6 +3690,9 @@ var httpAuthSchemeProvider = __nccwpck_require__(6493);
 var runtimeConfig = __nccwpck_require__(2580);
 var regionConfigResolver = __nccwpck_require__(6463);
 var protocolHttp = __nccwpck_require__(2356);
+var schemas_0 = __nccwpck_require__(8794);
+var errors = __nccwpck_require__(1038);
+var SecretsManagerServiceException = __nccwpck_require__(6173);
 
 const resolveClientEndpointParameters = (options) => {
     return Object.assign(options, {
@@ -3785,14 +3788,436 @@ class SecretsManagerClient extends smithyClient.Client {
     }
 }
 
-class SecretsManagerServiceException extends smithyClient.ServiceException {
+class BatchGetSecretValueCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "BatchGetSecretValue", {})
+    .n("SecretsManagerClient", "BatchGetSecretValueCommand")
+    .sc(schemas_0.BatchGetSecretValue$)
+    .build() {
+}
+
+class CancelRotateSecretCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "CancelRotateSecret", {})
+    .n("SecretsManagerClient", "CancelRotateSecretCommand")
+    .sc(schemas_0.CancelRotateSecret$)
+    .build() {
+}
+
+class CreateSecretCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "CreateSecret", {})
+    .n("SecretsManagerClient", "CreateSecretCommand")
+    .sc(schemas_0.CreateSecret$)
+    .build() {
+}
+
+class DeleteResourcePolicyCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "DeleteResourcePolicy", {})
+    .n("SecretsManagerClient", "DeleteResourcePolicyCommand")
+    .sc(schemas_0.DeleteResourcePolicy$)
+    .build() {
+}
+
+class DeleteSecretCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "DeleteSecret", {})
+    .n("SecretsManagerClient", "DeleteSecretCommand")
+    .sc(schemas_0.DeleteSecret$)
+    .build() {
+}
+
+class DescribeSecretCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "DescribeSecret", {})
+    .n("SecretsManagerClient", "DescribeSecretCommand")
+    .sc(schemas_0.DescribeSecret$)
+    .build() {
+}
+
+class GetRandomPasswordCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "GetRandomPassword", {})
+    .n("SecretsManagerClient", "GetRandomPasswordCommand")
+    .sc(schemas_0.GetRandomPassword$)
+    .build() {
+}
+
+class GetResourcePolicyCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "GetResourcePolicy", {})
+    .n("SecretsManagerClient", "GetResourcePolicyCommand")
+    .sc(schemas_0.GetResourcePolicy$)
+    .build() {
+}
+
+class GetSecretValueCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "GetSecretValue", {})
+    .n("SecretsManagerClient", "GetSecretValueCommand")
+    .sc(schemas_0.GetSecretValue$)
+    .build() {
+}
+
+class ListSecretsCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "ListSecrets", {})
+    .n("SecretsManagerClient", "ListSecretsCommand")
+    .sc(schemas_0.ListSecrets$)
+    .build() {
+}
+
+class ListSecretVersionIdsCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "ListSecretVersionIds", {})
+    .n("SecretsManagerClient", "ListSecretVersionIdsCommand")
+    .sc(schemas_0.ListSecretVersionIds$)
+    .build() {
+}
+
+class PutResourcePolicyCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "PutResourcePolicy", {})
+    .n("SecretsManagerClient", "PutResourcePolicyCommand")
+    .sc(schemas_0.PutResourcePolicy$)
+    .build() {
+}
+
+class PutSecretValueCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "PutSecretValue", {})
+    .n("SecretsManagerClient", "PutSecretValueCommand")
+    .sc(schemas_0.PutSecretValue$)
+    .build() {
+}
+
+class RemoveRegionsFromReplicationCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "RemoveRegionsFromReplication", {})
+    .n("SecretsManagerClient", "RemoveRegionsFromReplicationCommand")
+    .sc(schemas_0.RemoveRegionsFromReplication$)
+    .build() {
+}
+
+class ReplicateSecretToRegionsCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "ReplicateSecretToRegions", {})
+    .n("SecretsManagerClient", "ReplicateSecretToRegionsCommand")
+    .sc(schemas_0.ReplicateSecretToRegions$)
+    .build() {
+}
+
+class RestoreSecretCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "RestoreSecret", {})
+    .n("SecretsManagerClient", "RestoreSecretCommand")
+    .sc(schemas_0.RestoreSecret$)
+    .build() {
+}
+
+class RotateSecretCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "RotateSecret", {})
+    .n("SecretsManagerClient", "RotateSecretCommand")
+    .sc(schemas_0.RotateSecret$)
+    .build() {
+}
+
+class StopReplicationToReplicaCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "StopReplicationToReplica", {})
+    .n("SecretsManagerClient", "StopReplicationToReplicaCommand")
+    .sc(schemas_0.StopReplicationToReplica$)
+    .build() {
+}
+
+class TagResourceCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "TagResource", {})
+    .n("SecretsManagerClient", "TagResourceCommand")
+    .sc(schemas_0.TagResource$)
+    .build() {
+}
+
+class UntagResourceCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "UntagResource", {})
+    .n("SecretsManagerClient", "UntagResourceCommand")
+    .sc(schemas_0.UntagResource$)
+    .build() {
+}
+
+class UpdateSecretCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "UpdateSecret", {})
+    .n("SecretsManagerClient", "UpdateSecretCommand")
+    .sc(schemas_0.UpdateSecret$)
+    .build() {
+}
+
+class UpdateSecretVersionStageCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "UpdateSecretVersionStage", {})
+    .n("SecretsManagerClient", "UpdateSecretVersionStageCommand")
+    .sc(schemas_0.UpdateSecretVersionStage$)
+    .build() {
+}
+
+class ValidateResourcePolicyCommand extends smithyClient.Command
+    .classBuilder()
+    .ep(commonParams)
+    .m(function (Command, cs, config, o) {
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
+})
+    .s("secretsmanager", "ValidateResourcePolicy", {})
+    .n("SecretsManagerClient", "ValidateResourcePolicyCommand")
+    .sc(schemas_0.ValidateResourcePolicy$)
+    .build() {
+}
+
+const paginateBatchGetSecretValue = core.createPaginator(SecretsManagerClient, BatchGetSecretValueCommand, "NextToken", "NextToken", "MaxResults");
+
+const paginateListSecrets = core.createPaginator(SecretsManagerClient, ListSecretsCommand, "NextToken", "NextToken", "MaxResults");
+
+const paginateListSecretVersionIds = core.createPaginator(SecretsManagerClient, ListSecretVersionIdsCommand, "NextToken", "NextToken", "MaxResults");
+
+const commands = {
+    BatchGetSecretValueCommand,
+    CancelRotateSecretCommand,
+    CreateSecretCommand,
+    DeleteResourcePolicyCommand,
+    DeleteSecretCommand,
+    DescribeSecretCommand,
+    GetRandomPasswordCommand,
+    GetResourcePolicyCommand,
+    GetSecretValueCommand,
+    ListSecretsCommand,
+    ListSecretVersionIdsCommand,
+    PutResourcePolicyCommand,
+    PutSecretValueCommand,
+    RemoveRegionsFromReplicationCommand,
+    ReplicateSecretToRegionsCommand,
+    RestoreSecretCommand,
+    RotateSecretCommand,
+    StopReplicationToReplicaCommand,
+    TagResourceCommand,
+    UntagResourceCommand,
+    UpdateSecretCommand,
+    UpdateSecretVersionStageCommand,
+    ValidateResourcePolicyCommand,
+};
+const paginators = {
+    paginateBatchGetSecretValue,
+    paginateListSecrets,
+    paginateListSecretVersionIds,
+};
+class SecretsManager extends SecretsManagerClient {
+}
+smithyClient.createAggregatedClient(commands, SecretsManager, { paginators });
+
+const FilterNameStringType = {
+    all: "all",
+    description: "description",
+    name: "name",
+    owning_service: "owning-service",
+    primary_region: "primary-region",
+    tag_key: "tag-key",
+    tag_value: "tag-value",
+};
+const StatusType = {
+    Failed: "Failed",
+    InProgress: "InProgress",
+    InSync: "InSync",
+};
+const SortByType = {
+    created_date: "created-date",
+    last_accessed_date: "last-accessed-date",
+    last_changed_date: "last-changed-date",
+    name: "name",
+};
+const SortOrderType = {
+    asc: "asc",
+    desc: "desc",
+};
+
+Object.defineProperty(exports, "$Command", ({
+    enumerable: true,
+    get: function () { return smithyClient.Command; }
+}));
+Object.defineProperty(exports, "__Client", ({
+    enumerable: true,
+    get: function () { return smithyClient.Client; }
+}));
+Object.defineProperty(exports, "SecretsManagerServiceException", ({
+    enumerable: true,
+    get: function () { return SecretsManagerServiceException.SecretsManagerServiceException; }
+}));
+exports.BatchGetSecretValueCommand = BatchGetSecretValueCommand;
+exports.CancelRotateSecretCommand = CancelRotateSecretCommand;
+exports.CreateSecretCommand = CreateSecretCommand;
+exports.DeleteResourcePolicyCommand = DeleteResourcePolicyCommand;
+exports.DeleteSecretCommand = DeleteSecretCommand;
+exports.DescribeSecretCommand = DescribeSecretCommand;
+exports.FilterNameStringType = FilterNameStringType;
+exports.GetRandomPasswordCommand = GetRandomPasswordCommand;
+exports.GetResourcePolicyCommand = GetResourcePolicyCommand;
+exports.GetSecretValueCommand = GetSecretValueCommand;
+exports.ListSecretVersionIdsCommand = ListSecretVersionIdsCommand;
+exports.ListSecretsCommand = ListSecretsCommand;
+exports.PutResourcePolicyCommand = PutResourcePolicyCommand;
+exports.PutSecretValueCommand = PutSecretValueCommand;
+exports.RemoveRegionsFromReplicationCommand = RemoveRegionsFromReplicationCommand;
+exports.ReplicateSecretToRegionsCommand = ReplicateSecretToRegionsCommand;
+exports.RestoreSecretCommand = RestoreSecretCommand;
+exports.RotateSecretCommand = RotateSecretCommand;
+exports.SecretsManager = SecretsManager;
+exports.SecretsManagerClient = SecretsManagerClient;
+exports.SortByType = SortByType;
+exports.SortOrderType = SortOrderType;
+exports.StatusType = StatusType;
+exports.StopReplicationToReplicaCommand = StopReplicationToReplicaCommand;
+exports.TagResourceCommand = TagResourceCommand;
+exports.UntagResourceCommand = UntagResourceCommand;
+exports.UpdateSecretCommand = UpdateSecretCommand;
+exports.UpdateSecretVersionStageCommand = UpdateSecretVersionStageCommand;
+exports.ValidateResourcePolicyCommand = ValidateResourcePolicyCommand;
+exports.paginateBatchGetSecretValue = paginateBatchGetSecretValue;
+exports.paginateListSecretVersionIds = paginateListSecretVersionIds;
+exports.paginateListSecrets = paginateListSecrets;
+Object.keys(schemas_0).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+        enumerable: true,
+        get: function () { return schemas_0[k]; }
+    });
+});
+Object.keys(errors).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+        enumerable: true,
+        get: function () { return errors[k]; }
+    });
+});
+
+
+/***/ }),
+
+/***/ 6173:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.SecretsManagerServiceException = exports.__ServiceException = void 0;
+const smithy_client_1 = __nccwpck_require__(1411);
+Object.defineProperty(exports, "__ServiceException", ({ enumerable: true, get: function () { return smithy_client_1.ServiceException; } }));
+class SecretsManagerServiceException extends smithy_client_1.ServiceException {
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, SecretsManagerServiceException.prototype);
     }
 }
+exports.SecretsManagerServiceException = SecretsManagerServiceException;
 
-class DecryptionFailure extends SecretsManagerServiceException {
+
+/***/ }),
+
+/***/ 1038:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.PublicPolicyException = exports.ResourceExistsException = exports.PreconditionNotMetException = exports.MalformedPolicyDocumentException = exports.LimitExceededException = exports.EncryptionFailure = exports.ResourceNotFoundException = exports.InvalidRequestException = exports.InvalidParameterException = exports.InvalidNextTokenException = exports.InternalServiceError = exports.DecryptionFailure = void 0;
+const SecretsManagerServiceException_1 = __nccwpck_require__(6173);
+class DecryptionFailure extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "DecryptionFailure";
     $fault = "client";
     Message;
@@ -3806,7 +4231,8 @@ class DecryptionFailure extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class InternalServiceError extends SecretsManagerServiceException {
+exports.DecryptionFailure = DecryptionFailure;
+class InternalServiceError extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "InternalServiceError";
     $fault = "server";
     Message;
@@ -3820,7 +4246,8 @@ class InternalServiceError extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class InvalidNextTokenException extends SecretsManagerServiceException {
+exports.InternalServiceError = InternalServiceError;
+class InvalidNextTokenException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "InvalidNextTokenException";
     $fault = "client";
     Message;
@@ -3834,7 +4261,8 @@ class InvalidNextTokenException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class InvalidParameterException extends SecretsManagerServiceException {
+exports.InvalidNextTokenException = InvalidNextTokenException;
+class InvalidParameterException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "InvalidParameterException";
     $fault = "client";
     Message;
@@ -3848,7 +4276,8 @@ class InvalidParameterException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class InvalidRequestException extends SecretsManagerServiceException {
+exports.InvalidParameterException = InvalidParameterException;
+class InvalidRequestException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "InvalidRequestException";
     $fault = "client";
     Message;
@@ -3862,7 +4291,8 @@ class InvalidRequestException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class ResourceNotFoundException extends SecretsManagerServiceException {
+exports.InvalidRequestException = InvalidRequestException;
+class ResourceNotFoundException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "ResourceNotFoundException";
     $fault = "client";
     Message;
@@ -3876,7 +4306,8 @@ class ResourceNotFoundException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class EncryptionFailure extends SecretsManagerServiceException {
+exports.ResourceNotFoundException = ResourceNotFoundException;
+class EncryptionFailure extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "EncryptionFailure";
     $fault = "client";
     Message;
@@ -3890,7 +4321,8 @@ class EncryptionFailure extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class LimitExceededException extends SecretsManagerServiceException {
+exports.EncryptionFailure = EncryptionFailure;
+class LimitExceededException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "LimitExceededException";
     $fault = "client";
     Message;
@@ -3904,7 +4336,8 @@ class LimitExceededException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class MalformedPolicyDocumentException extends SecretsManagerServiceException {
+exports.LimitExceededException = LimitExceededException;
+class MalformedPolicyDocumentException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "MalformedPolicyDocumentException";
     $fault = "client";
     Message;
@@ -3918,7 +4351,8 @@ class MalformedPolicyDocumentException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class PreconditionNotMetException extends SecretsManagerServiceException {
+exports.MalformedPolicyDocumentException = MalformedPolicyDocumentException;
+class PreconditionNotMetException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "PreconditionNotMetException";
     $fault = "client";
     Message;
@@ -3932,7 +4366,8 @@ class PreconditionNotMetException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class ResourceExistsException extends SecretsManagerServiceException {
+exports.PreconditionNotMetException = PreconditionNotMetException;
+class ResourceExistsException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "ResourceExistsException";
     $fault = "client";
     Message;
@@ -3946,7 +4381,8 @@ class ResourceExistsException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
-class PublicPolicyException extends SecretsManagerServiceException {
+exports.ResourceExistsException = ResourceExistsException;
+class PublicPolicyException extends SecretsManagerServiceException_1.SecretsManagerServiceException {
     name = "PublicPolicyException";
     $fault = "client";
     Message;
@@ -3960,7 +4396,131 @@ class PublicPolicyException extends SecretsManagerServiceException {
         this.Message = opts.Message;
     }
 }
+exports.PublicPolicyException = PublicPolicyException;
 
+
+/***/ }),
+
+/***/ 2580:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getRuntimeConfig = void 0;
+const tslib_1 = __nccwpck_require__(1860);
+const package_json_1 = tslib_1.__importDefault(__nccwpck_require__(4456));
+const core_1 = __nccwpck_require__(8704);
+const credential_provider_node_1 = __nccwpck_require__(5861);
+const util_user_agent_node_1 = __nccwpck_require__(1656);
+const config_resolver_1 = __nccwpck_require__(9316);
+const hash_node_1 = __nccwpck_require__(5092);
+const middleware_retry_1 = __nccwpck_require__(9618);
+const node_config_provider_1 = __nccwpck_require__(5704);
+const node_http_handler_1 = __nccwpck_require__(1279);
+const smithy_client_1 = __nccwpck_require__(1411);
+const util_body_length_node_1 = __nccwpck_require__(3638);
+const util_defaults_mode_node_1 = __nccwpck_require__(5435);
+const util_retry_1 = __nccwpck_require__(5518);
+const runtimeConfig_shared_1 = __nccwpck_require__(7605);
+const getRuntimeConfig = (config) => {
+    (0, smithy_client_1.emitWarningIfUnsupportedVersion)(process.version);
+    const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
+    const defaultConfigProvider = () => defaultsMode().then(smithy_client_1.loadConfigsForDefaultMode);
+    const clientSharedValues = (0, runtimeConfig_shared_1.getRuntimeConfig)(config);
+    (0, core_1.emitWarningIfUnsupportedVersion)(process.version);
+    const loaderConfig = {
+        profile: config?.profile,
+        logger: clientSharedValues.logger,
+    };
+    return {
+        ...clientSharedValues,
+        ...config,
+        runtime: "node",
+        defaultsMode,
+        authSchemePreference: config?.authSchemePreference ?? (0, node_config_provider_1.loadConfig)(core_1.NODE_AUTH_SCHEME_PREFERENCE_OPTIONS, loaderConfig),
+        bodyLengthChecker: config?.bodyLengthChecker ?? util_body_length_node_1.calculateBodyLength,
+        credentialDefaultProvider: config?.credentialDefaultProvider ?? credential_provider_node_1.defaultProvider,
+        defaultUserAgentProvider: config?.defaultUserAgentProvider ?? (0, util_user_agent_node_1.createDefaultUserAgentProvider)({ serviceId: clientSharedValues.serviceId, clientVersion: package_json_1.default.version }),
+        maxAttempts: config?.maxAttempts ?? (0, node_config_provider_1.loadConfig)(middleware_retry_1.NODE_MAX_ATTEMPT_CONFIG_OPTIONS, config),
+        region: config?.region ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_REGION_CONFIG_OPTIONS, { ...config_resolver_1.NODE_REGION_CONFIG_FILE_OPTIONS, ...loaderConfig }),
+        requestHandler: node_http_handler_1.NodeHttpHandler.create(config?.requestHandler ?? defaultConfigProvider),
+        retryMode: config?.retryMode ??
+            (0, node_config_provider_1.loadConfig)({
+                ...middleware_retry_1.NODE_RETRY_MODE_CONFIG_OPTIONS,
+                default: async () => (await defaultConfigProvider()).retryMode || util_retry_1.DEFAULT_RETRY_MODE,
+            }, config),
+        sha256: config?.sha256 ?? hash_node_1.Hash.bind(null, "sha256"),
+        streamCollector: config?.streamCollector ?? node_http_handler_1.streamCollector,
+        useDualstackEndpoint: config?.useDualstackEndpoint ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
+        useFipsEndpoint: config?.useFipsEndpoint ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
+        userAgentAppId: config?.userAgentAppId ?? (0, node_config_provider_1.loadConfig)(util_user_agent_node_1.NODE_APP_ID_CONFIG_OPTIONS, loaderConfig),
+    };
+};
+exports.getRuntimeConfig = getRuntimeConfig;
+
+
+/***/ }),
+
+/***/ 7605:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getRuntimeConfig = void 0;
+const core_1 = __nccwpck_require__(8704);
+const protocols_1 = __nccwpck_require__(7288);
+const smithy_client_1 = __nccwpck_require__(1411);
+const url_parser_1 = __nccwpck_require__(4494);
+const util_base64_1 = __nccwpck_require__(8385);
+const util_utf8_1 = __nccwpck_require__(1577);
+const httpAuthSchemeProvider_1 = __nccwpck_require__(6493);
+const endpointResolver_1 = __nccwpck_require__(3267);
+const schemas_0_1 = __nccwpck_require__(8794);
+const getRuntimeConfig = (config) => {
+    return {
+        apiVersion: "2017-10-17",
+        base64Decoder: config?.base64Decoder ?? util_base64_1.fromBase64,
+        base64Encoder: config?.base64Encoder ?? util_base64_1.toBase64,
+        disableHostPrefix: config?.disableHostPrefix ?? false,
+        endpointProvider: config?.endpointProvider ?? endpointResolver_1.defaultEndpointResolver,
+        extensions: config?.extensions ?? [],
+        httpAuthSchemeProvider: config?.httpAuthSchemeProvider ?? httpAuthSchemeProvider_1.defaultSecretsManagerHttpAuthSchemeProvider,
+        httpAuthSchemes: config?.httpAuthSchemes ?? [
+            {
+                schemeId: "aws.auth#sigv4",
+                identityProvider: (ipc) => ipc.getIdentityProvider("aws.auth#sigv4"),
+                signer: new core_1.AwsSdkSigV4Signer(),
+            },
+        ],
+        logger: config?.logger ?? new smithy_client_1.NoOpLogger(),
+        protocol: config?.protocol ?? protocols_1.AwsJson1_1Protocol,
+        protocolSettings: config?.protocolSettings ?? {
+            defaultNamespace: "com.amazonaws.secretsmanager",
+            errorTypeRegistries: schemas_0_1.errorTypeRegistries,
+            version: "2017-10-17",
+            serviceTarget: "secretsmanager",
+        },
+        serviceId: config?.serviceId ?? "Secrets Manager",
+        urlParser: config?.urlParser ?? url_parser_1.parseUrl,
+        utf8Decoder: config?.utf8Decoder ?? util_utf8_1.fromUtf8,
+        utf8Encoder: config?.utf8Encoder ?? util_utf8_1.toUtf8,
+    };
+};
+exports.getRuntimeConfig = getRuntimeConfig;
+
+
+/***/ }),
+
+/***/ 8794:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.RestoreSecretRequest$ = exports.ReplicationStatusType$ = exports.ReplicateSecretToRegionsResponse$ = exports.ReplicateSecretToRegionsRequest$ = exports.ReplicaRegionType$ = exports.RemoveRegionsFromReplicationResponse$ = exports.RemoveRegionsFromReplicationRequest$ = exports.PutSecretValueResponse$ = exports.PutSecretValueRequest$ = exports.PutResourcePolicyResponse$ = exports.PutResourcePolicyRequest$ = exports.ListSecretVersionIdsResponse$ = exports.ListSecretVersionIdsRequest$ = exports.ListSecretsResponse$ = exports.ListSecretsRequest$ = exports.GetSecretValueResponse$ = exports.GetSecretValueRequest$ = exports.GetResourcePolicyResponse$ = exports.GetResourcePolicyRequest$ = exports.GetRandomPasswordResponse$ = exports.GetRandomPasswordRequest$ = exports.Filter$ = exports.ExternalSecretRotationMetadataItem$ = exports.DescribeSecretResponse$ = exports.DescribeSecretRequest$ = exports.DeleteSecretResponse$ = exports.DeleteSecretRequest$ = exports.DeleteResourcePolicyResponse$ = exports.DeleteResourcePolicyRequest$ = exports.CreateSecretResponse$ = exports.CreateSecretRequest$ = exports.CancelRotateSecretResponse$ = exports.CancelRotateSecretRequest$ = exports.BatchGetSecretValueResponse$ = exports.BatchGetSecretValueRequest$ = exports.APIErrorType$ = exports.errorTypeRegistries = exports.ResourceNotFoundException$ = exports.ResourceExistsException$ = exports.PublicPolicyException$ = exports.PreconditionNotMetException$ = exports.MalformedPolicyDocumentException$ = exports.LimitExceededException$ = exports.InvalidRequestException$ = exports.InvalidParameterException$ = exports.InvalidNextTokenException$ = exports.InternalServiceError$ = exports.EncryptionFailure$ = exports.DecryptionFailure$ = exports.SecretsManagerServiceException$ = void 0;
+exports.ValidateResourcePolicy$ = exports.UpdateSecretVersionStage$ = exports.UpdateSecret$ = exports.UntagResource$ = exports.TagResource$ = exports.StopReplicationToReplica$ = exports.RotateSecret$ = exports.RestoreSecret$ = exports.ReplicateSecretToRegions$ = exports.RemoveRegionsFromReplication$ = exports.PutSecretValue$ = exports.PutResourcePolicy$ = exports.ListSecretVersionIds$ = exports.ListSecrets$ = exports.GetSecretValue$ = exports.GetResourcePolicy$ = exports.GetRandomPassword$ = exports.DescribeSecret$ = exports.DeleteSecret$ = exports.DeleteResourcePolicy$ = exports.CreateSecret$ = exports.CancelRotateSecret$ = exports.BatchGetSecretValue$ = exports.ValidationErrorsEntry$ = exports.ValidateResourcePolicyResponse$ = exports.ValidateResourcePolicyRequest$ = exports.UpdateSecretVersionStageResponse$ = exports.UpdateSecretVersionStageRequest$ = exports.UpdateSecretResponse$ = exports.UpdateSecretRequest$ = exports.UntagResourceRequest$ = exports.TagResourceRequest$ = exports.Tag$ = exports.StopReplicationToReplicaResponse$ = exports.StopReplicationToReplicaRequest$ = exports.SecretVersionsListEntry$ = exports.SecretValueEntry$ = exports.SecretListEntry$ = exports.RotationRulesType$ = exports.RotateSecretResponse$ = exports.RotateSecretRequest$ = exports.RestoreSecretResponse$ = void 0;
 const _AAD = "AutomaticallyAfterDays";
 const _APIELT = "APIErrorListType";
 const _APIET = "APIErrorType";
@@ -4147,1059 +4707,481 @@ const _Va = "Values";
 const _Ve = "Versions";
 const _c = "client";
 const _e = "error";
-const _s = "server";
-const _sm = "smithy.ts.sdk.synthetic.com.amazonaws.secretsmanager";
+const _s = "smithy.ts.sdk.synthetic.com.amazonaws.secretsmanager";
+const _se = "server";
 const n0 = "com.amazonaws.secretsmanager";
+const schema_1 = __nccwpck_require__(6890);
+const errors_1 = __nccwpck_require__(1038);
+const SecretsManagerServiceException_1 = __nccwpck_require__(6173);
+const _s_registry = schema_1.TypeRegistry.for(_s);
+exports.SecretsManagerServiceException$ = [-3, _s, "SecretsManagerServiceException", 0, [], []];
+_s_registry.registerError(exports.SecretsManagerServiceException$, SecretsManagerServiceException_1.SecretsManagerServiceException);
+const n0_registry = schema_1.TypeRegistry.for(n0);
+exports.DecryptionFailure$ = [-3, n0, _DF,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.DecryptionFailure$, errors_1.DecryptionFailure);
+exports.EncryptionFailure$ = [-3, n0, _EF,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.EncryptionFailure$, errors_1.EncryptionFailure);
+exports.InternalServiceError$ = [-3, n0, _ISE,
+    { [_e]: _se },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.InternalServiceError$, errors_1.InternalServiceError);
+exports.InvalidNextTokenException$ = [-3, n0, _INTE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.InvalidNextTokenException$, errors_1.InvalidNextTokenException);
+exports.InvalidParameterException$ = [-3, n0, _IPE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.InvalidParameterException$, errors_1.InvalidParameterException);
+exports.InvalidRequestException$ = [-3, n0, _IRE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.InvalidRequestException$, errors_1.InvalidRequestException);
+exports.LimitExceededException$ = [-3, n0, _LEE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.LimitExceededException$, errors_1.LimitExceededException);
+exports.MalformedPolicyDocumentException$ = [-3, n0, _MPDE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.MalformedPolicyDocumentException$, errors_1.MalformedPolicyDocumentException);
+exports.PreconditionNotMetException$ = [-3, n0, _PNME,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.PreconditionNotMetException$, errors_1.PreconditionNotMetException);
+exports.PublicPolicyException$ = [-3, n0, _PPE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.PublicPolicyException$, errors_1.PublicPolicyException);
+exports.ResourceExistsException$ = [-3, n0, _REE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.ResourceExistsException$, errors_1.ResourceExistsException);
+exports.ResourceNotFoundException$ = [-3, n0, _RNFE,
+    { [_e]: _c },
+    [_M],
+    [0]
+];
+n0_registry.registerError(exports.ResourceNotFoundException$, errors_1.ResourceNotFoundException);
+exports.errorTypeRegistries = [
+    _s_registry,
+    n0_registry,
+];
 var RandomPasswordType = [0, n0, _RPT, 8, 0];
 var RotationTokenType = [0, n0, _RTT, 8, 0];
 var SecretBinaryType = [0, n0, _SBT, 8, 21];
 var SecretStringType = [0, n0, _SST, 8, 0];
-var APIErrorType$ = [3, n0, _APIET,
+exports.APIErrorType$ = [3, n0, _APIET,
     0,
     [_SI, _EC, _M],
     [0, 0, 0]
 ];
-var BatchGetSecretValueRequest$ = [3, n0, _BGSVR,
+exports.BatchGetSecretValueRequest$ = [3, n0, _BGSVR,
     0,
     [_SIL, _F, _MR, _NT],
     [64 | 0, () => FiltersListType, 1, 0]
 ];
-var BatchGetSecretValueResponse$ = [3, n0, _BGSVRa,
+exports.BatchGetSecretValueResponse$ = [3, n0, _BGSVRa,
     0,
     [_SV, _NT, _E],
     [[() => SecretValuesType, 0], 0, () => APIErrorListType]
 ];
-var CancelRotateSecretRequest$ = [3, n0, _CRSR,
+exports.CancelRotateSecretRequest$ = [3, n0, _CRSR,
     0,
     [_SI],
     [0], 1
 ];
-var CancelRotateSecretResponse$ = [3, n0, _CRSRa,
+exports.CancelRotateSecretResponse$ = [3, n0, _CRSRa,
     0,
     [_ARN, _N, _VI],
     [0, 0, 0]
 ];
-var CreateSecretRequest$ = [3, n0, _CSR,
+exports.CreateSecretRequest$ = [3, n0, _CSR,
     0,
     [_N, _CRT, _D, _KKI, _SB, _SS, _T, _ARR, _FORS, _Ty],
     [0, [0, 4], 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], () => TagListType, () => AddReplicaRegionListType, 2, 0], 1
 ];
-var CreateSecretResponse$ = [3, n0, _CSRr,
+exports.CreateSecretResponse$ = [3, n0, _CSRr,
     0,
     [_ARN, _N, _VI, _RS],
     [0, 0, 0, () => ReplicationStatusListType]
 ];
-var DecryptionFailure$ = [-3, n0, _DF,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(DecryptionFailure$, DecryptionFailure);
-var DeleteResourcePolicyRequest$ = [3, n0, _DRPR,
+exports.DeleteResourcePolicyRequest$ = [3, n0, _DRPR,
     0,
     [_SI],
     [0], 1
 ];
-var DeleteResourcePolicyResponse$ = [3, n0, _DRPRe,
+exports.DeleteResourcePolicyResponse$ = [3, n0, _DRPRe,
     0,
     [_ARN, _N],
     [0, 0]
 ];
-var DeleteSecretRequest$ = [3, n0, _DSR,
+exports.DeleteSecretRequest$ = [3, n0, _DSR,
     0,
     [_SI, _RWID, _FDWR],
     [0, 1, 2], 1
 ];
-var DeleteSecretResponse$ = [3, n0, _DSRe,
+exports.DeleteSecretResponse$ = [3, n0, _DSRe,
     0,
     [_ARN, _N, _DD],
     [0, 0, 4]
 ];
-var DescribeSecretRequest$ = [3, n0, _DSRes,
+exports.DescribeSecretRequest$ = [3, n0, _DSRes,
     0,
     [_SI],
     [0], 1
 ];
-var DescribeSecretResponse$ = [3, n0, _DSResc,
+exports.DescribeSecretResponse$ = [3, n0, _DSResc,
     0,
     [_ARN, _N, _Ty, _D, _KKI, _RE, _RLARN, _RR, _ESRM, _ESRRA, _LRD, _LCD, _LAD, _DDe, _NRD, _T, _VITS, _OS, _CD, _PR, _RS],
-    [0, 0, 0, 0, 0, 2, 0, () => RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 4, 4, 4, 4, 4, () => TagListType, [2, n0, _SVTSMT, 0, 0, 64 | 0], 0, 4, 0, () => ReplicationStatusListType]
+    [0, 0, 0, 0, 0, 2, 0, () => exports.RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 4, 4, 4, 4, 4, () => TagListType, [2, n0, _SVTSMT, 0, 0, 64 | 0], 0, 4, 0, () => ReplicationStatusListType]
 ];
-var EncryptionFailure$ = [-3, n0, _EF,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(EncryptionFailure$, EncryptionFailure);
-var ExternalSecretRotationMetadataItem$ = [3, n0, _ESRMI,
+exports.ExternalSecretRotationMetadataItem$ = [3, n0, _ESRMI,
     0,
     [_K, _V],
     [0, 0]
 ];
-var Filter$ = [3, n0, _Fi,
+exports.Filter$ = [3, n0, _Fi,
     0,
     [_K, _Va],
     [0, 64 | 0]
 ];
-var GetRandomPasswordRequest$ = [3, n0, _GRPR,
+exports.GetRandomPasswordRequest$ = [3, n0, _GRPR,
     0,
     [_PL, _ECx, _EN, _EP, _EU, _EL, _IS, _REIT],
     [1, 0, 2, 2, 2, 2, 2, 2]
 ];
-var GetRandomPasswordResponse$ = [3, n0, _GRPRe,
+exports.GetRandomPasswordResponse$ = [3, n0, _GRPRe,
     0,
     [_RP],
     [[() => RandomPasswordType, 0]]
 ];
-var GetResourcePolicyRequest$ = [3, n0, _GRPRet,
+exports.GetResourcePolicyRequest$ = [3, n0, _GRPRet,
     0,
     [_SI],
     [0], 1
 ];
-var GetResourcePolicyResponse$ = [3, n0, _GRPRete,
+exports.GetResourcePolicyResponse$ = [3, n0, _GRPRete,
     0,
     [_ARN, _N, _RPe],
     [0, 0, 0]
 ];
-var GetSecretValueRequest$ = [3, n0, _GSVR,
+exports.GetSecretValueRequest$ = [3, n0, _GSVR,
     0,
     [_SI, _VI, _VS],
     [0, 0, 0], 1
 ];
-var GetSecretValueResponse$ = [3, n0, _GSVRe,
+exports.GetSecretValueResponse$ = [3, n0, _GSVRe,
     0,
     [_ARN, _N, _VI, _SB, _SS, _VSe, _CD],
     [0, 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, 4]
 ];
-var InternalServiceError$ = [-3, n0, _ISE,
-    { [_e]: _s },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(InternalServiceError$, InternalServiceError);
-var InvalidNextTokenException$ = [-3, n0, _INTE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(InvalidNextTokenException$, InvalidNextTokenException);
-var InvalidParameterException$ = [-3, n0, _IPE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(InvalidParameterException$, InvalidParameterException);
-var InvalidRequestException$ = [-3, n0, _IRE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(InvalidRequestException$, InvalidRequestException);
-var LimitExceededException$ = [-3, n0, _LEE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(LimitExceededException$, LimitExceededException);
-var ListSecretsRequest$ = [3, n0, _LSR,
+exports.ListSecretsRequest$ = [3, n0, _LSR,
     0,
     [_IPD, _MR, _NT, _F, _SO, _SBo],
     [2, 1, 0, () => FiltersListType, 0, 0]
 ];
-var ListSecretsResponse$ = [3, n0, _LSRi,
+exports.ListSecretsResponse$ = [3, n0, _LSRi,
     0,
     [_SL, _NT],
     [() => SecretListType, 0]
 ];
-var ListSecretVersionIdsRequest$ = [3, n0, _LSVIR,
+exports.ListSecretVersionIdsRequest$ = [3, n0, _LSVIR,
     0,
     [_SI, _MR, _NT, _ID],
     [0, 1, 0, 2], 1
 ];
-var ListSecretVersionIdsResponse$ = [3, n0, _LSVIRi,
+exports.ListSecretVersionIdsResponse$ = [3, n0, _LSVIRi,
     0,
     [_Ve, _NT, _ARN, _N],
     [() => SecretVersionsListType, 0, 0, 0]
 ];
-var MalformedPolicyDocumentException$ = [-3, n0, _MPDE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(MalformedPolicyDocumentException$, MalformedPolicyDocumentException);
-var PreconditionNotMetException$ = [-3, n0, _PNME,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(PreconditionNotMetException$, PreconditionNotMetException);
-var PublicPolicyException$ = [-3, n0, _PPE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(PublicPolicyException$, PublicPolicyException);
-var PutResourcePolicyRequest$ = [3, n0, _PRPR,
+exports.PutResourcePolicyRequest$ = [3, n0, _PRPR,
     0,
     [_SI, _RPe, _BPP],
     [0, 0, 2], 2
 ];
-var PutResourcePolicyResponse$ = [3, n0, _PRPRu,
+exports.PutResourcePolicyResponse$ = [3, n0, _PRPRu,
     0,
     [_ARN, _N],
     [0, 0]
 ];
-var PutSecretValueRequest$ = [3, n0, _PSVR,
+exports.PutSecretValueRequest$ = [3, n0, _PSVR,
     0,
     [_SI, _CRT, _SB, _SS, _VSe, _RT],
     [0, [0, 4], [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, [() => RotationTokenType, 0]], 1
 ];
-var PutSecretValueResponse$ = [3, n0, _PSVRu,
+exports.PutSecretValueResponse$ = [3, n0, _PSVRu,
     0,
     [_ARN, _N, _VI, _VSe],
     [0, 0, 0, 64 | 0]
 ];
-var RemoveRegionsFromReplicationRequest$ = [3, n0, _RRFRR,
+exports.RemoveRegionsFromReplicationRequest$ = [3, n0, _RRFRR,
     0,
     [_SI, _RRR],
     [0, 64 | 0], 2
 ];
-var RemoveRegionsFromReplicationResponse$ = [3, n0, _RRFRRe,
+exports.RemoveRegionsFromReplicationResponse$ = [3, n0, _RRFRRe,
     0,
     [_ARN, _RS],
     [0, () => ReplicationStatusListType]
 ];
-var ReplicaRegionType$ = [3, n0, _RRT,
+exports.ReplicaRegionType$ = [3, n0, _RRT,
     0,
     [_R, _KKI],
     [0, 0]
 ];
-var ReplicateSecretToRegionsRequest$ = [3, n0, _RSTRR,
+exports.ReplicateSecretToRegionsRequest$ = [3, n0, _RSTRR,
     0,
     [_SI, _ARR, _FORS],
     [0, () => AddReplicaRegionListType, 2], 2
 ];
-var ReplicateSecretToRegionsResponse$ = [3, n0, _RSTRRe,
+exports.ReplicateSecretToRegionsResponse$ = [3, n0, _RSTRRe,
     0,
     [_ARN, _RS],
     [0, () => ReplicationStatusListType]
 ];
-var ReplicationStatusType$ = [3, n0, _RST,
+exports.ReplicationStatusType$ = [3, n0, _RST,
     0,
     [_R, _KKI, _S, _SM, _LAD],
     [0, 0, 0, 0, 4]
 ];
-var ResourceExistsException$ = [-3, n0, _REE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(ResourceExistsException$, ResourceExistsException);
-var ResourceNotFoundException$ = [-3, n0, _RNFE,
-    { [_e]: _c },
-    [_M],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(ResourceNotFoundException$, ResourceNotFoundException);
-var RestoreSecretRequest$ = [3, n0, _RSR,
+exports.RestoreSecretRequest$ = [3, n0, _RSR,
     0,
     [_SI],
     [0], 1
 ];
-var RestoreSecretResponse$ = [3, n0, _RSRe,
+exports.RestoreSecretResponse$ = [3, n0, _RSRe,
     0,
     [_ARN, _N],
     [0, 0]
 ];
-var RotateSecretRequest$ = [3, n0, _RSRo,
+exports.RotateSecretRequest$ = [3, n0, _RSRo,
     0,
     [_SI, _CRT, _RLARN, _RR, _ESRM, _ESRRA, _RI],
-    [0, [0, 4], 0, () => RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 2], 1
+    [0, [0, 4], 0, () => exports.RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 2], 1
 ];
-var RotateSecretResponse$ = [3, n0, _RSRot,
+exports.RotateSecretResponse$ = [3, n0, _RSRot,
     0,
     [_ARN, _N, _VI],
     [0, 0, 0]
 ];
-var RotationRulesType$ = [3, n0, _RRTo,
+exports.RotationRulesType$ = [3, n0, _RRTo,
     0,
     [_AAD, _Du, _SE],
     [1, 0, 0]
 ];
-var SecretListEntry$ = [3, n0, _SLE,
+exports.SecretListEntry$ = [3, n0, _SLE,
     0,
     [_ARN, _N, _Ty, _D, _KKI, _RE, _RLARN, _RR, _ESRM, _ESRRA, _LRD, _LCD, _LAD, _DDe, _NRD, _T, _SVTS, _OS, _CD, _PR],
-    [0, 0, 0, 0, 0, 2, 0, () => RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 4, 4, 4, 4, 4, () => TagListType, [2, n0, _SVTSMT, 0, 0, 64 | 0], 0, 4, 0]
+    [0, 0, 0, 0, 0, 2, 0, () => exports.RotationRulesType$, () => ExternalSecretRotationMetadataType, 0, 4, 4, 4, 4, 4, () => TagListType, [2, n0, _SVTSMT, 0, 0, 64 | 0], 0, 4, 0]
 ];
-var SecretValueEntry$ = [3, n0, _SVE,
+exports.SecretValueEntry$ = [3, n0, _SVE,
     0,
     [_ARN, _N, _VI, _SB, _SS, _VSe, _CD],
     [0, 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 64 | 0, 4]
 ];
-var SecretVersionsListEntry$ = [3, n0, _SVLE,
+exports.SecretVersionsListEntry$ = [3, n0, _SVLE,
     0,
     [_VI, _VSe, _LAD, _CD, _KKIm],
     [0, 64 | 0, 4, 4, 64 | 0]
 ];
-var StopReplicationToReplicaRequest$ = [3, n0, _SRTRR,
+exports.StopReplicationToReplicaRequest$ = [3, n0, _SRTRR,
     0,
     [_SI],
     [0], 1
 ];
-var StopReplicationToReplicaResponse$ = [3, n0, _SRTRRt,
+exports.StopReplicationToReplicaResponse$ = [3, n0, _SRTRRt,
     0,
     [_ARN],
     [0]
 ];
-var Tag$ = [3, n0, _Ta,
+exports.Tag$ = [3, n0, _Ta,
     0,
     [_K, _V],
     [0, 0]
 ];
-var TagResourceRequest$ = [3, n0, _TRR,
+exports.TagResourceRequest$ = [3, n0, _TRR,
     0,
     [_SI, _T],
     [0, () => TagListType], 2
 ];
-var UntagResourceRequest$ = [3, n0, _URR,
+exports.UntagResourceRequest$ = [3, n0, _URR,
     0,
     [_SI, _TK],
     [0, 64 | 0], 2
 ];
-var UpdateSecretRequest$ = [3, n0, _USR,
+exports.UpdateSecretRequest$ = [3, n0, _USR,
     0,
     [_SI, _CRT, _D, _KKI, _SB, _SS, _Ty],
     [0, [0, 4], 0, 0, [() => SecretBinaryType, 0], [() => SecretStringType, 0], 0], 1
 ];
-var UpdateSecretResponse$ = [3, n0, _USRp,
+exports.UpdateSecretResponse$ = [3, n0, _USRp,
     0,
     [_ARN, _N, _VI],
     [0, 0, 0]
 ];
-var UpdateSecretVersionStageRequest$ = [3, n0, _USVSR,
+exports.UpdateSecretVersionStageRequest$ = [3, n0, _USVSR,
     0,
     [_SI, _VS, _RFVI, _MTVI],
     [0, 0, 0, 0], 2
 ];
-var UpdateSecretVersionStageResponse$ = [3, n0, _USVSRp,
+exports.UpdateSecretVersionStageResponse$ = [3, n0, _USVSRp,
     0,
     [_ARN, _N],
     [0, 0]
 ];
-var ValidateResourcePolicyRequest$ = [3, n0, _VRPR,
+exports.ValidateResourcePolicyRequest$ = [3, n0, _VRPR,
     0,
     [_RPe, _SI],
     [0, 0], 1
 ];
-var ValidateResourcePolicyResponse$ = [3, n0, _VRPRa,
+exports.ValidateResourcePolicyResponse$ = [3, n0, _VRPRa,
     0,
     [_PVP, _VE],
     [2, () => ValidationErrorsType]
 ];
-var ValidationErrorsEntry$ = [3, n0, _VEE,
+exports.ValidationErrorsEntry$ = [3, n0, _VEE,
     0,
     [_CN, _EM],
     [0, 0]
 ];
 var __Unit = "unit";
-var SecretsManagerServiceException$ = [-3, _sm, "SecretsManagerServiceException", 0, [], []];
-schema.TypeRegistry.for(_sm).registerError(SecretsManagerServiceException$, SecretsManagerServiceException);
 var AddReplicaRegionListType = [1, n0, _ARRLT,
-    0, () => ReplicaRegionType$
+    0, () => exports.ReplicaRegionType$
 ];
 var APIErrorListType = [1, n0, _APIELT,
-    0, () => APIErrorType$
+    0, () => exports.APIErrorType$
 ];
 var ExternalSecretRotationMetadataType = [1, n0, _ESRMT,
-    0, () => ExternalSecretRotationMetadataItem$
+    0, () => exports.ExternalSecretRotationMetadataItem$
 ];
 var FiltersListType = [1, n0, _FLT,
-    0, () => Filter$
+    0, () => exports.Filter$
 ];
+var FilterValuesStringList = (/* unused pure expression or super */ null && (64 | 0));
+var KmsKeyIdListType = (/* unused pure expression or super */ null && (64 | 0));
+var RemoveReplicaRegionListType = (/* unused pure expression or super */ null && (64 | 0));
 var ReplicationStatusListType = [1, n0, _RSLT,
-    0, () => ReplicationStatusType$
+    0, () => exports.ReplicationStatusType$
 ];
+var SecretIdListType = (/* unused pure expression or super */ null && (64 | 0));
 var SecretListType = [1, n0, _SLT,
-    0, () => SecretListEntry$
+    0, () => exports.SecretListEntry$
 ];
 var SecretValuesType = [1, n0, _SVT,
-    0, [() => SecretValueEntry$,
+    0, [() => exports.SecretValueEntry$,
         0]
 ];
 var SecretVersionsListType = [1, n0, _SVLT,
-    0, () => SecretVersionsListEntry$
+    0, () => exports.SecretVersionsListEntry$
 ];
+var SecretVersionStagesType = (/* unused pure expression or super */ null && (64 | 0));
+var TagKeyListType = (/* unused pure expression or super */ null && (64 | 0));
 var TagListType = [1, n0, _TLT,
-    0, () => Tag$
+    0, () => exports.Tag$
 ];
 var ValidationErrorsType = [1, n0, _VET,
-    0, () => ValidationErrorsEntry$
+    0, () => exports.ValidationErrorsEntry$
 ];
-var BatchGetSecretValue$ = [9, n0, _BGSV,
-    0, () => BatchGetSecretValueRequest$, () => BatchGetSecretValueResponse$
+var SecretVersionsToStagesMapType = [2, n0, _SVTSMT,
+    0, 0, 64 | 0
 ];
-var CancelRotateSecret$ = [9, n0, _CRS,
-    0, () => CancelRotateSecretRequest$, () => CancelRotateSecretResponse$
+exports.BatchGetSecretValue$ = [9, n0, _BGSV,
+    0, () => exports.BatchGetSecretValueRequest$, () => exports.BatchGetSecretValueResponse$
 ];
-var CreateSecret$ = [9, n0, _CS,
-    0, () => CreateSecretRequest$, () => CreateSecretResponse$
+exports.CancelRotateSecret$ = [9, n0, _CRS,
+    0, () => exports.CancelRotateSecretRequest$, () => exports.CancelRotateSecretResponse$
 ];
-var DeleteResourcePolicy$ = [9, n0, _DRP,
-    0, () => DeleteResourcePolicyRequest$, () => DeleteResourcePolicyResponse$
+exports.CreateSecret$ = [9, n0, _CS,
+    0, () => exports.CreateSecretRequest$, () => exports.CreateSecretResponse$
 ];
-var DeleteSecret$ = [9, n0, _DS,
-    0, () => DeleteSecretRequest$, () => DeleteSecretResponse$
+exports.DeleteResourcePolicy$ = [9, n0, _DRP,
+    0, () => exports.DeleteResourcePolicyRequest$, () => exports.DeleteResourcePolicyResponse$
 ];
-var DescribeSecret$ = [9, n0, _DSe,
-    0, () => DescribeSecretRequest$, () => DescribeSecretResponse$
+exports.DeleteSecret$ = [9, n0, _DS,
+    0, () => exports.DeleteSecretRequest$, () => exports.DeleteSecretResponse$
 ];
-var GetRandomPassword$ = [9, n0, _GRP,
-    0, () => GetRandomPasswordRequest$, () => GetRandomPasswordResponse$
+exports.DescribeSecret$ = [9, n0, _DSe,
+    0, () => exports.DescribeSecretRequest$, () => exports.DescribeSecretResponse$
 ];
-var GetResourcePolicy$ = [9, n0, _GRPe,
-    0, () => GetResourcePolicyRequest$, () => GetResourcePolicyResponse$
+exports.GetRandomPassword$ = [9, n0, _GRP,
+    0, () => exports.GetRandomPasswordRequest$, () => exports.GetRandomPasswordResponse$
 ];
-var GetSecretValue$ = [9, n0, _GSV,
-    0, () => GetSecretValueRequest$, () => GetSecretValueResponse$
+exports.GetResourcePolicy$ = [9, n0, _GRPe,
+    0, () => exports.GetResourcePolicyRequest$, () => exports.GetResourcePolicyResponse$
 ];
-var ListSecrets$ = [9, n0, _LS,
-    0, () => ListSecretsRequest$, () => ListSecretsResponse$
+exports.GetSecretValue$ = [9, n0, _GSV,
+    0, () => exports.GetSecretValueRequest$, () => exports.GetSecretValueResponse$
 ];
-var ListSecretVersionIds$ = [9, n0, _LSVI,
-    0, () => ListSecretVersionIdsRequest$, () => ListSecretVersionIdsResponse$
+exports.ListSecrets$ = [9, n0, _LS,
+    0, () => exports.ListSecretsRequest$, () => exports.ListSecretsResponse$
 ];
-var PutResourcePolicy$ = [9, n0, _PRP,
-    0, () => PutResourcePolicyRequest$, () => PutResourcePolicyResponse$
+exports.ListSecretVersionIds$ = [9, n0, _LSVI,
+    0, () => exports.ListSecretVersionIdsRequest$, () => exports.ListSecretVersionIdsResponse$
 ];
-var PutSecretValue$ = [9, n0, _PSV,
-    0, () => PutSecretValueRequest$, () => PutSecretValueResponse$
+exports.PutResourcePolicy$ = [9, n0, _PRP,
+    0, () => exports.PutResourcePolicyRequest$, () => exports.PutResourcePolicyResponse$
 ];
-var RemoveRegionsFromReplication$ = [9, n0, _RRFR,
-    0, () => RemoveRegionsFromReplicationRequest$, () => RemoveRegionsFromReplicationResponse$
+exports.PutSecretValue$ = [9, n0, _PSV,
+    0, () => exports.PutSecretValueRequest$, () => exports.PutSecretValueResponse$
 ];
-var ReplicateSecretToRegions$ = [9, n0, _RSTR,
-    0, () => ReplicateSecretToRegionsRequest$, () => ReplicateSecretToRegionsResponse$
+exports.RemoveRegionsFromReplication$ = [9, n0, _RRFR,
+    0, () => exports.RemoveRegionsFromReplicationRequest$, () => exports.RemoveRegionsFromReplicationResponse$
 ];
-var RestoreSecret$ = [9, n0, _RSe,
-    0, () => RestoreSecretRequest$, () => RestoreSecretResponse$
+exports.ReplicateSecretToRegions$ = [9, n0, _RSTR,
+    0, () => exports.ReplicateSecretToRegionsRequest$, () => exports.ReplicateSecretToRegionsResponse$
 ];
-var RotateSecret$ = [9, n0, _RSo,
-    0, () => RotateSecretRequest$, () => RotateSecretResponse$
+exports.RestoreSecret$ = [9, n0, _RSe,
+    0, () => exports.RestoreSecretRequest$, () => exports.RestoreSecretResponse$
 ];
-var StopReplicationToReplica$ = [9, n0, _SRTR,
-    0, () => StopReplicationToReplicaRequest$, () => StopReplicationToReplicaResponse$
+exports.RotateSecret$ = [9, n0, _RSo,
+    0, () => exports.RotateSecretRequest$, () => exports.RotateSecretResponse$
 ];
-var TagResource$ = [9, n0, _TR,
-    0, () => TagResourceRequest$, () => __Unit
+exports.StopReplicationToReplica$ = [9, n0, _SRTR,
+    0, () => exports.StopReplicationToReplicaRequest$, () => exports.StopReplicationToReplicaResponse$
 ];
-var UntagResource$ = [9, n0, _UR,
-    0, () => UntagResourceRequest$, () => __Unit
+exports.TagResource$ = [9, n0, _TR,
+    0, () => exports.TagResourceRequest$, () => __Unit
 ];
-var UpdateSecret$ = [9, n0, _US,
-    0, () => UpdateSecretRequest$, () => UpdateSecretResponse$
+exports.UntagResource$ = [9, n0, _UR,
+    0, () => exports.UntagResourceRequest$, () => __Unit
 ];
-var UpdateSecretVersionStage$ = [9, n0, _USVS,
-    0, () => UpdateSecretVersionStageRequest$, () => UpdateSecretVersionStageResponse$
+exports.UpdateSecret$ = [9, n0, _US,
+    0, () => exports.UpdateSecretRequest$, () => exports.UpdateSecretResponse$
 ];
-var ValidateResourcePolicy$ = [9, n0, _VRP,
-    0, () => ValidateResourcePolicyRequest$, () => ValidateResourcePolicyResponse$
+exports.UpdateSecretVersionStage$ = [9, n0, _USVS,
+    0, () => exports.UpdateSecretVersionStageRequest$, () => exports.UpdateSecretVersionStageResponse$
 ];
-
-class BatchGetSecretValueCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "BatchGetSecretValue", {})
-    .n("SecretsManagerClient", "BatchGetSecretValueCommand")
-    .sc(BatchGetSecretValue$)
-    .build() {
-}
-
-class CancelRotateSecretCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "CancelRotateSecret", {})
-    .n("SecretsManagerClient", "CancelRotateSecretCommand")
-    .sc(CancelRotateSecret$)
-    .build() {
-}
-
-class CreateSecretCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "CreateSecret", {})
-    .n("SecretsManagerClient", "CreateSecretCommand")
-    .sc(CreateSecret$)
-    .build() {
-}
-
-class DeleteResourcePolicyCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "DeleteResourcePolicy", {})
-    .n("SecretsManagerClient", "DeleteResourcePolicyCommand")
-    .sc(DeleteResourcePolicy$)
-    .build() {
-}
-
-class DeleteSecretCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "DeleteSecret", {})
-    .n("SecretsManagerClient", "DeleteSecretCommand")
-    .sc(DeleteSecret$)
-    .build() {
-}
-
-class DescribeSecretCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "DescribeSecret", {})
-    .n("SecretsManagerClient", "DescribeSecretCommand")
-    .sc(DescribeSecret$)
-    .build() {
-}
-
-class GetRandomPasswordCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "GetRandomPassword", {})
-    .n("SecretsManagerClient", "GetRandomPasswordCommand")
-    .sc(GetRandomPassword$)
-    .build() {
-}
-
-class GetResourcePolicyCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "GetResourcePolicy", {})
-    .n("SecretsManagerClient", "GetResourcePolicyCommand")
-    .sc(GetResourcePolicy$)
-    .build() {
-}
-
-class GetSecretValueCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "GetSecretValue", {})
-    .n("SecretsManagerClient", "GetSecretValueCommand")
-    .sc(GetSecretValue$)
-    .build() {
-}
-
-class ListSecretsCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "ListSecrets", {})
-    .n("SecretsManagerClient", "ListSecretsCommand")
-    .sc(ListSecrets$)
-    .build() {
-}
-
-class ListSecretVersionIdsCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "ListSecretVersionIds", {})
-    .n("SecretsManagerClient", "ListSecretVersionIdsCommand")
-    .sc(ListSecretVersionIds$)
-    .build() {
-}
-
-class PutResourcePolicyCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "PutResourcePolicy", {})
-    .n("SecretsManagerClient", "PutResourcePolicyCommand")
-    .sc(PutResourcePolicy$)
-    .build() {
-}
-
-class PutSecretValueCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "PutSecretValue", {})
-    .n("SecretsManagerClient", "PutSecretValueCommand")
-    .sc(PutSecretValue$)
-    .build() {
-}
-
-class RemoveRegionsFromReplicationCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "RemoveRegionsFromReplication", {})
-    .n("SecretsManagerClient", "RemoveRegionsFromReplicationCommand")
-    .sc(RemoveRegionsFromReplication$)
-    .build() {
-}
-
-class ReplicateSecretToRegionsCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "ReplicateSecretToRegions", {})
-    .n("SecretsManagerClient", "ReplicateSecretToRegionsCommand")
-    .sc(ReplicateSecretToRegions$)
-    .build() {
-}
-
-class RestoreSecretCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "RestoreSecret", {})
-    .n("SecretsManagerClient", "RestoreSecretCommand")
-    .sc(RestoreSecret$)
-    .build() {
-}
-
-class RotateSecretCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "RotateSecret", {})
-    .n("SecretsManagerClient", "RotateSecretCommand")
-    .sc(RotateSecret$)
-    .build() {
-}
-
-class StopReplicationToReplicaCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "StopReplicationToReplica", {})
-    .n("SecretsManagerClient", "StopReplicationToReplicaCommand")
-    .sc(StopReplicationToReplica$)
-    .build() {
-}
-
-class TagResourceCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "TagResource", {})
-    .n("SecretsManagerClient", "TagResourceCommand")
-    .sc(TagResource$)
-    .build() {
-}
-
-class UntagResourceCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "UntagResource", {})
-    .n("SecretsManagerClient", "UntagResourceCommand")
-    .sc(UntagResource$)
-    .build() {
-}
-
-class UpdateSecretCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "UpdateSecret", {})
-    .n("SecretsManagerClient", "UpdateSecretCommand")
-    .sc(UpdateSecret$)
-    .build() {
-}
-
-class UpdateSecretVersionStageCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "UpdateSecretVersionStage", {})
-    .n("SecretsManagerClient", "UpdateSecretVersionStageCommand")
-    .sc(UpdateSecretVersionStage$)
-    .build() {
-}
-
-class ValidateResourcePolicyCommand extends smithyClient.Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("secretsmanager", "ValidateResourcePolicy", {})
-    .n("SecretsManagerClient", "ValidateResourcePolicyCommand")
-    .sc(ValidateResourcePolicy$)
-    .build() {
-}
-
-const paginateBatchGetSecretValue = core.createPaginator(SecretsManagerClient, BatchGetSecretValueCommand, "NextToken", "NextToken", "MaxResults");
-
-const paginateListSecrets = core.createPaginator(SecretsManagerClient, ListSecretsCommand, "NextToken", "NextToken", "MaxResults");
-
-const paginateListSecretVersionIds = core.createPaginator(SecretsManagerClient, ListSecretVersionIdsCommand, "NextToken", "NextToken", "MaxResults");
-
-const commands = {
-    BatchGetSecretValueCommand,
-    CancelRotateSecretCommand,
-    CreateSecretCommand,
-    DeleteResourcePolicyCommand,
-    DeleteSecretCommand,
-    DescribeSecretCommand,
-    GetRandomPasswordCommand,
-    GetResourcePolicyCommand,
-    GetSecretValueCommand,
-    ListSecretsCommand,
-    ListSecretVersionIdsCommand,
-    PutResourcePolicyCommand,
-    PutSecretValueCommand,
-    RemoveRegionsFromReplicationCommand,
-    ReplicateSecretToRegionsCommand,
-    RestoreSecretCommand,
-    RotateSecretCommand,
-    StopReplicationToReplicaCommand,
-    TagResourceCommand,
-    UntagResourceCommand,
-    UpdateSecretCommand,
-    UpdateSecretVersionStageCommand,
-    ValidateResourcePolicyCommand,
-};
-const paginators = {
-    paginateBatchGetSecretValue,
-    paginateListSecrets,
-    paginateListSecretVersionIds,
-};
-class SecretsManager extends SecretsManagerClient {
-}
-smithyClient.createAggregatedClient(commands, SecretsManager, { paginators });
-
-const FilterNameStringType = {
-    all: "all",
-    description: "description",
-    name: "name",
-    owning_service: "owning-service",
-    primary_region: "primary-region",
-    tag_key: "tag-key",
-    tag_value: "tag-value",
-};
-const StatusType = {
-    Failed: "Failed",
-    InProgress: "InProgress",
-    InSync: "InSync",
-};
-const SortByType = {
-    created_date: "created-date",
-    last_accessed_date: "last-accessed-date",
-    last_changed_date: "last-changed-date",
-    name: "name",
-};
-const SortOrderType = {
-    asc: "asc",
-    desc: "desc",
-};
-
-Object.defineProperty(exports, "$Command", ({
-    enumerable: true,
-    get: function () { return smithyClient.Command; }
-}));
-Object.defineProperty(exports, "__Client", ({
-    enumerable: true,
-    get: function () { return smithyClient.Client; }
-}));
-exports.APIErrorType$ = APIErrorType$;
-exports.BatchGetSecretValue$ = BatchGetSecretValue$;
-exports.BatchGetSecretValueCommand = BatchGetSecretValueCommand;
-exports.BatchGetSecretValueRequest$ = BatchGetSecretValueRequest$;
-exports.BatchGetSecretValueResponse$ = BatchGetSecretValueResponse$;
-exports.CancelRotateSecret$ = CancelRotateSecret$;
-exports.CancelRotateSecretCommand = CancelRotateSecretCommand;
-exports.CancelRotateSecretRequest$ = CancelRotateSecretRequest$;
-exports.CancelRotateSecretResponse$ = CancelRotateSecretResponse$;
-exports.CreateSecret$ = CreateSecret$;
-exports.CreateSecretCommand = CreateSecretCommand;
-exports.CreateSecretRequest$ = CreateSecretRequest$;
-exports.CreateSecretResponse$ = CreateSecretResponse$;
-exports.DecryptionFailure = DecryptionFailure;
-exports.DecryptionFailure$ = DecryptionFailure$;
-exports.DeleteResourcePolicy$ = DeleteResourcePolicy$;
-exports.DeleteResourcePolicyCommand = DeleteResourcePolicyCommand;
-exports.DeleteResourcePolicyRequest$ = DeleteResourcePolicyRequest$;
-exports.DeleteResourcePolicyResponse$ = DeleteResourcePolicyResponse$;
-exports.DeleteSecret$ = DeleteSecret$;
-exports.DeleteSecretCommand = DeleteSecretCommand;
-exports.DeleteSecretRequest$ = DeleteSecretRequest$;
-exports.DeleteSecretResponse$ = DeleteSecretResponse$;
-exports.DescribeSecret$ = DescribeSecret$;
-exports.DescribeSecretCommand = DescribeSecretCommand;
-exports.DescribeSecretRequest$ = DescribeSecretRequest$;
-exports.DescribeSecretResponse$ = DescribeSecretResponse$;
-exports.EncryptionFailure = EncryptionFailure;
-exports.EncryptionFailure$ = EncryptionFailure$;
-exports.ExternalSecretRotationMetadataItem$ = ExternalSecretRotationMetadataItem$;
-exports.Filter$ = Filter$;
-exports.FilterNameStringType = FilterNameStringType;
-exports.GetRandomPassword$ = GetRandomPassword$;
-exports.GetRandomPasswordCommand = GetRandomPasswordCommand;
-exports.GetRandomPasswordRequest$ = GetRandomPasswordRequest$;
-exports.GetRandomPasswordResponse$ = GetRandomPasswordResponse$;
-exports.GetResourcePolicy$ = GetResourcePolicy$;
-exports.GetResourcePolicyCommand = GetResourcePolicyCommand;
-exports.GetResourcePolicyRequest$ = GetResourcePolicyRequest$;
-exports.GetResourcePolicyResponse$ = GetResourcePolicyResponse$;
-exports.GetSecretValue$ = GetSecretValue$;
-exports.GetSecretValueCommand = GetSecretValueCommand;
-exports.GetSecretValueRequest$ = GetSecretValueRequest$;
-exports.GetSecretValueResponse$ = GetSecretValueResponse$;
-exports.InternalServiceError = InternalServiceError;
-exports.InternalServiceError$ = InternalServiceError$;
-exports.InvalidNextTokenException = InvalidNextTokenException;
-exports.InvalidNextTokenException$ = InvalidNextTokenException$;
-exports.InvalidParameterException = InvalidParameterException;
-exports.InvalidParameterException$ = InvalidParameterException$;
-exports.InvalidRequestException = InvalidRequestException;
-exports.InvalidRequestException$ = InvalidRequestException$;
-exports.LimitExceededException = LimitExceededException;
-exports.LimitExceededException$ = LimitExceededException$;
-exports.ListSecretVersionIds$ = ListSecretVersionIds$;
-exports.ListSecretVersionIdsCommand = ListSecretVersionIdsCommand;
-exports.ListSecretVersionIdsRequest$ = ListSecretVersionIdsRequest$;
-exports.ListSecretVersionIdsResponse$ = ListSecretVersionIdsResponse$;
-exports.ListSecrets$ = ListSecrets$;
-exports.ListSecretsCommand = ListSecretsCommand;
-exports.ListSecretsRequest$ = ListSecretsRequest$;
-exports.ListSecretsResponse$ = ListSecretsResponse$;
-exports.MalformedPolicyDocumentException = MalformedPolicyDocumentException;
-exports.MalformedPolicyDocumentException$ = MalformedPolicyDocumentException$;
-exports.PreconditionNotMetException = PreconditionNotMetException;
-exports.PreconditionNotMetException$ = PreconditionNotMetException$;
-exports.PublicPolicyException = PublicPolicyException;
-exports.PublicPolicyException$ = PublicPolicyException$;
-exports.PutResourcePolicy$ = PutResourcePolicy$;
-exports.PutResourcePolicyCommand = PutResourcePolicyCommand;
-exports.PutResourcePolicyRequest$ = PutResourcePolicyRequest$;
-exports.PutResourcePolicyResponse$ = PutResourcePolicyResponse$;
-exports.PutSecretValue$ = PutSecretValue$;
-exports.PutSecretValueCommand = PutSecretValueCommand;
-exports.PutSecretValueRequest$ = PutSecretValueRequest$;
-exports.PutSecretValueResponse$ = PutSecretValueResponse$;
-exports.RemoveRegionsFromReplication$ = RemoveRegionsFromReplication$;
-exports.RemoveRegionsFromReplicationCommand = RemoveRegionsFromReplicationCommand;
-exports.RemoveRegionsFromReplicationRequest$ = RemoveRegionsFromReplicationRequest$;
-exports.RemoveRegionsFromReplicationResponse$ = RemoveRegionsFromReplicationResponse$;
-exports.ReplicaRegionType$ = ReplicaRegionType$;
-exports.ReplicateSecretToRegions$ = ReplicateSecretToRegions$;
-exports.ReplicateSecretToRegionsCommand = ReplicateSecretToRegionsCommand;
-exports.ReplicateSecretToRegionsRequest$ = ReplicateSecretToRegionsRequest$;
-exports.ReplicateSecretToRegionsResponse$ = ReplicateSecretToRegionsResponse$;
-exports.ReplicationStatusType$ = ReplicationStatusType$;
-exports.ResourceExistsException = ResourceExistsException;
-exports.ResourceExistsException$ = ResourceExistsException$;
-exports.ResourceNotFoundException = ResourceNotFoundException;
-exports.ResourceNotFoundException$ = ResourceNotFoundException$;
-exports.RestoreSecret$ = RestoreSecret$;
-exports.RestoreSecretCommand = RestoreSecretCommand;
-exports.RestoreSecretRequest$ = RestoreSecretRequest$;
-exports.RestoreSecretResponse$ = RestoreSecretResponse$;
-exports.RotateSecret$ = RotateSecret$;
-exports.RotateSecretCommand = RotateSecretCommand;
-exports.RotateSecretRequest$ = RotateSecretRequest$;
-exports.RotateSecretResponse$ = RotateSecretResponse$;
-exports.RotationRulesType$ = RotationRulesType$;
-exports.SecretListEntry$ = SecretListEntry$;
-exports.SecretValueEntry$ = SecretValueEntry$;
-exports.SecretVersionsListEntry$ = SecretVersionsListEntry$;
-exports.SecretsManager = SecretsManager;
-exports.SecretsManagerClient = SecretsManagerClient;
-exports.SecretsManagerServiceException = SecretsManagerServiceException;
-exports.SecretsManagerServiceException$ = SecretsManagerServiceException$;
-exports.SortByType = SortByType;
-exports.SortOrderType = SortOrderType;
-exports.StatusType = StatusType;
-exports.StopReplicationToReplica$ = StopReplicationToReplica$;
-exports.StopReplicationToReplicaCommand = StopReplicationToReplicaCommand;
-exports.StopReplicationToReplicaRequest$ = StopReplicationToReplicaRequest$;
-exports.StopReplicationToReplicaResponse$ = StopReplicationToReplicaResponse$;
-exports.Tag$ = Tag$;
-exports.TagResource$ = TagResource$;
-exports.TagResourceCommand = TagResourceCommand;
-exports.TagResourceRequest$ = TagResourceRequest$;
-exports.UntagResource$ = UntagResource$;
-exports.UntagResourceCommand = UntagResourceCommand;
-exports.UntagResourceRequest$ = UntagResourceRequest$;
-exports.UpdateSecret$ = UpdateSecret$;
-exports.UpdateSecretCommand = UpdateSecretCommand;
-exports.UpdateSecretRequest$ = UpdateSecretRequest$;
-exports.UpdateSecretResponse$ = UpdateSecretResponse$;
-exports.UpdateSecretVersionStage$ = UpdateSecretVersionStage$;
-exports.UpdateSecretVersionStageCommand = UpdateSecretVersionStageCommand;
-exports.UpdateSecretVersionStageRequest$ = UpdateSecretVersionStageRequest$;
-exports.UpdateSecretVersionStageResponse$ = UpdateSecretVersionStageResponse$;
-exports.ValidateResourcePolicy$ = ValidateResourcePolicy$;
-exports.ValidateResourcePolicyCommand = ValidateResourcePolicyCommand;
-exports.ValidateResourcePolicyRequest$ = ValidateResourcePolicyRequest$;
-exports.ValidateResourcePolicyResponse$ = ValidateResourcePolicyResponse$;
-exports.ValidationErrorsEntry$ = ValidationErrorsEntry$;
-exports.paginateBatchGetSecretValue = paginateBatchGetSecretValue;
-exports.paginateListSecretVersionIds = paginateListSecretVersionIds;
-exports.paginateListSecrets = paginateListSecrets;
-
-
-/***/ }),
-
-/***/ 2580:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getRuntimeConfig = void 0;
-const tslib_1 = __nccwpck_require__(1860);
-const package_json_1 = tslib_1.__importDefault(__nccwpck_require__(4456));
-const core_1 = __nccwpck_require__(8704);
-const credential_provider_node_1 = __nccwpck_require__(5861);
-const util_user_agent_node_1 = __nccwpck_require__(1656);
-const config_resolver_1 = __nccwpck_require__(9316);
-const hash_node_1 = __nccwpck_require__(5092);
-const middleware_retry_1 = __nccwpck_require__(9618);
-const node_config_provider_1 = __nccwpck_require__(5704);
-const node_http_handler_1 = __nccwpck_require__(1279);
-const smithy_client_1 = __nccwpck_require__(1411);
-const util_body_length_node_1 = __nccwpck_require__(3638);
-const util_defaults_mode_node_1 = __nccwpck_require__(5435);
-const util_retry_1 = __nccwpck_require__(5518);
-const runtimeConfig_shared_1 = __nccwpck_require__(7605);
-const getRuntimeConfig = (config) => {
-    (0, smithy_client_1.emitWarningIfUnsupportedVersion)(process.version);
-    const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
-    const defaultConfigProvider = () => defaultsMode().then(smithy_client_1.loadConfigsForDefaultMode);
-    const clientSharedValues = (0, runtimeConfig_shared_1.getRuntimeConfig)(config);
-    (0, core_1.emitWarningIfUnsupportedVersion)(process.version);
-    const loaderConfig = {
-        profile: config?.profile,
-        logger: clientSharedValues.logger,
-    };
-    return {
-        ...clientSharedValues,
-        ...config,
-        runtime: "node",
-        defaultsMode,
-        authSchemePreference: config?.authSchemePreference ?? (0, node_config_provider_1.loadConfig)(core_1.NODE_AUTH_SCHEME_PREFERENCE_OPTIONS, loaderConfig),
-        bodyLengthChecker: config?.bodyLengthChecker ?? util_body_length_node_1.calculateBodyLength,
-        credentialDefaultProvider: config?.credentialDefaultProvider ?? credential_provider_node_1.defaultProvider,
-        defaultUserAgentProvider: config?.defaultUserAgentProvider ?? (0, util_user_agent_node_1.createDefaultUserAgentProvider)({ serviceId: clientSharedValues.serviceId, clientVersion: package_json_1.default.version }),
-        maxAttempts: config?.maxAttempts ?? (0, node_config_provider_1.loadConfig)(middleware_retry_1.NODE_MAX_ATTEMPT_CONFIG_OPTIONS, config),
-        region: config?.region ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_REGION_CONFIG_OPTIONS, { ...config_resolver_1.NODE_REGION_CONFIG_FILE_OPTIONS, ...loaderConfig }),
-        requestHandler: node_http_handler_1.NodeHttpHandler.create(config?.requestHandler ?? defaultConfigProvider),
-        retryMode: config?.retryMode ??
-            (0, node_config_provider_1.loadConfig)({
-                ...middleware_retry_1.NODE_RETRY_MODE_CONFIG_OPTIONS,
-                default: async () => (await defaultConfigProvider()).retryMode || util_retry_1.DEFAULT_RETRY_MODE,
-            }, config),
-        sha256: config?.sha256 ?? hash_node_1.Hash.bind(null, "sha256"),
-        streamCollector: config?.streamCollector ?? node_http_handler_1.streamCollector,
-        useDualstackEndpoint: config?.useDualstackEndpoint ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
-        useFipsEndpoint: config?.useFipsEndpoint ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
-        userAgentAppId: config?.userAgentAppId ?? (0, node_config_provider_1.loadConfig)(util_user_agent_node_1.NODE_APP_ID_CONFIG_OPTIONS, loaderConfig),
-    };
-};
-exports.getRuntimeConfig = getRuntimeConfig;
-
-
-/***/ }),
-
-/***/ 7605:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getRuntimeConfig = void 0;
-const core_1 = __nccwpck_require__(8704);
-const protocols_1 = __nccwpck_require__(7288);
-const smithy_client_1 = __nccwpck_require__(1411);
-const url_parser_1 = __nccwpck_require__(4494);
-const util_base64_1 = __nccwpck_require__(8385);
-const util_utf8_1 = __nccwpck_require__(1577);
-const httpAuthSchemeProvider_1 = __nccwpck_require__(6493);
-const endpointResolver_1 = __nccwpck_require__(3267);
-const getRuntimeConfig = (config) => {
-    return {
-        apiVersion: "2017-10-17",
-        base64Decoder: config?.base64Decoder ?? util_base64_1.fromBase64,
-        base64Encoder: config?.base64Encoder ?? util_base64_1.toBase64,
-        disableHostPrefix: config?.disableHostPrefix ?? false,
-        endpointProvider: config?.endpointProvider ?? endpointResolver_1.defaultEndpointResolver,
-        extensions: config?.extensions ?? [],
-        httpAuthSchemeProvider: config?.httpAuthSchemeProvider ?? httpAuthSchemeProvider_1.defaultSecretsManagerHttpAuthSchemeProvider,
-        httpAuthSchemes: config?.httpAuthSchemes ?? [
-            {
-                schemeId: "aws.auth#sigv4",
-                identityProvider: (ipc) => ipc.getIdentityProvider("aws.auth#sigv4"),
-                signer: new core_1.AwsSdkSigV4Signer(),
-            },
-        ],
-        logger: config?.logger ?? new smithy_client_1.NoOpLogger(),
-        protocol: config?.protocol ?? protocols_1.AwsJson1_1Protocol,
-        protocolSettings: config?.protocolSettings ?? {
-            defaultNamespace: "com.amazonaws.secretsmanager",
-            version: "2017-10-17",
-            serviceTarget: "secretsmanager",
-        },
-        serviceId: config?.serviceId ?? "Secrets Manager",
-        urlParser: config?.urlParser ?? url_parser_1.parseUrl,
-        utf8Decoder: config?.utf8Decoder ?? util_utf8_1.fromUtf8,
-        utf8Encoder: config?.utf8Encoder ?? util_utf8_1.toUtf8,
-    };
-};
-exports.getRuntimeConfig = getRuntimeConfig;
+exports.ValidateResourcePolicy$ = [9, n0, _VRP,
+    0, () => exports.ValidateResourcePolicyRequest$, () => exports.ValidateResourcePolicyResponse$
+];
 
 
 /***/ }),
@@ -6706,7 +6688,8 @@ class QueryShapeSerializer extends SerdeContextConfig {
                         if (item == null) {
                             continue;
                         }
-                        const suffix = this.getKey("member", member.getMergedTraits().xmlName);
+                        const traits = member.getMergedTraits();
+                        const suffix = this.getKey("member", traits.xmlName, traits.ec2QueryName);
                         const key = flat ? `${prefix}${i}` : `${prefix}${suffix}.${i}`;
                         this.write(member, item, key);
                         ++i;
@@ -6724,9 +6707,11 @@ class QueryShapeSerializer extends SerdeContextConfig {
                     if (v == null) {
                         continue;
                     }
-                    const keySuffix = this.getKey("key", keySchema.getMergedTraits().xmlName);
+                    const keyTraits = keySchema.getMergedTraits();
+                    const keySuffix = this.getKey("key", keyTraits.xmlName, keyTraits.ec2QueryName);
                     const key = flat ? `${prefix}${i}.${keySuffix}` : `${prefix}entry.${i}.${keySuffix}`;
-                    const valueSuffix = this.getKey("value", memberSchema.getMergedTraits().xmlName);
+                    const valTraits = memberSchema.getMergedTraits();
+                    const valueSuffix = this.getKey("value", valTraits.xmlName, valTraits.ec2QueryName);
                     const valueKey = flat ? `${prefix}${i}.${valueSuffix}` : `${prefix}entry.${i}.${valueSuffix}`;
                     this.write(keySchema, k, key);
                     this.write(memberSchema, v, valueKey);
@@ -6741,7 +6726,8 @@ class QueryShapeSerializer extends SerdeContextConfig {
                     if (value[memberName] == null && !member.isIdempotencyToken()) {
                         continue;
                     }
-                    const suffix = this.getKey(memberName, member.getMergedTraits().xmlName);
+                    const traits = member.getMergedTraits();
+                    const suffix = this.getKey(memberName, traits.xmlName, traits.ec2QueryName, "struct");
                     const key = `${prefix}${suffix}`;
                     this.write(member, value[memberName], key);
                     didWriteMember = true;
@@ -6769,9 +6755,13 @@ class QueryShapeSerializer extends SerdeContextConfig {
         delete this.buffer;
         return str;
     }
-    getKey(memberName, xmlName) {
+    getKey(memberName, xmlName, ec2QueryName, keySource) {
+        const { ec2, capitalizeKeys } = this.settings;
+        if (ec2 && ec2QueryName) {
+            return ec2QueryName;
+        }
         const key = xmlName ?? memberName;
-        if (this.settings.capitalizeKeys) {
+        if (capitalizeKeys && keySource === "struct") {
             return key[0].toUpperCase() + key.slice(1);
         }
         return key;
@@ -6928,6 +6918,7 @@ class AwsEc2QueryProtocol extends AwsQueryProtocol {
             capitalizeKeys: true,
             flattenLists: true,
             serializeEmptyLists: false,
+            ec2: true,
         };
         Object.assign(this.serializer.settings, ec2Settings);
     }
@@ -8642,7 +8633,8 @@ class QueryShapeSerializer extends SerdeContextConfig {
                         if (item == null) {
                             continue;
                         }
-                        const suffix = this.getKey("member", member.getMergedTraits().xmlName);
+                        const traits = member.getMergedTraits();
+                        const suffix = this.getKey("member", traits.xmlName, traits.ec2QueryName);
                         const key = flat ? `${prefix}${i}` : `${prefix}${suffix}.${i}`;
                         this.write(member, item, key);
                         ++i;
@@ -8660,9 +8652,11 @@ class QueryShapeSerializer extends SerdeContextConfig {
                     if (v == null) {
                         continue;
                     }
-                    const keySuffix = this.getKey("key", keySchema.getMergedTraits().xmlName);
+                    const keyTraits = keySchema.getMergedTraits();
+                    const keySuffix = this.getKey("key", keyTraits.xmlName, keyTraits.ec2QueryName);
                     const key = flat ? `${prefix}${i}.${keySuffix}` : `${prefix}entry.${i}.${keySuffix}`;
-                    const valueSuffix = this.getKey("value", memberSchema.getMergedTraits().xmlName);
+                    const valTraits = memberSchema.getMergedTraits();
+                    const valueSuffix = this.getKey("value", valTraits.xmlName, valTraits.ec2QueryName);
                     const valueKey = flat ? `${prefix}${i}.${valueSuffix}` : `${prefix}entry.${i}.${valueSuffix}`;
                     this.write(keySchema, k, key);
                     this.write(memberSchema, v, valueKey);
@@ -8677,7 +8671,8 @@ class QueryShapeSerializer extends SerdeContextConfig {
                     if (value[memberName] == null && !member.isIdempotencyToken()) {
                         continue;
                     }
-                    const suffix = this.getKey(memberName, member.getMergedTraits().xmlName);
+                    const traits = member.getMergedTraits();
+                    const suffix = this.getKey(memberName, traits.xmlName, traits.ec2QueryName, "struct");
                     const key = `${prefix}${suffix}`;
                     this.write(member, value[memberName], key);
                     didWriteMember = true;
@@ -8705,9 +8700,13 @@ class QueryShapeSerializer extends SerdeContextConfig {
         delete this.buffer;
         return str;
     }
-    getKey(memberName, xmlName) {
+    getKey(memberName, xmlName, ec2QueryName, keySource) {
+        const { ec2, capitalizeKeys } = this.settings;
+        if (ec2 && ec2QueryName) {
+            return ec2QueryName;
+        }
         const key = xmlName ?? memberName;
-        if (this.settings.capitalizeKeys) {
+        if (capitalizeKeys && keySource === "struct") {
             return key[0].toUpperCase() + key.slice(1);
         }
         return key;
@@ -8864,6 +8863,7 @@ class AwsEc2QueryProtocol extends AwsQueryProtocol {
             capitalizeKeys: true,
             flattenLists: true,
             serializeEmptyLists: false,
+            ec2: true,
         };
         Object.assign(this.serializer.settings, ec2Settings);
     }
@@ -12340,8 +12340,8 @@ class SmithyRpcV2CborProtocol extends protocols.RpcProtocol {
     codec = new CborCodec();
     serializer = this.codec.createSerializer();
     deserializer = this.codec.createDeserializer();
-    constructor({ defaultNamespace }) {
-        super({ defaultNamespace });
+    constructor({ defaultNamespace, errorTypeRegistries, }) {
+        super({ defaultNamespace, errorTypeRegistries });
     }
     getShapeId() {
         return "smithy.protocols#rpcv2Cbor";
@@ -12385,15 +12385,17 @@ class SmithyRpcV2CborProtocol extends protocols.RpcProtocol {
     }
     async handleError(operationSchema, context, response, dataObject, metadata) {
         const errorName = loadSmithyRpcV2CborErrorCode(response, dataObject) ?? "Unknown";
-        let namespace = this.options.defaultNamespace;
-        if (errorName.includes("#")) {
-            [namespace] = errorName.split("#");
-        }
         const errorMetadata = {
             $metadata: metadata,
             $fault: response.statusCode <= 500 ? "client" : "server",
         };
-        const registry = schema.TypeRegistry.for(namespace);
+        let namespace = this.options.defaultNamespace;
+        if (errorName.includes("#")) {
+            [namespace] = errorName.split("#");
+        }
+        const registry = this.compositeErrorRegistry;
+        const nsRegistry = schema.TypeRegistry.for(namespace);
+        registry.copyFrom(nsRegistry);
         let errorSchema;
         try {
             errorSchema = registry.getSchema(errorName);
@@ -12402,10 +12404,11 @@ class SmithyRpcV2CborProtocol extends protocols.RpcProtocol {
             if (dataObject.Message) {
                 dataObject.message = dataObject.Message;
             }
-            const synthetic = schema.TypeRegistry.for("smithy.ts.sdk.synthetic." + namespace);
-            const baseExceptionSchema = synthetic.getBaseException();
+            const syntheticRegistry = schema.TypeRegistry.for("smithy.ts.sdk.synthetic." + namespace);
+            registry.copyFrom(syntheticRegistry);
+            const baseExceptionSchema = registry.getBaseException();
             if (baseExceptionSchema) {
-                const ErrorCtor = synthetic.getErrorCtor(baseExceptionSchema);
+                const ErrorCtor = registry.getErrorCtor(baseExceptionSchema);
                 throw Object.assign(new ErrorCtor({ name: errorName }), errorMetadata, dataObject);
             }
             throw Object.assign(new Error(errorName), errorMetadata, dataObject);
@@ -12484,9 +12487,14 @@ class SerdeContext {
 
 class HttpProtocol extends SerdeContext {
     options;
+    compositeErrorRegistry;
     constructor(options) {
         super();
         this.options = options;
+        this.compositeErrorRegistry = schema.TypeRegistry.for(options.defaultNamespace);
+        for (const etr of options.errorTypeRegistries ?? []) {
+            this.compositeErrorRegistry.copyFrom(etr);
+        }
     }
     getRequestType() {
         return protocolHttp.HttpRequest;
@@ -13872,10 +13880,24 @@ class TypeRegistry {
         }
         return TypeRegistry.registries.get(namespace);
     }
+    copyFrom(other) {
+        const { schemas, exceptions } = this;
+        for (const [k, v] of other.schemas) {
+            if (!schemas.has(k)) {
+                schemas.set(k, v);
+            }
+        }
+        for (const [k, v] of other.exceptions) {
+            if (!exceptions.has(k)) {
+                exceptions.set(k, v);
+            }
+        }
+    }
     register(shapeId, schema) {
         const qualifiedName = this.normalizeShapeId(shapeId);
-        const registry = TypeRegistry.for(qualifiedName.split("#")[0]);
-        registry.schemas.set(qualifiedName, schema);
+        for (const r of [this, TypeRegistry.for(qualifiedName.split("#")[0])]) {
+            r.schemas.set(qualifiedName, schema);
+        }
     }
     getSchema(shapeId) {
         const id = this.normalizeShapeId(shapeId);
@@ -13886,12 +13908,17 @@ class TypeRegistry {
     }
     registerError(es, ctor) {
         const $error = es;
-        const registry = TypeRegistry.for($error[1]);
-        registry.schemas.set($error[1] + "#" + $error[2], $error);
-        registry.exceptions.set($error, ctor);
+        const ns = $error[1];
+        for (const r of [this, TypeRegistry.for(ns)]) {
+            r.schemas.set(ns + "#" + $error[2], $error);
+            r.exceptions.set($error, ctor);
+        }
     }
     getErrorCtor(es) {
         const $error = es;
+        if (this.exceptions.has($error)) {
+            return this.exceptions.get($error);
+        }
         const registry = TypeRegistry.for($error[1]);
         return registry.exceptions.get($error);
     }
@@ -16334,8 +16361,15 @@ function writeBody(httpRequest, body) {
         return;
     }
     if (body) {
-        if (Buffer.isBuffer(body) || typeof body === "string") {
-            httpRequest.end(body);
+        const isBuffer = Buffer.isBuffer(body);
+        const isString = typeof body === "string";
+        if (isBuffer || isString) {
+            if (isBuffer && body.byteLength === 0) {
+                httpRequest.end();
+            }
+            else {
+                httpRequest.end(body);
+            }
             return;
         }
         const uint8 = body;
@@ -45926,7 +45960,7 @@ module.exports = parseParams
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.985.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.7","@aws-sdk/credential-provider-node":"^3.972.6","@aws-sdk/middleware-host-header":"^3.972.3","@aws-sdk/middleware-logger":"^3.972.3","@aws-sdk/middleware-recursion-detection":"^3.972.3","@aws-sdk/middleware-user-agent":"^3.972.7","@aws-sdk/region-config-resolver":"^3.972.3","@aws-sdk/types":"^3.973.1","@aws-sdk/util-endpoints":"3.985.0","@aws-sdk/util-user-agent-browser":"^3.972.3","@aws-sdk/util-user-agent-node":"^3.972.5","@smithy/config-resolver":"^4.4.6","@smithy/core":"^3.22.1","@smithy/fetch-http-handler":"^5.3.9","@smithy/hash-node":"^4.2.8","@smithy/invalid-dependency":"^4.2.8","@smithy/middleware-content-length":"^4.2.8","@smithy/middleware-endpoint":"^4.4.13","@smithy/middleware-retry":"^4.4.30","@smithy/middleware-serde":"^4.2.9","@smithy/middleware-stack":"^4.2.8","@smithy/node-config-provider":"^4.3.8","@smithy/node-http-handler":"^4.4.9","@smithy/protocol-http":"^5.3.8","@smithy/smithy-client":"^4.11.2","@smithy/types":"^4.12.0","@smithy/url-parser":"^4.2.8","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.29","@smithy/util-defaults-mode-node":"^4.2.32","@smithy/util-endpoints":"^3.2.8","@smithy/util-middleware":"^4.2.8","@smithy/util-retry":"^4.2.8","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.990.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.10","@aws-sdk/credential-provider-node":"^3.972.9","@aws-sdk/middleware-host-header":"^3.972.3","@aws-sdk/middleware-logger":"^3.972.3","@aws-sdk/middleware-recursion-detection":"^3.972.3","@aws-sdk/middleware-user-agent":"^3.972.10","@aws-sdk/region-config-resolver":"^3.972.3","@aws-sdk/types":"^3.973.1","@aws-sdk/util-endpoints":"3.990.0","@aws-sdk/util-user-agent-browser":"^3.972.3","@aws-sdk/util-user-agent-node":"^3.972.8","@smithy/config-resolver":"^4.4.6","@smithy/core":"^3.23.0","@smithy/fetch-http-handler":"^5.3.9","@smithy/hash-node":"^4.2.8","@smithy/invalid-dependency":"^4.2.8","@smithy/middleware-content-length":"^4.2.8","@smithy/middleware-endpoint":"^4.4.14","@smithy/middleware-retry":"^4.4.31","@smithy/middleware-serde":"^4.2.9","@smithy/middleware-stack":"^4.2.8","@smithy/node-config-provider":"^4.3.8","@smithy/node-http-handler":"^4.4.10","@smithy/protocol-http":"^5.3.8","@smithy/smithy-client":"^4.11.3","@smithy/types":"^4.12.0","@smithy/url-parser":"^4.2.8","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.30","@smithy/util-defaults-mode-node":"^4.2.33","@smithy/util-endpoints":"^3.2.8","@smithy/util-middleware":"^4.2.8","@smithy/util-retry":"^4.2.8","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ })
 

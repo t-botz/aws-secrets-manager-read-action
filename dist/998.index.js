@@ -144,6 +144,9 @@ var httpAuthSchemeProvider = __webpack_require__(2041);
 var runtimeConfig = __webpack_require__(2696);
 var regionConfigResolver = __webpack_require__(6463);
 var protocolHttp = __webpack_require__(2356);
+var schemas_0 = __webpack_require__(1382);
+var errors = __webpack_require__(2378);
+var SSOServiceException = __webpack_require__(7330);
 
 const resolveClientEndpointParameters = (options) => {
     return Object.assign(options, {
@@ -239,212 +242,6 @@ class SSOClient extends smithyClient.Client {
     }
 }
 
-class SSOServiceException extends smithyClient.ServiceException {
-    constructor(options) {
-        super(options);
-        Object.setPrototypeOf(this, SSOServiceException.prototype);
-    }
-}
-
-class InvalidRequestException extends SSOServiceException {
-    name = "InvalidRequestException";
-    $fault = "client";
-    constructor(opts) {
-        super({
-            name: "InvalidRequestException",
-            $fault: "client",
-            ...opts,
-        });
-        Object.setPrototypeOf(this, InvalidRequestException.prototype);
-    }
-}
-class ResourceNotFoundException extends SSOServiceException {
-    name = "ResourceNotFoundException";
-    $fault = "client";
-    constructor(opts) {
-        super({
-            name: "ResourceNotFoundException",
-            $fault: "client",
-            ...opts,
-        });
-        Object.setPrototypeOf(this, ResourceNotFoundException.prototype);
-    }
-}
-class TooManyRequestsException extends SSOServiceException {
-    name = "TooManyRequestsException";
-    $fault = "client";
-    constructor(opts) {
-        super({
-            name: "TooManyRequestsException",
-            $fault: "client",
-            ...opts,
-        });
-        Object.setPrototypeOf(this, TooManyRequestsException.prototype);
-    }
-}
-class UnauthorizedException extends SSOServiceException {
-    name = "UnauthorizedException";
-    $fault = "client";
-    constructor(opts) {
-        super({
-            name: "UnauthorizedException",
-            $fault: "client",
-            ...opts,
-        });
-        Object.setPrototypeOf(this, UnauthorizedException.prototype);
-    }
-}
-
-const _AI = "AccountInfo";
-const _ALT = "AccountListType";
-const _ATT = "AccessTokenType";
-const _GRC = "GetRoleCredentials";
-const _GRCR = "GetRoleCredentialsRequest";
-const _GRCRe = "GetRoleCredentialsResponse";
-const _IRE = "InvalidRequestException";
-const _L = "Logout";
-const _LA = "ListAccounts";
-const _LAR = "ListAccountsRequest";
-const _LARR = "ListAccountRolesRequest";
-const _LARRi = "ListAccountRolesResponse";
-const _LARi = "ListAccountsResponse";
-const _LARis = "ListAccountRoles";
-const _LR = "LogoutRequest";
-const _RC = "RoleCredentials";
-const _RI = "RoleInfo";
-const _RLT = "RoleListType";
-const _RNFE = "ResourceNotFoundException";
-const _SAKT = "SecretAccessKeyType";
-const _STT = "SessionTokenType";
-const _TMRE = "TooManyRequestsException";
-const _UE = "UnauthorizedException";
-const _aI = "accountId";
-const _aKI = "accessKeyId";
-const _aL = "accountList";
-const _aN = "accountName";
-const _aT = "accessToken";
-const _ai = "account_id";
-const _c = "client";
-const _e = "error";
-const _eA = "emailAddress";
-const _ex = "expiration";
-const _h = "http";
-const _hE = "httpError";
-const _hH = "httpHeader";
-const _hQ = "httpQuery";
-const _m = "message";
-const _mR = "maxResults";
-const _mr = "max_result";
-const _nT = "nextToken";
-const _nt = "next_token";
-const _rC = "roleCredentials";
-const _rL = "roleList";
-const _rN = "roleName";
-const _rn = "role_name";
-const _s = "smithy.ts.sdk.synthetic.com.amazonaws.sso";
-const _sAK = "secretAccessKey";
-const _sT = "sessionToken";
-const _xasbt = "x-amz-sso_bearer_token";
-const n0 = "com.amazonaws.sso";
-var AccessTokenType = [0, n0, _ATT, 8, 0];
-var SecretAccessKeyType = [0, n0, _SAKT, 8, 0];
-var SessionTokenType = [0, n0, _STT, 8, 0];
-var AccountInfo$ = [3, n0, _AI,
-    0,
-    [_aI, _aN, _eA],
-    [0, 0, 0]
-];
-var GetRoleCredentialsRequest$ = [3, n0, _GRCR,
-    0,
-    [_rN, _aI, _aT],
-    [[0, { [_hQ]: _rn }], [0, { [_hQ]: _ai }], [() => AccessTokenType, { [_hH]: _xasbt }]], 3
-];
-var GetRoleCredentialsResponse$ = [3, n0, _GRCRe,
-    0,
-    [_rC],
-    [[() => RoleCredentials$, 0]]
-];
-var InvalidRequestException$ = [-3, n0, _IRE,
-    { [_e]: _c, [_hE]: 400 },
-    [_m],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(InvalidRequestException$, InvalidRequestException);
-var ListAccountRolesRequest$ = [3, n0, _LARR,
-    0,
-    [_aT, _aI, _nT, _mR],
-    [[() => AccessTokenType, { [_hH]: _xasbt }], [0, { [_hQ]: _ai }], [0, { [_hQ]: _nt }], [1, { [_hQ]: _mr }]], 2
-];
-var ListAccountRolesResponse$ = [3, n0, _LARRi,
-    0,
-    [_nT, _rL],
-    [0, () => RoleListType]
-];
-var ListAccountsRequest$ = [3, n0, _LAR,
-    0,
-    [_aT, _nT, _mR],
-    [[() => AccessTokenType, { [_hH]: _xasbt }], [0, { [_hQ]: _nt }], [1, { [_hQ]: _mr }]], 1
-];
-var ListAccountsResponse$ = [3, n0, _LARi,
-    0,
-    [_nT, _aL],
-    [0, () => AccountListType]
-];
-var LogoutRequest$ = [3, n0, _LR,
-    0,
-    [_aT],
-    [[() => AccessTokenType, { [_hH]: _xasbt }]], 1
-];
-var ResourceNotFoundException$ = [-3, n0, _RNFE,
-    { [_e]: _c, [_hE]: 404 },
-    [_m],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(ResourceNotFoundException$, ResourceNotFoundException);
-var RoleCredentials$ = [3, n0, _RC,
-    0,
-    [_aKI, _sAK, _sT, _ex],
-    [0, [() => SecretAccessKeyType, 0], [() => SessionTokenType, 0], 1]
-];
-var RoleInfo$ = [3, n0, _RI,
-    0,
-    [_rN, _aI],
-    [0, 0]
-];
-var TooManyRequestsException$ = [-3, n0, _TMRE,
-    { [_e]: _c, [_hE]: 429 },
-    [_m],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(TooManyRequestsException$, TooManyRequestsException);
-var UnauthorizedException$ = [-3, n0, _UE,
-    { [_e]: _c, [_hE]: 401 },
-    [_m],
-    [0]
-];
-schema.TypeRegistry.for(n0).registerError(UnauthorizedException$, UnauthorizedException);
-var __Unit = "unit";
-var SSOServiceException$ = [-3, _s, "SSOServiceException", 0, [], []];
-schema.TypeRegistry.for(_s).registerError(SSOServiceException$, SSOServiceException);
-var AccountListType = [1, n0, _ALT,
-    0, () => AccountInfo$
-];
-var RoleListType = [1, n0, _RLT,
-    0, () => RoleInfo$
-];
-var GetRoleCredentials$ = [9, n0, _GRC,
-    { [_h]: ["GET", "/federation/credentials", 200] }, () => GetRoleCredentialsRequest$, () => GetRoleCredentialsResponse$
-];
-var ListAccountRoles$ = [9, n0, _LARis,
-    { [_h]: ["GET", "/assignment/roles", 200] }, () => ListAccountRolesRequest$, () => ListAccountRolesResponse$
-];
-var ListAccounts$ = [9, n0, _LA,
-    { [_h]: ["GET", "/assignment/accounts", 200] }, () => ListAccountsRequest$, () => ListAccountsResponse$
-];
-var Logout$ = [9, n0, _L,
-    { [_h]: ["POST", "/logout", 200] }, () => LogoutRequest$, () => __Unit
-];
-
 class GetRoleCredentialsCommand extends smithyClient.Command
     .classBuilder()
     .ep(commonParams)
@@ -453,7 +250,7 @@ class GetRoleCredentialsCommand extends smithyClient.Command
 })
     .s("SWBPortalService", "GetRoleCredentials", {})
     .n("SSOClient", "GetRoleCredentialsCommand")
-    .sc(GetRoleCredentials$)
+    .sc(schemas_0.GetRoleCredentials$)
     .build() {
 }
 
@@ -465,7 +262,7 @@ class ListAccountRolesCommand extends smithyClient.Command
 })
     .s("SWBPortalService", "ListAccountRoles", {})
     .n("SSOClient", "ListAccountRolesCommand")
-    .sc(ListAccountRoles$)
+    .sc(schemas_0.ListAccountRoles$)
     .build() {
 }
 
@@ -477,7 +274,7 @@ class ListAccountsCommand extends smithyClient.Command
 })
     .s("SWBPortalService", "ListAccounts", {})
     .n("SSOClient", "ListAccountsCommand")
-    .sc(ListAccounts$)
+    .sc(schemas_0.ListAccounts$)
     .build() {
 }
 
@@ -489,7 +286,7 @@ class LogoutCommand extends smithyClient.Command
 })
     .s("SWBPortalService", "Logout", {})
     .n("SSOClient", "LogoutCommand")
-    .sc(Logout$)
+    .sc(schemas_0.Logout$)
     .build() {
 }
 
@@ -519,38 +316,112 @@ Object.defineProperty(exports, "__Client", ({
     enumerable: true,
     get: function () { return smithyClient.Client; }
 }));
-exports.AccountInfo$ = AccountInfo$;
-exports.GetRoleCredentials$ = GetRoleCredentials$;
+Object.defineProperty(exports, "SSOServiceException", ({
+    enumerable: true,
+    get: function () { return SSOServiceException.SSOServiceException; }
+}));
 exports.GetRoleCredentialsCommand = GetRoleCredentialsCommand;
-exports.GetRoleCredentialsRequest$ = GetRoleCredentialsRequest$;
-exports.GetRoleCredentialsResponse$ = GetRoleCredentialsResponse$;
-exports.InvalidRequestException = InvalidRequestException;
-exports.InvalidRequestException$ = InvalidRequestException$;
-exports.ListAccountRoles$ = ListAccountRoles$;
 exports.ListAccountRolesCommand = ListAccountRolesCommand;
-exports.ListAccountRolesRequest$ = ListAccountRolesRequest$;
-exports.ListAccountRolesResponse$ = ListAccountRolesResponse$;
-exports.ListAccounts$ = ListAccounts$;
 exports.ListAccountsCommand = ListAccountsCommand;
-exports.ListAccountsRequest$ = ListAccountsRequest$;
-exports.ListAccountsResponse$ = ListAccountsResponse$;
-exports.Logout$ = Logout$;
 exports.LogoutCommand = LogoutCommand;
-exports.LogoutRequest$ = LogoutRequest$;
-exports.ResourceNotFoundException = ResourceNotFoundException;
-exports.ResourceNotFoundException$ = ResourceNotFoundException$;
-exports.RoleCredentials$ = RoleCredentials$;
-exports.RoleInfo$ = RoleInfo$;
 exports.SSO = SSO;
 exports.SSOClient = SSOClient;
-exports.SSOServiceException = SSOServiceException;
-exports.SSOServiceException$ = SSOServiceException$;
-exports.TooManyRequestsException = TooManyRequestsException;
-exports.TooManyRequestsException$ = TooManyRequestsException$;
-exports.UnauthorizedException = UnauthorizedException;
-exports.UnauthorizedException$ = UnauthorizedException$;
 exports.paginateListAccountRoles = paginateListAccountRoles;
 exports.paginateListAccounts = paginateListAccounts;
+Object.keys(schemas_0).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+        enumerable: true,
+        get: function () { return schemas_0[k]; }
+    });
+});
+Object.keys(errors).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+        enumerable: true,
+        get: function () { return errors[k]; }
+    });
+});
+
+
+/***/ }),
+
+/***/ 7330:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.SSOServiceException = exports.__ServiceException = void 0;
+const smithy_client_1 = __webpack_require__(1411);
+Object.defineProperty(exports, "__ServiceException", ({ enumerable: true, get: function () { return smithy_client_1.ServiceException; } }));
+class SSOServiceException extends smithy_client_1.ServiceException {
+    constructor(options) {
+        super(options);
+        Object.setPrototypeOf(this, SSOServiceException.prototype);
+    }
+}
+exports.SSOServiceException = SSOServiceException;
+
+
+/***/ }),
+
+/***/ 2378:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UnauthorizedException = exports.TooManyRequestsException = exports.ResourceNotFoundException = exports.InvalidRequestException = void 0;
+const SSOServiceException_1 = __webpack_require__(7330);
+class InvalidRequestException extends SSOServiceException_1.SSOServiceException {
+    name = "InvalidRequestException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "InvalidRequestException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, InvalidRequestException.prototype);
+    }
+}
+exports.InvalidRequestException = InvalidRequestException;
+class ResourceNotFoundException extends SSOServiceException_1.SSOServiceException {
+    name = "ResourceNotFoundException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "ResourceNotFoundException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, ResourceNotFoundException.prototype);
+    }
+}
+exports.ResourceNotFoundException = ResourceNotFoundException;
+class TooManyRequestsException extends SSOServiceException_1.SSOServiceException {
+    name = "TooManyRequestsException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "TooManyRequestsException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, TooManyRequestsException.prototype);
+    }
+}
+exports.TooManyRequestsException = TooManyRequestsException;
+class UnauthorizedException extends SSOServiceException_1.SSOServiceException {
+    name = "UnauthorizedException";
+    $fault = "client";
+    constructor(opts) {
+        super({
+            name: "UnauthorizedException",
+            $fault: "client",
+            ...opts,
+        });
+        Object.setPrototypeOf(this, UnauthorizedException.prototype);
+    }
+}
+exports.UnauthorizedException = UnauthorizedException;
 
 
 /***/ }),
@@ -628,6 +499,7 @@ const util_base64_1 = __webpack_require__(8385);
 const util_utf8_1 = __webpack_require__(1577);
 const httpAuthSchemeProvider_1 = __webpack_require__(2041);
 const endpointResolver_1 = __webpack_require__(3903);
+const schemas_0_1 = __webpack_require__(1382);
 const getRuntimeConfig = (config) => {
     return {
         apiVersion: "2019-06-10",
@@ -653,6 +525,7 @@ const getRuntimeConfig = (config) => {
         protocol: config?.protocol ?? protocols_1.AwsRestJsonProtocol,
         protocolSettings: config?.protocolSettings ?? {
             defaultNamespace: "com.amazonaws.sso",
+            errorTypeRegistries: schemas_0_1.errorTypeRegistries,
             version: "2019-06-10",
             serviceTarget: "SWBPortalService",
         },
@@ -663,6 +536,174 @@ const getRuntimeConfig = (config) => {
     };
 };
 exports.getRuntimeConfig = getRuntimeConfig;
+
+
+/***/ }),
+
+/***/ 1382:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Logout$ = exports.ListAccounts$ = exports.ListAccountRoles$ = exports.GetRoleCredentials$ = exports.RoleInfo$ = exports.RoleCredentials$ = exports.LogoutRequest$ = exports.ListAccountsResponse$ = exports.ListAccountsRequest$ = exports.ListAccountRolesResponse$ = exports.ListAccountRolesRequest$ = exports.GetRoleCredentialsResponse$ = exports.GetRoleCredentialsRequest$ = exports.AccountInfo$ = exports.errorTypeRegistries = exports.UnauthorizedException$ = exports.TooManyRequestsException$ = exports.ResourceNotFoundException$ = exports.InvalidRequestException$ = exports.SSOServiceException$ = void 0;
+const _AI = "AccountInfo";
+const _ALT = "AccountListType";
+const _ATT = "AccessTokenType";
+const _GRC = "GetRoleCredentials";
+const _GRCR = "GetRoleCredentialsRequest";
+const _GRCRe = "GetRoleCredentialsResponse";
+const _IRE = "InvalidRequestException";
+const _L = "Logout";
+const _LA = "ListAccounts";
+const _LAR = "ListAccountsRequest";
+const _LARR = "ListAccountRolesRequest";
+const _LARRi = "ListAccountRolesResponse";
+const _LARi = "ListAccountsResponse";
+const _LARis = "ListAccountRoles";
+const _LR = "LogoutRequest";
+const _RC = "RoleCredentials";
+const _RI = "RoleInfo";
+const _RLT = "RoleListType";
+const _RNFE = "ResourceNotFoundException";
+const _SAKT = "SecretAccessKeyType";
+const _STT = "SessionTokenType";
+const _TMRE = "TooManyRequestsException";
+const _UE = "UnauthorizedException";
+const _aI = "accountId";
+const _aKI = "accessKeyId";
+const _aL = "accountList";
+const _aN = "accountName";
+const _aT = "accessToken";
+const _ai = "account_id";
+const _c = "client";
+const _e = "error";
+const _eA = "emailAddress";
+const _ex = "expiration";
+const _h = "http";
+const _hE = "httpError";
+const _hH = "httpHeader";
+const _hQ = "httpQuery";
+const _m = "message";
+const _mR = "maxResults";
+const _mr = "max_result";
+const _nT = "nextToken";
+const _nt = "next_token";
+const _rC = "roleCredentials";
+const _rL = "roleList";
+const _rN = "roleName";
+const _rn = "role_name";
+const _s = "smithy.ts.sdk.synthetic.com.amazonaws.sso";
+const _sAK = "secretAccessKey";
+const _sT = "sessionToken";
+const _xasbt = "x-amz-sso_bearer_token";
+const n0 = "com.amazonaws.sso";
+const schema_1 = __webpack_require__(6890);
+const errors_1 = __webpack_require__(2378);
+const SSOServiceException_1 = __webpack_require__(7330);
+const _s_registry = schema_1.TypeRegistry.for(_s);
+exports.SSOServiceException$ = [-3, _s, "SSOServiceException", 0, [], []];
+_s_registry.registerError(exports.SSOServiceException$, SSOServiceException_1.SSOServiceException);
+const n0_registry = schema_1.TypeRegistry.for(n0);
+exports.InvalidRequestException$ = [-3, n0, _IRE,
+    { [_e]: _c, [_hE]: 400 },
+    [_m],
+    [0]
+];
+n0_registry.registerError(exports.InvalidRequestException$, errors_1.InvalidRequestException);
+exports.ResourceNotFoundException$ = [-3, n0, _RNFE,
+    { [_e]: _c, [_hE]: 404 },
+    [_m],
+    [0]
+];
+n0_registry.registerError(exports.ResourceNotFoundException$, errors_1.ResourceNotFoundException);
+exports.TooManyRequestsException$ = [-3, n0, _TMRE,
+    { [_e]: _c, [_hE]: 429 },
+    [_m],
+    [0]
+];
+n0_registry.registerError(exports.TooManyRequestsException$, errors_1.TooManyRequestsException);
+exports.UnauthorizedException$ = [-3, n0, _UE,
+    { [_e]: _c, [_hE]: 401 },
+    [_m],
+    [0]
+];
+n0_registry.registerError(exports.UnauthorizedException$, errors_1.UnauthorizedException);
+exports.errorTypeRegistries = [
+    _s_registry,
+    n0_registry,
+];
+var AccessTokenType = [0, n0, _ATT, 8, 0];
+var SecretAccessKeyType = [0, n0, _SAKT, 8, 0];
+var SessionTokenType = [0, n0, _STT, 8, 0];
+exports.AccountInfo$ = [3, n0, _AI,
+    0,
+    [_aI, _aN, _eA],
+    [0, 0, 0]
+];
+exports.GetRoleCredentialsRequest$ = [3, n0, _GRCR,
+    0,
+    [_rN, _aI, _aT],
+    [[0, { [_hQ]: _rn }], [0, { [_hQ]: _ai }], [() => AccessTokenType, { [_hH]: _xasbt }]], 3
+];
+exports.GetRoleCredentialsResponse$ = [3, n0, _GRCRe,
+    0,
+    [_rC],
+    [[() => exports.RoleCredentials$, 0]]
+];
+exports.ListAccountRolesRequest$ = [3, n0, _LARR,
+    0,
+    [_aT, _aI, _nT, _mR],
+    [[() => AccessTokenType, { [_hH]: _xasbt }], [0, { [_hQ]: _ai }], [0, { [_hQ]: _nt }], [1, { [_hQ]: _mr }]], 2
+];
+exports.ListAccountRolesResponse$ = [3, n0, _LARRi,
+    0,
+    [_nT, _rL],
+    [0, () => RoleListType]
+];
+exports.ListAccountsRequest$ = [3, n0, _LAR,
+    0,
+    [_aT, _nT, _mR],
+    [[() => AccessTokenType, { [_hH]: _xasbt }], [0, { [_hQ]: _nt }], [1, { [_hQ]: _mr }]], 1
+];
+exports.ListAccountsResponse$ = [3, n0, _LARi,
+    0,
+    [_nT, _aL],
+    [0, () => AccountListType]
+];
+exports.LogoutRequest$ = [3, n0, _LR,
+    0,
+    [_aT],
+    [[() => AccessTokenType, { [_hH]: _xasbt }]], 1
+];
+exports.RoleCredentials$ = [3, n0, _RC,
+    0,
+    [_aKI, _sAK, _sT, _ex],
+    [0, [() => SecretAccessKeyType, 0], [() => SessionTokenType, 0], 1]
+];
+exports.RoleInfo$ = [3, n0, _RI,
+    0,
+    [_rN, _aI],
+    [0, 0]
+];
+var __Unit = "unit";
+var AccountListType = [1, n0, _ALT,
+    0, () => exports.AccountInfo$
+];
+var RoleListType = [1, n0, _RLT,
+    0, () => exports.RoleInfo$
+];
+exports.GetRoleCredentials$ = [9, n0, _GRC,
+    { [_h]: ["GET", "/federation/credentials", 200] }, () => exports.GetRoleCredentialsRequest$, () => exports.GetRoleCredentialsResponse$
+];
+exports.ListAccountRoles$ = [9, n0, _LARis,
+    { [_h]: ["GET", "/assignment/roles", 200] }, () => exports.ListAccountRolesRequest$, () => exports.ListAccountRolesResponse$
+];
+exports.ListAccounts$ = [9, n0, _LA,
+    { [_h]: ["GET", "/assignment/accounts", 200] }, () => exports.ListAccountsRequest$, () => exports.ListAccountsResponse$
+];
+exports.Logout$ = [9, n0, _L,
+    { [_h]: ["POST", "/logout", 200] }, () => exports.LogoutRequest$, () => __Unit
+];
 
 
 /***/ }),
@@ -1231,7 +1272,7 @@ const EXPIRE_WINDOW_MS = 5 * 60 * 1000;
 const REFRESH_MESSAGE = `To refresh this SSO session run 'aws sso login' with the corresponding profile.`;
 
 const getSsoOidcClient = async (ssoRegion, init = {}, callerClientConfig) => {
-    const { SSOOIDCClient } = await __webpack_require__.e(/* import() */ 443).then(__webpack_require__.t.bind(__webpack_require__, 9443, 19));
+    const { SSOOIDCClient } = await __webpack_require__.e(/* import() */ 443).then(__webpack_require__.t.bind(__webpack_require__, 9443, 23));
     const coalesce = (prop) => init.clientConfig?.[prop] ?? init.parentClientConfig?.[prop] ?? callerClientConfig?.[prop];
     const ssoOidcClient = new SSOOIDCClient(Object.assign({}, init.clientConfig ?? {}, {
         region: ssoRegion ?? init.clientConfig?.region,
@@ -1242,7 +1283,7 @@ const getSsoOidcClient = async (ssoRegion, init = {}, callerClientConfig) => {
 };
 
 const getNewSsoOidcToken = async (ssoToken, ssoRegion, init = {}, callerClientConfig) => {
-    const { CreateTokenCommand } = await __webpack_require__.e(/* import() */ 443).then(__webpack_require__.t.bind(__webpack_require__, 9443, 19));
+    const { CreateTokenCommand } = await __webpack_require__.e(/* import() */ 443).then(__webpack_require__.t.bind(__webpack_require__, 9443, 23));
     const ssoOidcClient = await getSsoOidcClient(ssoRegion, init, callerClientConfig);
     return ssoOidcClient.send(new CreateTokenCommand({
         clientId: ssoToken.clientId,
@@ -1369,7 +1410,7 @@ exports.nodeProvider = nodeProvider;
 /***/ 5188:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.985.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-sso","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.7","@aws-sdk/middleware-host-header":"^3.972.3","@aws-sdk/middleware-logger":"^3.972.3","@aws-sdk/middleware-recursion-detection":"^3.972.3","@aws-sdk/middleware-user-agent":"^3.972.7","@aws-sdk/region-config-resolver":"^3.972.3","@aws-sdk/types":"^3.973.1","@aws-sdk/util-endpoints":"3.985.0","@aws-sdk/util-user-agent-browser":"^3.972.3","@aws-sdk/util-user-agent-node":"^3.972.5","@smithy/config-resolver":"^4.4.6","@smithy/core":"^3.22.1","@smithy/fetch-http-handler":"^5.3.9","@smithy/hash-node":"^4.2.8","@smithy/invalid-dependency":"^4.2.8","@smithy/middleware-content-length":"^4.2.8","@smithy/middleware-endpoint":"^4.4.13","@smithy/middleware-retry":"^4.4.30","@smithy/middleware-serde":"^4.2.9","@smithy/middleware-stack":"^4.2.8","@smithy/node-config-provider":"^4.3.8","@smithy/node-http-handler":"^4.4.9","@smithy/protocol-http":"^5.3.8","@smithy/smithy-client":"^4.11.2","@smithy/types":"^4.12.0","@smithy/url-parser":"^4.2.8","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.29","@smithy/util-defaults-mode-node":"^4.2.32","@smithy/util-endpoints":"^3.2.8","@smithy/util-middleware":"^4.2.8","@smithy/util-retry":"^4.2.8","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-sso","description":"AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native","version":"3.990.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-sso","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo sso","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.10","@aws-sdk/middleware-host-header":"^3.972.3","@aws-sdk/middleware-logger":"^3.972.3","@aws-sdk/middleware-recursion-detection":"^3.972.3","@aws-sdk/middleware-user-agent":"^3.972.10","@aws-sdk/region-config-resolver":"^3.972.3","@aws-sdk/types":"^3.973.1","@aws-sdk/util-endpoints":"3.990.0","@aws-sdk/util-user-agent-browser":"^3.972.3","@aws-sdk/util-user-agent-node":"^3.972.8","@smithy/config-resolver":"^4.4.6","@smithy/core":"^3.23.0","@smithy/fetch-http-handler":"^5.3.9","@smithy/hash-node":"^4.2.8","@smithy/invalid-dependency":"^4.2.8","@smithy/middleware-content-length":"^4.2.8","@smithy/middleware-endpoint":"^4.4.14","@smithy/middleware-retry":"^4.4.31","@smithy/middleware-serde":"^4.2.9","@smithy/middleware-stack":"^4.2.8","@smithy/node-config-provider":"^4.3.8","@smithy/node-http-handler":"^4.4.10","@smithy/protocol-http":"^5.3.8","@smithy/smithy-client":"^4.11.3","@smithy/types":"^4.12.0","@smithy/url-parser":"^4.2.8","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.30","@smithy/util-defaults-mode-node":"^4.2.33","@smithy/util-endpoints":"^3.2.8","@smithy/util-middleware":"^4.2.8","@smithy/util-retry":"^4.2.8","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-sso"}}');
 
 /***/ })
 
