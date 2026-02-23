@@ -27,7 +27,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "2.0.2",
-    "@aws-sdk/client-secrets-manager": "3.990.0"
+    "@aws-sdk/client-secrets-manager": "3.995.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
