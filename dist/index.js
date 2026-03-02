@@ -4129,18 +4129,9 @@ const SortOrderType = {
     desc: "desc",
 };
 
-Object.defineProperty(exports, "$Command", ({
-    enumerable: true,
-    get: function () { return smithyClient.Command; }
-}));
-Object.defineProperty(exports, "__Client", ({
-    enumerable: true,
-    get: function () { return smithyClient.Client; }
-}));
-Object.defineProperty(exports, "SecretsManagerServiceException", ({
-    enumerable: true,
-    get: function () { return SecretsManagerServiceException.SecretsManagerServiceException; }
-}));
+exports.$Command = smithyClient.Command;
+exports.__Client = smithyClient.Client;
+exports.SecretsManagerServiceException = SecretsManagerServiceException.SecretsManagerServiceException;
 exports.BatchGetSecretValueCommand = BatchGetSecretValueCommand;
 exports.CancelRotateSecretCommand = CancelRotateSecretCommand;
 exports.CreateSecretCommand = CreateSecretCommand;
@@ -4173,17 +4164,25 @@ exports.ValidateResourcePolicyCommand = ValidateResourcePolicyCommand;
 exports.paginateBatchGetSecretValue = paginateBatchGetSecretValue;
 exports.paginateListSecretVersionIds = paginateListSecretVersionIds;
 exports.paginateListSecrets = paginateListSecrets;
+Object.prototype.hasOwnProperty.call(schemas_0, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: schemas_0['__proto__']
+    });
+
 Object.keys(schemas_0).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return schemas_0[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = schemas_0[k];
 });
-Object.keys(errors).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(errors, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
         enumerable: true,
-        get: function () { return errors[k]; }
+        value: errors['__proto__']
     });
+
+Object.keys(errors).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = errors[k];
 });
 
 
@@ -5610,9 +5609,9 @@ class ProtocolLib {
             }
             error.Error = {
                 ...error.Error,
-                Type: error.Error.Type,
-                Code: error.Error.Code,
-                Message: error.Error.message ?? error.Error.Message ?? msg,
+                Type: error.Error?.Type,
+                Code: error.Error?.Code,
+                Message: error.Error?.message ?? error.Error?.Message ?? msg,
             };
             const reqId = error.$metadata.requestId;
             if (reqId) {
@@ -6861,7 +6860,7 @@ class AwsQueryProtocol extends protocols.RpcProtocol {
     }
     async handleError(operationSchema, context, response, dataObject, metadata) {
         const errorIdentifier = this.loadQueryErrorCode(response, dataObject) ?? "Unknown";
-        const errorData = this.loadQueryError(dataObject);
+        const errorData = this.loadQueryError(dataObject) ?? {};
         const message = this.loadQueryErrorMessage(dataObject);
         errorData.message = message;
         errorData.Error = {
@@ -7555,9 +7554,9 @@ class ProtocolLib {
             }
             error.Error = {
                 ...error.Error,
-                Type: error.Error.Type,
-                Code: error.Error.Code,
-                Message: error.Error.message ?? error.Error.Message ?? msg,
+                Type: error.Error?.Type,
+                Code: error.Error?.Code,
+                Message: error.Error?.message ?? error.Error?.Message ?? msg,
             };
             const reqId = error.$metadata.requestId;
             if (reqId) {
@@ -8806,7 +8805,7 @@ class AwsQueryProtocol extends protocols.RpcProtocol {
     }
     async handleError(operationSchema, context, response, dataObject, metadata) {
         const errorIdentifier = this.loadQueryErrorCode(response, dataObject) ?? "Unknown";
-        const errorData = this.loadQueryError(dataObject);
+        const errorData = this.loadQueryError(dataObject) ?? {};
         const message = this.loadQueryErrorMessage(dataObject);
         errorData.message = message;
         errorData.Error = {
@@ -9681,11 +9680,15 @@ const getRecursionDetectionPlugin = (options) => ({
 });
 
 exports.getRecursionDetectionPlugin = getRecursionDetectionPlugin;
-Object.keys(recursionDetectionMiddleware).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(recursionDetectionMiddleware, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
         enumerable: true,
-        get: function () { return recursionDetectionMiddleware[k]; }
+        value: recursionDetectionMiddleware['__proto__']
     });
+
+Object.keys(recursionDetectionMiddleware).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = recursionDetectionMiddleware[k];
 });
 
 
@@ -9739,7 +9742,7 @@ exports.recursionDetectionMiddleware = recursionDetectionMiddleware;
 
 
 var core = __nccwpck_require__(402);
-var utilEndpoints = __nccwpck_require__(2547);
+var utilEndpoints = __nccwpck_require__(3068);
 var protocolHttp = __nccwpck_require__(2356);
 var core$1 = __nccwpck_require__(8704);
 
@@ -9934,429 +9937,6 @@ exports.userAgentMiddleware = userAgentMiddleware;
 
 /***/ }),
 
-/***/ 2547:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-"use strict";
-
-
-var utilEndpoints = __nccwpck_require__(9674);
-var urlParser = __nccwpck_require__(4494);
-
-const isVirtualHostableS3Bucket = (value, allowSubDomains = false) => {
-    if (allowSubDomains) {
-        for (const label of value.split(".")) {
-            if (!isVirtualHostableS3Bucket(label)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    if (!utilEndpoints.isValidHostLabel(value)) {
-        return false;
-    }
-    if (value.length < 3 || value.length > 63) {
-        return false;
-    }
-    if (value !== value.toLowerCase()) {
-        return false;
-    }
-    if (utilEndpoints.isIpAddress(value)) {
-        return false;
-    }
-    return true;
-};
-
-const ARN_DELIMITER = ":";
-const RESOURCE_DELIMITER = "/";
-const parseArn = (value) => {
-    const segments = value.split(ARN_DELIMITER);
-    if (segments.length < 6)
-        return null;
-    const [arn, partition, service, region, accountId, ...resourcePath] = segments;
-    if (arn !== "arn" || partition === "" || service === "" || resourcePath.join(ARN_DELIMITER) === "")
-        return null;
-    const resourceId = resourcePath.map((resource) => resource.split(RESOURCE_DELIMITER)).flat();
-    return {
-        partition,
-        service,
-        region,
-        accountId,
-        resourceId,
-    };
-};
-
-var partitions = [
-	{
-		id: "aws",
-		outputs: {
-			dnsSuffix: "amazonaws.com",
-			dualStackDnsSuffix: "api.aws",
-			implicitGlobalRegion: "us-east-1",
-			name: "aws",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^(us|eu|ap|sa|ca|me|af|il|mx)\\-\\w+\\-\\d+$",
-		regions: {
-			"af-south-1": {
-				description: "Africa (Cape Town)"
-			},
-			"ap-east-1": {
-				description: "Asia Pacific (Hong Kong)"
-			},
-			"ap-east-2": {
-				description: "Asia Pacific (Taipei)"
-			},
-			"ap-northeast-1": {
-				description: "Asia Pacific (Tokyo)"
-			},
-			"ap-northeast-2": {
-				description: "Asia Pacific (Seoul)"
-			},
-			"ap-northeast-3": {
-				description: "Asia Pacific (Osaka)"
-			},
-			"ap-south-1": {
-				description: "Asia Pacific (Mumbai)"
-			},
-			"ap-south-2": {
-				description: "Asia Pacific (Hyderabad)"
-			},
-			"ap-southeast-1": {
-				description: "Asia Pacific (Singapore)"
-			},
-			"ap-southeast-2": {
-				description: "Asia Pacific (Sydney)"
-			},
-			"ap-southeast-3": {
-				description: "Asia Pacific (Jakarta)"
-			},
-			"ap-southeast-4": {
-				description: "Asia Pacific (Melbourne)"
-			},
-			"ap-southeast-5": {
-				description: "Asia Pacific (Malaysia)"
-			},
-			"ap-southeast-6": {
-				description: "Asia Pacific (New Zealand)"
-			},
-			"ap-southeast-7": {
-				description: "Asia Pacific (Thailand)"
-			},
-			"aws-global": {
-				description: "aws global region"
-			},
-			"ca-central-1": {
-				description: "Canada (Central)"
-			},
-			"ca-west-1": {
-				description: "Canada West (Calgary)"
-			},
-			"eu-central-1": {
-				description: "Europe (Frankfurt)"
-			},
-			"eu-central-2": {
-				description: "Europe (Zurich)"
-			},
-			"eu-north-1": {
-				description: "Europe (Stockholm)"
-			},
-			"eu-south-1": {
-				description: "Europe (Milan)"
-			},
-			"eu-south-2": {
-				description: "Europe (Spain)"
-			},
-			"eu-west-1": {
-				description: "Europe (Ireland)"
-			},
-			"eu-west-2": {
-				description: "Europe (London)"
-			},
-			"eu-west-3": {
-				description: "Europe (Paris)"
-			},
-			"il-central-1": {
-				description: "Israel (Tel Aviv)"
-			},
-			"me-central-1": {
-				description: "Middle East (UAE)"
-			},
-			"me-south-1": {
-				description: "Middle East (Bahrain)"
-			},
-			"mx-central-1": {
-				description: "Mexico (Central)"
-			},
-			"sa-east-1": {
-				description: "South America (Sao Paulo)"
-			},
-			"us-east-1": {
-				description: "US East (N. Virginia)"
-			},
-			"us-east-2": {
-				description: "US East (Ohio)"
-			},
-			"us-west-1": {
-				description: "US West (N. California)"
-			},
-			"us-west-2": {
-				description: "US West (Oregon)"
-			}
-		}
-	},
-	{
-		id: "aws-cn",
-		outputs: {
-			dnsSuffix: "amazonaws.com.cn",
-			dualStackDnsSuffix: "api.amazonwebservices.com.cn",
-			implicitGlobalRegion: "cn-northwest-1",
-			name: "aws-cn",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^cn\\-\\w+\\-\\d+$",
-		regions: {
-			"aws-cn-global": {
-				description: "aws-cn global region"
-			},
-			"cn-north-1": {
-				description: "China (Beijing)"
-			},
-			"cn-northwest-1": {
-				description: "China (Ningxia)"
-			}
-		}
-	},
-	{
-		id: "aws-eusc",
-		outputs: {
-			dnsSuffix: "amazonaws.eu",
-			dualStackDnsSuffix: "api.amazonwebservices.eu",
-			implicitGlobalRegion: "eusc-de-east-1",
-			name: "aws-eusc",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^eusc\\-(de)\\-\\w+\\-\\d+$",
-		regions: {
-			"eusc-de-east-1": {
-				description: "AWS European Sovereign Cloud (Germany)"
-			}
-		}
-	},
-	{
-		id: "aws-iso",
-		outputs: {
-			dnsSuffix: "c2s.ic.gov",
-			dualStackDnsSuffix: "api.aws.ic.gov",
-			implicitGlobalRegion: "us-iso-east-1",
-			name: "aws-iso",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^us\\-iso\\-\\w+\\-\\d+$",
-		regions: {
-			"aws-iso-global": {
-				description: "aws-iso global region"
-			},
-			"us-iso-east-1": {
-				description: "US ISO East"
-			},
-			"us-iso-west-1": {
-				description: "US ISO WEST"
-			}
-		}
-	},
-	{
-		id: "aws-iso-b",
-		outputs: {
-			dnsSuffix: "sc2s.sgov.gov",
-			dualStackDnsSuffix: "api.aws.scloud",
-			implicitGlobalRegion: "us-isob-east-1",
-			name: "aws-iso-b",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^us\\-isob\\-\\w+\\-\\d+$",
-		regions: {
-			"aws-iso-b-global": {
-				description: "aws-iso-b global region"
-			},
-			"us-isob-east-1": {
-				description: "US ISOB East (Ohio)"
-			},
-			"us-isob-west-1": {
-				description: "US ISOB West"
-			}
-		}
-	},
-	{
-		id: "aws-iso-e",
-		outputs: {
-			dnsSuffix: "cloud.adc-e.uk",
-			dualStackDnsSuffix: "api.cloud-aws.adc-e.uk",
-			implicitGlobalRegion: "eu-isoe-west-1",
-			name: "aws-iso-e",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^eu\\-isoe\\-\\w+\\-\\d+$",
-		regions: {
-			"aws-iso-e-global": {
-				description: "aws-iso-e global region"
-			},
-			"eu-isoe-west-1": {
-				description: "EU ISOE West"
-			}
-		}
-	},
-	{
-		id: "aws-iso-f",
-		outputs: {
-			dnsSuffix: "csp.hci.ic.gov",
-			dualStackDnsSuffix: "api.aws.hci.ic.gov",
-			implicitGlobalRegion: "us-isof-south-1",
-			name: "aws-iso-f",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^us\\-isof\\-\\w+\\-\\d+$",
-		regions: {
-			"aws-iso-f-global": {
-				description: "aws-iso-f global region"
-			},
-			"us-isof-east-1": {
-				description: "US ISOF EAST"
-			},
-			"us-isof-south-1": {
-				description: "US ISOF SOUTH"
-			}
-		}
-	},
-	{
-		id: "aws-us-gov",
-		outputs: {
-			dnsSuffix: "amazonaws.com",
-			dualStackDnsSuffix: "api.aws",
-			implicitGlobalRegion: "us-gov-west-1",
-			name: "aws-us-gov",
-			supportsDualStack: true,
-			supportsFIPS: true
-		},
-		regionRegex: "^us\\-gov\\-\\w+\\-\\d+$",
-		regions: {
-			"aws-us-gov-global": {
-				description: "aws-us-gov global region"
-			},
-			"us-gov-east-1": {
-				description: "AWS GovCloud (US-East)"
-			},
-			"us-gov-west-1": {
-				description: "AWS GovCloud (US-West)"
-			}
-		}
-	}
-];
-var version = "1.1";
-var partitionsInfo = {
-	partitions: partitions,
-	version: version
-};
-
-let selectedPartitionsInfo = partitionsInfo;
-let selectedUserAgentPrefix = "";
-const partition = (value) => {
-    const { partitions } = selectedPartitionsInfo;
-    for (const partition of partitions) {
-        const { regions, outputs } = partition;
-        for (const [region, regionData] of Object.entries(regions)) {
-            if (region === value) {
-                return {
-                    ...outputs,
-                    ...regionData,
-                };
-            }
-        }
-    }
-    for (const partition of partitions) {
-        const { regionRegex, outputs } = partition;
-        if (new RegExp(regionRegex).test(value)) {
-            return {
-                ...outputs,
-            };
-        }
-    }
-    const DEFAULT_PARTITION = partitions.find((partition) => partition.id === "aws");
-    if (!DEFAULT_PARTITION) {
-        throw new Error("Provided region was not found in the partition array or regex," +
-            " and default partition with id 'aws' doesn't exist.");
-    }
-    return {
-        ...DEFAULT_PARTITION.outputs,
-    };
-};
-const setPartitionInfo = (partitionsInfo, userAgentPrefix = "") => {
-    selectedPartitionsInfo = partitionsInfo;
-    selectedUserAgentPrefix = userAgentPrefix;
-};
-const useDefaultPartitionInfo = () => {
-    setPartitionInfo(partitionsInfo, "");
-};
-const getUserAgentPrefix = () => selectedUserAgentPrefix;
-
-const awsEndpointFunctions = {
-    isVirtualHostableS3Bucket: isVirtualHostableS3Bucket,
-    parseArn: parseArn,
-    partition: partition,
-};
-utilEndpoints.customEndpointFunctions.aws = awsEndpointFunctions;
-
-const resolveDefaultAwsRegionalEndpointsConfig = (input) => {
-    if (typeof input.endpointProvider !== "function") {
-        throw new Error("@aws-sdk/util-endpoint - endpointProvider and endpoint missing in config for this client.");
-    }
-    const { endpoint } = input;
-    if (endpoint === undefined) {
-        input.endpoint = async () => {
-            return toEndpointV1(input.endpointProvider({
-                Region: typeof input.region === "function" ? await input.region() : input.region,
-                UseDualStack: typeof input.useDualstackEndpoint === "function"
-                    ? await input.useDualstackEndpoint()
-                    : input.useDualstackEndpoint,
-                UseFIPS: typeof input.useFipsEndpoint === "function" ? await input.useFipsEndpoint() : input.useFipsEndpoint,
-                Endpoint: undefined,
-            }, { logger: input.logger }));
-        };
-    }
-    return input;
-};
-const toEndpointV1 = (endpoint) => urlParser.parseUrl(endpoint.url);
-
-Object.defineProperty(exports, "EndpointError", ({
-    enumerable: true,
-    get: function () { return utilEndpoints.EndpointError; }
-}));
-Object.defineProperty(exports, "isIpAddress", ({
-    enumerable: true,
-    get: function () { return utilEndpoints.isIpAddress; }
-}));
-Object.defineProperty(exports, "resolveEndpoint", ({
-    enumerable: true,
-    get: function () { return utilEndpoints.resolveEndpoint; }
-}));
-exports.awsEndpointFunctions = awsEndpointFunctions;
-exports.getUserAgentPrefix = getUserAgentPrefix;
-exports.partition = partition;
-exports.resolveDefaultAwsRegionalEndpointsConfig = resolveDefaultAwsRegionalEndpointsConfig;
-exports.setPartitionInfo = setPartitionInfo;
-exports.toEndpointV1 = toEndpointV1;
-exports.useDefaultPartitionInfo = useDefaultPartitionInfo;
-
-
-/***/ }),
-
 /***/ 6463:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -10382,33 +9962,22 @@ const resolveAwsRegionExtensionConfiguration = (awsRegionExtensionConfiguration)
     };
 };
 
-Object.defineProperty(exports, "NODE_REGION_CONFIG_FILE_OPTIONS", ({
-    enumerable: true,
-    get: function () { return configResolver.NODE_REGION_CONFIG_FILE_OPTIONS; }
-}));
-Object.defineProperty(exports, "NODE_REGION_CONFIG_OPTIONS", ({
-    enumerable: true,
-    get: function () { return configResolver.NODE_REGION_CONFIG_OPTIONS; }
-}));
-Object.defineProperty(exports, "REGION_ENV_NAME", ({
-    enumerable: true,
-    get: function () { return configResolver.REGION_ENV_NAME; }
-}));
-Object.defineProperty(exports, "REGION_INI_NAME", ({
-    enumerable: true,
-    get: function () { return configResolver.REGION_INI_NAME; }
-}));
-Object.defineProperty(exports, "resolveRegionConfig", ({
-    enumerable: true,
-    get: function () { return configResolver.resolveRegionConfig; }
-}));
+exports.NODE_REGION_CONFIG_FILE_OPTIONS = configResolver.NODE_REGION_CONFIG_FILE_OPTIONS;
+exports.NODE_REGION_CONFIG_OPTIONS = configResolver.NODE_REGION_CONFIG_OPTIONS;
+exports.REGION_ENV_NAME = configResolver.REGION_ENV_NAME;
+exports.REGION_INI_NAME = configResolver.REGION_INI_NAME;
+exports.resolveRegionConfig = configResolver.resolveRegionConfig;
 exports.getAwsRegionExtensionConfiguration = getAwsRegionExtensionConfiguration;
 exports.resolveAwsRegionExtensionConfiguration = resolveAwsRegionExtensionConfiguration;
-Object.keys(stsRegionDefaultResolver).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(stsRegionDefaultResolver, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
         enumerable: true,
-        get: function () { return stsRegionDefaultResolver[k]; }
+        value: stsRegionDefaultResolver['__proto__']
     });
+
+Object.keys(stsRegionDefaultResolver).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = stsRegionDefaultResolver[k];
 });
 
 
@@ -10842,18 +10411,9 @@ const resolveDefaultAwsRegionalEndpointsConfig = (input) => {
 };
 const toEndpointV1 = (endpoint) => urlParser.parseUrl(endpoint.url);
 
-Object.defineProperty(exports, "EndpointError", ({
-    enumerable: true,
-    get: function () { return utilEndpoints.EndpointError; }
-}));
-Object.defineProperty(exports, "isIpAddress", ({
-    enumerable: true,
-    get: function () { return utilEndpoints.isIpAddress; }
-}));
-Object.defineProperty(exports, "resolveEndpoint", ({
-    enumerable: true,
-    get: function () { return utilEndpoints.resolveEndpoint; }
-}));
+exports.EndpointError = utilEndpoints.EndpointError;
+exports.isIpAddress = utilEndpoints.isIpAddress;
+exports.resolveEndpoint = utilEndpoints.resolveEndpoint;
 exports.awsEndpointFunctions = awsEndpointFunctions;
 exports.getUserAgentPrefix = getUserAgentPrefix;
 exports.partition = partition;
@@ -10871,18 +10431,57 @@ exports.useDefaultPartitionInfo = useDefaultPartitionInfo;
 "use strict";
 
 
-var os = __nccwpck_require__(857);
-var process = __nccwpck_require__(932);
+var node_os = __nccwpck_require__(8161);
+var node_process = __nccwpck_require__(1708);
+var promises = __nccwpck_require__(1455);
+var node_path = __nccwpck_require__(6760);
 var middlewareUserAgent = __nccwpck_require__(2959);
 
 const getRuntimeUserAgentPair = () => {
     const runtimesToCheck = ["deno", "bun", "llrt"];
     for (const runtime of runtimesToCheck) {
-        if (process.versions[runtime]) {
-            return [`md/${runtime}`, process.versions[runtime]];
+        if (node_process.versions[runtime]) {
+            return [`md/${runtime}`, node_process.versions[runtime]];
         }
     }
-    return ["md/nodejs", process.versions.node];
+    return ["md/nodejs", node_process.versions.node];
+};
+
+const getTypeScriptPackageJsonPath = (dirname = "") => {
+    let nodeModulesPath;
+    const normalizedPath = node_path.normalize(dirname);
+    const parts = normalizedPath.split(node_path.sep);
+    const nodeModulesIndex = parts.indexOf("node_modules");
+    if (nodeModulesIndex !== -1) {
+        nodeModulesPath = parts.slice(0, nodeModulesIndex).join(node_path.sep);
+    }
+    else {
+        nodeModulesPath = dirname;
+    }
+    return node_path.join(nodeModulesPath, "node_modules", "typescript", "package.json");
+};
+
+let tscVersion;
+const getTypeScriptUserAgentPair = async () => {
+    if (tscVersion === null) {
+        return undefined;
+    }
+    else if (typeof tscVersion === "string") {
+        return ["md/tsc", tscVersion];
+    }
+    try {
+        const packageJson = await promises.readFile(getTypeScriptPackageJsonPath(__dirname), "utf-8");
+        const { version } = JSON.parse(packageJson);
+        if (typeof version !== "string") {
+            tscVersion = null;
+            return undefined;
+        }
+        tscVersion = version;
+        return ["md/tsc", tscVersion];
+    }
+    catch {
+        tscVersion = null;
+    }
 };
 
 const crtAvailability = {
@@ -10902,10 +10501,14 @@ const createDefaultUserAgentProvider = ({ serviceId, clientVersion }) => {
         const sections = [
             ["aws-sdk-js", clientVersion],
             ["ua", "2.1"],
-            [`os/${os.platform()}`, os.release()],
+            [`os/${node_os.platform()}`, node_os.release()],
             ["lang/js"],
             runtimeUserAgentPair,
         ];
+        const typescriptUserAgentPair = await getTypeScriptUserAgentPair();
+        if (typescriptUserAgentPair) {
+            sections.push(typescriptUserAgentPair);
+        }
         const crtAvailable = isCrtAvailable();
         if (crtAvailable) {
             sections.push(crtAvailable);
@@ -10913,8 +10516,8 @@ const createDefaultUserAgentProvider = ({ serviceId, clientVersion }) => {
         if (serviceId) {
             sections.push([`api/${serviceId}`, clientVersion]);
         }
-        if (process.env.AWS_EXECUTION_ENV) {
-            sections.push([`exec-env/${process.env.AWS_EXECUTION_ENV}`]);
+        if (node_process.env.AWS_EXECUTION_ENV) {
+            sections.push([`exec-env/${node_process.env.AWS_EXECUTION_ENV}`]);
         }
         const appId = await config?.userAgentAppId?.();
         const resolvedUserAgent = appId ? [...sections, [`app/${appId}`]] : [...sections];
@@ -11064,10 +10667,7 @@ class XmlNode {
     }
 }
 
-Object.defineProperty(exports, "parseXML", ({
-    enumerable: true,
-    get: function () { return xmlParser.parseXML; }
-}));
+exports.parseXML = xmlParser.parseXML;
 exports.XmlNode = XmlNode;
 exports.XmlText = XmlText;
 
@@ -11749,10 +11349,7 @@ const memoizeIdentityProvider = (provider, isExpired, requiresRefresh) => {
     };
 };
 
-Object.defineProperty(exports, "requestBuilder", ({
-    enumerable: true,
-    get: function () { return protocols.requestBuilder; }
-}));
+exports.requestBuilder = protocols.requestBuilder;
 exports.DefaultIdentityProviderConfig = DefaultIdentityProviderConfig;
 exports.EXPIRATION_MS = EXPIRATION_MS;
 exports.HttpApiKeyAuthSigner = HttpApiKeyAuthSigner;
@@ -13052,7 +12649,8 @@ class HttpBindingProtocol extends HttpProtocol {
         const headers = {};
         const endpoint = await context.endpoint();
         const ns = schema.NormalizedSchema.of(operationSchema?.input);
-        const schema$1 = ns.getSchema();
+        const payloadMemberNames = [];
+        const payloadMemberSchemas = [];
         let hasNonHttpBindingMember = false;
         let payload;
         const request = new protocolHttp.HttpRequest({
@@ -13145,10 +12743,29 @@ class HttpBindingProtocol extends HttpProtocol {
             }
             else {
                 hasNonHttpBindingMember = true;
+                payloadMemberNames.push(memberName);
+                payloadMemberSchemas.push(memberNs);
             }
         }
         if (hasNonHttpBindingMember && input) {
-            serializer.write(schema$1, input);
+            const [namespace, name] = (ns.getName(true) ?? "#Unknown").split("#");
+            const requiredMembers = ns.getSchema()[6];
+            const payloadSchema = [
+                3,
+                namespace,
+                name,
+                ns.getMergedTraits(),
+                payloadMemberNames,
+                payloadMemberSchemas,
+                undefined,
+            ];
+            if (requiredMembers) {
+                payloadSchema[6] = requiredMembers;
+            }
+            else {
+                payloadSchema.pop();
+            }
+            serializer.write(payloadSchema, input);
             payload = serializer.flush();
         }
         request.headers = headers;
@@ -13403,7 +13020,7 @@ class RpcProtocol extends HttpProtocol {
 const resolvedPath = (resolvedPath, input, memberName, labelValueProvider, uriLabel, isGreedyLabel) => {
     if (input != null && input[memberName] !== undefined) {
         const labelValue = labelValueProvider();
-        if (labelValue.length <= 0) {
+        if (labelValue == null || labelValue.length <= 0) {
             throw new Error("Empty value provided for input HTTP label: " + memberName + ".");
         }
         resolvedPath = resolvedPath.replace(uriLabel, isGreedyLabel
@@ -15069,10 +14686,7 @@ function nv(input) {
     return new NumericValue(String(input), "bigDecimal");
 }
 
-Object.defineProperty(exports, "generateIdempotencyToken", ({
-    enumerable: true,
-    get: function () { return uuid.v4; }
-}));
+exports.generateIdempotencyToken = uuid.v4;
 exports.LazyJsonString = LazyJsonString;
 exports.NumericValue = NumericValue;
 exports._parseEpochTimestamp = _parseEpochTimestamp;
@@ -18079,14 +17693,8 @@ const externalDataInterceptor = {
     },
 };
 
-Object.defineProperty(exports, "getSSOTokenFromFile", ({
-    enumerable: true,
-    get: function () { return getSSOTokenFromFile.getSSOTokenFromFile; }
-}));
-Object.defineProperty(exports, "readFile", ({
-    enumerable: true,
-    get: function () { return readFile.readFile; }
-}));
+exports.getSSOTokenFromFile = getSSOTokenFromFile.getSSOTokenFromFile;
+exports.readFile = readFile.readFile;
 exports.CONFIG_PREFIX_SEPARATOR = CONFIG_PREFIX_SEPARATOR;
 exports.DEFAULT_PROFILE = DEFAULT_PROFILE;
 exports.ENV_PROFILE = ENV_PROFILE;
@@ -18095,17 +17703,25 @@ exports.getProfileName = getProfileName;
 exports.loadSharedConfigFiles = loadSharedConfigFiles;
 exports.loadSsoSessionData = loadSsoSessionData;
 exports.parseKnownFiles = parseKnownFiles;
+Object.prototype.hasOwnProperty.call(getHomeDir, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: getHomeDir['__proto__']
+    });
+
 Object.keys(getHomeDir).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return getHomeDir[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = getHomeDir[k];
 });
-Object.keys(getSSOTokenFilepath).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(getSSOTokenFilepath, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
         enumerable: true,
-        get: function () { return getSSOTokenFilepath[k]; }
+        value: getSSOTokenFilepath['__proto__']
     });
+
+Object.keys(getSSOTokenFilepath).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = getSSOTokenFilepath[k];
 });
 
 
@@ -19075,6 +18691,7 @@ const emitWarningIfUnsupportedVersion = (version) => {
     }
 };
 
+const knownAlgorithms = Object.values(types.AlgorithmId);
 const getChecksumConfiguration = (runtimeConfig) => {
     const checksumAlgorithms = [];
     for (const id in types.AlgorithmId) {
@@ -19087,8 +18704,23 @@ const getChecksumConfiguration = (runtimeConfig) => {
             checksumConstructor: () => runtimeConfig[algorithmId],
         });
     }
+    for (const [id, ChecksumCtor] of Object.entries(runtimeConfig.checksumAlgorithms ?? {})) {
+        checksumAlgorithms.push({
+            algorithmId: () => id,
+            checksumConstructor: () => ChecksumCtor,
+        });
+    }
     return {
         addChecksumAlgorithm(algo) {
+            runtimeConfig.checksumAlgorithms = runtimeConfig.checksumAlgorithms ?? {};
+            const id = algo.algorithmId();
+            const ctor = algo.checksumConstructor();
+            if (knownAlgorithms.includes(id)) {
+                runtimeConfig.checksumAlgorithms[id.toUpperCase()] = ctor;
+            }
+            else {
+                runtimeConfig.checksumAlgorithms[id] = ctor;
+            }
             checksumAlgorithms.push(algo);
         },
         checksumAlgorithms() {
@@ -19099,7 +18731,10 @@ const getChecksumConfiguration = (runtimeConfig) => {
 const resolveChecksumRuntimeConfig = (clientConfig) => {
     const runtimeConfig = {};
     clientConfig.checksumAlgorithms().forEach((checksumAlgorithm) => {
-        runtimeConfig[checksumAlgorithm.algorithmId()] = checksumAlgorithm.checksumConstructor();
+        const id = checksumAlgorithm.algorithmId();
+        if (knownAlgorithms.includes(id)) {
+            runtimeConfig[id] = checksumAlgorithm.checksumConstructor();
+        }
     });
     return runtimeConfig;
 };
@@ -19283,18 +18918,9 @@ const _json = (obj) => {
     return obj;
 };
 
-Object.defineProperty(exports, "collectBody", ({
-    enumerable: true,
-    get: function () { return protocols.collectBody; }
-}));
-Object.defineProperty(exports, "extendedEncodeURIComponent", ({
-    enumerable: true,
-    get: function () { return protocols.extendedEncodeURIComponent; }
-}));
-Object.defineProperty(exports, "resolvedPath", ({
-    enumerable: true,
-    get: function () { return protocols.resolvedPath; }
-}));
+exports.collectBody = protocols.collectBody;
+exports.extendedEncodeURIComponent = protocols.extendedEncodeURIComponent;
+exports.resolvedPath = protocols.resolvedPath;
 exports.Client = Client;
 exports.Command = Command;
 exports.NoOpLogger = NoOpLogger;
@@ -19318,11 +18944,15 @@ exports.serializeFloat = serializeFloat;
 exports.take = take;
 exports.throwDefaultError = throwDefaultError;
 exports.withBaseException = withBaseException;
-Object.keys(serde).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(serde, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
         enumerable: true,
-        get: function () { return serde[k]; }
+        value: serde['__proto__']
     });
+
+Object.keys(serde).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = serde[k];
 });
 
 
@@ -19493,17 +19123,25 @@ var toBase64 = __nccwpck_require__(4871);
 
 
 
+Object.prototype.hasOwnProperty.call(fromBase64, '__proto__') &&
+	!Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+	Object.defineProperty(exports, '__proto__', {
+		enumerable: true,
+		value: fromBase64['__proto__']
+	});
+
 Object.keys(fromBase64).forEach(function (k) {
-	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-		enumerable: true,
-		get: function () { return fromBase64[k]; }
-	});
+	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = fromBase64[k];
 });
-Object.keys(toBase64).forEach(function (k) {
-	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(toBase64, '__proto__') &&
+	!Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+	Object.defineProperty(exports, '__proto__', {
 		enumerable: true,
-		get: function () { return toBase64[k]; }
+		value: toBase64['__proto__']
 	});
+
+Object.keys(toBase64).forEach(function (k) {
+	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = toBase64[k];
 });
 
 
@@ -19956,7 +19594,7 @@ const parseURL = (value) => {
 const stringEquals = (value1, value2) => value1 === value2;
 
 const substring = (input, start, stop, reverse) => {
-    if (start >= stop || input.length < stop) {
+    if (start >= stop || input.length < stop || /[^\u0000-\u007f]/.test(input)) {
         return null;
     }
     if (!reverse) {
@@ -21193,56 +20831,78 @@ class Uint8ArrayBlobAdapter extends Uint8Array {
     }
 }
 
-Object.defineProperty(exports, "isBlob", ({
-    enumerable: true,
-    get: function () { return streamTypeCheck.isBlob; }
-}));
-Object.defineProperty(exports, "isReadableStream", ({
-    enumerable: true,
-    get: function () { return streamTypeCheck.isReadableStream; }
-}));
+exports.isBlob = streamTypeCheck.isBlob;
+exports.isReadableStream = streamTypeCheck.isReadableStream;
 exports.Uint8ArrayBlobAdapter = Uint8ArrayBlobAdapter;
+Object.prototype.hasOwnProperty.call(ChecksumStream, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: ChecksumStream['__proto__']
+    });
+
 Object.keys(ChecksumStream).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return ChecksumStream[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = ChecksumStream[k];
 });
+Object.prototype.hasOwnProperty.call(createChecksumStream, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: createChecksumStream['__proto__']
+    });
+
 Object.keys(createChecksumStream).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return createChecksumStream[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = createChecksumStream[k];
 });
+Object.prototype.hasOwnProperty.call(createBufferedReadable, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: createBufferedReadable['__proto__']
+    });
+
 Object.keys(createBufferedReadable).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return createBufferedReadable[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = createBufferedReadable[k];
 });
+Object.prototype.hasOwnProperty.call(getAwsChunkedEncodingStream, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: getAwsChunkedEncodingStream['__proto__']
+    });
+
 Object.keys(getAwsChunkedEncodingStream).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return getAwsChunkedEncodingStream[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = getAwsChunkedEncodingStream[k];
 });
+Object.prototype.hasOwnProperty.call(headStream, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: headStream['__proto__']
+    });
+
 Object.keys(headStream).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return headStream[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = headStream[k];
 });
+Object.prototype.hasOwnProperty.call(sdkStreamMixin, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
+        enumerable: true,
+        value: sdkStreamMixin['__proto__']
+    });
+
 Object.keys(sdkStreamMixin).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return sdkStreamMixin[k]; }
-    });
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = sdkStreamMixin[k];
 });
-Object.keys(splitStream).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(splitStream, '__proto__') &&
+    !Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+    Object.defineProperty(exports, '__proto__', {
         enumerable: true,
-        get: function () { return splitStream[k]; }
+        value: splitStream['__proto__']
     });
+
+Object.keys(splitStream).forEach(function (k) {
+    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = splitStream[k];
 });
 
 
@@ -44587,6 +44247,14 @@ module.exports = require("node:async_hooks");
 
 /***/ }),
 
+/***/ 1421:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:child_process");
+
+/***/ }),
+
 /***/ 7598:
 /***/ ((module) => {
 
@@ -44635,6 +44303,14 @@ module.exports = require("node:path");
 
 /***/ }),
 
+/***/ 1708:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:process");
+
+/***/ }),
+
 /***/ 7075:
 /***/ ((module) => {
 
@@ -44672,14 +44348,6 @@ module.exports = require("path");
 
 "use strict";
 module.exports = require("perf_hooks");
-
-/***/ }),
-
-/***/ 932:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("process");
 
 /***/ }),
 
@@ -46407,7 +46075,7 @@ module.exports = parseParams
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.995.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.11","@aws-sdk/credential-provider-node":"^3.972.10","@aws-sdk/middleware-host-header":"^3.972.3","@aws-sdk/middleware-logger":"^3.972.3","@aws-sdk/middleware-recursion-detection":"^3.972.3","@aws-sdk/middleware-user-agent":"^3.972.11","@aws-sdk/region-config-resolver":"^3.972.3","@aws-sdk/types":"^3.973.1","@aws-sdk/util-endpoints":"3.995.0","@aws-sdk/util-user-agent-browser":"^3.972.3","@aws-sdk/util-user-agent-node":"^3.972.10","@smithy/config-resolver":"^4.4.6","@smithy/core":"^3.23.2","@smithy/fetch-http-handler":"^5.3.9","@smithy/hash-node":"^4.2.8","@smithy/invalid-dependency":"^4.2.8","@smithy/middleware-content-length":"^4.2.8","@smithy/middleware-endpoint":"^4.4.16","@smithy/middleware-retry":"^4.4.33","@smithy/middleware-serde":"^4.2.9","@smithy/middleware-stack":"^4.2.8","@smithy/node-config-provider":"^4.3.8","@smithy/node-http-handler":"^4.4.10","@smithy/protocol-http":"^5.3.8","@smithy/smithy-client":"^4.11.5","@smithy/types":"^4.12.0","@smithy/url-parser":"^4.2.8","@smithy/util-base64":"^4.3.0","@smithy/util-body-length-browser":"^4.2.0","@smithy/util-body-length-node":"^4.2.1","@smithy/util-defaults-mode-browser":"^4.3.32","@smithy/util-defaults-mode-node":"^4.2.35","@smithy/util-endpoints":"^3.2.8","@smithy/util-middleware":"^4.2.8","@smithy/util-retry":"^4.2.8","@smithy/util-utf8":"^4.2.0","tslib":"^2.6.2"},"devDependencies":{"@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.1000.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test":"yarn g:vitest run --passWithNoTests","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs","test:integration":"yarn g:vitest run --passWithNoTests -c vitest.config.integ.mts","test:integration:watch":"yarn g:vitest run --passWithNoTests -c vitest.config.integ.mts","test:watch":"yarn g:vitest watch --passWithNoTests"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.15","@aws-sdk/credential-provider-node":"^3.972.14","@aws-sdk/middleware-host-header":"^3.972.6","@aws-sdk/middleware-logger":"^3.972.6","@aws-sdk/middleware-recursion-detection":"^3.972.6","@aws-sdk/middleware-user-agent":"^3.972.15","@aws-sdk/region-config-resolver":"^3.972.6","@aws-sdk/types":"^3.973.4","@aws-sdk/util-endpoints":"^3.996.3","@aws-sdk/util-user-agent-browser":"^3.972.6","@aws-sdk/util-user-agent-node":"^3.973.0","@smithy/config-resolver":"^4.4.9","@smithy/core":"^3.23.6","@smithy/fetch-http-handler":"^5.3.11","@smithy/hash-node":"^4.2.10","@smithy/invalid-dependency":"^4.2.10","@smithy/middleware-content-length":"^4.2.10","@smithy/middleware-endpoint":"^4.4.20","@smithy/middleware-retry":"^4.4.37","@smithy/middleware-serde":"^4.2.11","@smithy/middleware-stack":"^4.2.10","@smithy/node-config-provider":"^4.3.10","@smithy/node-http-handler":"^4.4.12","@smithy/protocol-http":"^5.3.10","@smithy/smithy-client":"^4.12.0","@smithy/types":"^4.13.0","@smithy/url-parser":"^4.2.10","@smithy/util-base64":"^4.3.1","@smithy/util-body-length-browser":"^4.2.1","@smithy/util-body-length-node":"^4.2.2","@smithy/util-defaults-mode-browser":"^4.3.36","@smithy/util-defaults-mode-node":"^4.2.39","@smithy/util-endpoints":"^3.3.1","@smithy/util-middleware":"^4.2.10","@smithy/util-retry":"^4.2.10","@smithy/util-utf8":"^4.2.1","tslib":"^2.6.2"},"devDependencies":{"@smithy/snapshot-testing":"^1.0.7","@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3","vitest":"^4.0.17"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.0":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ })
 
