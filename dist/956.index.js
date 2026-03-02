@@ -12,7 +12,7 @@ exports.fromTokenFile = void 0;
 const client_1 = __webpack_require__(5152);
 const property_provider_1 = __webpack_require__(1238);
 const shared_ini_file_loader_1 = __webpack_require__(4964);
-const fs_1 = __webpack_require__(9896);
+const node_fs_1 = __webpack_require__(3024);
 const fromWebToken_1 = __webpack_require__(4453);
 const ENV_TOKEN_FILE = "AWS_WEB_IDENTITY_TOKEN_FILE";
 const ENV_ROLE_ARN = "AWS_ROLE_ARN";
@@ -30,7 +30,7 @@ const fromTokenFile = (init = {}) => async (awsIdentityProperties) => {
     const credentials = await (0, fromWebToken_1.fromWebToken)({
         ...init,
         webIdentityToken: shared_ini_file_loader_1.externalDataInterceptor?.getTokenRecord?.()[webIdentityTokenFile] ??
-            (0, fs_1.readFileSync)(webIdentityTokenFile, { encoding: "ascii" }),
+            (0, node_fs_1.readFileSync)(webIdentityTokenFile, { encoding: "ascii" }),
         roleArn,
         roleSessionName,
     })(awsIdentityProperties);
@@ -123,17 +123,25 @@ var fromWebToken = __webpack_require__(4453);
 
 
 
+Object.prototype.hasOwnProperty.call(fromTokenFile, '__proto__') &&
+	!Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+	Object.defineProperty(exports, '__proto__', {
+		enumerable: true,
+		value: fromTokenFile['__proto__']
+	});
+
 Object.keys(fromTokenFile).forEach(function (k) {
-	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-		enumerable: true,
-		get: function () { return fromTokenFile[k]; }
-	});
+	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = fromTokenFile[k];
 });
-Object.keys(fromWebToken).forEach(function (k) {
-	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
+Object.prototype.hasOwnProperty.call(fromWebToken, '__proto__') &&
+	!Object.prototype.hasOwnProperty.call(exports, '__proto__') &&
+	Object.defineProperty(exports, '__proto__', {
 		enumerable: true,
-		get: function () { return fromWebToken[k]; }
+		value: fromWebToken['__proto__']
 	});
+
+Object.keys(fromWebToken).forEach(function (k) {
+	if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) exports[k] = fromWebToken[k];
 });
 
 
