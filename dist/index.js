@@ -6913,6 +6913,9 @@ class AwsEc2QueryProtocol extends AwsQueryProtocol {
         };
         Object.assign(this.serializer.settings, ec2Settings);
     }
+    getShapeId() {
+        return "aws.protocols#ec2Query";
+    }
     useNestedResult() {
         return false;
     }
@@ -7374,6 +7377,7 @@ exports.JsonShapeDeserializer = JsonShapeDeserializer;
 exports.JsonShapeSerializer = JsonShapeSerializer;
 exports.NODE_AUTH_SCHEME_PREFERENCE_OPTIONS = NODE_AUTH_SCHEME_PREFERENCE_OPTIONS;
 exports.NODE_SIGV4A_CONFIG_OPTIONS = NODE_SIGV4A_CONFIG_OPTIONS;
+exports.QueryShapeSerializer = QueryShapeSerializer;
 exports.XmlCodec = XmlCodec;
 exports.XmlShapeDeserializer = XmlShapeDeserializer;
 exports.XmlShapeSerializer = XmlShapeSerializer;
@@ -8850,6 +8854,9 @@ class AwsEc2QueryProtocol extends AwsQueryProtocol {
         };
         Object.assign(this.serializer.settings, ec2Settings);
     }
+    getShapeId() {
+        return "aws.protocols#ec2Query";
+    }
     useNestedResult() {
         return false;
     }
@@ -9306,6 +9313,7 @@ exports.AwsSmithyRpcV2CborProtocol = AwsSmithyRpcV2CborProtocol;
 exports.JsonCodec = JsonCodec;
 exports.JsonShapeDeserializer = JsonShapeDeserializer;
 exports.JsonShapeSerializer = JsonShapeSerializer;
+exports.QueryShapeSerializer = QueryShapeSerializer;
 exports.XmlCodec = XmlCodec;
 exports.XmlShapeDeserializer = XmlShapeDeserializer;
 exports.XmlShapeSerializer = XmlShapeSerializer;
@@ -10417,6 +10425,7 @@ exports.useDefaultPartitionInfo = useDefaultPartitionInfo;
 
 var node_os = __nccwpck_require__(8161);
 var node_process = __nccwpck_require__(1708);
+var utilConfigProvider = __nccwpck_require__(6716);
 var promises = __nccwpck_require__(1455);
 var node_path = __nccwpck_require__(6760);
 var middlewareUserAgent = __nccwpck_require__(2959);
@@ -10431,6 +10440,21 @@ const getRuntimeUserAgentPair = () => {
     return ["md/nodejs", node_process.versions.node];
 };
 
+const getNodeModulesParentDirs = (dirname) => {
+    const cwd = process.cwd();
+    if (!dirname) {
+        return [cwd];
+    }
+    const normalizedPath = node_path.normalize(dirname);
+    const parts = normalizedPath.split(node_path.sep);
+    const nodeModulesIndex = parts.indexOf("node_modules");
+    const parentDir = nodeModulesIndex !== -1 ? parts.slice(0, nodeModulesIndex).join(node_path.sep) : normalizedPath;
+    if (cwd === parentDir) {
+        return [cwd];
+    }
+    return [parentDir, cwd];
+};
+
 const SEMVER_REGEX = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)?$/;
 const getSanitizedTypeScriptVersion = (version = "") => {
     const match = version.match(SEMVER_REGEX);
@@ -10441,24 +10465,22 @@ const getSanitizedTypeScriptVersion = (version = "") => {
     return prerelease ? `${major}.${minor}.${patch}-${prerelease}` : `${major}.${minor}.${patch}`;
 };
 
-const typescriptPackageJsonPath = node_path.join("node_modules", "typescript", "package.json");
-const getTypeScriptPackageJsonPaths = (dirname) => {
-    const cwdPath = node_path.join(process.cwd(), typescriptPackageJsonPath);
-    if (!dirname) {
-        return [cwdPath];
+const ALLOWED_PREFIXES = ["^", "~", ">=", "<=", ">", "<"];
+const ALLOWED_DIST_TAGS = ["latest", "beta", "dev", "rc", "insiders", "next"];
+const getSanitizedDevTypeScriptVersion = (version = "") => {
+    if (ALLOWED_DIST_TAGS.includes(version)) {
+        return version;
     }
-    const normalizedPath = node_path.normalize(dirname);
-    const parts = normalizedPath.split(node_path.sep);
-    const nodeModulesIndex = parts.indexOf("node_modules");
-    const parentDir = nodeModulesIndex !== -1 ? parts.slice(0, nodeModulesIndex).join(node_path.sep) : dirname;
-    const parentDirPath = node_path.join(parentDir, typescriptPackageJsonPath);
-    if (cwdPath === parentDirPath) {
-        return [cwdPath];
+    const prefix = ALLOWED_PREFIXES.find((p) => version.startsWith(p)) ?? "";
+    const sanitizedTypeScriptVersion = getSanitizedTypeScriptVersion(version.slice(prefix.length));
+    if (!sanitizedTypeScriptVersion) {
+        return undefined;
     }
-    return [parentDirPath, cwdPath];
+    return `${prefix}${sanitizedTypeScriptVersion}`;
 };
 
 let tscVersion;
+const TS_PACKAGE_JSON = node_path.join("node_modules", "typescript", "package.json");
 const getTypeScriptUserAgentPair = async () => {
     if (tscVersion === null) {
         return undefined;
@@ -10466,23 +10488,65 @@ const getTypeScriptUserAgentPair = async () => {
     else if (typeof tscVersion === "string") {
         return ["md/tsc", tscVersion];
     }
+    let isTypeScriptDetectionDisabled = false;
+    try {
+        isTypeScriptDetectionDisabled =
+            utilConfigProvider.booleanSelector(process.env, "AWS_SDK_JS_TYPESCRIPT_DETECTION_DISABLED", utilConfigProvider.SelectorType.ENV) || false;
+    }
+    catch { }
+    if (isTypeScriptDetectionDisabled) {
+        tscVersion = null;
+        return undefined;
+    }
     const dirname = typeof __dirname !== "undefined" ? __dirname : undefined;
-    for (const typescriptPackageJsonPath of getTypeScriptPackageJsonPaths(dirname)) {
+    const nodeModulesParentDirs = getNodeModulesParentDirs(dirname);
+    let versionFromApp;
+    for (const nodeModulesParentDir of nodeModulesParentDirs) {
         try {
-            const packageJson = await promises.readFile(typescriptPackageJsonPath, "utf-8");
+            const appPackageJsonPath = node_path.join(nodeModulesParentDir, "package.json");
+            const packageJson = await promises.readFile(appPackageJsonPath, "utf-8");
+            const { dependencies, devDependencies } = JSON.parse(packageJson);
+            const version = devDependencies?.typescript ?? dependencies?.typescript;
+            if (typeof version !== "string") {
+                continue;
+            }
+            versionFromApp = version;
+            break;
+        }
+        catch {
+        }
+    }
+    if (!versionFromApp) {
+        tscVersion = null;
+        return undefined;
+    }
+    let versionFromNodeModules;
+    for (const nodeModulesParentDir of nodeModulesParentDirs) {
+        try {
+            const tsPackageJsonPath = node_path.join(nodeModulesParentDir, TS_PACKAGE_JSON);
+            const packageJson = await promises.readFile(tsPackageJsonPath, "utf-8");
             const { version } = JSON.parse(packageJson);
             const sanitizedVersion = getSanitizedTypeScriptVersion(version);
             if (typeof sanitizedVersion !== "string") {
                 continue;
             }
-            tscVersion = sanitizedVersion;
-            return ["md/tsc", tscVersion];
+            versionFromNodeModules = sanitizedVersion;
+            break;
         }
         catch {
         }
     }
-    tscVersion = null;
-    return undefined;
+    if (versionFromNodeModules) {
+        tscVersion = versionFromNodeModules;
+        return ["md/tsc", tscVersion];
+    }
+    const sanitizedVersion = getSanitizedDevTypeScriptVersion(versionFromApp);
+    if (typeof sanitizedVersion !== "string") {
+        tscVersion = null;
+        return undefined;
+    }
+    tscVersion = `dev_${sanitizedVersion}`;
+    return ["md/tsc", tscVersion];
 };
 
 const crtAvailability = {
@@ -10789,10 +10853,10 @@ class InvokeStoreMulti extends InvokeStoreBase {
 exports.InvokeStore = void 0;
 (function (InvokeStore) {
     let instance = null;
-    async function getInstanceAsync() {
+    async function getInstanceAsync(forceInvokeStoreMulti) {
         if (!instance) {
             instance = (async () => {
-                const isMulti = "AWS_LAMBDA_MAX_CONCURRENCY" in process.env;
+                const isMulti = forceInvokeStoreMulti === true || "AWS_LAMBDA_MAX_CONCURRENCY" in process.env;
                 const newInstance = isMulti
                     ? await InvokeStoreMulti.create()
                     : new InvokeStoreSingle();
@@ -11031,7 +11095,6 @@ exports.resolveRegionConfig = resolveRegionConfig;
 
 var types = __nccwpck_require__(690);
 var utilMiddleware = __nccwpck_require__(6324);
-var middlewareSerde = __nccwpck_require__(3255);
 var protocolHttp = __nccwpck_require__(2356);
 var protocols = __nccwpck_require__(3422);
 
@@ -11122,7 +11185,7 @@ const httpAuthSchemeMiddlewareOptions = {
     name: "httpAuthSchemeMiddleware",
     override: true,
     relation: "before",
-    toMiddleware: middlewareSerde.serializerMiddlewareOption.name,
+    toMiddleware: "serializerMiddleware",
 };
 const getHttpAuthSchemePlugin = (config, { httpAuthSchemeParametersProvider, identityProviderConfigProvider, }) => ({
     applyToStack: (clientStack) => {
@@ -12139,7 +12202,8 @@ const checkCborResponse = (response) => {
     }
 };
 const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
-    const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+    const endpoint = await context.endpoint();
+    const { hostname, protocol = "https", port, path: basePath } = endpoint;
     const contents = {
         protocol,
         hostname,
@@ -12152,6 +12216,11 @@ const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, bod
     };
     if (resolvedHostname !== undefined) {
         contents.hostname = resolvedHostname;
+    }
+    if (endpoint.headers) {
+        for (const [name, value] of Object.entries(endpoint.headers)) {
+            contents.headers[name] = value;
+        }
     }
     if (body !== undefined) {
         contents.body = body;
@@ -12475,6 +12544,36 @@ exports.tagSymbol = tagSymbol;
 
 /***/ }),
 
+/***/ 2085:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+"use strict";
+
+
+var urlParser = __nccwpck_require__(4494);
+
+const toEndpointV1 = (endpoint) => {
+    if (typeof endpoint === "object") {
+        if ("url" in endpoint) {
+            const v1Endpoint = urlParser.parseUrl(endpoint.url);
+            if (endpoint.headers) {
+                v1Endpoint.headers = {};
+                for (const [name, values] of Object.entries(endpoint.headers)) {
+                    v1Endpoint.headers[name.toLowerCase()] = values.join(", ");
+                }
+            }
+            return v1Endpoint;
+        }
+        return endpoint;
+    }
+    return urlParser.parseUrl(endpoint);
+};
+
+exports.toEndpointV1 = toEndpointV1;
+
+
+/***/ }),
+
 /***/ 3422:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -12552,6 +12651,11 @@ class HttpProtocol extends SerdeContext {
             for (const [k, v] of endpoint.url.searchParams.entries()) {
                 request.query[k] = v;
             }
+            if (endpoint.headers) {
+                for (const [name, values] of Object.entries(endpoint.headers)) {
+                    request.headers[name] = values.join(", ");
+                }
+            }
             return request;
         }
         else {
@@ -12562,6 +12666,11 @@ class HttpProtocol extends SerdeContext {
             request.query = {
                 ...endpoint.query,
             };
+            if (endpoint.headers) {
+                for (const [name, value] of Object.entries(endpoint.headers)) {
+                    request.headers[name] = value;
+                }
+            }
             return request;
         }
     }
@@ -12971,7 +13080,7 @@ class RpcProtocol extends HttpProtocol {
                 payload = serializer.flush();
             }
         }
-        request.headers = headers;
+        request.headers = Object.assign(request.headers, headers);
         request.query = query;
         request.body = payload;
         request.method = "POST";
@@ -13365,6 +13474,7 @@ exports.resolvedPath = resolvedPath;
 
 var protocolHttp = __nccwpck_require__(2356);
 var utilMiddleware = __nccwpck_require__(6324);
+var endpoints = __nccwpck_require__(2085);
 
 const deref = (schemaRef) => {
     if (typeof schemaRef === "function") {
@@ -13447,8 +13557,8 @@ const findHeader = (pattern, headers) => {
 const schemaSerializationMiddleware = (config) => (next, context) => async (args) => {
     const { operationSchema } = utilMiddleware.getSmithyContext(context);
     const [, ns, n, t, i, o] = operationSchema ?? [];
-    const endpoint = context.endpointV2?.url && config.urlParser
-        ? async () => config.urlParser(context.endpointV2.url)
+    const endpoint = context.endpointV2
+        ? async () => endpoints.toEndpointV1(context.endpointV2)
         : config.endpoint;
     const request = await config.protocol.serializeRequest(operation(ns, n, t, i, o), args.input, {
         ...config,
@@ -13580,11 +13690,15 @@ const error = (namespace, name, traits, memberNames, memberList, ctor) => Schema
     ctor: null,
 });
 
+const traitsCache = [];
 function translateTraits(indicator) {
     if (typeof indicator === "object") {
         return indicator;
     }
     indicator = indicator | 0;
+    if (traitsCache[indicator]) {
+        return traitsCache[indicator];
+    }
     const traits = {};
     let i = 0;
     for (const trait of [
@@ -13600,12 +13714,15 @@ function translateTraits(indicator) {
             traits[trait] = 1;
         }
     }
-    return traits;
+    return (traitsCache[indicator] = traits);
 }
 
 const anno = {
     it: Symbol.for("@smithy/nor-struct-it"),
+    ns: Symbol.for("@smithy/ns"),
 };
+const simpleSchemaCacheN = [];
+const simpleSchemaCacheS = {};
 class NormalizedSchema {
     ref;
     memberName;
@@ -13670,6 +13787,22 @@ class NormalizedSchema {
         return isPrototype;
     }
     static of(ref) {
+        const keyAble = typeof ref === "function" || (typeof ref === "object" && ref !== null);
+        if (typeof ref === "number") {
+            if (simpleSchemaCacheN[ref]) {
+                return simpleSchemaCacheN[ref];
+            }
+        }
+        else if (typeof ref === "string") {
+            if (simpleSchemaCacheS[ref]) {
+                return simpleSchemaCacheS[ref];
+            }
+        }
+        else if (keyAble) {
+            if (ref[anno.ns]) {
+                return ref[anno.ns];
+            }
+        }
         const sc = deref(ref);
         if (sc instanceof NormalizedSchema) {
             return sc;
@@ -13682,7 +13815,17 @@ class NormalizedSchema {
             }
             throw new Error(`@smithy/core/schema - may not init unwrapped member schema=${JSON.stringify(ref, null, 2)}.`);
         }
-        return new NormalizedSchema(sc);
+        const ns = new NormalizedSchema(sc);
+        if (keyAble) {
+            return (ref[anno.ns] = ns);
+        }
+        if (typeof sc === "string") {
+            return (simpleSchemaCacheS[sc] = ns);
+        }
+        if (typeof sc === "number") {
+            return (simpleSchemaCacheN[sc] = ns);
+        }
+        return ns;
     }
     getSchema() {
         const sc = this.schema;
@@ -14020,7 +14163,10 @@ exports.operation = operation;
 exports.serializerMiddlewareOption = serializerMiddlewareOption;
 exports.sim = sim;
 exports.simAdapter = simAdapter;
+exports.simpleSchemaCacheN = simpleSchemaCacheN;
+exports.simpleSchemaCacheS = simpleSchemaCacheS;
 exports.struct = struct;
+exports.traitsCache = traitsCache;
 exports.translateTraits = translateTraits;
 
 
@@ -14895,7 +15041,10 @@ function buildAbortError(abortSignal) {
         : undefined;
     if (reason) {
         if (reason instanceof Error) {
-            return reason;
+            const abortError = new Error("Request aborted");
+            abortError.name = "AbortError";
+            abortError.cause = reason;
+            return abortError;
         }
         const abortError = new Error(String(reason));
         abortError.name = "AbortError";
@@ -15244,7 +15393,14 @@ const createConfigValueProvider = (configKey, canonicalEndpointParamKey, config,
 const toEndpointV1 = (endpoint) => {
     if (typeof endpoint === "object") {
         if ("url" in endpoint) {
-            return urlParser.parseUrl(endpoint.url);
+            const v1Endpoint = urlParser.parseUrl(endpoint.url);
+            if (endpoint.headers) {
+                v1Endpoint.headers = {};
+                for (const [name, values] of Object.entries(endpoint.headers)) {
+                    v1Endpoint.headers[name.toLowerCase()] = values.join(", ");
+                }
+            }
+            return v1Endpoint;
         }
         return endpoint;
     }
@@ -15270,6 +15426,15 @@ const getEndpointFromInstructions = async (commandInput, instructionsSupplier, c
         throw new Error("config.endpointProvider is not set.");
     }
     const endpoint = clientConfig.endpointProvider(endpointParams, context);
+    if (clientConfig.isCustomEndpoint && clientConfig.endpoint) {
+        const customEndpoint = await clientConfig.endpoint();
+        if (customEndpoint?.headers) {
+            endpoint.headers ??= {};
+            for (const [name, value] of Object.entries(customEndpoint.headers)) {
+                endpoint.headers[name] = Array.isArray(value) ? value : [value];
+            }
+        }
+    }
     return endpoint;
 };
 const resolveParams = async (commandInput, instructionsSupplier, clientConfig) => {
@@ -15591,20 +15756,17 @@ const NODE_MAX_ATTEMPT_CONFIG_OPTIONS = {
     default: utilRetry.DEFAULT_MAX_ATTEMPTS,
 };
 const resolveRetryConfig = (input) => {
-    const { retryStrategy, retryMode: _retryMode, maxAttempts: _maxAttempts } = input;
-    const maxAttempts = utilMiddleware.normalizeProvider(_maxAttempts ?? utilRetry.DEFAULT_MAX_ATTEMPTS);
+    const { retryStrategy, retryMode } = input;
+    const maxAttempts = utilMiddleware.normalizeProvider(input.maxAttempts ?? utilRetry.DEFAULT_MAX_ATTEMPTS);
+    let controller = retryStrategy
+        ? Promise.resolve(retryStrategy)
+        : undefined;
+    const getDefault = async () => (await utilMiddleware.normalizeProvider(retryMode)()) === utilRetry.RETRY_MODES.ADAPTIVE
+        ? new utilRetry.AdaptiveRetryStrategy(maxAttempts)
+        : new utilRetry.StandardRetryStrategy(maxAttempts);
     return Object.assign(input, {
         maxAttempts,
-        retryStrategy: async () => {
-            if (retryStrategy) {
-                return retryStrategy;
-            }
-            const retryMode = await utilMiddleware.normalizeProvider(_retryMode)();
-            if (retryMode === utilRetry.RETRY_MODES.ADAPTIVE) {
-                return new utilRetry.AdaptiveRetryStrategy(maxAttempts);
-            }
-            return new utilRetry.StandardRetryStrategy(maxAttempts);
-        },
+        retryStrategy: () => (controller ??= getDefault()),
     });
 };
 const ENV_RETRY_MODE = "AWS_RETRY_MODE";
@@ -15786,6 +15948,7 @@ exports.isStreamingPayload = isStreamingPayload;
 
 
 var protocolHttp = __nccwpck_require__(2356);
+var endpoints = __nccwpck_require__(2085);
 
 const deserializerMiddleware = (options, deserializer) => (next, context) => async (args) => {
     const { response } = await next(args);
@@ -15847,8 +16010,8 @@ const findHeader = (pattern, headers) => {
 
 const serializerMiddleware = (options, serializer) => (next, context) => async (args) => {
     const endpointConfig = options;
-    const endpoint = context.endpointV2?.url && endpointConfig.urlParser
-        ? async () => endpointConfig.urlParser(context.endpointV2.url)
+    const endpoint = context.endpointV2
+        ? async () => endpoints.toEndpointV1(context.endpointV2)
         : endpointConfig.endpoint;
     if (!endpoint) {
         throw new Error("No valid endpoint provider available.");
@@ -16272,7 +16435,10 @@ function buildAbortError(abortSignal) {
         : undefined;
     if (reason) {
         if (reason instanceof Error) {
-            return reason;
+            const abortError = new Error("Request aborted");
+            abortError.name = "AbortError";
+            abortError.cause = reason;
+            return abortError;
         }
         const abortError = new Error(String(reason));
         abortError.name = "AbortError";
@@ -46098,7 +46264,7 @@ module.exports = parseParams
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.1004.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test":"yarn g:vitest run --passWithNoTests","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs","test:integration":"yarn g:vitest run --passWithNoTests -c vitest.config.integ.mts","test:integration:watch":"yarn g:vitest run --passWithNoTests -c vitest.config.integ.mts","test:watch":"yarn g:vitest watch --passWithNoTests"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.18","@aws-sdk/credential-provider-node":"^3.972.18","@aws-sdk/middleware-host-header":"^3.972.7","@aws-sdk/middleware-logger":"^3.972.7","@aws-sdk/middleware-recursion-detection":"^3.972.7","@aws-sdk/middleware-user-agent":"^3.972.19","@aws-sdk/region-config-resolver":"^3.972.7","@aws-sdk/types":"^3.973.5","@aws-sdk/util-endpoints":"^3.996.4","@aws-sdk/util-user-agent-browser":"^3.972.7","@aws-sdk/util-user-agent-node":"^3.973.4","@smithy/config-resolver":"^4.4.10","@smithy/core":"^3.23.8","@smithy/fetch-http-handler":"^5.3.13","@smithy/hash-node":"^4.2.11","@smithy/invalid-dependency":"^4.2.11","@smithy/middleware-content-length":"^4.2.11","@smithy/middleware-endpoint":"^4.4.22","@smithy/middleware-retry":"^4.4.39","@smithy/middleware-serde":"^4.2.12","@smithy/middleware-stack":"^4.2.11","@smithy/node-config-provider":"^4.3.11","@smithy/node-http-handler":"^4.4.14","@smithy/protocol-http":"^5.3.11","@smithy/smithy-client":"^4.12.2","@smithy/types":"^4.13.0","@smithy/url-parser":"^4.2.11","@smithy/util-base64":"^4.3.2","@smithy/util-body-length-browser":"^4.2.2","@smithy/util-body-length-node":"^4.2.3","@smithy/util-defaults-mode-browser":"^4.3.38","@smithy/util-defaults-mode-node":"^4.2.41","@smithy/util-endpoints":"^3.3.2","@smithy/util-middleware":"^4.2.11","@smithy/util-retry":"^4.2.11","@smithy/util-utf8":"^4.2.2","tslib":"^2.6.2"},"devDependencies":{"@smithy/snapshot-testing":"^1.0.9","@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3","vitest":"^4.0.17"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.5":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-secrets-manager","description":"AWS SDK for JavaScript Secrets Manager Client for Node.js, Browser and React Native","version":"3.1009.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-secrets-manager","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo secrets-manager","test":"yarn g:vitest run --passWithNoTests","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs","test:integration":"yarn g:vitest run --passWithNoTests -c vitest.config.integ.mts","test:integration:watch":"yarn g:vitest run --passWithNoTests -c vitest.config.integ.mts","test:watch":"yarn g:vitest watch --passWithNoTests"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.20","@aws-sdk/credential-provider-node":"^3.972.21","@aws-sdk/middleware-host-header":"^3.972.8","@aws-sdk/middleware-logger":"^3.972.8","@aws-sdk/middleware-recursion-detection":"^3.972.8","@aws-sdk/middleware-user-agent":"^3.972.21","@aws-sdk/region-config-resolver":"^3.972.8","@aws-sdk/types":"^3.973.6","@aws-sdk/util-endpoints":"^3.996.5","@aws-sdk/util-user-agent-browser":"^3.972.8","@aws-sdk/util-user-agent-node":"^3.973.7","@smithy/config-resolver":"^4.4.11","@smithy/core":"^3.23.11","@smithy/fetch-http-handler":"^5.3.15","@smithy/hash-node":"^4.2.12","@smithy/invalid-dependency":"^4.2.12","@smithy/middleware-content-length":"^4.2.12","@smithy/middleware-endpoint":"^4.4.25","@smithy/middleware-retry":"^4.4.42","@smithy/middleware-serde":"^4.2.14","@smithy/middleware-stack":"^4.2.12","@smithy/node-config-provider":"^4.3.12","@smithy/node-http-handler":"^4.4.16","@smithy/protocol-http":"^5.3.12","@smithy/smithy-client":"^4.12.5","@smithy/types":"^4.13.1","@smithy/url-parser":"^4.2.12","@smithy/util-base64":"^4.3.2","@smithy/util-body-length-browser":"^4.2.2","@smithy/util-body-length-node":"^4.2.3","@smithy/util-defaults-mode-browser":"^4.3.41","@smithy/util-defaults-mode-node":"^4.2.44","@smithy/util-endpoints":"^3.3.3","@smithy/util-middleware":"^4.2.12","@smithy/util-retry":"^4.2.12","@smithy/util-utf8":"^4.2.2","tslib":"^2.6.2"},"devDependencies":{"@smithy/snapshot-testing":"^2.0.2","@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3","vitest":"^4.0.17"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.5":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-secrets-manager","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-secrets-manager"}}');
 
 /***/ })
 
