@@ -34,7 +34,7 @@
     "@types/node": "^20.19.37",
     "@typescript-eslint/parser": "^8.56.0",
     "@vercel/ncc": "^0.38.4",
-    "eslint": "^10.0.3",
+    "eslint": "^10.1.0",
     "js-yaml": "^4.1.1",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
